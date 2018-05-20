@@ -1,0 +1,10 @@
+<mat-toolbar color="primary" class="header">
+  <mat-icon>home</mat-icon>
+
+  <div class="navigation-list">
+    <ng-container *ngFor="let navItem of navigationList">
+      <app-navigation-list [navItem]="navItem"></app-navigation-list>
+    </ng-container>
+  </div>
+
+</mat-toolbar>

@@ -1,0 +1,15 @@
+<ng-container *ngIf="navItem">
+  <ng-container *ngIf="navItem.childrenItems && navItem.childrenItems.length; else other">
+    <button mat-menu-item [matMenuTriggerFor]="childrentMenu">{{navItem.parentItem}}</button>
+    <mat-menu #childrentMenu="matMenu">
+      <ng-container>
+        <button mat-menu-item *ngFor="let child of navItem.childrenItems">{{child}}</button>
+      </ng-container>
+    </mat-menu>
+  </ng-container>
+
+  <ng-template #other>
+    <button mat-menu-item >{{navItem.parentItem}}</button>
+  </ng-template>
+
+</ng-container>
