@@ -1,0 +1,46 @@
+<ng-container *ngIf="factors">
+  <form [formGroup]="factorsFormGroup">
+      <mat-card class="hhd-card" *ngFor="let factor of factors; let idx=index" [formGroupName]="factor.code">
+        <mat-card-header>
+          <mat-card-title>
+            <strong>{{factor.title}}</strong>
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class='hhd-card-content'>
+          <ng-container *ngFor="let dataItem of factor.dataItems">
+            <mat-checkbox class="hhd-card-content-item" [formControlName]="dataItem.code" [disabled]="isDiasbled(factor.code, dataItem.code)">
+              {{dataItem.title}}
+            </mat-checkbox>
+          </ng-container>
+        </mat-card-content>
+
+      </mat-card>
+  </form>
+
+  <div>
+    <button mat-raised-button color="primary" (click)="nextToSecondStep()">Next</button>
+  </div>
+</ng-container>
+
+<!-- <ng-container *ngIf="factors">
+      <mat-card class="hhd-card" *ngFor="let factor of factors; let idx=index">
+        <mat-card-header>
+          <mat-card-title>
+            <strong>{{factor.title}}</strong>
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class='hhd-card-content'>
+          <ng-container *ngFor="let dataItem of factor.dataItems">
+            <mat-checkbox class="hhd-card-content-item" [(ngModel)]='dataItem.isSelected'>
+              {{dataItem.title}}
+            </mat-checkbox>
+          </ng-container>
+        </mat-card-content>
+
+      </mat-card>
+  <div>
+    <button mat-raised-button color="primary" (click)="nextToSecondStep()">Next</button>
+  </div>
+</ng-container> -->

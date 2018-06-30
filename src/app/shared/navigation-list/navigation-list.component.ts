@@ -13,4 +13,6 @@ export class NavigationListComponent implements OnInit {
   ngOnInit() {
   }
 
+  navigateTo(toPage: any) {}
+
 }

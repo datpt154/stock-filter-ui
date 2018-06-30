@@ -1,0 +1,15 @@
+.hhd-card {
+    background: rgba(0,0,0,.03);
+    margin-bottom: 10px;
+
+    .hhd-card-content {
+        display: flex;
+        flex-flow: row wrap;
+        margin-left: 40px;
+
+        .hhd-card-content-item {
+            width: 25%;
+            margin-top: 20px;
+        }
+    }
+}

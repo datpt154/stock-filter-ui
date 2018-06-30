@@ -24,10 +24,20 @@ export class HeaderComponent implements OnInit {
       ]
     },
     {
-      parentItem: 'Danh Muc Dau Tu',
+      parentItem: 'Bảng lọc cơ bản',
       childrenItems: [
       ]
-    }
+    },
+    {
+      parentItem: 'Dich Vụ',
+      childrenItems: [
+      ]
+    },
+    {
+      parentItem: 'Liên hệ',
+      childrenItems: [
+      ]
+    },
   ];
 
   constructor() { }

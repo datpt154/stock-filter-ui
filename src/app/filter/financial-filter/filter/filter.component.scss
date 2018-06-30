@@ -1,0 +1,45 @@
+.filter-container {
+    display: flex;
+    flex-direction: column;
+
+    mat-slider {
+        width: 500px;
+    }
+
+    .hhd-card {
+        background: rgba(0,0,0,.03);
+        margin-bottom: 10px;
+    }
+
+    .list-item-title {
+        margin-top: 1.50em;
+        margin-right: 20px;
+        width: 300px;
+    }
+
+    mat-list-item {
+        margin-bottom: 30px;
+    }
+
+    .list-item-input {
+        display: flex;
+        width: 60%;
+
+        nouislider {
+            width: 80%;
+        }
+
+        .unit-class {
+            padding-left: 30px;
+        }
+
+    }
+
+    .clear-filter {
+        color:#ff0000;
+        font-size:12px;
+        align-self: flex-end;
+        padding-right: 155px;
+        text-decoration: none;
+    }
+}
