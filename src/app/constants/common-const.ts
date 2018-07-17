@@ -8,12 +8,12 @@ export class CommonConstants {
       dataItems: [
         {
           title: 'Net Revenue',
-          code: 'NET_RENENUE',
+          code: 'NET_REVENUE',
           max: 200000,
           min: 0,
           selectedValues: [0, 200000],
           isSelected: false,
-          unit: 'tỷ'
+          unit: 'tỷ',
         },
         {
           title: 'Gross profit',
@@ -35,7 +35,7 @@ export class CommonConstants {
         },
         {
           title: 'Share\'s outstanding',
-          code: 'SHARES_OUTSTANDING',
+          code: 'SHARE_S_OUSTANDING',
           max: 5000,
           min: 1,
           selectedValues: [1, 5000],
@@ -53,7 +53,7 @@ export class CommonConstants {
         },
         {
           title: 'BV',
-          code: 'BV',
+          code: 'BOOK_VALUE',
           max: 100,
           min: -10,
           selectedValues: [-10, 100],
@@ -62,7 +62,7 @@ export class CommonConstants {
         },
         {
           title: 'Price',
-          code: 'PRICE',
+          code: 'MARKET_PRICE',
           max: 500,
           min: -10,
           selectedValues: [-10, 500],
@@ -71,7 +71,7 @@ export class CommonConstants {
         },
         {
           title: 'Market capital',
-          code: 'MARKET_CAPITAL',
+          code: 'DAYYS',
           max: 600000,
           min: -10,
           selectedValues: [-10, 600000],
@@ -86,7 +86,7 @@ export class CommonConstants {
       dataItems: [
         {
           title: 'Net revenue (%YOY)',
-          code: 'NET_REVENUE_YOY',
+          code: 'CAPEX',
           max: 20,
           min: -1,
           selectedValues: [-1, 20],

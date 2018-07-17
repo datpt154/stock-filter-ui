@@ -5,17 +5,19 @@
 <mat-horizontal-stepper [linear]="true" #stepper>
   <!-- Stepper steps go here -->
   <mat-step [stepControl]="factorsFormGroup">
-      <ng-template matStepLabel>Lựa chọn điều kiện lọc</ng-template>
-      <app-factors [factors]="data" [factorsFormGroup]="factorsFormGroup" (next)="nextToSecondStep($event)"></app-factors>
+    <ng-template matStepLabel>Lựa chọn điều kiện lọc</ng-template>
+    <app-factors [factors]="data" [factorsFormGroup]="factorsFormGroup" (next)="nextToFactorsDetail($event)"></app-factors>
   </mat-step>
 
-  <mat-step>
+  <mat-step (selectionChange)="test()">
     <ng-template matStepLabel>Chọn thông số lọc</ng-template>
-    <app-filter [selectedDataItems]="selectedDataItems" (next)="nextToThirdStep($event)"></app-filter>
+    <app-filter [selectedDataItems]="selectedDataItems" (next)="nextToFilterResult($event)"></app-filter>
   </mat-step>
 
   <mat-step>
     <ng-template matStepLabel>Kết quả lọc</ng-template>
-    <app-filter-result></app-filter-result>
+    <ng-container *ngIf="isFilterPageReady">
+      <app-filter-result [selectedDataItems]="selectedDataItems" (triggerBackToFilterInput)="triggerBackToFilterInput()"></app-filter-result>
+    </ng-container>
   </mat-step>
 </mat-horizontal-stepper>

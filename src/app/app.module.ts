@@ -7,11 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { Route } from '@angular/compiler/src/core';
 import { SharedModule } from './shared/shared.module';
-import { ServicesModule } from './services/services.module';
+import { HttpClientModule } from '@angular/common/http';
 
 const routers: Routes = [
   { path: 'components', loadChildren: './filter/filter.module#FilterModule' },
-  { path: 'demo', loadChildren: './demo/demo.module#DemoModule' },
   { path: '**', redirectTo: 'components' }
 ];
 @NgModule({
@@ -22,7 +21,7 @@ const routers: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
-    ServicesModule,
+    HttpClientModule,
     RouterModule.forRoot(routers)
   ],
   providers: [],

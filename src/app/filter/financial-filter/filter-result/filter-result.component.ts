@@ -1,5 +1,10 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { BasicFilterDTO } from '../../../interface/basic-filter-dto';
+import { DataItem } from '../../../interface/data-item';
+import { FilterService } from '../../../services/business.service/filter.service';
+import * as _ from 'lodash';
+
 
 @Component({
   selector: 'app-filter-result',
@@ -8,16 +13,41 @@ import { MatTableDataSource, MatPaginator } from '@angular/material';
 })
 export class FilterResultComponent implements OnInit {
   @Output() triggerBackToFilterInput: EventEmitter<any> = new EventEmitter();
+  @Input() selectedDataItems: DataItem[];
+  private searchResult: BasicFilterDTO[] = [];
 
-  displayedColumns = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  // here are some columns that will be fixed on UI (always be showed)
+  private fixedColumns = ['rowIndex', 'companyName', 'companyCode'];
+  private displayedColumns;
+  private dataSource;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
 
-  constructor() { }
+  constructor(private _filterService: FilterService) { }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.selectedDataItems && changes.selectedDataItems.currentValue) {
+      // update displayedColumns whenever selectedDataItems has been changed 
+      this.displayedColumns = [...this.fixedColumns];
+      this.selectedDataItems.forEach(dataItem => {
+        this.displayedColumns.push(dataItem.code);
+      })
+
+      this._filterService.basicFilter(this.selectedDataItems).subscribe(data => {
+        _.range(1, 100).forEach(item => {
+          this.searchResult = this.searchResult.concat(data);
+        })
+
+        // initialize data after input are binded sucessfully
+        this.dataSource = new MatTableDataSource<BasicFilterDTO>(this.searchResult);
+        this.dataSource.paginator = this.paginator;
+      });
+    }
+  }
 
   ngOnInit() {
+
   }
 
   /**
@@ -25,41 +55,12 @@ export class FilterResultComponent implements OnInit {
    * be able to query its view for the initialized paginator.
    */
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    // this.dataSource.paginator = this.paginator;
   }
 
   private backToFilterInput(): void {
+    this.searchResult = [];
     this.triggerBackToFilterInput.emit();
   }
 
 }
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-  { position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na' },
-  { position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg' },
-  { position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al' },
-  { position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si' },
-  { position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P' },
-  { position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S' },
-  { position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl' },
-  { position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar' },
-  { position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K' },
-  { position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca' },
-];

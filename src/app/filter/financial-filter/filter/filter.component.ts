@@ -11,9 +11,6 @@ export class FilterComponent implements OnInit {
   @Input() selectedDataItems: DataItem[];
   @Output() next: EventEmitter<any> = new EventEmitter();
 
-  someRange= [ 4, 10 ];
-
-
   constructor(public snackBar: MatSnackBar) { }
 
   ngOnInit() {

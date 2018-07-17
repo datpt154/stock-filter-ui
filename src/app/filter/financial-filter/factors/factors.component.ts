@@ -2,9 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Factor } from '../../../interface/factor';
 import { FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
-import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/takeUntil';
+import { Subject } from 'rxjs';
 import * as _ from 'lodash';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-factors',
@@ -70,7 +70,7 @@ export class FactorsComponent implements OnInit {
       factor.dataItems.forEach(dataItem => {
         const fbBuilderDataItem = this.factorsFormGroup.get(factor.code).get(dataItem.code);
         fbBuilderDataItem.valueChanges
-          .takeUntil(this.ngUnsubscribe)
+          .pipe(takeUntil(this.ngUnsubscribe))
           .subscribe(value => {
             // update selectedDataItemCodes
             if (value === true) {

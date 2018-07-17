@@ -4,4 +4,9 @@
 
 html, body {
     height: 100%;
+    -webkit-font-smoothing: antialiased;
+}
+
+.mat-horizontal-stepper-header{
+    pointer-events: none !important;
 }

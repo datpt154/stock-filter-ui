@@ -4,7 +4,6 @@ import { Factor } from '../../interface/factor';
 import { min } from 'rxjs/operators';
 import { CommonConstants } from '../../constants/common-const';
 import { DataItem } from '../../interface/data-item';
-import { FilterService } from '../../services/filter.service';
 
 @Component({
   selector: 'app-financial-filter',
@@ -12,24 +11,22 @@ import { FilterService } from '../../services/filter.service';
   styleUrls: ['./financial-filter.component.scss']
 })
 export class FinancialFilterComponent implements OnInit {
-  private isFilterInput = true;
-
   private data: Factor[] = CommonConstants.factors;
 
-  factorsFormGroup: FormGroup;
-  isLinear: boolean = false;
-
+  private factorsFormGroup: FormGroup;
+  private isLinear = false;
   private selectedDataItems: DataItem[];
+  private isFilterPageReady = false;
 
   @ViewChild('stepper') stepper;
 
-  constructor(private _formBuilder: FormBuilder, private _filterService: FilterService) { }
+  constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.factorsFormGroup = this.builFormBuilder();
   }
 
-  private nextToSecondStep(selectedDataItemCodes: string[]): void {
+  private nextToFactorsDetail(selectedDataItemCodes: string[]): void {
     this.selectedDataItems = [];
     this.data.forEach(factor => {
       const temp = factor.dataItems.filter(dataItem => selectedDataItemCodes.includes(dataItem.code))
@@ -41,9 +38,14 @@ export class FinancialFilterComponent implements OnInit {
     this.stepper.next();
   }
 
-  private nextToThirdStep(selectedDataItems): void {
-    this._filterService.test();
+  private nextToFilterResult(selectedDataItems): void {
     this.stepper.next();
+    this.isFilterPageReady = true;
+  }
+
+  private triggerBackToFilterInput(): void {
+    this.stepper.previous();
+    this.isFilterPageReady = false;
   }
 
   private builFormBuilder(): FormGroup {
