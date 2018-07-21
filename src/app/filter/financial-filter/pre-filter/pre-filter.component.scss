@@ -7,13 +7,13 @@
         flex-flow: row wrap;
         margin-left: 40px;
 
+        mat-radio-group {
+            width: 100%;
+        }
+
         .hhd-card-content-item {
-            width: 25%;
+            width: 20%;
             margin-top: 20px;
         }
     }
-}
-
-.customButtonClass {
-    margin-left: 20px;
 }

@@ -4,20 +4,28 @@
 
 <mat-horizontal-stepper [linear]="true" #stepper>
   <!-- Stepper steps go here -->
-  <mat-step [stepControl]="factorsFormGroup">
-    <ng-template matStepLabel>Lựa chọn điều kiện lọc</ng-template>
-    <app-factors [factors]="data" [factorsFormGroup]="factorsFormGroup" (next)="nextToFactorsDetail($event)"></app-factors>
+  <mat-step [stepControl]="preFilterFormGroup"> 
+    <ng-template matStepLabel>Vùng dữ liệu</ng-template>
+    <app-pre-filter [preFilterData]="preFilterData" [preFilterFormGroup]="preFilterFormGroup" (next)="nextToFactorsStep($event)"></app-pre-filter>
   </mat-step>
 
-  <mat-step (selectionChange)="test()">
-    <ng-template matStepLabel>Chọn thông số lọc</ng-template>
+  <mat-step [stepControl]="factorsFormGroup">
+    <ng-template matStepLabel>Điều kiện lọc</ng-template>
+    <app-factors [factors]="factorsData" [factorsFormGroup]="factorsFormGroup" 
+      (next)="nextToFactorsDetail($event)" (back)="backToPreFilter()">
+    </app-factors>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Thông số lọc</ng-template>
     <app-filter [selectedDataItems]="selectedDataItems" (next)="nextToFilterResult($event)"></app-filter>
   </mat-step>
 
   <mat-step>
     <ng-template matStepLabel>Kết quả lọc</ng-template>
     <ng-container *ngIf="isFilterPageReady">
-      <app-filter-result [selectedDataItems]="selectedDataItems" (triggerBackToFilterInput)="triggerBackToFilterInput()"></app-filter-result>
+      <app-filter-result [selectedDataItems]="selectedDataItems" [searchResult]="searchResult"
+        (triggerBackToFilterInput)="triggerBackToFilterInput()"></app-filter-result>
     </ng-container>
   </mat-step>
 </mat-horizontal-stepper>

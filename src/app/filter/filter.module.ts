@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FactorsComponent } from './financial-filter/factors/factors.component';
 import { FilterComponent } from './financial-filter/filter/filter.component';
 import { NouisliderModule } from 'ng2-nouislider';
+import { PreFilterComponent } from './financial-filter/pre-filter/pre-filter.component';
 
 const routers: Routes = [
   {
@@ -25,6 +26,6 @@ const routers: Routes = [
     NouisliderModule,
     RouterModule.forChild(routers)
   ],
-  declarations: [FilterResultComponent, FactorsComponent, FinancialFilterComponent, FilterComponent]
+  declarations: [FilterResultComponent, FactorsComponent, FinancialFilterComponent, FilterComponent, PreFilterComponent]
 })
 export class FilterModule { }

@@ -15,6 +15,7 @@ export class FactorsComponent implements OnInit {
   @Input() factors: Factor[];
   @Input() factorsFormGroup: FormGroup;
   @Output() next: EventEmitter<any> = new EventEmitter();
+  @Output() back: EventEmitter<any> = new EventEmitter();
   @Output() reset: EventEmitter<any> = new EventEmitter();
 
   private ngUnsubscribe: Subject<any> = new Subject();
@@ -34,7 +35,7 @@ export class FactorsComponent implements OnInit {
     this.ngUnsubscribe.complete();
   }
 
-  private nextToSecondStep(): void {
+  private nextStep(): void {
     if (this.selectedDataItemCodes && this.selectedDataItemCodes.length) {
       this.next.next(this.selectedDataItemCodes);
     } else {
@@ -42,6 +43,10 @@ export class FactorsComponent implements OnInit {
         duration: 300
       });
     }
+  }
+
+  private backStep(): void {
+    this.back.next();
   }
 
   private getSelectedCheckboxs(form: FormGroup, formData: Factor[]) {

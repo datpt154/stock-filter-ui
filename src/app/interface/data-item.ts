@@ -6,5 +6,5 @@ export interface DataItem {
   selectedValues: number[];
   isSelected: boolean;
   unit: string;
-  // step: number;
+  step: number;
 }

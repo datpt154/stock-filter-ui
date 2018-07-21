@@ -10,8 +10,8 @@ import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 
 const routers: Routes = [
-  { path: 'components', loadChildren: './filter/filter.module#FilterModule' },
-  { path: '**', redirectTo: 'components' }
+  { path: 'filter', loadChildren: './filter/filter.module#FilterModule' },
+  { path: '**', redirectTo: 'filter' }
 ];
 @NgModule({
   declarations: [

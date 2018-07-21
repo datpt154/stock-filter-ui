@@ -1,20 +1,30 @@
 <div class="mat-elevation-z8">
-  <mat-table #table [dataSource]="dataSource" *ngIf="dataSource">
+  <mat-table *ngIf="dataSource" #sort [dataSource]="dataSource" MatSort>
 
-      <ng-container matColumnDef="rowIndex">
-          <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-          <mat-cell *matCellDef="let element; let idx= index"> {{idx + 1}} </mat-cell>
-        </ng-container>
+    <ng-container matColumnDef="rowIndex">
+      <mat-header-cell *matHeaderCellDef [ngClass]="'customNoClass'"> No. </mat-header-cell>
+      <mat-cell *matCellDef="let element; let idx= index" [ngClass]="'customNoClass'"> {{idx + 1}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="companyCode">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Mã chứng khoán </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.companyCode}} </mat-cell>
+      </ng-container>
 
     <ng-container matColumnDef="companyName">
       <mat-header-cell *matHeaderCellDef> Tên công ty </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.companyName}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="companyCode">
-      <mat-header-cell *matHeaderCellDef> Mã chứng khoán </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.companyCode}} </mat-cell>
-    </ng-container>
+    <ng-container matColumnDef="stockExchange">
+        <mat-header-cell *matHeaderCellDef> Sàn </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.stockExchange}} </mat-cell>
+      </ng-container>
+
+    <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef> Giá </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
+      </ng-container>
 
     <!-- dynamic Columns -->
     <ng-container *ngFor="let dynamicColumn of selectedDataItems; let idx = index">
@@ -22,7 +32,7 @@
         <mat-header-cell *matHeaderCellDef> {{dynamicColumn.title}} </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.searchItems[idx].value}} </mat-cell>
       </ng-container>
-  </ng-container>
+    </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

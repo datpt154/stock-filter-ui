@@ -4,6 +4,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { DataItem } from '../../interface/data-item';
 import { BasicFilterDTO } from '../../interface/basic-filter-dto';
+import { BasicFilterInput } from '../../interface/api-input';
 
 @Injectable({
   providedIn: 'root',
@@ -12,14 +13,14 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  public basicFilter(dataItems: DataItem[]): Observable<any> {
+  public basicFilter(searchInput: BasicFilterInput): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
     const url = 'http://localhost:8080/api/filter';
 
     return this.http
-      .post<any>(url, JSON.stringify(dataItems), httpOptions)
+      .post<any>(url, JSON.stringify(searchInput), httpOptions)
       .pipe(catchError(this.handleError))
   }
 
