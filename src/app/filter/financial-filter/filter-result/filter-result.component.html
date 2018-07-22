@@ -1,5 +1,5 @@
 <div class="mat-elevation-z8">
-  <mat-table *ngIf="dataSource" #sort [dataSource]="dataSource" MatSort>
+  <mat-table #sort [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="rowIndex">
       <mat-header-cell *matHeaderCellDef [ngClass]="'customNoClass'"> No. </mat-header-cell>

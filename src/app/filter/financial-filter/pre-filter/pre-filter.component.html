@@ -1,4 +1,9 @@
 <ng-container *ngIf="preFilterData">
+  <dl class="notification">
+    <!-- <dt>Chú ý (*)</dt> -->
+    <dd>Vui lòng chọn các điều kiện bắt buộc (*) để tiếp tục</dd>
+  </dl>
+
   <form [formGroup]="preFilterFormGroup">
     <mat-card class="hhd-card">
       <mat-card-header>

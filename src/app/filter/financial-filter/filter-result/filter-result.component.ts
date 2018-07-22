@@ -27,20 +27,20 @@ export class FilterResultComponent implements OnInit {
 
   constructor() { }
 
-  ngOnChanges(changes: SimpleChanges) {
-    // if (changes.selectedDataItems && changes.selectedDataItems.currentValue) {
-      // update displayedColumns whenever selectedDataItems has been changed 
-      this.displayedColumns = [...this.fixedColumns];
-      this.selectedDataItems.forEach(dataItem => {
-        this.displayedColumns.push(dataItem.code);
-      })
+  // ngOnChanges(changes: SimpleChanges) {
+  //   // if (changes.selectedDataItems && changes.selectedDataItems.currentValue) {
+  //     // update displayedColumns whenever selectedDataItems has been changed 
+  //     this.displayedColumns = [...this.fixedColumns];
+  //     this.selectedDataItems.forEach(dataItem => {
+  //       this.displayedColumns.push(dataItem.code);
+  //     })
 
-      // initialize data after input are binded sucessfully
-      this.dataSource = new MatTableDataSource<BasicFilterDTO>(this.searchResult);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    // }
-  }
+  //     // initialize data after input are binded sucessfully
+  //     this.dataSource = new MatTableDataSource<BasicFilterDTO>(this.searchResult);
+  //     this.dataSource.paginator = this.paginator;
+  //     this.dataSource.sort = this.sort;
+  //   // }
+  // }
 
   ngOnInit() {
     this.displayedColumns = [...this.fixedColumns];

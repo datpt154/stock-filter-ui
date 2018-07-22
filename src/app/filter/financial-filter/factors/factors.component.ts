@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Factor } from '../../../interface/factor';
 import { FormGroup } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
 import { Subject } from 'rxjs';
 import * as _ from 'lodash';
 import { takeUntil } from 'rxjs/operators';
@@ -24,7 +23,7 @@ export class FactorsComponent implements OnInit {
   private selectedDataItemCodes: string[] = []; // keep code of current selected dataItems;
   private disabled = false; // if users select enough MAXINUM_SELECTED_FACTORS => we will disable the sections
 
-  constructor(public snackBar: MatSnackBar) { }
+  constructor() { }
 
   ngOnInit() {
     this.registerValueChange();
@@ -38,10 +37,6 @@ export class FactorsComponent implements OnInit {
   private nextStep(): void {
     if (this.selectedDataItemCodes && this.selectedDataItemCodes.length) {
       this.next.next(this.selectedDataItemCodes);
-    } else {
-      this.snackBar.open('Please select at least one item', '', {
-        duration: 300
-      });
     }
   }
 
@@ -89,9 +84,6 @@ export class FactorsComponent implements OnInit {
             // based on selectedDataItemCodes, to determine disable or not and show toaster
             if (this.selectedDataItemCodes.length >= this.MAXINUM_SELECTED_FACTORS) {
               this.disabled = true;
-              this.snackBar.open('the maximum sections is 5', '', {
-                duration: 155000
-              });
             } else {
               this.disabled = false;
             }
