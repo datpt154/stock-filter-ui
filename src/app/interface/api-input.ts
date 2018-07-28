@@ -5,3 +5,9 @@ export interface BasicFilterInput {
     stockExchanges: string[],
     searchDataitems: DataItem[];
 }
+
+export interface ComparedFilterInput {
+    time: string,
+    stocks: string[],
+    searchDataitems: DataItem[];
+}

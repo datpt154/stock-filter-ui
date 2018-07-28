@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, of } from 'rxjs';
 import { DataItem } from '../../interface/data-item';
 import { BasicFilterDTO } from '../../interface/basic-filter-dto';
-import { BasicFilterInput } from '../../interface/api-input';
+import { BasicFilterInput, ComparedFilterInput } from '../../interface/api-input';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +21,28 @@ export class ApiService {
 
     return this.http
       .post<any>(url, JSON.stringify(searchInput), httpOptions)
+      .pipe(catchError(this.handleError))
+  }
+
+  public compareFiltered(searchInput: ComparedFilterInput): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    const url = 'http://localhost:8080/api/Compare';
+
+    return this.http
+      .post<any>(url, JSON.stringify(searchInput), httpOptions)
+      .pipe(catchError(this.handleError))
+  }
+
+  public searchCompany(searchPattern: string): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    const url = 'http://localhost:8080/api/autocompletestock/' + searchPattern;
+
+    return this.http
+      .get<any>(url, httpOptions)
       .pipe(catchError(this.handleError))
   }
 

@@ -6,19 +6,27 @@
         width: 500px;
     }
 
-    .hhd-card {
-        background: red($color: #000000);
-        margin-bottom: 10px;
-    }
-
     .list-item-title {
-        margin-top: 1.50em;
         margin-right: 20px;
         width: 300px;
     }
 
-    mat-list-item {
-        margin-bottom: 30px;
+    .list-item-title-dataItem {
+        @extend .list-item-title;
+        width: 315px;
+    }
+
+    .mat-list-dataItem {
+        margin-top: 22px;
+    }
+
+    .list-otherfactor-item {
+        display: flex;
+        width: 60%;
+
+        .otherfactor-item {
+            width: 20%;
+        }
     }
 
     .list-item-input {
@@ -32,18 +40,25 @@
         .unit-class {
             padding-left: 30px;
         }
-
     }
 
     .clear-filter {
         color:#ff0000;
         font-size:12px;
-        align-self: flex-end;
-        padding-right: 155px;
         text-decoration: none;
     }
 }
 
-.customButtonClass {
-    margin-left: 20px;
+.notification {
+    color: red;
+    margin-top: 0px;
+}
+
+.button-class{
+    display: flex;
+    justify-content: flex-end;
+
+    .customButtonClass {
+        margin-left: 20px;
+    }
 }

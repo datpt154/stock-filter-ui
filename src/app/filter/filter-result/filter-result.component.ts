@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-import { BasicFilterDTO } from '../../../interface/basic-filter-dto';
-import { DataItem } from '../../../interface/data-item';
-import { FilterService } from '../../../services/business.service/filter.service';
 import * as _ from 'lodash';
+import { DataItem } from '../../interface/data-item';
+import { BasicFilterDTO } from '../../interface/basic-filter-dto';
 
 
 @Component({

@@ -1,8 +1,7 @@
 import { Factor } from '../interface/factor';
-import { PreFilter } from '../interface/pre-filter';
 
 export class CommonConstants {
-  public static preFilter: PreFilter =
+  public static otherFactors =
     {
       filterTimes: [{
         code: 'quarter',
@@ -27,7 +26,7 @@ export class CommonConstants {
         }
       ]
     };
-    
+
   public static factors: Factor[] = [
     {
       title: 'Finance',

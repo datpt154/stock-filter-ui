@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Factor } from '../../../interface/factor';
 import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import * as _ from 'lodash';
 import { takeUntil } from 'rxjs/operators';
+import { Factor } from '../../interface/factor';
 
 @Component({
   selector: 'app-factors',

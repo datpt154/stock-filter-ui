@@ -1,20 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FinancialFilterComponent } from './financial-filter/financial-filter.component';
+import { FirstFilterComponent } from './first-filter/first-filter.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
-import { FilterResultComponent } from './financial-filter/filter-result/filter-result.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FactorsComponent } from './financial-filter/factors/factors.component';
-import { FilterComponent } from './financial-filter/filter/filter.component';
 import { NouisliderModule } from 'ng2-nouislider';
-import { PreFilterComponent } from './financial-filter/pre-filter/pre-filter.component';
+import { FactorsComponent } from './factors/factors.component';
+import { SecondFilterComponent } from './second-filter/second-filter.component';
+import { FirstFilterSelectionComponent } from './first-filter/first-filter-selection/first-selection.component';
+import { SecondFilterSelectionComponent } from './second-filter/second-filter-selection/second-filter-selection.component';
+import { SecondFilterResultComponent } from './second-filter/second-filter-result/second-filter-result.component';
+import { FilterResultComponent } from './filter-result/filter-result.component';
 
 const routers: Routes = [
-  {
-    path: '', component: FinancialFilterComponent
-  },
-  { path: '**', redirectTo: '' }
+  { path: 'firstFilter', component: FirstFilterComponent },
+  { path: 'secondFilter', component: SecondFilterComponent },
+  { path: '**', redirectTo: 'firstFilter' }
 ];
 
 @NgModule({
@@ -26,6 +27,6 @@ const routers: Routes = [
     NouisliderModule,
     RouterModule.forChild(routers)
   ],
-  declarations: [FilterResultComponent, FactorsComponent, FinancialFilterComponent, FilterComponent, PreFilterComponent]
+  declarations: [FilterResultComponent, FactorsComponent, FirstFilterComponent, FirstFilterSelectionComponent, SecondFilterComponent, SecondFilterSelectionComponent, SecondFilterResultComponent]
 })
 export class FilterModule { }

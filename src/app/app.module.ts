@@ -15,7 +15,7 @@ const routers: Routes = [
 ];
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

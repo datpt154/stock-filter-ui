@@ -3,12 +3,6 @@
 </h1>
 
 <mat-horizontal-stepper [linear]="true" #stepper>
-  <!-- Stepper steps go here -->
-  <mat-step [stepControl]="preFilterFormGroup"> 
-    <ng-template matStepLabel>Vùng dữ liệu</ng-template>
-    <app-pre-filter [preFilterData]="preFilterData" [preFilterFormGroup]="preFilterFormGroup" (next)="nextToFactorsStep($event)"></app-pre-filter>
-  </mat-step>
-
   <mat-step [stepControl]="factorsFormGroup">
     <ng-template matStepLabel>Điều kiện lọc</ng-template>
     <app-factors [factors]="factorsData" [factorsFormGroup]="factorsFormGroup" 
@@ -18,7 +12,7 @@
 
   <mat-step>
     <ng-template matStepLabel>Thông số lọc</ng-template>
-    <app-filter [selectedDataItems]="selectedDataItems" (next)="nextToFilterResult($event)"></app-filter>
+    <second-filter-selection [selectedDataItems]="selectedDataItems" (next)="nextToFilterResult($event)"></second-filter-selection>
   </mat-step>
 
   <mat-step>

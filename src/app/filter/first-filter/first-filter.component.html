@@ -1,0 +1,25 @@
+<h1>
+  LỌC CỔ PHIẾU DỰA TRÊN CÁC CHỈ SỐ CƠ BẢN
+</h1>
+
+<mat-horizontal-stepper [linear]="true" #stepper>
+  <mat-step [stepControl]="factorsFormGroup">
+    <ng-template matStepLabel>Điều kiện lọc</ng-template>
+    <app-factors [factors]="factorsData" [factorsFormGroup]="factorsFormGroup" 
+      (next)="nextToFactorsDetail($event)" (back)="backToPreFilter()">
+    </app-factors>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Thông số lọc</ng-template>
+    <app-first-selection [selectedDataItems]="selectedDataItems" (next)="nextToFilterResult($event)"></app-first-selection>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Kết quả lọc</ng-template>
+    <ng-container *ngIf="isFilterPageReady">
+      <app-filter-result [selectedDataItems]="selectedDataItems" [searchResult]="searchResult"
+        (triggerBackToFilterInput)="triggerBackToFilterInput()"></app-filter-result>
+    </ng-container>
+  </mat-step>
+</mat-horizontal-stepper>
