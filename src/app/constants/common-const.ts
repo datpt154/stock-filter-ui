@@ -1,7 +1,8 @@
 import { Factor } from '../interface/factor';
+import { PreFilter } from '../interface/pre-filter';
 
 export class CommonConstants {
-  public static otherFactors =
+  public static preFilter: PreFilter =
     {
       filterTimes: [{
         code: 'quarter',
@@ -26,41 +27,41 @@ export class CommonConstants {
         }
       ]
     };
-
+    
   public static factors: Factor[] = [
     {
       title: 'Finance',
       code: 'FINANCE',
       dataItems: [
         {
-          title: 'Net Revenue',
+          title: 'Revenue',
           code: 'NET_REVENUE',
-          max: 200000,
+          max: 100000,
           min: 0,
-          selectedValues: [0, 200000],
+          selectedValues: [0, 100000],
           isSelected: false,
           step: 100,
-          unit: 'tỷ',
+          unit: 'bil',
         },
         {
           title: 'Gross profit',
           code: 'GROSS_PROFIT',
-          max: 50000,
-          min: 0,
-          selectedValues: [0, 50000],
-          isSelected: false,
-          step: 100,
-          unit: 'tỷ'
-        },
-        {
-          title: 'Net income',
-          code: 'NET_INCOME',
           max: 20000,
-          min: 10,
-          selectedValues: [-1000, 20000],
+          min: 0,
+          selectedValues: [0, 20000],
           isSelected: false,
           step: 10,
-          unit: 'tỷ'
+          unit: 'bil'
+        },
+        {
+          title: 'Income',
+          code: 'NET_INCOME',
+          max: 10000,
+          min: 0,
+          selectedValues: [0, 10000],
+          isSelected: false,
+          step: 10,
+          unit: 'bil'
         },
         {
           title: 'Share\'s outstanding',
@@ -70,7 +71,7 @@ export class CommonConstants {
           selectedValues: [0, 5000],
           isSelected: false,
           step: 10,
-          unit: 'triệu'
+          unit: 'mil'
         },
         {
           title: 'EPS',
@@ -80,7 +81,7 @@ export class CommonConstants {
           selectedValues: [0, 50],
           isSelected: false,
           step: 1,
-          unit: 'nghìn'
+          unit: 'k'
         },
         {
           title: 'BV',
@@ -90,7 +91,7 @@ export class CommonConstants {
           selectedValues: [0, 100],
           isSelected: false,
           step: 1,
-          unit: 'nghìn'
+          unit: 'k'
         },
         {
           title: 'Price',
@@ -100,17 +101,17 @@ export class CommonConstants {
           selectedValues: [0, 300],
           isSelected: false,
           step: 1,
-          unit: 'nghìn'
+          unit: 'k'
         },
         {
-          title: 'Market capital',
-          code: 'DAYYS',
-          max: 600000,
+          title: 'Capitalization',
+          code: 'MARKET_CAPITAL',
+          max: 100000,
           min: 0,
-          selectedValues: [0, 600000],
+          selectedValues: [0, 100000],
           isSelected: false,
           step: 100,
-          unit: 'tỷ'
+          unit: 'bil'
         }
       ]
     },
@@ -119,83 +120,83 @@ export class CommonConstants {
       code: 'YOY_INCREASE',
       dataItems: [
         {
-          title: 'Net revenue (%YOY)',
-          code: 'CAPEX',
-          max: 2000,
+          title: 'Revenue(%YOY)',
+          code: 'NET_REVENUE_YOY',
+          max: 500,
           min: 0,
-          selectedValues: [0, 2000],
+          selectedValues: [0, 500],
           isSelected: false,
-          step: 10,
+          step: 1,
           unit: '%'
         },
         {
-          title: 'Gross profit (%YOY)',
+          title: 'Gross profit(%YOY)',
           code: 'GROSS_PROFIT_YOY',
-          max: 2000,
+          max: 500,
           min: 0,
-          selectedValues: [0, 2000],
+          selectedValues: [0, 500],
           isSelected: false,
-          step: 10,
+          step: 1,
           unit: '%'
         },
         {
-          title: 'EPS (%YOY)',
+          title: 'EPS(%YOY)',
           code: 'EPS_YOY',
-          max: 2000,
+          max: 500,
           min: 0,
-          selectedValues: [0, 2000],
+          selectedValues: [0, 500],
           isSelected: false,
-          step: 10,
+          step: 1,
           unit: '%'
         },
         {
-          title: 'EBITDA (%YOY)',
+          title: 'EBITDA(%YOY)',
           code: 'EBITDA_YOY',
-          max: 2000,
+          max: 500,
           min: 0,
-          selectedValues: [0, 2000],
+          selectedValues: [0, 500],
           isSelected: false,
-          step: 10,
+          step: 1,
           unit: '%'
         },
         {
-          title: 'Debt (%YOY)',
+          title: 'Debt(%YOY)',
           code: 'DEBT_YOY',
-          max: 2000,
+          max: 500,
           min: 0,
-          selectedValues: [0, 2000],
+          selectedValues: [0, 500],
           isSelected: false,
-          step: 10,
+          step: 1,
           unit: '%'
         },
         {
-          title: 'Equity (%YOY)',
+          title: 'Equity(%YOY)',
           code: 'EQUITY_YOY',
-          max: 2000,
+          max: 500,
           min: 0,
-          selectedValues: [0, 2000],
+          selectedValues: [0, 500],
           isSelected: false,
-          step: 10,
+          step: 1,
           unit: '%'
         },
         {
-          title: 'Market capital (%YOY)',
+          title: 'Capitalization(%YOY)',
           code: 'MARKET_CAPITAL_YOY',
-          max: 2000,
+          max: 500,
           min: 0,
-          selectedValues: [0, 2000],
+          selectedValues: [0, 500],
           isSelected: false,
-          step: 10,
+          step: 1,
           unit: '%'
         },
         {
-          title: 'Total assets (%YOY)',
+          title: 'Assets(%YOY)',
           code: 'TOTAL_ASSETS_YOY',
-          max: 2000,
+          max: 500,
           min: 0,
-          selectedValues: [0, 2000],
+          selectedValues: [0, 500],
           isSelected: false,
-          step: 10,
+          step: 1,
           unit: '%'
         }
       ]
@@ -206,43 +207,43 @@ export class CommonConstants {
       dataItems: [
         {
           title: 'P/E',
-          code: 'PE',
+          code: 'P_E',
           max: 50,
           min: 0,
           selectedValues: [0, 50],
           isSelected: false,
           step: 1,
-          unit: ''
+          unit: 'x'
         },
         {
           title: 'Peg',
           code: 'PEG',
-          max: 50,
+          max: 5,
           min: 0,
-          selectedValues: [0, 50],
+          selectedValues: [0, 5],
           isSelected: false,
-          step: 1,
-          unit: ''
+          step: 0.1,
+          unit: 'x'
         },
         {
           title: 'P/B',
-          code: 'PB',
-          max: 10,
+          code: 'P_B',
+          max: 5,
           min: 0,
-          selectedValues: [0, 10],
+          selectedValues: [0, 5],
           isSelected: false,
-          step: 1,
-          unit: ''
+          step: 0.1,
+          unit: 'x'
         },
         {
           title: 'P/S',
-          code: 'PS',
-          max: 10,
+          code: 'P_S',
+          max: 5,
           min: 0,
-          selectedValues: [0, 10],
+          selectedValues: [0, 5],
           isSelected: false,
-          step: 1,
-          unit: ''
+          step: 0.1,
+          unit: 'x'
         },
         {
           title: 'EV/EBITDA',
@@ -252,7 +253,7 @@ export class CommonConstants {
           selectedValues: [0, 50],
           isSelected: false,
           step: 1,
-          unit: ''
+          unit: 'x'
         },
         {
           title: 'EV/EBIT',
@@ -262,7 +263,7 @@ export class CommonConstants {
           selectedValues: [0, 50],
           isSelected: false,
           step: 1,
-          unit: ''
+          unit: 'x'
         },
         {
           title: 'EV/FCF',
@@ -272,7 +273,7 @@ export class CommonConstants {
           selectedValues: [0, 50],
           isSelected: false,
           step: 1,
-          unit: ''
+          unit: 'x'
         },
         {
           title: 'Rev/FCF',
@@ -281,8 +282,8 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
-          step: 1,
-          unit: ''
+          step: 0.1,
+          unit: 'x'
         },
         {
           title: 'MC/CFO',
@@ -291,8 +292,8 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
-          step: 1,
-          unit: ''
+          step: 0.1,
+          unit: 'x'
         },
         {
           title: 'MC/NWC',
@@ -301,8 +302,8 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
-          step: 1,
-          unit: ''
+          step: 0.1,
+          unit: 'x'
         }
       ]
     },
@@ -313,12 +314,12 @@ export class CommonConstants {
         {
           title: 'Capex/Rev',
           code: 'CAPEX_REV',
-          max: 10,
+          max: 50,
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
           step: 1,
-          unit: ''
+          unit: 'x'
         },
         {
           title: 'ROIC',
@@ -328,7 +329,7 @@ export class CommonConstants {
           selectedValues: [0, 100],
           isSelected: false,
           step: 1,
-          unit: ''
+          unit: 'x'
         },
         {
           title: 'ROCE',
@@ -338,7 +339,7 @@ export class CommonConstants {
           selectedValues: [0, 100],
           isSelected: false,
           step: 1,
-          unit: ''
+          unit: 'x'
         },
         {
           title: 'ROE',
@@ -348,7 +349,7 @@ export class CommonConstants {
           selectedValues: [0, 100],
           isSelected: false,
           step: 1,
-          unit: ''
+          unit: 'x'
         },
         {
           title: 'ROA',
@@ -358,7 +359,7 @@ export class CommonConstants {
           selectedValues: [0, 100],
           isSelected: false,
           step: 1,
-          unit: ''
+          unit: 'x'
         }
       ]
     },
@@ -367,44 +368,44 @@ export class CommonConstants {
       code: 'MARGIN',
       dataItems: [
         {
-          title: 'Gross profit margin',
+          title: 'Gross margin',
           code: 'GROSS_PROFIT_MARGIN',
           max: 100,
           min: 0,
           selectedValues: [0, 100],
           isSelected: false,
           step: 1,
-          unit: ''
+          unit: 'x'
         },
         {
-          title: 'Operating profit Margin',
+          title: 'Operating Margin',
           code: 'OPERATING_PROFIT_MARGIN',
           max: 100,
           min: 0,
           selectedValues: [0, 100],
           isSelected: false,
           step: 1,
-          unit: ''
+          unit: 'x'
         },
         {
-          title: 'Pretax profit Margin',
+          title: 'Pretax Margin',
           code: 'PRETAX_PROFIT_MARGIN',
           max: 100,
           min: 0,
           selectedValues: [0, 100],
           isSelected: false,
           step: 1,
-          unit: ''
+          unit: 'x'
         },
         {
-          title: 'Net profit margin',
+          title: 'Profit margin',
           code: 'NET_PROFIT_MARGIN',
           max: 100,
           min: 0,
           selectedValues: [0, 100],
           isSelected: false,
           step: 1,
-          unit: ''
+          unit: 'x'
         },
         {
           title: 'Div Yield',
@@ -414,7 +415,7 @@ export class CommonConstants {
           selectedValues: [0, 100],
           isSelected: false,
           step: 1,
-          unit: ''
+          unit: 'x'
         },
         {
           title: 'EBIT/REV',
@@ -424,7 +425,7 @@ export class CommonConstants {
           selectedValues: [0, 100],
           isSelected: false,
           step: 1,
-          unit: ''
+          unit: 'x'
         },
         {
           title: 'EBITDA/REV',
@@ -434,7 +435,7 @@ export class CommonConstants {
           selectedValues: [0, 100],
           isSelected: false,
           step: 1,
-          unit: ''
+          unit: 'x'
         }
       ]
     },
@@ -443,14 +444,14 @@ export class CommonConstants {
       code: 'ACTIVITY_TURNOVER',
       dataItems: [
         {
-          title: 'sales-to-total assets',
+          title: 'Asset Turnover',
           code: 'SALES_TO_TOTAL_ASSETS',
           max: 10,
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
-          step: 1,
-          unit: ''
+          step: 0.1,
+          unit: 'x'
         },
         {
           title: 'Receivable turnover',
@@ -459,8 +460,8 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
-          step: 1,
-          unit: ''
+          step: 0.1,
+          unit: 'x'
         },
         {
           title: 'Payable turnover',
@@ -469,8 +470,8 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
-          step: 1,
-          unit: ''
+          step: 0.1,
+          unit: 'x'
         },
         {
           title: 'inventory turnover',
@@ -479,8 +480,8 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
-          step: 1,
-          unit: ''
+          step: 0.1,
+          unit: 'x'
         }
       ]
     },
@@ -489,34 +490,34 @@ export class CommonConstants {
       code: 'INTERPRETATION_OF_SOLVENCY_RATIOS',
       dataItems: [
         {
-          title: 'debt-to-assets ratio',
+          title: 'debt-to-assets',
           code: 'DEBT_TO_ASSETS_RATIO',
           max: 10,
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
-          step: 1,
-          unit: ''
+          step: 0.1,
+          unit: 'x'
         },
         {
-          title: 'Debt-to-equity ratio',
+          title: 'Debt-to-equity',
           code: 'DEBT_TO_EQUITY_RATIO',
           max: 10,
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
-          step: 1,
-          unit: ''
+          step: 0.1,
+          unit: 'x'
         },
         {
-          title: 'Long-time debt/total capitalazion',
+          title: 'LT-debt/capitalazion',
           code: 'LONG_TIME_DEBT_TOTAL_CAPITALAZION',
           max: 10,
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
-          step: 1,
-          unit: ''
+          step: 0.1,
+          unit: 'x'
         },
         {
           title: 'interest coverage',
@@ -525,8 +526,8 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
-          step: 1,
-          unit: ''
+          step: 0.1,
+          unit: 'x'
         }
       ]
     },
@@ -537,32 +538,32 @@ export class CommonConstants {
         {
           title: 'Current ratio',
           code: 'CURRENT_RATIO',
-          max: 3,
+          max: 10,
           min: 0,
-          selectedValues: [0, 3],
+          selectedValues: [0, 10],
           isSelected: false,
           step: 0.1,
-          unit: ''
+          unit: 'x'
         },
         {
           title: 'Quick ratio',
           code: 'QUICK_RATIO',
-          max: 3,
+          max: 10,
           min: 0,
-          selectedValues: [0, 3],
+          selectedValues: [0, 10],
           isSelected: false,
           step: 0.1,
-          unit: ''
+          unit: 'x'
         },
         {
           title: 'Cash ratio',
           code: 'CASH_RATIO',
-          max: 3,
+          max: 10,
           min: 0,
-          selectedValues: [0, 3],
+          selectedValues: [0, 10],
           isSelected: false,
           step: 0.1,
-          unit: ''
+          unit: 'x'
         }
       ]
     },
@@ -571,34 +572,34 @@ export class CommonConstants {
       code: 'RISK_RATIO',
       dataItems: [
         {
-          title: 'Account receivable-to-revenue',
+          title: 'AR/Rev',
           code: 'ACCOUNT_RECEIVABLE_TO_REVENUE',
-          max: 2,
+          max: 5,
           min: 0,
-          selectedValues: [0, 2],
+          selectedValues: [0, 5],
           isSelected: false,
           step: 0.01,
-          unit: ''
+          unit: 'x'
         },
         {
-          title: 'Account receivable-to-net income',
+          title: 'AR/Income',
           code: 'ACCOUNT_RECEIVABLE_TO_NET_INCOME',
           max: 5,
           min: 0,
           selectedValues: [0, 5],
           isSelected: false,
           step: 0.01,
-          unit: ''
+          unit: 'x'
         },
         {
-          title: 'Allowances and provisions-to-net income',
-          code: 'ALLOWANCES_AND_PROVISION_TO_NET_INCOME',
+          title: 'A&P/Income',
+          code: 'ALLOWANCES_AND_PROVISIONS_TO_NET_INCOME',
           max: 5,
           min: 0,
           selectedValues: [0, 5],
           isSelected: false,
           step: 0.01,
-          unit: ''
+          unit: 'x'
         }
       ]
     },
@@ -613,8 +614,8 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 9],
           isSelected: false,
-          step: 0.1,
-          unit: ''
+          step: 1,
+          unit: 'Point'
         },
         {
           title: 'C-score',
@@ -623,28 +624,28 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 6],
           isSelected: false,
-          step: 0.1,
-          unit: ''
+          step: 1,
+          unit: 'Point'
         },
         {
           title: 'M-score',
           code: 'M_SCORE',
           max: 10,
-          min: 5,
-          selectedValues: [5, 10],
+          min: -5,
+          selectedValues: [-5, 10],
           isSelected: false,
           step: 0.1,
-          unit: ''
+          unit: 'Point'
         },
         {
           title: 'Z-score',
           code: 'Z_SCORE',
           max: 10,
-          min: 4,
-          selectedValues: [4, 10],
+          min: -4,
+          selectedValues: [-4, 10],
           isSelected: false,
           step: 0.1,
-          unit: ''
+          unit: 'Point'
         }
       ]
     }
