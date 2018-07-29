@@ -31,9 +31,9 @@ export class SecondFilterSelectionComponent implements OnInit {
   constructor(private _filterService: FilterService, private _formBuilder: FormBuilder) { }
 
   ngOnChanges(changes: SimpleChanges) {
+    // whenever users change the selectedDataItems, we have to reset the current selections
     if (changes.selectedDataItems && changes.selectedDataItems.currentValue) {
       this.selectedDataItemAsString =  "";
-      this.selectedCompanies = [];
       this.selectedDataItems.forEach(item => {
         if (_.isEmpty(this.selectedDataItemAsString)) {
           this.selectedDataItemAsString += item.title;
@@ -61,13 +61,14 @@ export class SecondFilterSelectionComponent implements OnInit {
     // because formbuilder is not support for multiple checkbox. SO we add isValid property to this form
     // to verify that the checkbox must be selected at least one
     const temp = {
+      isValid: new FormControl(false, Validators.requiredTrue),
       timeFilter: new FormControl('', Validators.required),
     };
 
     return this._formBuilder.group(temp);
   }
 
-  filter(searchPattern: string): any {
+  private filter(searchPattern: string): Observable<any> {
     if (_.isNil(searchPattern) || _.isEmpty(searchPattern)) {
       return of([]);          
     }
@@ -75,7 +76,7 @@ export class SecondFilterSelectionComponent implements OnInit {
     return this._filterService.searchCompany(searchPattern);
   }
 
-  addCompanyForFilter(selectedItem: MatAutocompleteSelectedEvent) {
+  private addCompanyForFilter(selectedItem: MatAutocompleteSelectedEvent): void {
     const newCompany = selectedItem.option.value;
     if (_.isEmpty(this.selectedCompanies.filter(item => item === newCompany))) {
       this.selectedCompanies.push(newCompany)
@@ -83,11 +84,23 @@ export class SecondFilterSelectionComponent implements OnInit {
 
     // clear the autosugesstion
     this.companySearchControl.setValue("");
+    //update the validation of formbuilder
+    this.updateValidationForFb();
   }
 
 
-  removeSelectedCompany(company: string) {
+  private removeSelectedCompany(company: string): void {
     _.remove(this.selectedCompanies, item => item === company);
+    //update the validation of formbuilder
+    this.updateValidationForFb();
+  }
+
+  private updateValidationForFb(): void {
+    if (_.isNil(this.selectedCompanies) || _.isEmpty(this.selectedCompanies)) {
+      this.filtersFormGroup.get('isValid').setValue(false);
+    } else {
+      this.filtersFormGroup.get('isValid').setValue(true);
+    }
   }
 
   private nextStep(): void {

@@ -6,6 +6,7 @@ import { DataItem } from '../../interface/data-item';
 import { FilterService } from '../../services/business.service/filter.service';
 import { BasicFilterDTO } from '../../interface/basic-filter-dto';
 import { BasicFilterInput } from '../../interface/api-input';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-first-filter',
@@ -20,12 +21,33 @@ export class FirstFilterComponent implements OnInit {
   private isFilterPageReady = false;
   private searchResult: BasicFilterDTO[] = [];
 
+  private hiddenFieldsByDefault = [{
+    code: "FINANCE",
+    dataItem: "GROSS_PROFIT"
+  }, {
+    code: "FINANCE",
+    dataItem: "SHARE_S_OUSTANDING"
+  }];
+
   @ViewChild('stepper') stepper;
 
   constructor(private _formBuilder: FormBuilder, private _filterService: FilterService) { }
 
   ngOnInit() {
     this.factorsFormGroup = this.buildFactorsFb();
+    this.setDefault();
+  }
+
+  private setDefault(): void {
+    this.hiddenFieldsByDefault.forEach(hiddenField => {
+      const factor = this.factorsData.find(factor => factor.code == hiddenField.code);
+      if (!_.isNil(factor)) {
+        const hiddenDataItem = factor.dataItems.find(dataItem => dataItem.code == hiddenField.dataItem);
+        if (!_.isNil(hiddenDataItem)) {
+          hiddenDataItem.isShow = false;
+        }
+      }
+    })
   }
 
   private nextToFactorsDetail(selectedDataItemCodes: string[]): void {
@@ -45,7 +67,7 @@ export class FirstFilterComponent implements OnInit {
     this._filterService.basicFilter(searchInput).subscribe(data => {
       this.searchResult = data;
       this.isFilterPageReady = true;
-      this.stepper.next();      
+      this.stepper.next();
     });
   }
 

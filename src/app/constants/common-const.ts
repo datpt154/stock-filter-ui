@@ -1,8 +1,7 @@
 import { Factor } from '../interface/factor';
-import { PreFilter } from '../interface/pre-filter';
 
 export class CommonConstants {
-  public static preFilter: PreFilter =
+  public static otherFactors =
     {
       filterTimes: [{
         code: 'quarter',
@@ -40,6 +39,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 100000],
           isSelected: false,
+          isShow: true,
           step: 100,
           unit: 'bil',
         },
@@ -50,6 +50,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 20000],
           isSelected: false,
+          isShow: true,
           step: 10,
           unit: 'bil'
         },
@@ -60,6 +61,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 10000],
           isSelected: false,
+          isShow: true,
           step: 10,
           unit: 'bil'
         },
@@ -70,6 +72,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 5000],
           isSelected: false,
+          isShow: true,
           step: 10,
           unit: 'mil'
         },
@@ -80,6 +83,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 50],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: 'k'
         },
@@ -90,6 +94,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 100],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: 'k'
         },
@@ -100,6 +105,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 300],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: 'k'
         },
@@ -110,6 +116,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 100000],
           isSelected: false,
+          isShow: true,
           step: 100,
           unit: 'bil'
         }
@@ -126,6 +133,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 500],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: '%'
         },
@@ -136,6 +144,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 500],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: '%'
         },
@@ -146,6 +155,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 500],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: '%'
         },
@@ -156,6 +166,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 500],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: '%'
         },
@@ -166,6 +177,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 500],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: '%'
         },
@@ -176,6 +188,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 500],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: '%'
         },
@@ -186,6 +199,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 500],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: '%'
         },
@@ -196,6 +210,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 500],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: '%'
         }
@@ -212,6 +227,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 50],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: 'x'
         },
@@ -222,6 +238,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 5],
           isSelected: false,
+          isShow: true,
           step: 0.1,
           unit: 'x'
         },
@@ -232,6 +249,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 5],
           isSelected: false,
+          isShow: true,
           step: 0.1,
           unit: 'x'
         },
@@ -242,6 +260,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 5],
           isSelected: false,
+          isShow: true,
           step: 0.1,
           unit: 'x'
         },
@@ -252,6 +271,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 50],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: 'x'
         },
@@ -262,6 +282,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 50],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: 'x'
         },
@@ -272,6 +293,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 50],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: 'x'
         },
@@ -282,6 +304,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
+          isShow: true,
           step: 0.1,
           unit: 'x'
         },
@@ -292,6 +315,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
+          isShow: true,
           step: 0.1,
           unit: 'x'
         },
@@ -302,6 +326,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
+          isShow: true,
           step: 0.1,
           unit: 'x'
         }
@@ -318,6 +343,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: 'x'
         },
@@ -328,6 +354,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 100],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: 'x'
         },
@@ -338,6 +365,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 100],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: 'x'
         },
@@ -348,6 +376,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 100],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: 'x'
         },
@@ -358,6 +387,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 100],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: 'x'
         }
@@ -374,6 +404,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 100],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: 'x'
         },
@@ -384,6 +415,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 100],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: 'x'
         },
@@ -394,6 +426,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 100],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: 'x'
         },
@@ -404,6 +437,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 100],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: 'x'
         },
@@ -414,6 +448,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 100],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: 'x'
         },
@@ -424,6 +459,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 100],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: 'x'
         },
@@ -434,6 +470,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 100],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: 'x'
         }
@@ -450,6 +487,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
+          isShow: true,
           step: 0.1,
           unit: 'x'
         },
@@ -460,6 +498,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
+          isShow: true,
           step: 0.1,
           unit: 'x'
         },
@@ -470,6 +509,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
+          isShow: true,
           step: 0.1,
           unit: 'x'
         },
@@ -480,6 +520,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
+          isShow: true,
           step: 0.1,
           unit: 'x'
         }
@@ -496,6 +537,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
+          isShow: true,
           step: 0.1,
           unit: 'x'
         },
@@ -506,6 +548,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
+          isShow: true,
           step: 0.1,
           unit: 'x'
         },
@@ -515,7 +558,7 @@ export class CommonConstants {
           max: 10,
           min: 0,
           selectedValues: [0, 10],
-          isSelected: false,
+          isSelected: false,isShow: true,
           step: 0.1,
           unit: 'x'
         },
@@ -526,6 +569,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
+          isShow: true,
           step: 0.1,
           unit: 'x'
         }
@@ -542,6 +586,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
+          isShow: true,
           step: 0.1,
           unit: 'x'
         },
@@ -552,6 +597,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
+          isShow: true,
           step: 0.1,
           unit: 'x'
         },
@@ -562,6 +608,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 10],
           isSelected: false,
+          isShow: true,
           step: 0.1,
           unit: 'x'
         }
@@ -578,6 +625,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 5],
           isSelected: false,
+          isShow: true,
           step: 0.01,
           unit: 'x'
         },
@@ -588,6 +636,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 5],
           isSelected: false,
+          isShow: true,
           step: 0.01,
           unit: 'x'
         },
@@ -598,6 +647,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 5],
           isSelected: false,
+          isShow: true,
           step: 0.01,
           unit: 'x'
         }
@@ -614,6 +664,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 9],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: 'Point'
         },
@@ -624,6 +675,7 @@ export class CommonConstants {
           min: 0,
           selectedValues: [0, 6],
           isSelected: false,
+          isShow: true,
           step: 1,
           unit: 'Point'
         },
@@ -634,6 +686,7 @@ export class CommonConstants {
           min: -5,
           selectedValues: [-5, 10],
           isSelected: false,
+          isShow: true,
           step: 0.1,
           unit: 'Point'
         },
@@ -644,6 +697,7 @@ export class CommonConstants {
           min: -4,
           selectedValues: [-4, 10],
           isSelected: false,
+          isShow: true,
           step: 0.1,
           unit: 'Point'
         }

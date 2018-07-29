@@ -5,6 +5,7 @@ export interface DataItem {
   min: number;
   selectedValues: number[];
   isSelected: boolean;
+  isShow: boolean;
   unit: string;
   step: number;
 }
