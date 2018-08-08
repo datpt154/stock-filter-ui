@@ -44,7 +44,7 @@ export class CommonConstants {
           unit: 'bil',
         },
         {
-          title: 'Gross profit',
+          title: 'Gross Profit',
           code: 'GROSS_PROFIT',
           max: 20000,
           min: 0,
@@ -66,7 +66,7 @@ export class CommonConstants {
           unit: 'bil'
         },
         {
-          title: 'Share\'s outstanding',
+          title: 'Share\'s Outstanding',
           code: 'SHARE_S_OUSTANDING',
           max: 5000,
           min: 0,
@@ -123,11 +123,11 @@ export class CommonConstants {
       ]
     },
     {
-      title: '%YOY increase',
+      title: 'Finance Growth',
       code: 'YOY_INCREASE',
       dataItems: [
         {
-          title: 'Revenue(%YOY)',
+          title: 'Revenue Growth',
           code: 'NET_REVENUE_YOY',
           max: 500,
           min: 0,
@@ -138,7 +138,7 @@ export class CommonConstants {
           unit: '%'
         },
         {
-          title: 'Gross profit(%YOY)',
+          title: 'Gross Profit Growth',
           code: 'GROSS_PROFIT_YOY',
           max: 500,
           min: 0,
@@ -149,7 +149,7 @@ export class CommonConstants {
           unit: '%'
         },
         {
-          title: 'EPS(%YOY)',
+          title: 'EPS Growth',
           code: 'EPS_YOY',
           max: 500,
           min: 0,
@@ -160,7 +160,7 @@ export class CommonConstants {
           unit: '%'
         },
         {
-          title: 'EBITDA(%YOY)',
+          title: 'EBITDA Growth',
           code: 'EBITDA_YOY',
           max: 500,
           min: 0,
@@ -171,7 +171,7 @@ export class CommonConstants {
           unit: '%'
         },
         {
-          title: 'Debt(%YOY)',
+          title: 'Debt Growth',
           code: 'DEBT_YOY',
           max: 500,
           min: 0,
@@ -182,7 +182,7 @@ export class CommonConstants {
           unit: '%'
         },
         {
-          title: 'Equity(%YOY)',
+          title: 'Equity Growth',
           code: 'EQUITY_YOY',
           max: 500,
           min: 0,
@@ -193,7 +193,7 @@ export class CommonConstants {
           unit: '%'
         },
         {
-          title: 'Capitalization(%YOY)',
+          title: 'Capitalization Growth',
           code: 'MARKET_CAPITAL_YOY',
           max: 500,
           min: 0,
@@ -204,7 +204,7 @@ export class CommonConstants {
           unit: '%'
         },
         {
-          title: 'Assets(%YOY)',
+          title: 'Assets Growth',
           code: 'TOTAL_ASSETS_YOY',
           max: 500,
           min: 0,
@@ -217,7 +217,7 @@ export class CommonConstants {
       ]
     },
     {
-      title: 'Price ratio',
+      title: 'Price Ratio',
       code: 'PRICE_RATIO',
       dataItems: [
         {
@@ -333,7 +333,7 @@ export class CommonConstants {
       ]
     },
     {
-      title: 'Profitabilities ratio',
+      title: 'Profitabilities Ratio',
       code: 'PROFITABILITIES_RATIO',
       dataItems: [
         {
@@ -398,7 +398,7 @@ export class CommonConstants {
       code: 'MARGIN',
       dataItems: [
         {
-          title: 'Gross margin',
+          title: 'Gross Margin',
           code: 'GROSS_PROFIT_MARGIN',
           max: 100,
           min: 0,
@@ -431,7 +431,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'Profit margin',
+          title: 'Profit Margin',
           code: 'NET_PROFIT_MARGIN',
           max: 100,
           min: 0,
@@ -477,7 +477,7 @@ export class CommonConstants {
       ]
     },
     {
-      title: 'Activity turnover',
+      title: 'Activity Turnover',
       code: 'ACTIVITY_TURNOVER',
       dataItems: [
         {
@@ -492,7 +492,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'Receivable turnover',
+          title: 'Receivable Turnover',
           code: 'RECEIVABLE_TURNOVER',
           max: 10,
           min: 0,
@@ -503,7 +503,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'Payable turnover',
+          title: 'Payable Turnover',
           code: 'PAYABLE_TURNOVER',
           max: 10,
           min: 0,
@@ -514,7 +514,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'inventory turnover',
+          title: 'Inventory Turnover',
           code: 'INVENTORY_TURNOVER',
           max: 10,
           min: 0,
@@ -527,11 +527,11 @@ export class CommonConstants {
       ]
     },
     {
-      title: 'Interpretation of Solvency ratios',
+      title: 'Interpretation of Solvency Ratios',
       code: 'INTERPRETATION_OF_SOLVENCY_RATIOS',
       dataItems: [
         {
-          title: 'debt-to-assets',
+          title: 'Debt-to-assets',
           code: 'DEBT_TO_ASSETS_RATIO',
           max: 10,
           min: 0,
@@ -563,7 +563,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'interest coverage',
+          title: 'Interest Coverage',
           code: 'INTEREST_COVERAGE',
           max: 10,
           min: 0,
@@ -580,7 +580,7 @@ export class CommonConstants {
       code: 'LIQUIDITY_RATIO',
       dataItems: [
         {
-          title: 'Current ratio',
+          title: 'Current Ratio',
           code: 'CURRENT_RATIO',
           max: 10,
           min: 0,
@@ -591,7 +591,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'Quick ratio',
+          title: 'Quick Ratio',
           code: 'QUICK_RATIO',
           max: 10,
           min: 0,
@@ -602,7 +602,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'Cash ratio',
+          title: 'Cash Ratio',
           code: 'CASH_RATIO',
           max: 10,
           min: 0,
@@ -615,7 +615,7 @@ export class CommonConstants {
       ]
     },
     {
-      title: 'Risk ratio',
+      title: 'Risk Ratio',
       code: 'RISK_RATIO',
       dataItems: [
         {

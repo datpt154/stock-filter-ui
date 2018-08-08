@@ -8,14 +8,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { Route } from '@angular/compiler/src/core';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import { SharePricesComponent } from './share-prices/share-prices.component';
 
 const routers: Routes = [
   { path: 'filter', loadChildren: './filter/filter.module#FilterModule' },
+  { path: 'sharePrices', component: SharePricesComponent },
   { path: '**', redirectTo: 'filter' }
 ];
 @NgModule({
   declarations: [
     AppComponent,
+    SharePricesComponent,
   ],
   imports: [
     BrowserModule,

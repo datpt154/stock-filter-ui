@@ -9,6 +9,14 @@
       <mat-list *ngIf="selectedDataItems">
 
         <form [formGroup]="filtersFormGroup">
+
+          <mat-list-item>
+            <span class="list-item-title">Các tiêu chí lọc đã chọn:</span>
+            <span class="list-otherfactor-item">
+              {{selectedDataItemAsString}}
+            </span>
+          </mat-list-item>
+
           <mat-list-item>
             <span class="list-item-title">Thời gian (*)</span>
             <mat-radio-group class="list-otherfactor-item" formControlName="timeFilter">
@@ -22,34 +30,27 @@
             <span class="list-item-title">Thêm công ty</span>
             <form>
               <mat-form-field>
-              <input matInput [matAutocomplete]="auto" [formControl]="companySearchControl" placeholder="Gõ mã CK hoặc tên công ty">
-              <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption (optionSelected)="addCompanyForFilter($event)">
-                <mat-option *ngFor="let company of filteredCompanies | async" [value]="company.code">
-                  <span>{{ company.code }} - {{ company.name }}</span>
-                </mat-option>
-              </mat-autocomplete>
-            </mat-form-field>
+                <input matInput [matAutocomplete]="auto" [formControl]="companySearchControl" placeholder="Gõ mã CK hoặc tên công ty">
+                <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption (optionSelected)="addCompanyForFilter($event)">
+                  <mat-option *ngFor="let company of filteredCompanies | async" [value]="company.code">
+                    <span>{{ company.code }} - {{ company.name }}</span>
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
             </form>
           </mat-list-item>
 
           <mat-list-item>
-            <span class="list-item-title">Các tiêu chí lọc đã chọn:</span>
+            <span class="list-item-title">Các công ty đã chọn:</span>
             <span class="list-otherfactor-item">
-              {{selectedDataItemAsString}}
+              <ng-container *ngFor="let company of selectedCompanies">
+                <span class="clearable-label">
+                  {{company}}
+                  <mat-icon class="clear-button" (click)="removeSelectedCompany(company)">clear</mat-icon>
+                </span>
+              </ng-container>
             </span>
-        </mat-list-item>
-
-        <mat-list-item>
-          <span class="list-item-title">Các công ty đã chọn:</span>
-          <span class="list-otherfactor-item">
-            <ng-container *ngFor="let company of selectedCompanies">
-              <span class="clearable-label">
-                {{company}}
-                <mat-icon class="clear-button" (click)="removeSelectedCompany(company)">clear</mat-icon>
-              </span>
-            </ng-container>
-          </span>
-        </mat-list-item>
+          </mat-list-item>
         </form>
       </mat-list>
     </mat-card-content>
@@ -58,6 +59,5 @@
 
 <div class="button-class">
   <button mat-raised-button color="primary" matStepperPrevious>Back</button>
-  <button mat-raised-button color="primary" *ngIf="this.filtersFormGroup.valid"
-   (click)="nextStep()" class="customButtonClass">Next</button>
+  <button mat-raised-button color="primary" *ngIf="this.filtersFormGroup.valid" (click)="nextStep()" class="customButtonClass">Next</button>
 </div>
