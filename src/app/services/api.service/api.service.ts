@@ -5,11 +5,14 @@ import { Observable, throwError, of } from 'rxjs';
 import { DataItem } from '../../interface/data-item';
 import { BasicFilterDTO } from '../../interface/basic-filter-dto';
 import { BasicFilterInput, ComparedFilterInput } from '../../interface/api-input';
+import { environment } from '../../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
+  private API_URL= environment.API_URL;
 
   constructor(private http: HttpClient) { }
 
@@ -17,7 +20,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = 'http://localhost:8080/api/filter';
+    const url = this.API_URL + "/api/filter";
 
     return this.http
       .post<any>(url, JSON.stringify(searchInput), httpOptions)
@@ -28,7 +31,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = 'http://localhost:8080/api/Compare';
+    const url = this.API_URL + '/api/Compare';
 
     return this.http
       .post<any>(url, JSON.stringify(searchInput), httpOptions)
@@ -39,7 +42,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = 'http://localhost:8080/api/autocompletestock/' + searchPattern;
+    const url = this.API_URL + 'api/autocompletestock/' + searchPattern;
 
     return this.http
       .get<any>(url, httpOptions)
@@ -50,7 +53,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = 'http://localhost:8080/api/detailstock/' + companyCode;
+    const url = this.API_URL + 'api/detailstock/' + companyCode;
 
     return this.http
       .get<any>(url, httpOptions)
