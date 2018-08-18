@@ -20,7 +20,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + "/api/filter";
+    const url = this.API_URL + "api/filter";
 
     return this.http
       .post<any>(url, JSON.stringify(searchInput), httpOptions)
@@ -31,7 +31,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + '/api/Compare';
+    const url = this.API_URL + 'api/Compare';
 
     return this.http
       .post<any>(url, JSON.stringify(searchInput), httpOptions)

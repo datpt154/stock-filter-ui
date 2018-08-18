@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  private navigationList: any[] = [
+   navigationList: any[] = [
     {
       parentItem: 'FinaPro',
       childrenItems: [
