@@ -62,3 +62,21 @@
         font-weight: bold;
     }
 }
+
+.overlayChart {
+    position: fixed;
+    display: none;
+    width: 31%;
+    height: 300px;
+    top: 74px;
+    right: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.overlayChartHide {
+    display: block;
+}
+

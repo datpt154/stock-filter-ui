@@ -175,7 +175,7 @@
                 </tr>
               </ng-container>
               <ng-template #otherRow>
-                <tr>
+                <tr (mouseenter) ="showColumnCharts(row)"  (mouseleave) ="closeColumnCharts()">
                   <td colspan="2">
                     <div class="colspan-first-column">
                       <span>{{row[0]}}</span>
@@ -192,7 +192,12 @@
             </ng-container>
           </tbody>
         </table>
-
       </div>
     </div>
   </div>
+
+  <div class="c30r">
+    OTHER table
+    <div id="chart_div" class="overlayChart" [ngClass]="{'overlayChartHide': isShowChart}"></div>
+  </div>
+</div>

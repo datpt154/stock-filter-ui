@@ -9,6 +9,7 @@ import { Route } from '@angular/compiler/src/core';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SharePricesComponent } from './share-prices/share-prices.component';
+import { ServicesModule } from './services/services.module';
 
 const routers: Routes = [
   { path: 'filter', loadChildren: './filter/filter.module#FilterModule' },
@@ -25,6 +26,7 @@ const routers: Routes = [
     BrowserAnimationsModule,
     SharedModule,
     HttpClientModule,
+    ServicesModule,
     RouterModule.forRoot(routers)
   ],
   providers: [],
