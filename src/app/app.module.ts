@@ -10,6 +10,7 @@ import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SharePricesComponent } from './share-prices/share-prices.component';
 import { ServicesModule } from './services/services.module';
+import { FormsModule } from '@angular/forms';
 
 const routers: Routes = [
   { path: 'filter', loadChildren: './filter/filter.module#FilterModule' },
@@ -23,6 +24,7 @@ const routers: Routes = [
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     SharedModule,
     HttpClientModule,

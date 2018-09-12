@@ -30,7 +30,7 @@
             <span class="list-item-title">Thêm công ty</span>
             <form>
               <mat-form-field>
-                <input matInput [matAutocomplete]="auto" [formControl]="companySearchControl" placeholder="Gõ mã CK hoặc tên công ty">
+                <input matInput [matAutocomplete]="auto" [formControl]="companySearchControl">
                 <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption (optionSelected)="addCompanyForFilter($event)">
                   <mat-option *ngFor="let company of filteredCompanies | async" [value]="company.code">
                     <span>{{ company.code }} - {{ company.name }}</span>

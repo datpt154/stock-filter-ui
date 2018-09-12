@@ -4,11 +4,14 @@ import { NavigationListComponent } from './navigation-list/navigation-list.compo
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { ServicesModule } from '../services/services.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     MaterialModule,

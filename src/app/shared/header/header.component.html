@@ -1,14 +1,64 @@
-<mat-toolbar color="primary" class="header">
-  <mat-icon>home</mat-icon>
-
-  <div class="navigation-list">
-    <ng-container *ngFor="let navItem of navigationList">
-      <app-navigation-list [navItem]="navItem"></app-navigation-list>
-    </ng-container>
-    <div>
-        <a href="https://www.w3schools.com/html/">Đăng ký</a> | 
-        <a href="https://www.w3schools.com/html/">Đăng nhập</a>
+<div class="topnav" id="myTopnav">
+  <a href="#home" class="active">Home</a>
+  <a href="#news">News</a>
+  <div class="dropdown">
+    <button class="dropbtn">
+      <span>Filter</span>
+      <i class="material-icons icon-align">arrow_drop_down</i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Filter</a>
+      <a href="#">Compare</a>
+      <a href="#">Các chỉ số</a>
     </div>
   </div>
+  <div class="dropdown">
+    <button class="dropbtn">
+      <span>Screen</span>
+      <i class="material-icons icon-align">arrow_drop_down</i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Graham NET NET</a>
+      <a href="#">Graham NCAV</a>
+      <a href="#">CANSLIM</a>
+      <a href="#">Fisher</a>
+      <a href="#">Peter Luych</a>
+      <a href="#">Graham checklists</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropbtn">
+      <span>PTKT</span>
+      <i class="material-icons icon-align">arrow_drop_down</i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Breakout</a>
+      <a href="#">Swing tradeare</a>
+    </div>
+  </div>
+  <a href="#about">About</a>
 
-</mat-toolbar>
+  <div class="search-container">
+  <form>
+      <mat-form-field>
+        <input matInput [matAutocomplete]="auto" [formControl]="companySearchControl" placeholder="Gõ mã CK hoặc tên công ty">
+        <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption (optionSelected)="addCompanyForFilter($event)">
+          <mat-option *ngFor="let company of filteredCompanies | async" [value]="company.code">
+            <span>{{ company.code }} - {{ company.name }}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div class="search-container">
+    <!-- <form action="/action_page.php"> -->
+    <input type="text" placeholder="Search.." name="search">
+    <button type="submit">
+      <i class="material-icons icon-align-search">
+        search
+      </i>
+    </button>
+    <!-- </form> -->
+  </div>
+</div>
