@@ -1,64 +1,59 @@
-<div class="topnav" id="myTopnav">
-  <a href="#home" class="active">Home</a>
-  <a href="#news">News</a>
-  <div class="dropdown">
-    <button class="dropbtn">
-      <span>Filter</span>
-      <i class="material-icons icon-align">arrow_drop_down</i>
-    </button>
-    <div class="dropdown-content">
-      <a href="#">Filter</a>
-      <a href="#">Compare</a>
-      <a href="#">Các chỉ số</a>
-    </div>
-  </div>
-  <div class="dropdown">
-    <button class="dropbtn">
-      <span>Screen</span>
-      <i class="material-icons icon-align">arrow_drop_down</i>
-    </button>
-    <div class="dropdown-content">
-      <a href="#">Graham NET NET</a>
-      <a href="#">Graham NCAV</a>
-      <a href="#">CANSLIM</a>
-      <a href="#">Fisher</a>
-      <a href="#">Peter Luych</a>
-      <a href="#">Graham checklists</a>
-    </div>
-  </div>
-  <div class="dropdown">
-    <button class="dropbtn">
-      <span>PTKT</span>
-      <i class="material-icons icon-align">arrow_drop_down</i>
-    </button>
-    <div class="dropdown-content">
-      <a href="#">Breakout</a>
-      <a href="#">Swing tradeare</a>
-    </div>
-  </div>
-  <a href="#about">About</a>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">Logo</a>
 
-  <div class="search-container">
-  <form>
-      <mat-form-field>
-        <input matInput [matAutocomplete]="auto" [formControl]="companySearchControl" placeholder="Gõ mã CK hoặc tên công ty">
-        <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption (optionSelected)="addCompanyForFilter($event)">
-          <mat-option *ngFor="let company of filteredCompanies | async" [value]="company.code">
-            <span>{{ company.code }} - {{ company.name }}</span>
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Filter
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/filter/firstFilter">Filter</a>
+          <a class="dropdown-item" href="/filter/secondFilter">Compare</a>
+          <a class="dropdown-item" href="#">Các chỉ số</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Screen
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Graham NET NET</a>
+          <a class="dropdown-item" href="#">Graham NCAV</a>
+          <a class="dropdown-item" href="#">CANSLIM</a>
+          <a class="dropdown-item" href="#">Fisher</a>
+          <a class="dropdown-item" href="#">Peter Luych</a>
+          <a class="dropdown-item" href="#">Graham checklists</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          PTKT
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Breakout</a>
+          <a class="dropdown-item" href="#">Swing tradeare</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+        [ngbTypeahead]="searchCompany" (selectItem)="selectACompany($event)" [(ngModel)]="selectedCompnayModel"/>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
-
-  <div class="search-container">
-    <!-- <form action="/action_page.php"> -->
-    <input type="text" placeholder="Search.." name="search">
-    <button type="submit">
-      <i class="material-icons icon-align-search">
-        search
-      </i>
-    </button>
-    <!-- </form> -->
-  </div>
-</div>
+</nav>

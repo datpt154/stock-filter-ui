@@ -11,6 +11,7 @@ import { FirstFilterSelectionComponent } from './first-filter/first-filter-selec
 import { SecondFilterSelectionComponent } from './second-filter/second-filter-selection/second-filter-selection.component';
 import { SecondFilterResultComponent } from './second-filter/second-filter-result/second-filter-result.component';
 import { FilterResultComponent } from './filter-result/filter-result.component';
+import { MaterialModule } from '../shared/angular-material-design/material.module';
 
 const routers: Routes = [
   { path: 'firstFilter', component: FirstFilterComponent },
@@ -23,6 +24,7 @@ const routers: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MaterialModule,
     SharedModule,
     NouisliderModule,
     RouterModule.forChild(routers)

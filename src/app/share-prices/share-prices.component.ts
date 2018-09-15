@@ -3,6 +3,7 @@ import { FilterService } from '../services/business.service/filter.service';
 import { GooglePieChartService } from '../services/google-chart.service/google-pie-chart.service';
 import { PieChartConfig } from '../models/PieChartConfig';
 import { GoogleColumnChartService } from '../services/google-chart.service/google-column-chart.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-share-prices',
@@ -14,17 +15,20 @@ export class SharePricesComponent implements OnInit {
   private chartElement;
   isShowChart = false;
 
-  constructor(private _filterService: FilterService, 
+  constructor(private _filterService: FilterService,
     private _pieChartService: GooglePieChartService,
-    private _columnChartService: GoogleColumnChartService
+    private _columnChartService: GoogleColumnChartService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this._filterService.searchCompanyReport('AAA').subscribe(data => {
-      this.data = data;
-    });
+    this.route.queryParams.subscribe(params => {
+      const companyCode: string = params['companyCode'];
 
-    
+      this._filterService.searchCompanyReport(companyCode).subscribe(data => {
+        this.data = data;
+      });
+    })
   }
 
   ngAfterView
