@@ -1,10 +1,8 @@
-<div class="filter-container">
-  <dl class="notification">
-    <!-- <dt>Chú ý (*)</dt> -->
-    <dd>Vui lòng chọn các điều kiện bắt buộc (*) để tiếp tục</dd>
-  </dl>
+<dl class="notification">
+  <dd>Vui lòng chọn các điều kiện bắt buộc (*) để tiếp tục</dd>
+</dl>
 
-  <mat-card class="hhd-card">
+<!-- <mat-card class="hhd-card">
     <mat-card-content class='hhd-card-content'>
       <mat-list *ngIf="selectedDataItems">
 
@@ -42,15 +40,59 @@
         </ng-container>
       </mat-list>
     </mat-card-content>
-  </mat-card>
+  </mat-card> -->
 
-  <a class="clear-filter" href="javascript:void(0);" (click)="clearFilter()">
-    <strong>Xóa tất cả điều kiện</strong>
-  </a>
-</div>
+<div class="card" *ngIf="selectedDataItems">
+  <div class="card-body">
 
-<div class="button-class">
-  <button mat-raised-button color="primary" matStepperPrevious>Back</button>
-  <button mat-raised-button color="primary" *ngIf="this.otherFactosFormGroup.valid"
-    (click)="nextStep()" class="customButtonClass">Next</button>
+    <form [formGroup]="otherFactosFormGroup">
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Thời gian (*)</label>
+        <div class="col-sm-10">
+          <ng-container *ngFor="let item of otherFactors.filterTimes">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="{{item.code}}" [value]="item.code" formControlName="timeFilter">
+              <label class="form-check-label" for="{{item.code}}">
+                {{item.value}}
+              </label>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="form-group row" formGroupName="stockExchange">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Sàn (*)</label>
+        <div class="col-sm-10">
+          <ng-container *ngFor="let item of otherFactors.stockExchanges">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="gridRadios" id="{{item.code}}" value="option2" [formControlName]="item.code">
+              <label class="form-check-label" for="{{item.code}}">
+                {{item.value}}
+              </label>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </form>
+
+    <ng-container *ngFor="let dataItem of selectedDataItems">
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">{{dataItem.title}}</label>
+        <div class="col-sm-5">
+          <nouislider [connect]="true" [min]="dataItem.min" [max]="dataItem.max" [tooltips]="[ true, true ]" [step]="dataItem.step"
+            [(ngModel)]="dataItem.selectedValues"></nouislider>
+          <!-- <span class="unit-class">{{dataItem.unit}}</span> -->
+        </div>
+      </div>
+    </ng-container>
+
+    <a class="float-right" href="javascript:void(0);" (click)="clearFilter()">
+      <strong>Xóa tất cả điều kiện</strong>
+    </a>
+
+    <div class="float-right mt-3" style="clear: both;">
+      <button type="button" class="btn btn-dark" (click)="backStep()">Back</button>
+      <button type="button" class="btn btn-dark ml-3" (click)="nextStep()" *ngIf="this.otherFactosFormGroup.valid">Next</button>
+    </div>
+  </div>
 </div>

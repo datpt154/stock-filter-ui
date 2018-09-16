@@ -18,11 +18,13 @@ import { CommonConstants } from '../../../constants/common-const';
 export class FirstFilterSelectionComponent implements OnInit {
   @Input() selectedDataItems: DataItem[] = [];
   @Output() next: EventEmitter<any> = new EventEmitter();
+  @Output() back: EventEmitter<any> = new EventEmitter();
 
   private ngUnsubscribe: Subject<any> = new Subject();
   private selectedStockExchanges: string[] = [];
   private otherFactosFormGroup: FormGroup;
   private otherFactors = CommonConstants.otherFactors;
+  currentOrientation = 'horizontal';
 
   constructor(private _formBuilder: FormBuilder) { }
 
@@ -40,6 +42,10 @@ export class FirstFilterSelectionComponent implements OnInit {
       }
       this.next.emit(output);
     }
+  }
+
+  backStep(): void {
+    this.back.emit();
   }
 
   private clearFilter(): void {
@@ -71,6 +77,10 @@ export class FirstFilterSelectionComponent implements OnInit {
   }
 
   private registerValueChange() {
+    this.otherFactosFormGroup.get('timeFilter').valueChanges.subscribe(dat => {
+      console.log(dat);
+    });
+
     this.otherFactors.stockExchanges.forEach(stockExchange => {
       const fbStockExchange = this.otherFactosFormGroup.get('stockExchange').get(stockExchange.code);
       fbStockExchange.valueChanges

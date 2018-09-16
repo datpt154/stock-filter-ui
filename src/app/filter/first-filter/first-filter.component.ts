@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Factor } from '../../interface/factor';
 import { CommonConstants } from '../../constants/common-const';
@@ -29,7 +29,9 @@ export class FirstFilterComponent implements OnInit {
     dataItem: "SHARE_S_OUSTANDING"
   }];
 
-  @ViewChild('stepper') stepper;
+  // @ViewChild('stepper') stepper;
+
+  @ViewChild('tabSet') tabSet: any;
 
   constructor(private _formBuilder: FormBuilder, private _filterService: FilterService) { }
 
@@ -59,7 +61,12 @@ export class FirstFilterComponent implements OnInit {
       }
     });
 
-    this.stepper.next();
+    // this.stepper.next();
+    this.tabSet.select('tab2');
+  }
+
+  backToFactorsSelection(): void {
+    this.tabSet.select('tab1');
   }
 
   private nextToFilterResult(searchInput: BasicFilterInput): void {
@@ -67,12 +74,13 @@ export class FirstFilterComponent implements OnInit {
     this._filterService.basicFilter(searchInput).subscribe(data => {
       this.searchResult = data;
       this.isFilterPageReady = true;
-      this.stepper.next();
+      // this.stepper.next();
+      this.tabSet.select('tab3');
     });
   }
 
   private triggerBackToFilterInput(): void {
-    this.stepper.previous();
+    this.tabSet.select('tab2');
     this.isFilterPageReady = false;
   }
 

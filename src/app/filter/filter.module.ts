@@ -12,6 +12,7 @@ import { SecondFilterSelectionComponent } from './second-filter/second-filter-se
 import { SecondFilterResultComponent } from './second-filter/second-filter-result/second-filter-result.component';
 import { FilterResultComponent } from './filter-result/filter-result.component';
 import { MaterialModule } from '../shared/angular-material-design/material.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routers: Routes = [
   { path: 'firstFilter', component: FirstFilterComponent },
@@ -24,6 +25,7 @@ const routers: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbModule,
     MaterialModule,
     SharedModule,
     NouisliderModule,
