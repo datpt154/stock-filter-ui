@@ -5,9 +5,7 @@
 <mat-horizontal-stepper [linear]="true" #stepper>
   <mat-step [stepControl]="factorsFormGroup">
     <ng-template matStepLabel>Điều kiện lọc</ng-template>
-    <app-factors [factors]="factorsData" [factorsFormGroup]="factorsFormGroup" 
-      (next)="nextToFactorsDetail($event)" (back)="backToPreFilter()">
-    </app-factors>
+    <app-factors [factors]="factorsData" (next)="nextToFactorsDetail($event)"></app-factors>
   </mat-step>
 
   <mat-step>

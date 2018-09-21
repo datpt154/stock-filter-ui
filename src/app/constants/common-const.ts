@@ -6,23 +6,28 @@ export class CommonConstants {
       filterTimes: [{
         code: 'quarter',
         value: "Qúy",
+        isSelected: false
       },
       {
         code: 'year',
         value: "Năm",
+        isSelected: false
       }],
       stockExchanges: [
         {
           code: 'HOSE',
-          value: 'HOSE'
+          value: 'HOSE',
+          isSelected: false
         },
         {
           code: 'HNX',
-          value: 'HNX'
+          value: 'HNX',
+          isSelected: false
         },
         {
           code: 'UPCOM',
-          value: 'UPCOM'
+          value: 'UPCOM',
+          isSelected: false
         }
       ]
     };

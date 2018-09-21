@@ -2,55 +2,14 @@
   <dd>Vui lòng chọn các điều kiện bắt buộc (*) để tiếp tục</dd>
 </dl>
 
-<!-- <mat-card class="hhd-card">
-    <mat-card-content class='hhd-card-content'>
-      <mat-list *ngIf="selectedDataItems">
-
-        <form [formGroup]="otherFactosFormGroup">
-          <mat-list-item>
-            <span class="list-item-title">Thời gian (*)</span>
-            <mat-radio-group formControlName="timeFilter" class="list-otherfactor-item">
-              <ng-container *ngFor="let item of otherFactors.filterTimes">
-                <mat-radio-button [value]="item.code" class="otherfactor-item">{{item.value}}</mat-radio-button>
-              </ng-container>
-            </mat-radio-group>
-          </mat-list-item>
-
-          <mat-list-item formGroupName="stockExchange">
-            <span class="list-item-title">Sàn (*)</span>
-            <div class="list-otherfactor-item">
-              <ng-container *ngFor="let item of otherFactors.stockExchanges">
-                <mat-checkbox class="otherfactor-item" [formControlName]="item.code">
-                  {{item.value}}
-                </mat-checkbox>
-              </ng-container>
-            </div>
-          </mat-list-item>
-        </form>
-
-        <ng-container *ngFor="let dataItem of selectedDataItems">
-          <mat-list-item class="mat-list-dataItem">
-            <span class="list-item-title-dataItem">{{dataItem.title}}</span>
-            <div class="list-item-input">
-              <nouislider [connect]="true" [min]="dataItem.min" [max]="dataItem.max" [tooltips]="[ true, true ]" [step]="dataItem.step"
-                [(ngModel)]="dataItem.selectedValues"></nouislider>
-              <span class="unit-class">{{dataItem.unit}}</span>
-            </div>
-          </mat-list-item>
-        </ng-container>
-      </mat-list>
-    </mat-card-content>
-  </mat-card> -->
-
 <div class="card" *ngIf="selectedDataItems">
   <div class="card-body">
-
     <form [formGroup]="otherFactosFormGroup">
       <div class="form-group row">
         <label for="inputEmail3" class="col-sm-2 col-form-label">Thời gian (*)</label>
         <div class="col-sm-10">
           <ng-container *ngFor="let item of otherFactors.filterTimes">
-            <div class="form-check form-check-inline">
+            <div class="form-check form-check-inline filter-width">
               <input class="form-check-input" type="radio" id="{{item.code}}" [value]="item.code" formControlName="timeFilter">
               <label class="form-check-label" for="{{item.code}}">
                 {{item.value}}
@@ -64,7 +23,7 @@
         <label for="inputEmail3" class="col-sm-2 col-form-label">Sàn (*)</label>
         <div class="col-sm-10">
           <ng-container *ngFor="let item of otherFactors.stockExchanges">
-            <div class="form-check form-check-inline">
+            <div class="form-check form-check-inline filter-width">
               <input class="form-check-input" type="checkbox" name="gridRadios" id="{{item.code}}" value="option2" [formControlName]="item.code">
               <label class="form-check-label" for="{{item.code}}">
                 {{item.value}}
