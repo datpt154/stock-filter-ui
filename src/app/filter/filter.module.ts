@@ -29,6 +29,7 @@ const routers: Routes = [
     MaterialModule,
     SharedModule,
     NouisliderModule,
+    NgbModule,
     RouterModule.forChild(routers)
   ],
   declarations: [FilterResultComponent, FactorsComponent, FirstFilterComponent, FirstFilterSelectionComponent, SecondFilterComponent, SecondFilterSelectionComponent, SecondFilterResultComponent]

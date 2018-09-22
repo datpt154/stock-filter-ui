@@ -1,46 +1,25 @@
-<!-- <h1>
-  LỌC CỔ PHIẾU DỰA TRÊN CÁC CHỈ SỐ CƠ BẢN
-</h1>
-
-<mat-horizontal-stepper [linear]="true" #stepper>
-  <mat-step [stepControl]="factorsFormGroup">
-    <ng-template matStepLabel>Điều kiện lọc</ng-template>
-    <app-factors [factors]="factorsData" [factorsFormGroup]="factorsFormGroup" 
-      (next)="nextToFactorsDetail($event)" (back)="backToPreFilter()">
-    </app-factors>
-  </mat-step>
-
-  <mat-step>
-    <ng-template matStepLabel>Thông số lọc</ng-template>
-    <app-first-selection [selectedDataItems]="selectedDataItems" (next)="nextToFilterResult($event)"></app-first-selection>
-  </mat-step>
-
-  <mat-step>
-    <ng-template matStepLabel>Kết quả lọc</ng-template>
-    <ng-container *ngIf="isFilterPageReady">
-      <app-filter-result [selectedDataItems]="selectedDataItems" [searchResult]="searchResult"
-        (triggerBackToFilterInput)="triggerBackToFilterInput()"></app-filter-result>
-    </ng-container>
-  </mat-step>
-</mat-horizontal-stepper> -->
-
 <div class="container-fluid">
-  <ngb-tabset #tabSet>
-    <ngb-tab title="Điều kiện lọc" id="tab1">
-      <ng-template ngbTabContent>
-        <app-factors [factors]="factorsData" (next)="nextToFactorsDetail($event)">
-        </app-factors>
-      </ng-template>
-    </ngb-tab>
-    <ngb-tab title="Thông số lọc"  id="tab2">
-      <ng-template ngbTabContent>
-        <app-first-selection [selectedDataItems]="selectedDataItems" (back)="backToFactorsSelection()" (next)="nextToFilterResult($event)"></app-first-selection>
-      </ng-template>
-    </ngb-tab>
-    <ngb-tab title="Kết quả"  id="tab3">
-      <ng-template ngbTabContent>
+  <h3 class="mt-3">
+    LỌC CỔ PHIẾU DỰA TRÊN CÁC CHỈ SỐ CƠ BẢN
+  </h3>
+
+  <mat-horizontal-stepper [linear]="true" #stepper>
+    <mat-step [stepControl]="factorsFormGroup">
+      <ng-template matStepLabel>Điều kiện lọc</ng-template>
+      <app-factors [factors]="factorsData" [factorsFormGroup]="factorsFormGroup" (next)="nextToFactorsDetail($event)">
+      </app-factors>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Thông số lọc</ng-template>
+      <app-first-selection [selectedDataItems]="selectedDataItems" (next)="nextToFilterResult($event)"></app-first-selection>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Kết quả lọc</ng-template>
+      <ng-container *ngIf="isFilterPageReady">
         <app-filter-result [selectedDataItems]="selectedDataItems" [searchResult]="searchResult" (triggerBackToFilterInput)="triggerBackToFilterInput()"></app-filter-result>
-      </ng-template>
-    </ngb-tab>
-  </ngb-tabset>
+      </ng-container>
+    </mat-step>
+  </mat-horizontal-stepper>
 </div>

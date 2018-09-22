@@ -29,9 +29,7 @@ export class FirstFilterComponent implements OnInit {
     dataItem: "SHARE_S_OUSTANDING"
   }];
 
-  // @ViewChild('stepper') stepper;
-
-  @ViewChild('tabSet') tabSet: any;
+  @ViewChild('stepper') stepper;
 
   constructor(private _formBuilder: FormBuilder, private _filterService: FilterService) { }
 
@@ -61,12 +59,7 @@ export class FirstFilterComponent implements OnInit {
       }
     });
 
-    // this.stepper.next();
-    this.tabSet.select('tab2');
-  }
-
-  backToFactorsSelection(): void {
-    this.tabSet.select('tab1');
+    this.stepper.next();
   }
 
   private nextToFilterResult(searchInput: BasicFilterInput): void {
@@ -74,13 +67,12 @@ export class FirstFilterComponent implements OnInit {
     this._filterService.basicFilter(searchInput).subscribe(data => {
       this.searchResult = data;
       this.isFilterPageReady = true;
-      // this.stepper.next();
-      this.tabSet.select('tab3');
+      this.stepper.next();
     });
   }
 
   private triggerBackToFilterInput(): void {
-    this.tabSet.select('tab2');
+    this.stepper.previous();
     this.isFilterPageReady = false;
   }
 

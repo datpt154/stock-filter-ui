@@ -1,4 +1,4 @@
-<div class="mat-elevation-z8">
+<div class="container-fluid">
   <mat-table #sort [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="rowIndex">
@@ -7,9 +7,9 @@
     </ng-container>
 
     <ng-container matColumnDef="companyCode">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Mã chứng khoán </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.companyCode}} </mat-cell>
-      </ng-container>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Mã chứng khoán </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.companyCode}} </mat-cell>
+    </ng-container>
 
     <ng-container matColumnDef="companyName">
       <mat-header-cell *matHeaderCellDef> Tên công ty </mat-header-cell>
@@ -17,15 +17,16 @@
     </ng-container>
 
     <ng-container matColumnDef="stockExchange">
-        <mat-header-cell *matHeaderCellDef> Sàn </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.stockExchange}} </mat-cell>
-      </ng-container>
+      <mat-header-cell *matHeaderCellDef> Sàn </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.stockExchange}} </mat-cell>
+    </ng-container>
 
     <ng-container matColumnDef="price">
-        <mat-header-cell *matHeaderCellDef> Giá </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
-      </ng-container>
+      <mat-header-cell *matHeaderCellDef> Giá </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
+    </ng-container>
 
+    <!-- dynamic Columns -->
     <ng-container *ngFor="let dynamicColumn of selectedDataItems; let idx = index">
       <ng-container [matColumnDef]="dynamicColumn.code">
         <mat-header-cell *matHeaderCellDef> {{dynamicColumn.title}} </mat-header-cell>
@@ -39,64 +40,7 @@
 
   <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 50]" [showFirstLastButtons]="true">
   </mat-paginator>
+
+  <button type="button" class="btn btn-dark mb-3 float-right" (click)="backToFilterInput()">Back</button>
+
 </div>
-
-<div class="button-class">
-  <button mat-raised-button color="primary" (click)="backToFilterInput()">Back</button>
-</div>
-
-
-<!-- <div class="container-fluid">
-  <div class="row flex-xl-nowrap mt-3" *ngIf="data">
-    <div class="col-12" style="border-right: 1px solid rgba(0, 0, 0, 0.1)">
-      <table class="table">
-        <thead class="bg-light">
-          <tr>
-            <ng-container *ngFor="let item of dataSource; let idx = index">
-              <ng-container *ngIf="idx == 0; else otherHeader">
-                <th colspan="2">
-                  {{item}}
-                </th>
-              </ng-container>
-              <ng-template #otherHeader>
-                <th>
-                  {{item}}
-                </th>
-              </ng-template>
-            </ng-container>
-          </tr>
-        </thead>
-
-        <tbody>
-          <ng-container *ngFor="let row of data.rows;">
-            <ng-container *ngIf="row.length == 1; else otherRow">
-              <tr class="bg-light">
-                <td colspan="7">
-                  {{row[0]}}
-                </td>
-              </tr>
-            </ng-container>
-            <ng-template #otherRow>
-              <tr [ngbPopover]="popContent" triggers="manual" (mouseenter) ="showColumnCharts(p1, row)"  (mouseleave) ="closeColumnCharts(p1)"
-                #p1="ngbPopover" placement="right">
-                <td colspan="2">
-                  <div>
-                    <span>{{row[0]}} ({{row[1]}}</span>
-                  </div>
-                </td>
-                <ng-container *ngFor="let item of row; let idx = index">
-                  <ng-container *ngIf="idx >=2">
-                    <td>{{item}}</td>
-                  </ng-container>
-                </ng-container>
-              </tr>
-            </ng-template>
-          </ng-container>
-        </tbody>
-      </table>
-
-      <ngb-pagination [collectionSize]="70" [(page)]="page"></ngb-pagination>
-
-    </div>
-  </div>
-</div> -->

@@ -56,6 +56,7 @@ export class SharePricesComponent implements OnInit {
     { data: [], label: '' }
   ];
 
+
   constructor(private _filterService: FilterService,
     private route: ActivatedRoute
   ) { }
@@ -66,7 +67,6 @@ export class SharePricesComponent implements OnInit {
 
       this._filterService.searchCompanyReport(companyCode).subscribe(data => {
         this.data = data;
-
         this.barChartLabels = this.data.headers.slice(1);
       });
     })
@@ -83,6 +83,7 @@ export class SharePricesComponent implements OnInit {
     }
   }
 
+
   closeColumnCharts(popover): void {
     if (popover.isOpen()) {
       popover.close();
@@ -97,5 +98,4 @@ export class SharePricesComponent implements OnInit {
   public chartHovered(e: any): void {
     console.log(e);
   }
-
 }

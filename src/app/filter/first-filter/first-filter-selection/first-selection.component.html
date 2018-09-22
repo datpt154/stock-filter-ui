@@ -1,4 +1,4 @@
-<dl class="notification">
+<dl class="mt-1">
   <dd>Vui lòng chọn các điều kiện bắt buộc (*) để tiếp tục</dd>
 </dl>
 
@@ -50,8 +50,57 @@
     </a>
 
     <div class="float-right mt-3" style="clear: both;">
-      <button type="button" class="btn btn-dark" (click)="backStep()">Back</button>
-      <button type="button" class="btn btn-dark ml-3" (click)="nextStep()" *ngIf="this.otherFactosFormGroup.valid">Next</button>
+      <button type="button" class="btn btn-dark" matStepperPrevious>Back</button>
+      <button type="button" class="btn btn-dark ml-3" *ngIf="this.otherFactosFormGroup.valid" (click)="nextStep()">Next</button>
     </div>
   </div>
 </div>
+
+<!-- <mat-card class="hhd-card">
+    <mat-card-content class='hhd-card-content'>
+      <mat-list *ngIf="selectedDataItems">
+
+        <form [formGroup]="otherFactosFormGroup">
+          <mat-list-item>
+            <span class="list-item-title">Thời gian (*)</span>
+            <mat-radio-group formControlName="timeFilter" class="list-otherfactor-item">
+              <ng-container *ngFor="let item of otherFactors.filterTimes">
+                <mat-radio-button [value]="item.code" class="otherfactor-item">{{item.value}}</mat-radio-button>
+              </ng-container>
+            </mat-radio-group>
+          </mat-list-item>
+
+          <mat-list-item formGroupName="stockExchange">
+            <span class="list-item-title">Sàn (*)</span>
+            <div class="list-otherfactor-item">
+              <ng-container *ngFor="let item of otherFactors.stockExchanges">
+                <mat-checkbox class="otherfactor-item" [formControlName]="item.code">
+                  {{item.value}}
+                </mat-checkbox>
+              </ng-container>
+            </div>
+          </mat-list-item>
+        </form>
+
+        <ng-container *ngFor="let dataItem of selectedDataItems">
+          <mat-list-item class="mat-list-dataItem">
+            <span class="list-item-title-dataItem">{{dataItem.title}}</span>
+            <div class="list-item-input">
+              <nouislider [connect]="true" [min]="dataItem.min" [max]="dataItem.max" [tooltips]="[ true, true ]" [step]="dataItem.step"
+                [(ngModel)]="dataItem.selectedValues"></nouislider>
+              <span class="unit-class">{{dataItem.unit}}</span>
+            </div>
+          </mat-list-item>
+        </ng-container>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+
+  <a class="clear-filter" href="javascript:void(0);" (click)="clearFilter()">
+    <strong>Xóa tất cả điều kiện</strong>
+  </a>
+
+<div class="button-class">
+  <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+  <button mat-raised-button color="primary" *ngIf="this.otherFactosFormGroup.valid" (click)="nextStep()" class="customButtonClass">Next</button>
+</div> -->

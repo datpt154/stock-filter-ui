@@ -1,63 +1,120 @@
-<div class="filter-container">
-  <dl class="notification">
-    <!-- <dt>Chú ý (*)</dt> -->
-    <dd>Vui lòng chọn các điều kiện bắt buộc (*) để tiếp tục</dd>
-  </dl>
+<dl class="mt-1">
+  <dd>Vui lòng chọn các điều kiện bắt buộc (*) để tiếp tục</dd>
+</dl>
 
-  <mat-card class="hhd-card">
-    <mat-card-content class='hhd-card-content'>
-      <mat-list *ngIf="selectedDataItems">
+<div class="card" *ngIf="selectedDataItems">
+  <div class="card-body">
+    <form [formGroup]="filtersFormGroup">
+      <div class="row">
+        <label for="inputEmail3" class="col-sm-3 col-form-label">Các tiêu chí lọc đã chọn:</label>
+        <div class="col-sm-9">
+          {{selectedDataItemAsString}}
+        </div>
+      </div>
 
-        <form [formGroup]="filtersFormGroup">
+      <div class="row">
+        <label for="inputEmail3" class="col-sm-3 col-form-label">Thời gian (*)</label>
+        <div class="col-sm-9">
+          <ng-container *ngFor="let item of otherFactors.filterTimes">
+            <div class="form-check form-check-inline filter-width">
+              <input class="form-check-input" type="radio" id="{{item.code}}" [value]="item.code" formControlName="timeFilter">
+              <label class="form-check-label" for="{{item.code}}">
+                {{item.value}}
+              </label>
+            </div>
+          </ng-container>
+        </div>
+      </div>
 
-          <mat-list-item>
-            <span class="list-item-title">Các tiêu chí lọc đã chọn:</span>
-            <span class="list-otherfactor-item">
-              {{selectedDataItemAsString}}
+      <div class="row">
+        <label for="inputEmail3" class="col-sm-3 col-form-label">Thêm công ty</label>
+        <div class="col-sm-9">
+          <form>
+            <mat-form-field>
+              <input matInput [matAutocomplete]="auto" [formControl]="companySearchControl" placeholder="Gõ mã CK hoặc tên công ty">
+              <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption (optionSelected)="addCompanyForFilter($event)">
+                <mat-option *ngFor="let company of filteredCompanies | async" [value]="company.code">
+                  <span>{{ company.code }} - {{ company.name }}</span>
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </form>
+        </div>
+      </div>
+
+      <div class="row">
+        <label for="inputEmail3" class="col-sm-3 col-form-label">Các công ty đã chọn:</label>
+        <div class="col-sm-9">
+          <ng-container *ngFor="let company of selectedCompanies">
+            <span class="clearable-label">
+              {{company}}
+              <mat-icon class="clear-button" (click)="removeSelectedCompany(company)">clear</mat-icon>
             </span>
-          </mat-list-item>
+          </ng-container>
+        </div>
+      </div>
+    </form>
 
-          <mat-list-item>
-            <span class="list-item-title">Thời gian (*)</span>
-            <mat-radio-group class="list-otherfactor-item" formControlName="timeFilter">
-              <ng-container *ngFor="let item of otherFactors.filterTimes">
-                <mat-radio-button [value]="item.code" class="otherfactor-item">{{item.value}}</mat-radio-button>
-              </ng-container>
-            </mat-radio-group>
-          </mat-list-item>
-
-          <mat-list-item>
-            <span class="list-item-title">Thêm công ty</span>
-            <form>
-              <mat-form-field>
-                <input matInput [matAutocomplete]="auto" [formControl]="companySearchControl" placeholder="Gõ mã CK hoặc tên công ty">
-                <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption (optionSelected)="addCompanyForFilter($event)">
-                  <mat-option *ngFor="let company of filteredCompanies | async" [value]="company.code">
-                    <span>{{ company.code }} - {{ company.name }}</span>
-                  </mat-option>
-                </mat-autocomplete>
-              </mat-form-field>
-            </form>
-          </mat-list-item>
-
-          <mat-list-item>
-            <span class="list-item-title">Các công ty đã chọn:</span>
-            <span class="list-otherfactor-item">
-              <ng-container *ngFor="let company of selectedCompanies">
-                <span class="clearable-label">
-                  {{company}}
-                  <mat-icon class="clear-button" (click)="removeSelectedCompany(company)">clear</mat-icon>
-                </span>
-              </ng-container>
-            </span>
-          </mat-list-item>
-        </form>
-      </mat-list>
-    </mat-card-content>
-  </mat-card>
+    <div class="float-right mt-3" style="clear: both;">
+      <button type="button" class="btn btn-dark" matStepperPrevious>Back</button>
+      <button type="button" class="btn btn-dark ml-3" *ngIf="this.filtersFormGroup.valid" (click)="nextStep()">Next</button>
+    </div>
+  </div>
 </div>
+
+<!-- <mat-card class="hhd-card">
+  <mat-card-content class='hhd-card-content'>
+    <mat-list *ngIf="selectedDataItems">
+
+      <form [formGroup]="filtersFormGroup">
+
+        <mat-list-item>
+          <span class="list-item-title">Các tiêu chí lọc đã chọn:</span>
+          <span class="list-otherfactor-item">
+            {{selectedDataItemAsString}}
+          </span>
+        </mat-list-item>
+
+        <mat-list-item>
+          <span class="list-item-title">Thời gian (*)</span>
+          <mat-radio-group class="list-otherfactor-item" formControlName="timeFilter">
+            <ng-container *ngFor="let item of otherFactors.filterTimes">
+              <mat-radio-button [value]="item.code" class="otherfactor-item">{{item.value}}</mat-radio-button>
+            </ng-container>
+          </mat-radio-group>
+        </mat-list-item>
+
+        <mat-list-item>
+          <span class="list-item-title">Thêm công ty</span>
+          <form>
+            <mat-form-field>
+              <input matInput [matAutocomplete]="auto" [formControl]="companySearchControl" placeholder="Gõ mã CK hoặc tên công ty">
+              <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption (optionSelected)="addCompanyForFilter($event)">
+                <mat-option *ngFor="let company of filteredCompanies | async" [value]="company.code">
+                  <span>{{ company.code }} - {{ company.name }}</span>
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </form>
+        </mat-list-item>
+
+        <mat-list-item>
+          <span class="list-item-title">Các công ty đã chọn:</span>
+          <span class="list-otherfactor-item">
+            <ng-container *ngFor="let company of selectedCompanies">
+              <span class="clearable-label">
+                {{company}}
+                <mat-icon class="clear-button" (click)="removeSelectedCompany(company)">clear</mat-icon>
+              </span>
+            </ng-container>
+          </span>
+        </mat-list-item>
+      </form>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
 
 <div class="button-class">
   <button mat-raised-button color="primary" matStepperPrevious>Back</button>
   <button mat-raised-button color="primary" *ngIf="this.filtersFormGroup.valid" (click)="nextStep()" class="customButtonClass">Next</button>
-</div>
+</div> -->

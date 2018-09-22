@@ -1,64 +1,35 @@
-<!-- <ng-container *ngIf="factors">
-  <dl class="notification">
-    <dd>Vui lòng chọn ít nhất một lựa chọn để tiếp tục</dd>
-    <dd>Bạn có tối đa 5 lựa chọn</dd>
-  </dl>
+<ng-container *ngIf="factors">
+  <div class="alert alert-danger" role="alert">
+    <dl>
+      <dd>Vui lòng chọn ít nhất một lựa chọn để tiếp tục</dd>
+      <dd>Bạn có tối đa 5 lựa chọn</dd>
+    </dl>
+  </div>
 
   <form [formGroup]="factorsFormGroup">
-    <mat-card class="hhd-card" *ngFor="let factor of factors; let idx=index" [formGroupName]="factor.code">
-      <mat-card-header>
-        <mat-card-title>
-          <strong>{{factor.title}}</strong>
-        </mat-card-title>
-      </mat-card-header>
-
-      <mat-card-content class='hhd-card-content'>
-        <ng-container *ngFor="let dataItem of factor.dataItems">
-          <ng-container *ngIf="dataItem.isShow">
-            <mat-checkbox class="hhd-card-content-item" [formControlName]="dataItem.code" [disabled]="isDiasbled(factor.code, dataItem.code)">
-              {{dataItem.title}}
-            </mat-checkbox>
+    <div class="card bg-light mt-2" *ngFor="let factor of factors; let idx=index" [formGroupName]="factor.code">
+      <div class="card-body">
+        <h5 class="card-title">{{factor.title}}</h5>
+        <div>
+          <ng-container *ngFor="let dataItem of factor.dataItems; let dataItemIndex=index">
+            <ng-container *ngIf="dataItem.isShow">
+              <div class="form-check form-check-inline w-15">
+                <input class="form-check-input" type="checkbox" value="" id="{{factor.code + '_'+ dataItemIndex}}" [formControlName]="dataItem.code"
+                  [attr.disabled]="isDiasbled(factor.code, dataItem.code) ? '' : null">
+                <label class="form-check-label" for="{{factor.code + '_'+ dataItemIndex}}">
+                  {{dataItem.title}}
+                </label>
+              </div>
+            </ng-container>
           </ng-container>
-        </ng-container>
-      </mat-card-content>
-    </mat-card>
-  </form>
-
-  <div class="button-class">
-    <ng-container *ngIf="this.factorsFormGroup.valid">
-      <button mat-raised-button color="primary" (click)="nextStep()" class="customButtonClass">Next</button>
-    </ng-container>
-  </div>
-</ng-container> -->
-
-<div class="alert alert-danger mt-3" role="alert">
-  <dl>
-    <dd>Vui lòng chọn ít nhất một lựa chọn để tiếp tục</dd>
-    <dd>Bạn có tối đa 5 lựa chọn</dd>
-  </dl>
-</div>
-
-<form [formGroup]="factorsFormGroup">
-  <div class="card bg-light mt-2" *ngFor="let factor of factors; let idx=index" [formGroupName]="factor.code">
-    <div class="card-body">
-      <h5 class="card-title">{{factor.title}}</h5>
-      <div>
-        <ng-container *ngFor="let dataItem of factor.dataItems; let dataItemIndex=index">
-          <ng-container *ngIf="dataItem.isShow">
-            <div class="form-check form-check-inline w-15">
-              <input class="form-check-input" type="checkbox" value="" id="{{factor.code + '_'+ dataItemIndex}}" [formControlName]="dataItem.code"
-                [attr.disabled]="isDiasbled(factor.code, dataItem.code) ? '' : null">
-              <label class="form-check-label" for="{{factor.code + '_'+ dataItemIndex}}">
-                {{dataItem.title}}
-              </label>
-            </div>
-          </ng-container>
-        </ng-container>
+        </div>
       </div>
     </div>
-  </div>
 
-  <ng-container *ngIf="this.factorsFormGroup.valid">
-    <button type="button" class="btn btn-dark mt-3 mb-3 float-right" (click)="nextStep()">Next</button>
-  </ng-container>
-</form>
+    <ng-container *ngIf="this.factorsFormGroup.valid">
+      <button type="button" class="btn btn-dark mt-3 mb-3 float-right" (click)="nextStep()">Next</button>
+    </ng-container>
+  </form>
+
+
+</ng-container>

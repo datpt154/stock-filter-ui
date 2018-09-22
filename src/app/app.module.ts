@@ -33,6 +33,7 @@ const routers: Routes = [
     MaterialModule,
 
     BrowserAnimationsModule,
+    ChartsModule,
     SharedModule,
     HttpClientModule,
     ServicesModule,

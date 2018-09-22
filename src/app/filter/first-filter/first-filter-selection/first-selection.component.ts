@@ -31,7 +31,6 @@ export class FirstFilterSelectionComponent implements OnInit {
   ngOnInit() {
     this.otherFactosFormGroup = this.buildOtherFactorsFb();
     this.registerValueChange();
-    this.updateValidationOfFormBuilder();
   }
 
   private nextStep(): void {
@@ -53,23 +52,14 @@ export class FirstFilterSelectionComponent implements OnInit {
     if (this.selectedDataItems && this.selectedDataItems.length) {
       this.selectedDataItems.forEach(dataItem => dataItem.selectedValues = [dataItem.min, dataItem.max]);
     }
-
-    this.otherFactors.filterTimes.forEach(item => item.isSelected = false);
-    this.otherFactosFormGroup.get('timeFilter').setValue('');
-    this.otherFactors.stockExchanges.forEach(item => {
-      item.isSelected = false;
-      this.otherFactosFormGroup.get('stockExchange').get(item.code).setValue(false);
-    });
   }
 
   private buildOtherFactorsFb(): FormGroup {
     // because formbuilder is not support for multiple checkbox. SO we add isValid property to this form
     // to verify that the checkbox must be selected at least one
-    const filter = this.otherFactors.filterTimes.find(filterTime => filterTime.isSelected === true);
-    const timeFilter = _.isNil(filter) ? '' : filter.code;
     const temp = {
       isValid: new FormControl(false, Validators.requiredTrue),
-      timeFilter: new FormControl(timeFilter, Validators.required),
+      timeFilter: new FormControl('', Validators.required),
       stockExchange: this.createFbForStockExchange(this.otherFactors.stockExchanges)
     };
 
@@ -80,48 +70,22 @@ export class FirstFilterSelectionComponent implements OnInit {
     let fgStockExchange = {};
 
     stockExchanges.forEach(item => {
-      fgStockExchange[item.code] = new FormControl(item.isSelected);
+      fgStockExchange[item.code] = new FormControl(false);
     });
 
     return this._formBuilder.group(fgStockExchange);
   }
 
-  private updateValidationOfFormBuilder(): void {
-    const filterTime = this.otherFactors.filterTimes.find(filterTime => filterTime.isSelected);
-
-    this.selectedStockExchanges = [];
-    const stockEchanges = this.otherFactors.stockExchanges.forEach(stockExchange => {
-      if (stockExchange.isSelected) {
-        this.selectedStockExchanges.push(stockExchange.code);
-      }
-    });
-
-    const isFormValid = !_.isNil(filterTime) && this.selectedStockExchanges && this.selectedStockExchanges.length > 0;
-    this.otherFactosFormGroup.get('isValid').reset(isFormValid);
-  }
-
   private registerValueChange() {
-    this.otherFactosFormGroup.get('timeFilter').valueChanges
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe(value => {
-        this.otherFactors.filterTimes.forEach(filterTime => {
-          if (filterTime.code === value) {
-            filterTime.isSelected = true;
-          } else {
-            filterTime.isSelected = false;
-          }
-
-        });
-      });
+    this.otherFactosFormGroup.get('timeFilter').valueChanges.subscribe(dat => {
+      console.log(dat);
+    });
 
     this.otherFactors.stockExchanges.forEach(stockExchange => {
       const fbStockExchange = this.otherFactosFormGroup.get('stockExchange').get(stockExchange.code);
       fbStockExchange.valueChanges
         .pipe(takeUntil(this.ngUnsubscribe))
         .subscribe(value => {
-          // update stockEchanges because UI just updates otherFactosFormGroup
-          stockExchange.isSelected = value;
-
           // update selectedDataItemCodes
           if (value === true) {
             this.selectedStockExchanges.push(stockExchange.code);
