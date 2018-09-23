@@ -28,4 +28,8 @@ export class FilterService {
     return this.apiService.getDetailstock(companyCode, filterTime);
   }
 
+  public getDetailStockMore(companyCode: string, filterTime: string): Observable<any> {
+    return this.apiService.getDetailStockMore(companyCode, filterTime);
+  }
+
 }

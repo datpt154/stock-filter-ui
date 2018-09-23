@@ -71,7 +71,9 @@ export class SharePricesComponent implements OnInit {
       this.companyCode = params['companyCode'];
       const selectedFilterTime = this.otherFactors.filterTimes.find(item => item.isSelected === true);
       this.getDetailstock(this.companyCode, selectedFilterTime.code);
-    })
+
+      this._filterService.getDetailStockMore(this.companyCode, selectedFilterTime.code).subscribe(data => console.log(data));
+    });
   }
 
   // whenever filterTime radio has been changed, we have to reload DetailStock again

@@ -64,6 +64,21 @@ export class ApiService {
       .pipe(catchError(this.handleError))
   }
 
+  public getDetailStockMore(companyCode: string, filterTime: string): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    const url = this.API_URL + 'api/detailstockmore';
+    const parameters = {
+      time: filterTime,
+      code: companyCode
+    };
+
+    return this.http
+      .post<any>(url, JSON.stringify(parameters), httpOptions)
+      .pipe(catchError(this.handleError))
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
