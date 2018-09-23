@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FilterService } from '../services/business.service/filter.service';
 import { PieChartConfig } from '../models/PieChartConfig';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CommonConstants } from '../constants/common-const';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-share-prices',
@@ -55,6 +57,8 @@ export class SharePricesComponent implements OnInit {
   public barChartData: any[] = [
     { data: [], label: '' }
   ];
+  public otherFactors = CommonConstants.otherFactors;
+  public companyCode: string = '';
 
 
   constructor(private _filterService: FilterService,
@@ -62,14 +66,35 @@ export class SharePricesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.setDefaultTime();
     this.route.queryParams.subscribe(params => {
-      const companyCode: string = params['companyCode'];
-
-      this._filterService.searchCompanyReport(companyCode).subscribe(data => {
-        this.data = data;
-        this.barChartLabels = this.data.headers.slice(1);
-      });
+      this.companyCode = params['companyCode'];
+      const selectedFilterTime = this.otherFactors.filterTimes.find(item => item.isSelected === true);
+      this.getDetailstock(this.companyCode, selectedFilterTime.code);
     })
+  }
+
+  // whenever filterTime radio has been changed, we have to reload DetailStock again
+  selectFilterTime(item): void {
+    this.getDetailstock(this.companyCode, item.code);
+  }
+
+  // whenever we enter page, should set default selection for filterTime (is 'quater')
+  getDetailstock(companyCode: string, filterTime: string): void {
+    this._filterService.getDetailstock(companyCode, filterTime).subscribe(data => {
+      this.data = data;
+      if (!_.isNil(this.data.rows)) {
+        this.barChartLabels = this.data.headers.slice(1);
+      } else {
+        this.barChartLabels = [];
+      }
+    });
+  }
+
+  setDefaultTime(): void {
+    this.otherFactors.filterTimes.forEach(item => {
+      item.isSelected = item.code === 'quarter';
+    });
   }
 
   showColumnCharts(popover, data: any) {

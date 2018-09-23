@@ -12,7 +12,7 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root',
 })
 export class ApiService {
-  private API_URL= environment.API_URL;
+  private API_URL = environment.API_URL;
 
   constructor(private http: HttpClient) { }
 
@@ -49,14 +49,18 @@ export class ApiService {
       .pipe(catchError(this.handleError))
   }
 
-  public searchCompanyReport(companyCode: string): Observable<any> {
+  public getDetailstock(companyCode: string, filterTime: string): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + 'api/detailstock/' + companyCode;
+    const url = this.API_URL + 'api/detailstock';
+    const parameters = {
+      time: filterTime,
+      code: companyCode
+    };
 
     return this.http
-      .get<any>(url, httpOptions)
+      .post<any>(url, JSON.stringify(parameters), httpOptions)
       .pipe(catchError(this.handleError))
   }
 

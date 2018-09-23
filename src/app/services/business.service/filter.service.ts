@@ -24,8 +24,8 @@ export class FilterService {
     return this.apiService.searchCompany(searchPattern);
   }
 
-  public searchCompanyReport(companyCode: string): Observable<any> {
-    return this.apiService.searchCompanyReport(companyCode);
+  public getDetailstock(companyCode: string, filterTime: string): Observable<any> {
+    return this.apiService.getDetailstock(companyCode, filterTime);
   }
 
 }
