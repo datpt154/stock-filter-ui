@@ -32,6 +32,14 @@ const routers: Routes = [
     NgbModule,
     RouterModule.forChild(routers)
   ],
-  declarations: [FilterResultComponent, FactorsComponent, FirstFilterComponent, FirstFilterSelectionComponent, SecondFilterComponent, SecondFilterSelectionComponent, SecondFilterResultComponent]
+  declarations: [
+    FilterResultComponent,
+    FactorsComponent,
+    FirstFilterComponent,
+    FirstFilterSelectionComponent,
+    SecondFilterComponent,
+    SecondFilterSelectionComponent,
+    SecondFilterResultComponent
+  ]
 })
-export class FilterModule { }
+export class FilterModule {}

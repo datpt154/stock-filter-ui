@@ -32,10 +32,10 @@ export class HeaderComponent implements OnInit {
       })
     );
   }
-  
+
   selectACompany(model: any) {
     const companyCode = model.item.split('-')[0];
-    this.router.navigate(['/sharePrices'], {queryParams: { companyCode: companyCode }});
+    this.router.navigate(['/stock-detail'], {queryParams: { companyCode: companyCode }});
   }
 
   searchCompany = (text$: Observable<string>) =>
