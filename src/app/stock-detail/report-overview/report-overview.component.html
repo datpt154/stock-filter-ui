@@ -1,8 +1,8 @@
 <div class="row flex-xl-nowrap mt-3">
   <div class="col-12 col-lg-9" style="border-right: 1px solid rgba(0, 0, 0, 0.1)">
 
-    <table class="table">
-      <thead class="bg-light">
+    <table class="table table-bordered table-hover">
+      <thead class="thead-light">
         <tr>
           <th>CTCK</th>
           <th>Khuyến nghị</th>
@@ -37,19 +37,21 @@
                 {{row.netProfit}}
               </td>
               <td>
-                {{row.timeRecommendations}}
+                {{row.timeRecommendations | date:'shortDate'}}
               </td>
             </tr>
           </ng-container>
         </ng-container>
         <ng-template #noDataRecommended>
-          Không có data
+          <tr>
+            <td colspan="7">Không có data</td>
+          </tr>
         </ng-template>
       </tbody>
     </table>
 
-    <table class="table">
-      <thead class="bg-light">
+    <table class="table table-bordered table-hover">
+      <thead class="table-active">
         <tr>
           <ng-container *ngFor="let item of data.headers; let idx = index">
             <ng-container *ngIf="idx == 0; else otherHeader">
@@ -72,7 +74,7 @@
         <ng-container *ngFor="let row of data.rows;">
           <ng-container *ngIf="row.length == 1; else otherRow">
             <tr class="bg-light">
-              <td colspan="7">
+              <td colspan="8">
                 {{row[0]}}
               </td>
             </tr>
@@ -90,36 +92,20 @@
     </table>
   </div>
   <div class="col-12 col-lg-3">
-    <table class="table">
-      <thead class="bg-light">
-        <tr>
-          <th>Kế hoặc 2018</th>
-        </tr>
-      </thead>
+    <app-report-small-table title="Kế hoặc 2018" [tableData]="data?.plans"></app-report-small-table>
 
-      <tbody>
-        <ng-container *ngIf="data?.plans; else noDataPlan">
-          <ng-container *ngFor="let row of data?.plans">
-            <tr class="bg-light">
-              <td>
-                {{row[0]}}
-              </td>
-              <td>
-                {{row[1]}}
-              </td>
-            </tr>
-          </ng-container>
-        </ng-container>
-        <ng-template #noDataPlan>
-          Không có data
-        </ng-template>
+    <app-report-small-table title="Valuation" [tableData]="data?.valuation"></app-report-small-table>
+    <app-report-small-table title="Score" [tableData]="data?.score"></app-report-small-table>
+    <app-report-small-table title="Liquidity Ratio" [tableData]="data?.liquidityRatio"></app-report-small-table>
+    <app-report-small-table title="Activity turnover" [tableData]="data?.activityTurnover"></app-report-small-table>
+    <app-report-small-table title="Interpretation of Solvency ratios" [tableData]="data?.interpretationOfSolvencyRatios"></app-report-small-table>
+    <app-report-small-table title=" Risk ratio" [tableData]="data?.riskRatio"></app-report-small-table>
 
-      </tbody>
-    </table>
 
-    <!-- <ng-template #popContent let-greeting="greeting">
-      <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
-        [colors]="barChartColors" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
-    </ng-template> -->
+    <ng-template #popContent let-greeting="greeting">
+      <canvas baseChart width="480px" height="300px" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+        [legend]="barChartLegend" [colors]="barChartColors" [chartType]="barChartType" (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"></canvas>
+    </ng-template>
   </div>
 </div>

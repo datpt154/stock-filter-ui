@@ -1,0 +1,28 @@
+<table class="table table-bordered table-hover">
+  <thead class="thead-light">
+    <tr>
+      <th colspan="2">{{title}}</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <ng-container *ngIf="tableData; else noData">
+      <ng-container *ngFor="let row of tableData">
+        <tr class="bg-light">
+          <td>
+            {{row[0]}}
+          </td>
+          <td>
+            {{row[1]}}
+          </td>
+        </tr>
+      </ng-container>
+    </ng-container>
+    <ng-template #noData>
+      <tr>
+        <td colspan="2">Không có data</td>
+      </tr>
+    </ng-template>
+
+  </tbody>
+</table>

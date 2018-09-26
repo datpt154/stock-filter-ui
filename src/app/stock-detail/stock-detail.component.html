@@ -1,13 +1,11 @@
-<div class="container-fluid">
-  <div>
-    <h3>Cong ty abc</h3>
-    <span>Ma ck: ABC</span>
-    <span>Price: 20.0</span>
+<div class="container-fluid" *ngIf="dataOverivew">
+  <div class="mt-3">
+    <h3>{{dataOverivew.name}}</h3>
+    <span>{{dataOverivew.code}} : {{dataOverivew.price}}</span>
   </div>
-  <div class="mt-5">
-    <div class="row">
-      <label for="inputEmail3" class="col-sm-3 col-form-label">Thời gian (*)</label>
-      <div class="col-sm-9">
+  <div class="mt-5 position-relative stock-detail">
+    <div class="col-12 col-lg-9 position-absolute">
+      <div class="float-right">
         <ng-container *ngFor="let item of otherFactors.filterTimes">
           <div class="form-check form-check-inline filter-width">
             <input class="form-check-input" type="radio" name="filterTime" id="{{item.code}}" [value]="item.code" [checked]="item.isSelected"
@@ -22,7 +20,7 @@
     <ngb-tabset>
       <ngb-tab title="Tổng quan">
         <ng-template ngbTabContent>
-          <app-report-overview [data]="data"></app-report-overview>
+          <app-report-overview [data]="dataOverivew"></app-report-overview>
         </ng-template>
       </ngb-tab>
       <ngb-tab title="Báo cáo tài chính">
