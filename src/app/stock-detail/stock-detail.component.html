@@ -25,12 +25,12 @@
       </ngb-tab>
       <ngb-tab title="Báo cáo tài chính">
         <ng-template ngbTabContent>
-          <app-report-finance></app-report-finance>
+          <app-report-finance [companyCode]="companyCode" [selectedFilterTimeCode]="selectedFilterTimeCode"></app-report-finance>
         </ng-template>
       </ngb-tab>
       <ngb-tab title="Chỉ số tài chính">
         <ng-template ngbTabContent>
-          <app-report-ratio></app-report-ratio>
+          <app-report-ratio [companyCode]="companyCode" [selectedFilterTimeCode]="selectedFilterTimeCode"></app-report-ratio>
         </ng-template>
       </ngb-tab>
     </ngb-tabset>

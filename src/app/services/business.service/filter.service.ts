@@ -32,4 +32,8 @@ export class FilterService {
     return this.apiService.getDetailStockMore(companyCode, filterTime);
   }
 
+  public getDetailStockFinanceRatio(companyCode: string, filterTime: string): Observable<any> {
+    return this.apiService.getDetailStockFinanceRatio(companyCode, filterTime);
+  }
+
 }

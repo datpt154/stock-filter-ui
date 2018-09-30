@@ -1,3 +1,30 @@
-<p>
-  report-ratio works!
-</p>
+<div class="row flex-xl-nowrap mt-3">
+  <table class="table table-bordered table-hover" *ngIf="reportFinanceRatioData">
+    <thead class="table-active">
+      <tr>
+        <ng-container *ngFor="let item of reportFinanceRatioData.headers; let idx = index">
+          <th>
+            {{item}}
+          </th>
+        </ng-container>
+      </tr>
+    </thead>
+
+    <tbody>
+      <ng-container *ngFor="let row of reportFinanceRatioData.rows;">
+        <tr [ngbPopover]="popContent" triggers="manual" (mouseenter)="showColumnCharts(p1, row)" (mouseleave)="closeColumnCharts(p1)"
+          #p1="ngbPopover" placement="top">
+          <ng-container *ngFor="let item of row; let idx = index">
+            <td *ngIf="idx >=1">{{item}}</td>
+          </ng-container>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+
+  <ng-template #popContent let-greeting="greeting">
+    <canvas baseChart width="480px" height="300px" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+      [legend]="barChartLegend" [colors]="barChartColors" [chartType]="barChartType" (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)"></canvas>
+  </ng-template>
+</div>

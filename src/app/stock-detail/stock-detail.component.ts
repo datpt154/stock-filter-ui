@@ -12,7 +12,8 @@ import * as _ from 'lodash';
 export class StockDetailComponent implements OnInit {
   public dataOverivew: any;
   public otherFactors = CommonConstants.otherFactors;
-  public companyCode = '';
+  public companyCode: string;
+  public selectedFilterTimeCode: string;
 
   constructor(
     private _filterService: FilterService,
@@ -24,20 +25,20 @@ export class StockDetailComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.companyCode = params['companyCode'];
       const selectedFilterTime = this.otherFactors.filterTimes.find(item => item.isSelected === true);
-      this.getDetailstock(this.companyCode, selectedFilterTime.code);
-
-      // this._filterService.getDetailStockMore(this.companyCode, selectedFilterTime.code).subscribe(data => console.log(data));
+      this.selectedFilterTimeCode = selectedFilterTime.code;
+      this.getDetailstock(this.companyCode, this.selectedFilterTimeCode);
     });
   }
 
   // whenever filterTime radio has been changed, we have to reload DetailStock again
   selectFilterTime(item): void {
-    this.getDetailstock(this.companyCode, item.code);
+    this.selectedFilterTimeCode = item.code;
+    this.getDetailstock(this.companyCode, this.selectedFilterTimeCode);
   }
 
   // whenever we enter page, should set default selection for filterTime (is 'quater')
-  getDetailstock(companyCode: string, filterTime: string): void {
-    this._filterService.getDetailstock(companyCode, filterTime).subscribe(data => {
+  getDetailstock(companyCode: string, filterTimeCode: string): void {
+    this._filterService.getDetailstock(companyCode, filterTimeCode).subscribe(data => {
       this.dataOverivew = data;
     });
   }
@@ -47,5 +48,4 @@ export class StockDetailComponent implements OnInit {
       item.isSelected = item.code === 'quarter';
     });
   }
-
 }

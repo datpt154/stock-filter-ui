@@ -13,8 +13,8 @@ export class ReportOverviewComponent implements OnInit, OnChanges {
     responsive: true
   };
   public barChartLabels: string[];
-  public barChartType: string = 'bar';
-  public barChartLegend: boolean = true;
+  public barChartType = 'bar';
+  public barChartLegend = true;
   public barChartData: any[] = [
     { data: [], label: '' }
   ];

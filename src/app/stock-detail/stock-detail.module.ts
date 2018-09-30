@@ -22,7 +22,7 @@ import { ReportSmallTableComponent } from './report-small-table/report-small-tab
     StockDetailRoutes
   ],
   declarations: [
-    StockDetailComponent, ReportOverviewComponent, ReportFinanceComponent, 
+    StockDetailComponent, ReportOverviewComponent, ReportFinanceComponent,
     ReportRatioComponent, ReportSmallTableComponent
   ]
 })
