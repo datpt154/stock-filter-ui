@@ -1,6 +1,8 @@
-.clearable-label {
+second-filter-selection {
+
+  .clearable-label {
     background-color: #e0e0e0;
-    color: rgba(0,0,0,.87);
+    color: rgba(0, 0, 0, .87);
     display: inline-flex;
     padding: 7px 12px;
     border-radius: 24px;
@@ -8,10 +10,19 @@
     margin-right: 4px;
 
     .clear-button {
-        cursor: default;
+      cursor: default;
     }
-}
+  }
 
-.filter-width {
+  .filter-width {
     width: 100px;
+  }
+
+  mat-form-field.mat-form-field {
+    min-width: 17rem;
+
+    .mat-form-field-infix {
+      border: none;
+    }
+  }
 }

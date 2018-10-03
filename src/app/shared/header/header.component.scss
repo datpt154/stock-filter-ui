@@ -1,3 +1,52 @@
-.dropdown:hover > .dropdown-menu {
-  display: block;
+$defaultHeight: 1.5rem;
+app-header {
+  nav.navbar {
+
+    .dropdown{
+      &:hover{
+        cursor: pointer;
+        .dropdown-menu {
+          margin: 0;
+          display: block;
+        }
+      }
+    }
+
+    div.collapse {
+      div.form-inline.search-form {
+        position: relative;
+        flex-basis: 30%;
+        justify-content: flex-end;
+        
+        input.search-input{
+          width: 100%;
+  
+          &:focus{
+            box-shadow: none;
+            border-color: #ced4da;
+          }
+        }
+
+        ngb-typeahead-window {
+          width: 100%;
+          overflow: hidden;
+
+          button.dropdown-item {
+            white-space: normal;
+          }
+        }
+
+        button.btn-search{
+          position: absolute;
+          right: 0px;
+          border: none;
+          top: 0px;
+          width: 2.2rem;
+          height: 100%;
+          padding: 0;
+          background: transparent;
+        }
+      }
+    }
+  }
 }

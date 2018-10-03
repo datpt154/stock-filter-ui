@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 import { FilterService } from '../../services/business.service/filter.service';
@@ -11,11 +11,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    // this.isMobileScreen = event.target.innerWidth < 992 ? 'dropdown' : '';
+    const newScreenIsMobile = event.target.innerWidth < 992;
+    if (newScreenIsMobile !== this.isMobileScreen) {
+      this.isMobileScreen = newScreenIsMobile;
+      if (!this.isMobileScreen) {
+        const showNav = this.ref.nativeElement.querySelector(".nav-item.dropdown.show");
+        if (showNav) {
+          showNav.classList.remove('show');
+          showNav.querySelector('.dropdown-menu.show').classList.remove('show')
+        }
+      }
+    }
+  }
+  isMobileScreen: boolean = false;
   selectedCompnayModel: string;
-
   constructor(
     private _filterService: FilterService,
-    private router: Router
+    private router: Router,
+    private ref: ElementRef
   ) { }
 
   ngOnInit() {

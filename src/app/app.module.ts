@@ -12,6 +12,7 @@ import { ServicesModule } from './services/services.module';
 import { FormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from './shared/angular-material-design/material.module';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 const routers: Routes = [
   { path: 'filter', loadChildren: './filter/filter.module#FilterModule' },
@@ -27,6 +28,7 @@ const routers: Routes = [
     FormsModule,
     NgbModule,
     MaterialModule,
+    AngularFontAwesomeModule,
 
     BrowserAnimationsModule,
     SharedModule,

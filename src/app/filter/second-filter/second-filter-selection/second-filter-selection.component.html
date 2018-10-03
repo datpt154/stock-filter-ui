@@ -7,14 +7,14 @@
     <form [formGroup]="filtersFormGroup">
       <div class="row">
         <label for="inputEmail3" class="col-sm-3 col-form-label">Các tiêu chí lọc đã chọn:</label>
-        <div class="col-sm-9">
+        <div class="col-sm-9 col-form-label">
           {{selectedDataItemAsString}}
         </div>
       </div>
 
       <div class="row">
         <label for="inputEmail3" class="col-sm-3 col-form-label">Thời gian (*)</label>
-        <div class="col-sm-9">
+        <div class="col-sm-9 col-form-label">
           <ng-container *ngFor="let item of otherFactors.filterTimes">
             <div class="form-check form-check-inline filter-width">
               <input class="form-check-input" type="radio" id="{{item.code}}" [value]="item.code" formControlName="timeFilter">
@@ -28,7 +28,7 @@
 
       <div class="row">
         <label for="inputEmail3" class="col-sm-3 col-form-label">Thêm công ty</label>
-        <div class="col-sm-9">
+        <div class="col-sm-9 col-form-label">
           <form>
             <mat-form-field>
               <input matInput [matAutocomplete]="auto" [formControl]="companySearchControl" placeholder="Gõ mã CK hoặc tên công ty">
@@ -44,7 +44,7 @@
 
       <div class="row">
         <label for="inputEmail3" class="col-sm-3 col-form-label">Các công ty đã chọn:</label>
-        <div class="col-sm-9">
+        <div class="col-sm-9 col-form-label">
           <ng-container *ngFor="let company of selectedCompanies">
             <span class="clearable-label">
               {{company}}

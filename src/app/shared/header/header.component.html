@@ -14,7 +14,7 @@
         </a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" [attr.data-toggle]="isMobileScreen ? 'dropdown' : ''" aria-haspopup="true"
           aria-expanded="false">
           Filter
         </a>
@@ -26,7 +26,7 @@
       </li>
 
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" [attr.data-toggle]="isMobileScreen ? 'dropdown' : ''" aria-haspopup="true"
           aria-expanded="false">
           Screen
         </a>
@@ -41,7 +41,7 @@
       </li>
 
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" [attr.data-toggle]="isMobileScreen ? 'dropdown' : ''" aria-haspopup="true"
           aria-expanded="false">
           PTKT
         </a>
@@ -51,10 +51,12 @@
         </div>
       </li>
     </ul>
-    <div class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [ngbTypeahead]="searchCompany"
-        (selectItem)="selectACompany($event)" [(ngModel)]="selectedCompnayModel" />
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <div class="form-inline search-form my-2 my-lg-0">
+      <input class="form-control search-input mr-0" type="search" placeholder="Search" aria-label="Search" [ngbTypeahead]="searchCompany"
+        (selectItem)="selectACompany($event)" [(ngModel)]="selectedCompnayModel"/>
+      <button class="btn btn-search btn-outline my-2 my-sm-0" type="submit">
+        <i class="fa fa-search" aria-hidden="true"> </i>  
+      </button>
     </div>
   </div>
 </nav>
