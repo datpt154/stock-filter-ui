@@ -1,14 +1,15 @@
 import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
 import { DataItem } from '../../../interface/data-item';
-import { Subject, Observable, from, of } from 'rxjs';
+import { Subject, Observable, of } from 'rxjs';
 import { CommonConstants } from '../../../constants/common-const';
 import * as _ from 'lodash';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { startWith, debounceTime, distinctUntilChanged, switchMap, mergeMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
 import { FilterService } from '../../../services/business.service/filter.service';
 import { MatAutocompleteSelectedEvent } from '@angular/material';
 import { ComparedFilterInput } from '../../../interface/api-input';
 
+const NUMBER_SHOW_FILTER_RESULT = 7;
 @Component({
   selector: 'second-filter-selection',
   templateUrl: './second-filter-selection.component.html',
@@ -73,7 +74,15 @@ export class SecondFilterSelectionComponent implements OnInit {
       return of([]);          
     }
 
-    return this._filterService.searchCompany(searchPattern);
+    return this._filterService.searchCompany(searchPattern).pipe(
+      map(items => {
+        if (items.length > NUMBER_SHOW_FILTER_RESULT) {
+          return items.slice(0, NUMBER_SHOW_FILTER_RESULT);
+        } else {
+          return items;
+        }
+      })
+    );
   }
 
   private addCompanyForFilter(selectedItem: MatAutocompleteSelectedEvent): void {

@@ -5,6 +5,7 @@ import { FilterService } from '../../services/business.service/filter.service';
 import * as _ from 'lodash';
 import { Router } from '@angular/router';
 
+const NUMBER_SHOW_FILTER_RESULT = 10;
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -14,6 +15,7 @@ export class HeaderComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     // this.isMobileScreen = event.target.innerWidth < 992 ? 'dropdown' : '';
+    // Set type for nav bar mobile -> click to expanse, bigger -> hover to expanse
     const newScreenIsMobile = event.target.innerWidth < 992;
     if (newScreenIsMobile !== this.isMobileScreen) {
       this.isMobileScreen = newScreenIsMobile;
@@ -44,7 +46,12 @@ export class HeaderComponent implements OnInit {
 
     return this._filterService.searchCompany(searchPattern).pipe(
       map(data => {
-        return data.map(company => [company.code.toUpperCase(), company.name].join(' - '));
+        const result = data.map(company => [company.code.toUpperCase(), company.name].join(' - '));
+        if (result.length > NUMBER_SHOW_FILTER_RESULT) {
+          return result.slice(0, NUMBER_SHOW_FILTER_RESULT);
+        } else {
+          return result;
+        } 
       })
     );
   }

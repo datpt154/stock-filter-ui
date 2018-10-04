@@ -5,7 +5,7 @@ export class CommonConstants {
     {
       filterTimes: [{
         code: 'quarter',
-        value: "Qúy",
+        value: "Quý",
         isSelected: false
       },
       {
