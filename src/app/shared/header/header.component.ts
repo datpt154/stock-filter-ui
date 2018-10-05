@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
     }
   }
   isMobileScreen: boolean = false;
-  selectedCompnayModel: string;
+  selectedCompanyModel: string;
   constructor(
     private _filterService: FilterService,
     private router: Router,
@@ -56,8 +56,10 @@ export class HeaderComponent implements OnInit {
     );
   }
 
-  selectACompany(model: any) {
-    const companyCode = model.item.split('-')[0];
+  selectACompany(event: any) {
+    event.preventDefault();
+    const companyCode = event.item.split('-')[0];
+    this.selectedCompanyModel = '';
     this.router.navigate(['/stock-detail'], {queryParams: { companyCode: companyCode }});
   }
 
