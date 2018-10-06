@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from './shared/angular-material-design/material.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { Ng5SliderModule } from 'ng5-slider';
 
 const routers: Routes = [
   { path: 'filter', loadChildren: './filter/filter.module#FilterModule' },
@@ -29,6 +30,7 @@ const routers: Routes = [
     NgbModule,
     MaterialModule,
     AngularFontAwesomeModule,
+    Ng5SliderModule,
 
     BrowserAnimationsModule,
     SharedModule,

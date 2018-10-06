@@ -9,6 +9,7 @@ import { BasicFilterInput } from '../../../interface/api-input';
 
 import * as _ from 'lodash';
 import { CommonConstants } from '../../../constants/common-const';
+import { Options, LabelType } from 'ng5-slider/options';
 
 @Component({
   selector: 'app-first-selection',
@@ -33,13 +34,33 @@ export class FirstFilterSelectionComponent implements OnInit {
     this.registerValueChange();
   }
 
+  getOption(dataItem: DataItem): Options {
+    const option: Options = {
+      floor: dataItem.min,
+      ceil: dataItem.max,
+      step: dataItem.step,
+      translate: (value: number, label: LabelType): string => {
+        switch (label) {
+          case 0:
+          case 1:
+            return [dataItem.unit, value].join(' ');
+          default:
+            return value.toString();
+        }
+      }
+    };
+
+    return option;
+  }
+
   private nextStep(): void {
     if (this.otherFactosFormGroup.valid) {
       const output: BasicFilterInput = {
         time: this.otherFactosFormGroup.get('timeFilter').value,
         stockExchanges: this.selectedStockExchanges,
         searchDataitems: this.selectedDataItems
-      }
+      };
+
       this.next.emit(output);
     }
   }
@@ -57,9 +78,10 @@ export class FirstFilterSelectionComponent implements OnInit {
   private buildOtherFactorsFb(): FormGroup {
     // because formbuilder is not support for multiple checkbox. SO we add isValid property to this form
     // to verify that the checkbox must be selected at least one
+    const selectedTimeFilter = this.otherFactors.filterTimes.find(item => item.isSelected);
     const temp = {
       isValid: new FormControl(false, Validators.requiredTrue),
-      timeFilter: new FormControl('', Validators.required),
+      timeFilter: new FormControl(_.get(selectedTimeFilter, 'code', ''), Validators.required),
       stockExchange: this.createFbForStockExchange(this.otherFactors.stockExchanges)
     };
 
@@ -67,10 +89,10 @@ export class FirstFilterSelectionComponent implements OnInit {
   }
 
   private createFbForStockExchange(stockExchanges: any): FormGroup {
-    let fgStockExchange = {};
+    const fgStockExchange = {};
 
     stockExchanges.forEach(item => {
-      fgStockExchange[item.code] = new FormControl(false);
+      fgStockExchange[item.code] = new FormControl(item.isSelected);
     });
 
     return this._formBuilder.group(fgStockExchange);
@@ -91,14 +113,14 @@ export class FirstFilterSelectionComponent implements OnInit {
             this.selectedStockExchanges.push(stockExchange.code);
           } else {
             _.remove(this.selectedStockExchanges, item => {
-              return item === stockExchange.code
-            })
+              return item === stockExchange.code;
+            });
           }
 
           // update isValid of parent form
           const isFormValid = this.selectedStockExchanges && this.selectedStockExchanges.length > 0;
           this.otherFactosFormGroup.get('isValid').reset(isFormValid);
-        })
+        });
     });
   }
 

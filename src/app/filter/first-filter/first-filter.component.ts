@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { Factor } from '../../interface/factor';
-import { CommonConstants } from '../../constants/common-const';
-import { DataItem } from '../../interface/data-item';
-import { FilterService } from '../../services/business.service/filter.service';
-import { BasicFilterDTO } from '../../interface/basic-filter-dto';
-import { BasicFilterInput } from '../../interface/api-input';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import * as _ from 'lodash';
+import { CommonConstants } from '../../constants/common-const';
+import { BasicFilterInput } from '../../interface/api-input';
+import { BasicFilterDTO } from '../../interface/basic-filter-dto';
+import { DataItem } from '../../interface/data-item';
+import { Factor } from '../../interface/factor';
+import { FilterService } from '../../services/business.service/filter.service';
 
 @Component({
   selector: 'app-first-filter',
@@ -22,11 +22,11 @@ export class FirstFilterComponent implements OnInit {
   private searchResult: BasicFilterDTO[] = [];
 
   private hiddenFieldsByDefault = [{
-    code: "FINANCE",
-    dataItem: "GROSS_PROFIT"
+    code: 'FINANCE',
+    dataItem: 'GROSS_PROFIT'
   }, {
-    code: "FINANCE",
-    dataItem: "SHARE_S_OUSTANDING"
+    code: 'FINANCE',
+    dataItem: 'SHARE_S_OUSTANDING'
   }];
 
   @ViewChild('stepper') stepper;

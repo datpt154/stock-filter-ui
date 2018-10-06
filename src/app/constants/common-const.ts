@@ -5,19 +5,19 @@ export class CommonConstants {
     {
       filterTimes: [{
         code: 'quarter',
-        value: "Quý",
-        isSelected: false
+        value: 'Qúy',
+        isSelected: true
       },
       {
         code: 'year',
-        value: "Năm",
+        value: 'Năm',
         isSelected: false
       }],
       stockExchanges: [
         {
           code: 'HOSE',
           value: 'HOSE',
-          isSelected: false
+          isSelected: true
         },
         {
           code: 'HNX',
@@ -31,7 +31,7 @@ export class CommonConstants {
         }
       ]
     };
-    
+
   public static factors: Factor[] = [
     {
       title: 'Finance',
@@ -563,7 +563,8 @@ export class CommonConstants {
           max: 10,
           min: 0,
           selectedValues: [0, 10],
-          isSelected: false,isShow: true,
+          isSelected: false,
+          isShow: true,
           step: 0.1,
           unit: 'x'
         },
