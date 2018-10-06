@@ -1,16 +1,16 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import * as _ from 'lodash';
-import { DataItem } from '../../interface/data-item';
-import { BasicFilterDTO } from '../../interface/basic-filter-dto';
+import { DataItem } from '../../../interface/data-item';
+import { BasicFilterDTO } from '../../../interface/basic-filter-dto';
 
 
 @Component({
-  selector: 'app-filter-result',
-  templateUrl: './filter-result.component.html',
-  styleUrls: ['./filter-result.component.scss']
+  selector: 'app-first-filter-result',
+  templateUrl: './first-filter-result.component.html',
+  styleUrls: ['./first-filter-result.component.scss']
 })
-export class FilterResultComponent implements OnInit {
+export class FirstFilterResultComponent implements OnInit {
   @Output() triggerBackToFilterInput: EventEmitter<any> = new EventEmitter();
   @Input() selectedDataItems: DataItem[];
   @Input() searchResult: BasicFilterDTO[] = [];
@@ -28,7 +28,7 @@ export class FilterResultComponent implements OnInit {
 
   // ngOnChanges(changes: SimpleChanges) {
   //   // if (changes.selectedDataItems && changes.selectedDataItems.currentValue) {
-  //     // update displayedColumns whenever selectedDataItems has been changed 
+  //     // update displayedColumns whenever selectedDataItems has been changed
   //     this.displayedColumns = [...this.fixedColumns];
   //     this.selectedDataItems.forEach(dataItem => {
   //       this.displayedColumns.push(dataItem.code);
@@ -45,7 +45,7 @@ export class FilterResultComponent implements OnInit {
     this.displayedColumns = [...this.fixedColumns];
     this.selectedDataItems.forEach(dataItem => {
       this.displayedColumns.push(dataItem.code);
-    })
+    });
 
     // initialize data after input are binded sucessfully
     this.dataSource = new MatTableDataSource<BasicFilterDTO>(this.searchResult);

@@ -46,7 +46,7 @@ export class SecondFilterComponent implements OnInit {
     this._filterService.compareFiltered(searchInput).subscribe(data => {
       this.searchResult = data;
       this.isFilterPageReady = true;
-      this.stepper.next();      
+      this.stepper.next();
     });
   }
 

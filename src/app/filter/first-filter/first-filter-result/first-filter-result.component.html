@@ -10,6 +10,16 @@
     <mat-cell *matCellDef="let element"> {{element.companyCode}} </mat-cell>
   </ng-container>
 
+  <ng-container matColumnDef="companyName">
+    <mat-header-cell *matHeaderCellDef> Tên công ty </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.companyName}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="stockExchange">
+    <mat-header-cell *matHeaderCellDef> Sàn </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.stockExchange}} </mat-cell>
+  </ng-container>
+
   <ng-container matColumnDef="price">
     <mat-header-cell *matHeaderCellDef> Giá </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>

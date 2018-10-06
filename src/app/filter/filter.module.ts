@@ -1,18 +1,18 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FirstFilterComponent } from './first-filter/first-filter.component';
-import { Routes, RouterModule } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FactorsComponent } from './factors/factors.component';
-import { SecondFilterComponent } from './second-filter/second-filter.component';
-import { FirstFilterSelectionComponent } from './first-filter/first-filter-selection/first-selection.component';
-import { SecondFilterSelectionComponent } from './second-filter/second-filter-selection/second-filter-selection.component';
-import { SecondFilterResultComponent } from './second-filter/second-filter-result/second-filter-result.component';
-import { FilterResultComponent } from './filter-result/filter-result.component';
-import { MaterialModule } from '../shared/angular-material-design/material.module';
+import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Ng5SliderModule } from 'ng5-slider';
+import { MaterialModule } from '../shared/angular-material-design/material.module';
+import { SharedModule } from '../shared/shared.module';
+import { FactorsComponent } from './factors/factors.component';
+import { FirstFilterResultComponent } from './first-filter/first-filter-result/first-filter-result.component';
+import { FirstFilterSelectionComponent } from './first-filter/first-filter-selection/first-selection.component';
+import { FirstFilterComponent } from './first-filter/first-filter.component';
+import { SecondFilterResultComponent } from './second-filter/second-filter-result/second-filter-result.component';
+import { SecondFilterSelectionComponent } from './second-filter/second-filter-selection/second-filter-selection.component';
+import { SecondFilterComponent } from './second-filter/second-filter.component';
 
 const routers: Routes = [
   { path: 'firstFilter', component: FirstFilterComponent },
@@ -33,7 +33,7 @@ const routers: Routes = [
     RouterModule.forChild(routers)
   ],
   declarations: [
-    FilterResultComponent,
+    FirstFilterResultComponent,
     FactorsComponent,
     FirstFilterComponent,
     FirstFilterSelectionComponent,

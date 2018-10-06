@@ -18,8 +18,8 @@
   <mat-step>
     <ng-template matStepLabel>Kết quả lọc</ng-template>
     <ng-container *ngIf="isFilterPageReady">
-      <app-filter-result [selectedDataItems]="selectedDataItems" [searchResult]="searchResult"
-        (triggerBackToFilterInput)="triggerBackToFilterInput()"></app-filter-result>
+      <app-second-filter-result [selectedDataItems]="selectedDataItems" [searchResult]="searchResult"
+        (triggerBackToFilterInput)="triggerBackToFilterInput()"></app-second-filter-result>
     </ng-container>
   </mat-step>
 </mat-horizontal-stepper>

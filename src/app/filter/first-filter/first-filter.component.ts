@@ -92,7 +92,7 @@ export class FirstFilterComponent implements OnInit {
   }
 
   private createFormbuilderForDataItems(factor: Factor): FormGroup {
-    let formGroupDataItem = {};
+    const formGroupDataItem = {};
 
     factor.dataItems.forEach(dataItem => {
       formGroupDataItem[dataItem.code] = new FormControl({
