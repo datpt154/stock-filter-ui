@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
+import { HelperService } from '../../services/business.service/helper.service';
 
 @Component({
   selector: 'app-report-overview',
@@ -19,7 +20,9 @@ export class ReportOverviewComponent implements OnInit, OnChanges {
     { data: [], label: '' }
   ];
 
-  constructor() { }
+  constructor(
+    private helperService: HelperService
+  ) { }
 
   ngOnInit() {
   }
@@ -46,6 +49,10 @@ export class ReportOverviewComponent implements OnInit, OnChanges {
     if (popover.isOpen()) {
       popover.close();
     }
+  }
+
+  alignTable(item): string {
+    return this.helperService.alignTable(item);
   }
 
 }

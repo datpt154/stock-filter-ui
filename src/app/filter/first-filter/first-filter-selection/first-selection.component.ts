@@ -80,7 +80,7 @@ export class FirstFilterSelectionComponent implements OnInit {
     // to verify that the checkbox must be selected at least one
     const selectedTimeFilter = this.otherFactors.filterTimes.find(item => item.isSelected);
     const temp = {
-      isValid: new FormControl(false, Validators.requiredTrue),
+      isValid: new FormControl(true, Validators.requiredTrue),
       timeFilter: new FormControl(_.get(selectedTimeFilter, 'code', ''), Validators.required),
       stockExchange: this.createFbForStockExchange(this.otherFactors.stockExchanges)
     };

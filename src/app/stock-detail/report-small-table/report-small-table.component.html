@@ -9,10 +9,10 @@
     <ng-container *ngIf="tableData; else noData">
       <ng-container *ngFor="let row of tableData">
         <tr class="bg-light">
-          <td>
+          <td class="w-50 text-left pl-2">
             {{row[0]}}
           </td>
-          <td>
+          <td class="text-right pr-2">
             {{row[1]}}
           </td>
         </tr>

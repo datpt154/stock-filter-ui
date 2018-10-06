@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FilterService } from '../../services/business.service/filter.service';
+import { HelperService } from '../../services/business.service/helper.service';
 
 @Component({
   selector: 'app-report-ratio',
@@ -25,7 +26,8 @@ export class ReportRatioComponent implements OnChanges {
   ];
 
   constructor(
-    private _filterService: FilterService
+    private _filterService: FilterService,
+    private helperService: HelperService
   ) { }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -54,6 +56,10 @@ export class ReportRatioComponent implements OnChanges {
     if (popover.isOpen()) {
       popover.close();
     }
+  }
+
+  alignTable(item): string {
+    return this.helperService.alignTable(item);
   }
 
 }

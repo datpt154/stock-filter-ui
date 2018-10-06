@@ -1,4 +1,4 @@
-<mat-table #sort [dataSource]="dataSource" matSort>
+<mat-table #sort [dataSource]="dataSource" matSort class="">
 
   <ng-container matColumnDef="rowIndex">
     <mat-header-cell *matHeaderCellDef [ngClass]="'customNoClass'"> No. </mat-header-cell>
@@ -22,7 +22,9 @@
 
   <ng-container matColumnDef="price">
     <mat-header-cell *matHeaderCellDef> Giá </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
+    <mat-cell *matCellDef="let element" class="text-right"> 
+        {{element.price}}
+    </mat-cell>
   </ng-container>
 
   <!-- dynamic Columns -->

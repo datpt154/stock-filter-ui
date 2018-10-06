@@ -3,7 +3,7 @@
     <thead class="table-active">
       <tr>
         <ng-container *ngFor="let item of reportFinanceRatioData.headers; let idx = index">
-          <th>
+          <th class="text-center">
             {{item}}
           </th>
         </ng-container>
@@ -12,12 +12,25 @@
 
     <tbody>
       <ng-container *ngFor="let row of reportFinanceRatioData.rows;">
-        <tr [ngbPopover]="popContent" triggers="manual" (mouseenter)="showColumnCharts(p1, row)" (mouseleave)="closeColumnCharts(p1)"
-          #p1="ngbPopover" placement="top">
-          <ng-container *ngFor="let item of row; let idx = index">
-            <td *ngIf="idx >=1">{{item}}</td>
-          </ng-container>
-        </tr>
+        <ng-container *ngIf="row?.length >=3; else abnormalRow">
+          <tr [ngbPopover]="popContent" triggers="manual" (mouseenter)="showColumnCharts(p1, row)" (mouseleave)="closeColumnCharts(p1)"
+            #p1="ngbPopover" placement="top">
+            <ng-container *ngFor="let item of row; let idx = index">
+              <ng-container *ngIf="idx == 1">
+                <td [ngClass]="alignTable(item)">{{item}}</td>
+              </ng-container>
+              <ng-container *ngIf="idx > 1">
+                <td [ngClass]="alignTable(item)">{{item | number:'4.1-1'}}</td>
+              </ng-container>
+            </ng-container>
+          </tr>
+        </ng-container>
+        <ng-template #abnormalRow>
+          <tr>
+            <td colspan="6" [ngClass]="alignTable(item)">{{row[1]}}</td>
+          </tr>
+        </ng-template>
+
       </ng-container>
     </tbody>
   </table>

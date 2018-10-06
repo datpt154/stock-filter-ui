@@ -3,7 +3,7 @@
 
     <table class="table table-bordered table-hover">
       <thead class="thead-light">
-        <tr>
+        <tr class="text-center">
           <th>CTCK</th>
           <th>Khuyến nghị</th>
           <th>Target</th>
@@ -24,19 +24,19 @@
               <td>
                 {{row.companyRecommendationsAction}}
               </td>
-              <td>
+              <td class="text-right">
                 {{row.targetPrice}}
               </td>
-              <td>
+              <td class="text-right">
                 {{row.revenue}}
               </td>
-              <td>
+              <td class="text-right">
                 {{row.pretaxProfit}}
               </td>
-              <td>
+              <td class="text-right">
                 {{row.netProfit}}
               </td>
-              <td>
+              <td class="text-right">
                 {{row.timeRecommendations | date:'shortDate'}}
               </td>
             </tr>
@@ -55,14 +55,14 @@
         <tr>
           <ng-container *ngFor="let item of data.headers; let idx = index">
             <ng-container *ngIf="idx == 0; else otherHeader">
-              <th>
+              <th class="text-center">
                 {{item}}
               </th>
               <th>
               </th>
             </ng-container>
             <ng-template #otherHeader>
-              <th>
+              <th class="text-center">
                 {{item}}
               </th>
             </ng-template>
@@ -74,7 +74,7 @@
         <ng-container *ngFor="let row of data.rows;">
           <ng-container *ngIf="row.length == 1; else otherRow">
             <tr class="bg-light">
-              <td colspan="8">
+              <td colspan="8" class="font-weight-bold">
                 {{row[0]}}
               </td>
             </tr>
@@ -83,7 +83,12 @@
             <tr [ngbPopover]="popContent" triggers="manual" (mouseenter)="showColumnCharts(p1, row)" (mouseleave)="closeColumnCharts(p1)"
               #p1="ngbPopover" placement="right">
               <ng-container *ngFor="let item of row; let idx = index">
-                <td>{{item}}</td>
+                <ng-container *ngIf="idx <= 1">
+                  <td [ngClass]="alignTable(item)">{{item}}</td>
+                </ng-container>
+                <ng-container *ngIf="idx > 1">
+                  <td [ngClass]="alignTable(item)">{{item | number:'4.1-1'}}</td>
+                </ng-container>
               </ng-container>
             </tr>
           </ng-template>
