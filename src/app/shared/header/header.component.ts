@@ -12,6 +12,9 @@ const NUMBER_SHOW_FILTER_RESULT = 10;
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  isMobileScreen = false;
+  selectedCompanyModel: string;
+
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     // this.isMobileScreen = event.target.innerWidth < 992 ? 'dropdown' : '';
@@ -20,16 +23,15 @@ export class HeaderComponent implements OnInit {
     if (newScreenIsMobile !== this.isMobileScreen) {
       this.isMobileScreen = newScreenIsMobile;
       if (!this.isMobileScreen) {
-        const showNav = this.ref.nativeElement.querySelector(".nav-item.dropdown.show");
+        const showNav = this.ref.nativeElement.querySelector('.nav-item.dropdown.show');
         if (showNav) {
           showNav.classList.remove('show');
-          showNav.querySelector('.dropdown-menu.show').classList.remove('show')
+          showNav.querySelector('.dropdown-menu.show').classList.remove('show');
         }
       }
     }
   }
-  isMobileScreen: boolean = false;
-  selectedCompanyModel: string;
+
   constructor(
     private _filterService: FilterService,
     private router: Router,
@@ -51,7 +53,7 @@ export class HeaderComponent implements OnInit {
           return result.slice(0, NUMBER_SHOW_FILTER_RESULT);
         } else {
           return result;
-        } 
+        }
       })
     );
   }
@@ -68,7 +70,7 @@ export class HeaderComponent implements OnInit {
       debounceTime(200),
       distinctUntilChanged(),
       switchMap(val => {
-        return this.filter(val || '')
+        return this.filter(val || '');
       })
     )
 

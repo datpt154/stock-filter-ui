@@ -70,26 +70,26 @@ export class SecondFilterResultComponent implements OnInit {
   }
 
   showColumnCharts(popover: any, columnName: string) {
-      const temp = [];
-      this.dataSource.data.forEach(row => {
-        if (!_.isNil(row[columnName])) {
-          temp.push(row[columnName]);
-        } else {
-          const searchItem = row.searchItems.find(item => item.code === columnName);
-          temp.push(searchItem.value);
-        }
-      });
-
-      this.barChartLabels = _.map(this.dataSource.data, 'companyCode');
-
-      if (!popover.isOpen()) {
-        let clone = JSON.parse(JSON.stringify(this.barChartData));
-        clone[0].data = temp;
-        // clone[0].label = data[0];
-        this.barChartData = clone;
-
-        popover.open();
+    const temp = [];
+    this.dataSource.data.forEach(row => {
+      if (!_.isNil(row[columnName])) {
+        temp.push(row[columnName]);
+      } else {
+        const searchItem = row.searchItems.find(item => item.code === columnName);
+        temp.push(searchItem.value);
       }
+    });
+
+    this.barChartLabels = _.map(this.dataSource.data, 'companyCode');
+
+    if (!popover.isOpen()) {
+      const clone = JSON.parse(JSON.stringify(this.barChartData));
+      clone[0].data = temp;
+      // clone[0].label = data[0];
+      this.barChartData = clone;
+
+      popover.open();
+    }
   }
 
 

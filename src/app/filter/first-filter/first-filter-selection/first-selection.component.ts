@@ -38,12 +38,12 @@ export class FirstFilterSelectionComponent implements OnInit, OnChanges {
     this.otherFactors.stockExchanges.forEach(stockExchange => {
       const fbStockExchangeValue = this.otherFactosFormGroup.get('stockExchange').get(stockExchange.code).value;
       this.handleStockExchangesChanged(fbStockExchangeValue, stockExchange);
-    })
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
     // To emmit data change to first filter component when change slider
-    if(changes.selectedDataItems) {
+    if (changes.selectedDataItems) {
       this.handleValueChange();
     }
   }
@@ -84,7 +84,7 @@ export class FirstFilterSelectionComponent implements OnInit, OnChanges {
         stockExchanges: this.selectedStockExchanges,
         searchDataitems: this.selectedDataItems
       };
-  
+
       this.selectionChanged.emit(output);
     }
   }
