@@ -1,40 +1,42 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
 import { CommonConstants } from '../../constants/common-const';
 import { BasicFilterInput } from '../../interface/api-input';
 import { BasicFilterDTO } from '../../interface/basic-filter-dto';
-import { DataItem } from '../../interface/data-item';
 import { Factor } from '../../interface/factor';
 import { FilterService } from '../../services/business.service/filter.service';
 import { MatStepper } from '@angular/material/stepper';
-import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { StockFilter } from '../../models/filter';
 
+const HIDDEN_FIELDS_BY_DEFAULT = [{
+  code: 'FINANCE',
+  dataItem: 'GROSS_PROFIT'
+}, {
+  code: 'FINANCE',
+  dataItem: 'SHARE_S_OUSTANDING'
+}];
 @Component({
   selector: 'app-first-filter',
   templateUrl: './first-filter.component.html',
   styleUrls: ['./first-filter.component.scss']
 })
-export class FirstFilterComponent implements OnInit {
-  private factorsData: Factor[] = CommonConstants.factors;
+export class FirstFilterComponent extends StockFilter implements OnInit {
+  protected factorsData: Factor[] = _.cloneDeep(CommonConstants.factors);
 
   private factorsFormGroup: FormGroup;
-  private selectedDataItems: DataItem[];
-  private isFilterPageReady = false;
-  private searchResult: BasicFilterDTO[] = [];
-  private factorDeatailSearchInput: BasicFilterInput;
+  protected isFilterPageReady = false;
+  protected searchResult: BasicFilterDTO[] = [];
 
-  private hiddenFieldsByDefault = [{
-    code: 'FINANCE',
-    dataItem: 'GROSS_PROFIT'
-  }, {
-    code: 'FINANCE',
-    dataItem: 'SHARE_S_OUSTANDING'
-  }];
 
   @ViewChild('stepper') stepper: MatStepper;
 
-  constructor(private _formBuilder: FormBuilder, private _filterService: FilterService) { }
+  constructor(
+    protected _formBuilder: FormBuilder,
+    protected _filterService: FilterService
+  ) {
+    super(_formBuilder, _filterService);
+  }
 
   ngOnInit() {
     this.factorsFormGroup = this.buildFactorsFb();
@@ -42,38 +44,18 @@ export class FirstFilterComponent implements OnInit {
   }
 
   private setDefault(): void {
-    this.hiddenFieldsByDefault.forEach(hiddenField => {
-      const factor = this.factorsData.find(factor => factor.code == hiddenField.code);
+    HIDDEN_FIELDS_BY_DEFAULT.forEach(hiddenField => {
+      const factor = this.factorsData.find(fd => fd.code === hiddenField.code);
       if (!_.isNil(factor)) {
-        const hiddenDataItem = factor.dataItems.find(dataItem => dataItem.code == hiddenField.dataItem);
+        const hiddenDataItem = factor.dataItems.find(dataItem => dataItem.code === hiddenField.dataItem);
         if (!_.isNil(hiddenDataItem)) {
           hiddenDataItem.isShow = false;
         }
       }
-    })
-  }
-
-  private nextToFactorsDetail(selectedDataItemCodes: string[]): void {
-    this.stepper.next();
-  }
-
-  private factorsChangeHandle(selectedDataItemCodes: string[]) {
-    this.selectedDataItems = this.getSelectedDataFromFactors(selectedDataItemCodes);
-  }
-
-  private getSelectedDataFromFactors(selectedDataItemCodes: string[]) {
-    let selectedDataItems = [];
-    this.factorsData.forEach(factor => {
-      const temp = factor.dataItems.filter(dataItem => selectedDataItemCodes.includes(dataItem.code))
-      if (temp && temp.length) {
-        selectedDataItems = selectedDataItems.concat(temp);
-      }
     });
-    return selectedDataItems;
   }
 
   private nextToFilterResult(searchInput: BasicFilterInput): void {
-
     this._filterService.basicFilter(searchInput).subscribe(data => {
       this.searchResult = data;
       this.isFilterPageReady = true;
@@ -81,51 +63,5 @@ export class FirstFilterComponent implements OnInit {
     });
   }
 
-  private factorDeatailChangeHandle(searchInput: BasicFilterInput) {
-    this.factorDeatailSearchInput = searchInput;
-    this.isFilterPageReady = false;
-  }
-
-  private triggerBackToFilterInput(): void {
-    this.stepper.previous();
-    this.isFilterPageReady = false;
-  }
-
-  private buildFactorsFb(): FormGroup {
-    const temp = {
-      // because formbuilder is not support for multiple checkbox. SO we add isValid property to this form
-      // so based on this to know that whether form is valid or not
-      isValid: new FormControl(false, Validators.requiredTrue)
-    };
-
-    this.factorsData.forEach(factor => {
-      temp[factor.code] = this.createFormbuilderForDataItems(factor);
-    });
-
-
-    return this._formBuilder.group(temp);
-  }
-
-  private createFormbuilderForDataItems(factor: Factor): FormGroup {
-    const formGroupDataItem = {};
-
-    factor.dataItems.forEach(dataItem => {
-      formGroupDataItem[dataItem.code] = new FormControl({
-        value: dataItem.isSelected,
-        disabled: false
-      });
-    });
-
-    return this._formBuilder.group(formGroupDataItem);
-  }
-
-  private stepperSelectChange(event: StepperSelectionEvent) {
-    if(event.selectedIndex === 2) {
-      this._filterService.basicFilter(this.factorDeatailSearchInput).subscribe(data => {
-        this.searchResult = data;
-        this.isFilterPageReady = true;
-      });
-    }
-  }
 }
 

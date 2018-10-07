@@ -13,7 +13,7 @@ import { BasicFilterInput, ComparedFilterInput } from '../../interface/api-input
   styleUrls: ['./second-filter.component.scss']
 })
 export class SecondFilterComponent implements OnInit {
-  private factorsData: Factor[] = CommonConstants.factors;
+  private factorsData: Factor[] = _.cloneDeep(CommonConstants.factors);
 
   private factorsFormGroup: FormGroup;
   // private preFilterFormGroup: FormGroup;
