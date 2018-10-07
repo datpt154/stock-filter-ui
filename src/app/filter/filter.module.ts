@@ -13,6 +13,7 @@ import { FirstFilterComponent } from './first-filter/first-filter.component';
 import { SecondFilterResultComponent } from './second-filter/second-filter-result/second-filter-result.component';
 import { SecondFilterSelectionComponent } from './second-filter/second-filter-selection/second-filter-selection.component';
 import { SecondFilterComponent } from './second-filter/second-filter.component';
+import { ChartsModule } from 'ng2-charts';
 
 const routers: Routes = [
   { path: 'firstFilter', component: FirstFilterComponent },
@@ -30,6 +31,7 @@ const routers: Routes = [
     SharedModule,
     Ng5SliderModule,
     NgbModule,
+    ChartsModule,
     RouterModule.forChild(routers)
   ],
   declarations: [

@@ -54,13 +54,7 @@ export class FirstFilterSelectionComponent implements OnInit, OnChanges {
       ceil: dataItem.max,
       step: dataItem.step,
       translate: (value: number, label: LabelType): string => {
-        switch (label) {
-          case 0:
-          case 1:
-            return [dataItem.unit, value].join(' ');
-          default:
-            return value.toString();
-        }
+        return [dataItem.unit, value].join(' ');
       }
     };
 
