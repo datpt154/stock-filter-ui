@@ -7,6 +7,8 @@ import { BasicFilterDTO } from '../../interface/basic-filter-dto';
 import { DataItem } from '../../interface/data-item';
 import { Factor } from '../../interface/factor';
 import { FilterService } from '../../services/business.service/filter.service';
+import { MatStepper } from '@angular/material/stepper';
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-first-filter',
@@ -20,6 +22,7 @@ export class FirstFilterComponent implements OnInit {
   private selectedDataItems: DataItem[];
   private isFilterPageReady = false;
   private searchResult: BasicFilterDTO[] = [];
+  private factorDeatailSearchInput: BasicFilterInput;
 
   private hiddenFieldsByDefault = [{
     code: 'FINANCE',
@@ -29,13 +32,16 @@ export class FirstFilterComponent implements OnInit {
     dataItem: 'SHARE_S_OUSTANDING'
   }];
 
-  @ViewChild('stepper') stepper;
+  @ViewChild('stepper') stepper: MatStepper;
 
   constructor(private _formBuilder: FormBuilder, private _filterService: FilterService) { }
 
   ngOnInit() {
     this.factorsFormGroup = this.buildFactorsFb();
     this.setDefault();
+    this.factorsFormGroup.valueChanges.subscribe(value => {
+
+    })
   }
 
   private setDefault(): void {
@@ -51,15 +57,22 @@ export class FirstFilterComponent implements OnInit {
   }
 
   private nextToFactorsDetail(selectedDataItemCodes: string[]): void {
-    this.selectedDataItems = [];
+    this.stepper.next();
+  }
+
+  private factorsChangeHandle(selectedDataItemCodes: string[]) {
+    this.selectedDataItems = this.getSelectedDataFromFactors(selectedDataItemCodes);
+  }
+
+  private getSelectedDataFromFactors(selectedDataItemCodes: string[]) {
+    let selectedDataItems = [];
     this.factorsData.forEach(factor => {
       const temp = factor.dataItems.filter(dataItem => selectedDataItemCodes.includes(dataItem.code))
       if (temp && temp.length) {
-        this.selectedDataItems = this.selectedDataItems.concat(temp);
+        selectedDataItems = selectedDataItems.concat(temp);
       }
     });
-
-    this.stepper.next();
+    return selectedDataItems;
   }
 
   private nextToFilterResult(searchInput: BasicFilterInput): void {
@@ -69,6 +82,10 @@ export class FirstFilterComponent implements OnInit {
       this.isFilterPageReady = true;
       this.stepper.next();
     });
+  }
+
+  private factorDeatailChangeHandle(searchInput: BasicFilterInput) {
+    this.factorDeatailSearchInput = searchInput;
   }
 
   private triggerBackToFilterInput(): void {
@@ -102,6 +119,15 @@ export class FirstFilterComponent implements OnInit {
     });
 
     return this._formBuilder.group(formGroupDataItem);
+  }
+
+  private stepperSelectChange(event: StepperSelectionEvent) {
+    if(event.selectedIndex === 2) {
+      this._filterService.basicFilter(this.factorDeatailSearchInput).subscribe(data => {
+        this.searchResult = data;
+        this.isFilterPageReady = true;
+      });
+    }
   }
 }
 

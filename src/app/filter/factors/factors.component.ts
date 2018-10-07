@@ -15,6 +15,7 @@ export class FactorsComponent implements OnInit {
   @Input() factorsFormGroup: FormGroup;
   @Output() next: EventEmitter<any> = new EventEmitter();
   @Output() reset: EventEmitter<any> = new EventEmitter();
+  @Output() factorsChange: EventEmitter<any> = new EventEmitter();
 
   private ngUnsubscribe: Subject<any> = new Subject();
 
@@ -38,6 +39,7 @@ export class FactorsComponent implements OnInit {
       this.next.next(this.selectedDataItemCodes);
     }
   }
+
 
   private getSelectedCheckboxs(form: FormGroup, formData: Factor[]) {
     const selectedSections: any[] = [];
@@ -86,6 +88,7 @@ export class FactorsComponent implements OnInit {
             // update isValid of parent form
             const isFormValid = this.selectedDataItemCodes && this.selectedDataItemCodes.length > 0;
             this.factorsFormGroup.get('isValid').reset(isFormValid);
+            this.factorsChange.emit(this.selectedDataItemCodes);
           })
       })
     });

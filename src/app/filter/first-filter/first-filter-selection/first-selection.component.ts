@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { DataItem } from '../../../interface/data-item';
 import { PrefixNot } from '@angular/compiler';
@@ -16,10 +16,11 @@ import { Options, LabelType } from 'ng5-slider/options';
   templateUrl: './first-selection.component.html',
   styleUrls: ['./first-selection.component.scss']
 })
-export class FirstFilterSelectionComponent implements OnInit {
+export class FirstFilterSelectionComponent implements OnInit, OnChanges {
   @Input() selectedDataItems: DataItem[] = [];
   @Output() next: EventEmitter<any> = new EventEmitter();
   @Output() back: EventEmitter<any> = new EventEmitter();
+  @Output() selectionChanged: EventEmitter<any> = new EventEmitter();
 
   private ngUnsubscribe: Subject<any> = new Subject();
   private selectedStockExchanges: string[] = [];
@@ -32,6 +33,19 @@ export class FirstFilterSelectionComponent implements OnInit {
   ngOnInit() {
     this.otherFactosFormGroup = this.buildOtherFactorsFb();
     this.registerValueChange();
+
+    // Need run at init time to init data for selectedStockExchanges array
+    this.otherFactors.stockExchanges.forEach(stockExchange => {
+      const fbStockExchangeValue = this.otherFactosFormGroup.get('stockExchange').get(stockExchange.code).value;
+      this.handleStockExchangesChanged(fbStockExchangeValue, stockExchange);
+    })
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    // To emmit data change to first filter component when change slider
+    if(changes.selectedDataItems) {
+      this.handleValueChange();
+    }
   }
 
   getOption(dataItem: DataItem): Options {
@@ -63,6 +77,20 @@ export class FirstFilterSelectionComponent implements OnInit {
 
       this.next.emit(output);
     }
+  }
+
+  private sliderChanged() {
+    this.handleValueChange();
+  }
+
+  private handleValueChange() {
+    const output: BasicFilterInput = {
+      time: this.otherFactosFormGroup.get('timeFilter').value,
+      stockExchanges: this.selectedStockExchanges,
+      searchDataitems: this.selectedDataItems
+    };
+
+    this.selectionChanged.emit(output);
   }
 
   backStep(): void {
@@ -99,29 +127,36 @@ export class FirstFilterSelectionComponent implements OnInit {
   }
 
   private registerValueChange() {
-    this.otherFactosFormGroup.get('timeFilter').valueChanges.subscribe(dat => {
-      console.log(dat);
-    });
+    this.otherFactosFormGroup.get('timeFilter').valueChanges
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(result => {
+        this.handleValueChange();
+      });
 
     this.otherFactors.stockExchanges.forEach(stockExchange => {
       const fbStockExchange = this.otherFactosFormGroup.get('stockExchange').get(stockExchange.code);
       fbStockExchange.valueChanges
         .pipe(takeUntil(this.ngUnsubscribe))
         .subscribe(value => {
-          // update selectedDataItemCodes
-          if (value === true) {
-            this.selectedStockExchanges.push(stockExchange.code);
-          } else {
-            _.remove(this.selectedStockExchanges, item => {
-              return item === stockExchange.code;
-            });
-          }
-
-          // update isValid of parent form
-          const isFormValid = this.selectedStockExchanges && this.selectedStockExchanges.length > 0;
-          this.otherFactosFormGroup.get('isValid').reset(isFormValid);
+          this.handleStockExchangesChanged(value, stockExchange);
         });
     });
+  }
+
+  private handleStockExchangesChanged(value, stockExchange) {
+    // update selectedDataItemCodes
+    if (value === true) {
+      this.selectedStockExchanges.push(stockExchange.code);
+    } else {
+      _.remove(this.selectedStockExchanges, item => {
+        return item === stockExchange.code;
+      });
+    }
+
+    // update isValid of parent form
+    const isFormValid = this.selectedStockExchanges && this.selectedStockExchanges.length > 0;
+    this.otherFactosFormGroup.get('isValid').reset(isFormValid);
+    this.handleValueChange();
   }
 
 }
