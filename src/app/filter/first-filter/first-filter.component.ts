@@ -39,9 +39,6 @@ export class FirstFilterComponent implements OnInit {
   ngOnInit() {
     this.factorsFormGroup = this.buildFactorsFb();
     this.setDefault();
-    this.factorsFormGroup.valueChanges.subscribe(value => {
-
-    })
   }
 
   private setDefault(): void {
@@ -86,6 +83,7 @@ export class FirstFilterComponent implements OnInit {
 
   private factorDeatailChangeHandle(searchInput: BasicFilterInput) {
     this.factorDeatailSearchInput = searchInput;
+    this.isFilterPageReady = false;
   }
 
   private triggerBackToFilterInput(): void {

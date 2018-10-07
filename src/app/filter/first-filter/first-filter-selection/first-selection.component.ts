@@ -84,13 +84,15 @@ export class FirstFilterSelectionComponent implements OnInit, OnChanges {
   }
 
   private handleValueChange() {
-    const output: BasicFilterInput = {
-      time: this.otherFactosFormGroup.get('timeFilter').value,
-      stockExchanges: this.selectedStockExchanges,
-      searchDataitems: this.selectedDataItems
-    };
-
-    this.selectionChanged.emit(output);
+    if (this.otherFactosFormGroup) {
+      const output: BasicFilterInput = {
+        time: this.otherFactosFormGroup.get('timeFilter').value,
+        stockExchanges: this.selectedStockExchanges,
+        searchDataitems: this.selectedDataItems
+      };
+  
+      this.selectionChanged.emit(output);
+    }
   }
 
   backStep(): void {
