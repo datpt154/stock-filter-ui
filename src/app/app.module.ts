@@ -14,33 +14,39 @@ import { MaterialModule } from './shared/angular-material-design/material.module
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { Ng5SliderModule } from 'ng5-slider';
 import { HomePageComponent } from './home-page/home-page.component';
+import { IndicatorsComponent } from './indicators/indicators.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 const routers: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'filter', loadChildren: './filter/filter.module#FilterModule' },
   { path: 'stock-detail', loadChildren: './stock-detail/stock-detail.module#StockDetailModule' },
+  { path: 'indicators', component: IndicatorsComponent},
   { path: '**', redirectTo: 'filter' }
 ];
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomePageComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    NgbModule,
-    MaterialModule,
-    AngularFontAwesomeModule,
-    Ng5SliderModule,
-
-    BrowserAnimationsModule,
-    SharedModule,
-    HttpClientModule,
-    ServicesModule,
-    RouterModule.forRoot(routers)
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+   declarations: [
+      AppComponent,
+      HomePageComponent,
+      IndicatorsComponent
+   ],
+   imports: [
+      BrowserModule,
+      FormsModule,
+      NgbModule,
+      MaterialModule,
+      AngularFontAwesomeModule,
+      Ng5SliderModule,
+      BrowserAnimationsModule,
+      SharedModule,
+      HttpClientModule,
+      ServicesModule,
+      PdfViewerModule,
+      RouterModule.forRoot(routers)
+   ],
+   providers: [],
+   bootstrap: [
+      AppComponent
+   ]
 })
 export class AppModule { }

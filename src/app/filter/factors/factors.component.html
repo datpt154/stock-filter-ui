@@ -10,7 +10,7 @@
         <div>
           <ng-container *ngFor="let dataItem of factor.dataItems; let dataItemIndex=index">
             <ng-container *ngIf="dataItem.isShow">
-              <div class="form-check form-check-inline w-15">
+              <div class="form-check form-check-inline w-20">
                 <input class="form-check-input" type="checkbox" value="" id="{{factor.code + '_'+ dataItemIndex}}"
                   [formControlName]="dataItem.code" [attr.disabled]="isDiasbled(factor.code, dataItem.code) ? '' : null">
                 <label class="form-check-label" for="{{factor.code + '_'+ dataItemIndex}}">

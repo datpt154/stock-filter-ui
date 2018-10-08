@@ -34,11 +34,11 @@ export class CommonConstants {
 
   public static factors: Factor[] = [
     {
-      title: 'Finance',
+      title: 'Dữ liệu tài chính',
       code: 'FINANCE',
       dataItems: [
         {
-          title: 'Revenue',
+          title: 'Doanh thu thuần',
           code: 'NET_REVENUE',
           max: 100000,
           min: 0,
@@ -49,7 +49,7 @@ export class CommonConstants {
           unit: 'bil',
         },
         {
-          title: 'Gross Profit',
+          title: 'Lợi nhuận gộp',
           code: 'GROSS_PROFIT',
           max: 20000,
           min: 0,
@@ -60,7 +60,7 @@ export class CommonConstants {
           unit: 'bil'
         },
         {
-          title: 'Income',
+          title: 'LNST',
           code: 'NET_INCOME',
           max: 10000,
           min: 0,
@@ -71,7 +71,7 @@ export class CommonConstants {
           unit: 'bil'
         },
         {
-          title: 'Share\'s Outstanding',
+          title: 'KL Cổ phiếu',
           code: 'SHARE_S_OUSTANDING',
           max: 5000,
           min: 0,
@@ -93,7 +93,7 @@ export class CommonConstants {
           unit: 'k'
         },
         {
-          title: 'BV',
+          title: 'Giá trị sổ sách',
           code: 'BOOK_VALUE',
           max: 100,
           min: 0,
@@ -104,7 +104,7 @@ export class CommonConstants {
           unit: 'k'
         },
         {
-          title: 'Price',
+          title: 'Giá thị trường',
           code: 'MARKET_PRICE',
           max: 300,
           min: 0,
@@ -115,7 +115,7 @@ export class CommonConstants {
           unit: 'k'
         },
         {
-          title: 'Capitalization',
+          title: 'Vốn hóa',
           code: 'MARKET_CAPITAL',
           max: 100000,
           min: 0,
@@ -128,11 +128,11 @@ export class CommonConstants {
       ]
     },
     {
-      title: 'Finance Growth',
+      title: 'Tăng trưởng so với cùng kỳ',
       code: 'YOY_INCREASE',
       dataItems: [
         {
-          title: 'Revenue Growth',
+          title: 'TT Doanh thu',
           code: 'NET_REVENUE_YOY',
           max: 500,
           min: 0,
@@ -143,7 +143,7 @@ export class CommonConstants {
           unit: '%'
         },
         {
-          title: 'Gross Profit Growth',
+          title: 'TT LNST',
           code: 'GROSS_PROFIT_YOY',
           max: 500,
           min: 0,
@@ -154,7 +154,7 @@ export class CommonConstants {
           unit: '%'
         },
         {
-          title: 'EPS Growth',
+          title: 'TT EPS',
           code: 'EPS_YOY',
           max: 500,
           min: 0,
@@ -165,7 +165,7 @@ export class CommonConstants {
           unit: '%'
         },
         {
-          title: 'EBITDA Growth',
+          title: 'TT EBITDA',
           code: 'EBITDA_YOY',
           max: 500,
           min: 0,
@@ -176,7 +176,7 @@ export class CommonConstants {
           unit: '%'
         },
         {
-          title: 'Debt Growth',
+          title: 'TT Nợ',
           code: 'DEBT_YOY',
           max: 500,
           min: 0,
@@ -187,7 +187,7 @@ export class CommonConstants {
           unit: '%'
         },
         {
-          title: 'Equity Growth',
+          title: 'TT VCSH',
           code: 'EQUITY_YOY',
           max: 500,
           min: 0,
@@ -198,7 +198,7 @@ export class CommonConstants {
           unit: '%'
         },
         {
-          title: 'Capitalization Growth',
+          title: 'TT Vốn hóa',
           code: 'MARKET_CAPITAL_YOY',
           max: 500,
           min: 0,
@@ -209,7 +209,7 @@ export class CommonConstants {
           unit: '%'
         },
         {
-          title: 'Assets Growth',
+          title: 'TT Tài sản',
           code: 'TOTAL_ASSETS_YOY',
           max: 500,
           min: 0,
@@ -222,7 +222,7 @@ export class CommonConstants {
       ]
     },
     {
-      title: 'Price Ratio',
+      title: 'Tỷ số định giá',
       code: 'PRICE_RATIO',
       dataItems: [
         {
@@ -303,7 +303,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'Rev/FCF',
+          title: 'Doanh thu/ Dòng tiền tự do',
           code: 'REV_FCF',
           max: 10,
           min: 0,
@@ -314,7 +314,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'MC/CFO',
+          title: 'Vốn hóa/ Dòng tiền HĐKD',
           code: 'MC_CFO',
           max: 10,
           min: 0,
@@ -325,7 +325,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'MC/NWC',
+          title: 'Vốn hóa/ Vốn lưu động',
           code: 'MC_NWC',
           max: 10,
           min: 0,
@@ -338,7 +338,7 @@ export class CommonConstants {
       ]
     },
     {
-      title: 'Profitabilities Ratio',
+      title: 'Hiệu quả đầu tư',
       code: 'PROFITABILITIES_RATIO',
       dataItems: [
         {
@@ -400,10 +400,10 @@ export class CommonConstants {
     },
     {
       title: 'Margin',
-      code: 'MARGIN',
+      code: 'Lợi nhuận biên',
       dataItems: [
         {
-          title: 'Gross Margin',
+          title: 'Tỷ lệ lãi gộp',
           code: 'GROSS_PROFIT_MARGIN',
           max: 100,
           min: 0,
@@ -414,7 +414,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'Operating Margin',
+          title: 'LN hoạt động biên',
           code: 'OPERATING_PROFIT_MARGIN',
           max: 100,
           min: 0,
@@ -425,7 +425,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'Pretax Margin',
+          title: 'LN trước thuế biên',
           code: 'PRETAX_PROFIT_MARGIN',
           max: 100,
           min: 0,
@@ -436,7 +436,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'Profit Margin',
+          title: 'Tỷ lệ lãi ròng',
           code: 'NET_PROFIT_MARGIN',
           max: 100,
           min: 0,
@@ -447,7 +447,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'Div Yield',
+          title: 'Tỷ suất cổ tức',
           code: 'DIV_YIELD',
           max: 100,
           min: 0,
@@ -458,7 +458,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'EBIT/REV',
+          title: 'Tỷ suất EBIT',
           code: 'EBIT_REV',
           max: 100,
           min: 0,
@@ -469,7 +469,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'EBITDA/REV',
+          title: 'Tỷ suất EBITDA',
           code: 'EBITDA_REV',
           max: 100,
           min: 0,
@@ -482,11 +482,11 @@ export class CommonConstants {
       ]
     },
     {
-      title: 'Activity Turnover',
+      title: 'Hiệu quả hoạt động',
       code: 'ACTIVITY_TURNOVER',
       dataItems: [
         {
-          title: 'Asset Turnover',
+          title: 'Vòng quay tài sản',
           code: 'SALES_TO_TOTAL_ASSETS',
           max: 10,
           min: 0,
@@ -497,7 +497,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'Receivable Turnover',
+          title: 'Vòng quay phải thu',
           code: 'RECEIVABLE_TURNOVER',
           max: 10,
           min: 0,
@@ -508,7 +508,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'Payable Turnover',
+          title: 'Vòng quay phải trả',
           code: 'PAYABLE_TURNOVER',
           max: 10,
           min: 0,
@@ -519,7 +519,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'Inventory Turnover',
+          title: 'Vòng quay tồn kho',
           code: 'INVENTORY_TURNOVER',
           max: 10,
           min: 0,
@@ -532,11 +532,11 @@ export class CommonConstants {
       ]
     },
     {
-      title: 'Interpretation of Solvency Ratios',
+      title: 'Đòn bẩy tài chính',
       code: 'INTERPRETATION_OF_SOLVENCY_RATIOS',
       dataItems: [
         {
-          title: 'Debt-to-assets',
+          title: 'Nợ/Tổng tài sản',
           code: 'DEBT_TO_ASSETS_RATIO',
           max: 10,
           min: 0,
@@ -547,7 +547,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'Debt-to-equity',
+          title: 'Nợ/Vốn chủ sở hữu',
           code: 'DEBT_TO_EQUITY_RATIO',
           max: 10,
           min: 0,
@@ -558,7 +558,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'LT-debt/capitalazion',
+          title: 'Nợ dài hạn/Vốn hóa',
           code: 'LONG_TIME_DEBT_TOTAL_CAPITALAZION',
           max: 10,
           min: 0,
@@ -569,7 +569,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'Interest Coverage',
+          title: 'Khả năng trả lãi vay',
           code: 'INTEREST_COVERAGE',
           max: 10,
           min: 0,
@@ -582,11 +582,11 @@ export class CommonConstants {
       ]
     },
     {
-      title: 'Liquidity Ratio',
+      title: 'Hệ số thanh toán',
       code: 'LIQUIDITY_RATIO',
       dataItems: [
         {
-          title: 'Current Ratio',
+          title: 'Hệ số thanh toán hiện hành',
           code: 'CURRENT_RATIO',
           max: 10,
           min: 0,
@@ -597,7 +597,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'Quick Ratio',
+          title: 'Hệ số thanh toán nhanh',
           code: 'QUICK_RATIO',
           max: 10,
           min: 0,
@@ -608,7 +608,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'Cash Ratio',
+          title: 'Hệ số thanh toán tiền mặt',
           code: 'CASH_RATIO',
           max: 10,
           min: 0,
@@ -621,11 +621,11 @@ export class CommonConstants {
       ]
     },
     {
-      title: 'Risk Ratio',
+      title: 'Rủi ro',
       code: 'RISK_RATIO',
       dataItems: [
         {
-          title: 'AR/Rev',
+          title: 'Phải thu/ Doanh thu',
           code: 'ACCOUNT_RECEIVABLE_TO_REVENUE',
           max: 5,
           min: 0,
@@ -636,7 +636,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'AR/Income',
+          title: 'Phải thu/ LNST',
           code: 'ACCOUNT_RECEIVABLE_TO_NET_INCOME',
           max: 5,
           min: 0,
@@ -647,7 +647,7 @@ export class CommonConstants {
           unit: 'x'
         },
         {
-          title: 'A&P/Income',
+          title: 'Dự phòng/ LNST',
           code: 'ALLOWANCES_AND_PROVISIONS_TO_NET_INCOME',
           max: 5,
           min: 0,
@@ -660,11 +660,11 @@ export class CommonConstants {
       ]
     },
     {
-      title: 'Score',
+      title: 'Đánh giá BCTC',
       code: 'SCORE',
       dataItems: [
         {
-          title: 'F-Score',
+          title: 'F-Score (Chất lượng BCTC)',
           code: 'F_SCORE',
           max: 9,
           min: 0,
@@ -675,7 +675,7 @@ export class CommonConstants {
           unit: 'Point'
         },
         {
-          title: 'C-score',
+          title: 'C-score (sửa đổi BCTC)',
           code: 'C_SCORE',
           max: 6,
           min: 0,
@@ -686,7 +686,7 @@ export class CommonConstants {
           unit: 'Point'
         },
         {
-          title: 'M-score',
+          title: 'M-score (Làm giả lợi nhuận)',
           code: 'M_SCORE',
           max: 10,
           min: -5,
@@ -697,7 +697,7 @@ export class CommonConstants {
           unit: 'Point'
         },
         {
-          title: 'Z-score',
+          title: 'Z-score (khả năng phá sản)',
           code: 'Z_SCORE',
           max: 10,
           min: -4,
