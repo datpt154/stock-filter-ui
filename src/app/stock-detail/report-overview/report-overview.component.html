@@ -3,7 +3,7 @@
 
     <table class="table table-bordered table-hover">
       <thead class="thead-light">
-        <tr class="text-center">
+        <tr>
           <th>CTCK</th>
           <th>Khuyến nghị</th>
           <th>Target</th>
@@ -28,13 +28,13 @@
                 {{row.targetPrice}}
               </td>
               <td class="text-right">
-                {{row.revenue}}
+                {{row.revenue | number:'1.1-1'}}
               </td>
               <td class="text-right">
-                {{row.pretaxProfit}}
+                {{row.pretaxProfit | number:'1.1-1'}}
               </td>
               <td class="text-right">
-                {{row.netProfit}}
+                {{row.netProfit | number:'1.1-1'}}
               </td>
               <td class="text-right">
                 {{row.timeRecommendations | date:'shortDate'}}
@@ -55,14 +55,14 @@
         <tr>
           <ng-container *ngFor="let item of data.headers; let idx = index">
             <ng-container *ngIf="idx == 0; else otherHeader">
-              <th class="text-center">
+              <th>
                 {{item}}
               </th>
               <th>
               </th>
             </ng-container>
             <ng-template #otherHeader>
-              <th class="text-center">
+              <th>
                 {{item}}
               </th>
             </ng-template>
