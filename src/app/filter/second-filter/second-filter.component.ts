@@ -6,7 +6,7 @@ import { DataItem } from '../../interface/data-item';
 import { FilterService } from '../../services/business.service/filter.service';
 import { BasicFilterDTO } from '../../interface/basic-filter-dto';
 import { BasicFilterInput, ComparedFilterInput } from '../../interface/api-input';
-
+import * as _ from 'lodash';
 @Component({
   selector: 'app-second-filter',
   templateUrl: './second-filter.component.html',
