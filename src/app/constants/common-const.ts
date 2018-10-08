@@ -6,12 +6,12 @@ export class CommonConstants {
       filterTimes: [{
         code: 'quarter',
         value: 'Quý',
-        isSelected: true
+        isSelected: false
       },
       {
         code: 'year',
         value: 'Năm',
-        isSelected: false
+        isSelected: true
       }],
       stockExchanges: [
         {

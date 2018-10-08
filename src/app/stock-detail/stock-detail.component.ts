@@ -45,7 +45,7 @@ export class StockDetailComponent implements OnInit {
 
   setDefaultTime(): void {
     this.otherFactors.filterTimes.forEach(item => {
-      item.isSelected = item.code === 'quarter';
+      item.isSelected = item.code === 'year';
     });
   }
 }
