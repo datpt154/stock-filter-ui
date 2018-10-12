@@ -1,6 +1,9 @@
+@import "../../../scss/variables.scss";
+
 $defaultHeight: 1.5rem;
-app-header {
+:host {
   nav.navbar {
+    background-color: $dark-color !important;
 
     .dropdown{
       &:hover{
@@ -47,6 +50,7 @@ app-header {
           height: 100%;
           padding: 0;
           background: transparent;
+          color: $dark-color;
         }
       }
     }

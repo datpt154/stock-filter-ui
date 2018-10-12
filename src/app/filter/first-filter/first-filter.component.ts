@@ -8,6 +8,7 @@ import { Factor } from '../../interface/factor';
 import { FilterService } from '../../services/business.service/filter.service';
 import { MatStepper } from '@angular/material/stepper';
 import { StockFilter } from '../../models/filter';
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
 
 const HIDDEN_FIELDS_BY_DEFAULT = [{
   code: 'FINANCE',
@@ -55,13 +56,8 @@ export class FirstFilterComponent extends StockFilter implements OnInit {
     });
   }
 
-  private nextToFilterResult(searchInput: BasicFilterInput): void {
-    this._filterService.basicFilter(searchInput).subscribe(data => {
-      this.searchResult = data;
-      this.isFilterPageReady = true;
-      this.stepper.next();
-    });
+  protected getFilterResult(searchInput) {
+    return this._filterService.basicFilter(searchInput);
   }
-
 }
 

@@ -2,17 +2,17 @@
   LỌC CỔ PHIẾU DỰA TRÊN CÁC CHỈ SỐ CƠ BẢN
 </h3>
 
-<mat-horizontal-stepper [linear]="true" #stepper>
+<mat-horizontal-stepper [linear]="true" #stepper (selectionChange)="stepperSelectChange($event)">
   <mat-step [stepControl]="factorsFormGroup">
     <ng-template matStepLabel>Điều kiện lọc</ng-template>
-    <app-factors [factors]="factorsData" [factorsFormGroup]="factorsFormGroup" (next)="nextToFactorsDetail($event)"
+    <app-factors [factors]="factorsData" [factorsFormGroup]="factorsFormGroup" (next)="nextToFactorsDetail($event)" (factorsChange)="factorsChangeHandle($event)"
       (back)="backToPreFilter()">
     </app-factors>
   </mat-step>
 
   <mat-step>
     <ng-template matStepLabel>Thông số lọc</ng-template>
-    <second-filter-selection [selectedDataItems]="selectedDataItems" (next)="nextToFilterResult($event)"></second-filter-selection>
+<second-filter-selection [selectedDataItems]="selectedDataItems" (next)="nextToFilterResult($event)" (selectionChanged)="factorDeatailChangeHandle($event)"></second-filter-selection>
   </mat-step>
 
   <mat-step>

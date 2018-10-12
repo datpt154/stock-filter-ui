@@ -76,13 +76,26 @@ export abstract class StockFilter {
     return this._formBuilder.group(formGroupDataItem);
   }
 
+  private nextToFilterResult(searchInput: BasicFilterInput): void {
+    this.getFilterResult(searchInput).subscribe(data => {
+      this.searchResult = data;
+      this.isFilterPageReady = true;
+      this.stepper.next();
+    });
+  }
+
+
   private stepperSelectChange(event: StepperSelectionEvent) {
     if (event.selectedIndex === 2) {
-      this._filterService.basicFilter(this.factorDeatailSearchInput).subscribe(data => {
+      this.getFilterResult(this.factorDeatailSearchInput).subscribe(data => {
         this.searchResult = data;
         this.isFilterPageReady = true;
       });
     }
+  }
+
+  protected getFilterResult(searchInput) {
+    return this._filterService.basicFilter(searchInput);
   }
 
   private triggerBackToFilterInput(): void {

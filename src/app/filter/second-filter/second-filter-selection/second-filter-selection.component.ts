@@ -18,6 +18,7 @@ const NUMBER_SHOW_FILTER_RESULT = 7;
 export class SecondFilterSelectionComponent implements OnInit {
   @Input() selectedDataItems: DataItem[] = [];
   @Output() next: EventEmitter<any> = new EventEmitter();
+  @Output() selectionChanged: EventEmitter<any> = new EventEmitter();
 
   private otherFactors = CommonConstants.otherFactors;
   private selectedDataItemAsString: string;
@@ -42,7 +43,7 @@ export class SecondFilterSelectionComponent implements OnInit {
           this.selectedDataItemAsString += ", " + item.title;
         }
       })
-      
+      this.handleValueChange();
     }
   }
 
@@ -56,6 +57,10 @@ export class SecondFilterSelectionComponent implements OnInit {
             return this.filter(val || '')
           })       
         );
+
+    this.filtersFormGroup.valueChanges.subscribe(value => {
+      this.handleValueChange();
+    })
   }
 
   private buildFilterFactorsFb(): FormGroup {
@@ -109,6 +114,19 @@ export class SecondFilterSelectionComponent implements OnInit {
       this.filtersFormGroup.get('isValid').setValue(false);
     } else {
       this.filtersFormGroup.get('isValid').setValue(true);
+    }
+    this.handleValueChange();
+  }
+
+  private handleValueChange() {
+    if (this.filtersFormGroup && this.filtersFormGroup.valid) {
+      const output: ComparedFilterInput = {
+        time: this.filtersFormGroup.get('timeFilter').value,
+        stocks: this.selectedCompanies,
+        searchDataitems: this.selectedDataItems
+      }
+
+      this.selectionChanged.emit(output);
     }
   }
 
