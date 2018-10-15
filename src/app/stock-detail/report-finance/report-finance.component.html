@@ -16,10 +16,11 @@
           <tr [ngbPopover]="popContent" triggers="manual" (mouseenter)="showColumnCharts(p1, row)" (mouseleave)="closeColumnCharts(p1)"
             #p1="ngbPopover" placement="top">
             <ng-container *ngFor="let item of row; let idx = index">
-              <ng-container *ngIf="idx == 1">
+              <!-- idx = 0 for level, not use for rendering on UI -->
+              <ng-container *ngIf="idx == 1 || idx == 2">
                 <td [ngClass]="alignTable(item)">{{item}}</td>
               </ng-container>
-              <ng-container *ngIf="idx > 1">
+              <ng-container *ngIf="idx > 2">
                 <td [ngClass]="alignTable(item)">{{item | number:'1.1-1'}}</td>
               </ng-container>
             </ng-container>
@@ -27,7 +28,7 @@
         </ng-container>
         <ng-template #abnormalRow>
           <tr>
-            <td colspan="6" [ngClass]="alignTable(item)">{{row[1]}}</td>
+            <td colspan="7" [ngClass]="alignTable(row)">{{row[1]}}</td>
           </tr>
         </ng-template>
       </ng-container>

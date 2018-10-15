@@ -9,6 +9,7 @@ import { FilterService } from '../../services/business.service/filter.service';
 import { MatStepper } from '@angular/material/stepper';
 import { StockFilter } from '../../models/filter';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { Title } from '@angular/platform-browser';
 
 const HIDDEN_FIELDS_BY_DEFAULT = [{
   code: 'FINANCE',
@@ -34,12 +35,14 @@ export class FirstFilterComponent extends StockFilter implements OnInit {
 
   constructor(
     protected _formBuilder: FormBuilder,
-    protected _filterService: FilterService
+    protected _filterService: FilterService,
+    private titleService: Title
   ) {
     super(_formBuilder, _filterService);
   }
 
   ngOnInit() {
+    this.titleService.setTitle('LỌC CỔ PHIẾU DỰA TRÊN CÁC CHỈ SỐ CƠ BẢN');
     this.factorsFormGroup = this.buildFactorsFb();
     this.setDefault();
   }

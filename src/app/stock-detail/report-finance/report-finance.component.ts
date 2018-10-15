@@ -11,15 +11,15 @@ export class ReportFinanceComponent implements OnChanges {
   @Input() companyCode: string;
   @Input() selectedFilterTimeCode: string;
 
-  private reportFinanceData: any;
-  public barChartOptions: any = {
+  reportFinanceData: any;
+  barChartOptions: any = {
     scaleShowVerticalLines: true,
     responsive: true
   };
-  public barChartLabels: string[];
-  public barChartType = 'bar';
-  public barChartLegend = true;
-  public barChartData: any[] = [
+  barChartLabels: string[];
+  barChartType = 'bar';
+  barChartLegend = true;
+  barChartData: any[] = [
     { data: [], label: '' }
   ];
 
