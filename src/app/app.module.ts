@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 
@@ -16,9 +17,10 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { HomePageComponent } from './home-page/home-page.component';
 import { IndicatorsComponent } from './indicators/indicators.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 const routers: Routes = [
-  { path: '', component: HomePageComponent },
+  { path: '', component: LoginPageComponent },
   { path: 'filter', loadChildren: './filter/filter.module#FilterModule' },
   { path: 'stock-detail', loadChildren: './stock-detail/stock-detail.module#StockDetailModule' },
   { path: 'indicators', component: IndicatorsComponent},
@@ -28,7 +30,8 @@ const routers: Routes = [
    declarations: [
       AppComponent,
       HomePageComponent,
-      IndicatorsComponent
+      IndicatorsComponent,
+      LoginPageComponent
    ],
    imports: [
       BrowserModule,
@@ -42,7 +45,8 @@ const routers: Routes = [
       HttpClientModule,
       ServicesModule,
       PdfViewerModule,
-      RouterModule.forRoot(routers)
+      RouterModule.forRoot(routers),
+      ReactiveFormsModule
    ],
    providers: [],
    bootstrap: [

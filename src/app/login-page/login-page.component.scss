@@ -1,0 +1,79 @@
+@import "../../scss/variables.scss";
+
+:host {
+  .wrapper {
+    height: calc(100vh - 61.5px);
+    position: absolute;
+    width: 100%;
+    left: 0;
+    background-image: url("/assets/footer.png");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: 0 100%;
+    display: flex;
+    justify-content: flex-start;
+    justify-items: center;
+    flex-direction: column;
+    align-items: center;
+
+    p.common-text {
+      padding-top: calc(20vh - 61.5px);
+      color: #7F7F7F;
+      font-size: 30px;
+      display: block;
+    }
+
+    .form-container {
+      width: 280px;
+      background-color: $light-color;
+      border: 1px solid $text-grey-color;
+      
+      .form-head {
+        padding-left: 10px;
+        display: flex;
+        border-bottom: 1px solid $light-grey-color;
+
+        a {
+          font-size: 17px;
+          padding: 10px;
+          display: block;
+          color: $text-grey-color;
+          cursor: pointer;
+          margin-right: 5px;
+
+          &.selected {
+            font-weight: 600;
+            color: $dark-color;
+            -webkit-box-shadow: 0px 1px 0px 0px rgba(19,34,59,1);
+            -moz-box-shadow: 0px 1px 0px 0px rgba(19,34,59,1);
+            box-shadow: 0px 1px 0px 0px rgba(19,34,59,1);
+          }
+        }
+      }
+
+      .form-body {
+        padding: 30px;
+        padding-bottom: 20px;
+      }
+
+      .form-footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 20px;
+
+        button.action-button {
+          width: 70%;
+          background-color: $dark-color;
+          color: $light-color;
+        }
+
+        a.action-link {
+          color: $dark-color;
+          margin-top: 10px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

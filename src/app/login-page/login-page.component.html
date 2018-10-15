@@ -1,0 +1,42 @@
+<div class="wrapper">
+  <p class="common-text">Excellent <b class="color-dark">filters stock</b> platform</p>
+  <div class="form-container" *ngIf="selectedType != undefined">
+    <div class="form-head">
+<a (click)="switchType('Login')" [ngClass]="{'selected':selectedType === 0 }" >Login</a>
+<a (click)="switchType('Register')" [ngClass]="{'selected':selectedType === 1 }" >Register</a>
+    </div>
+    <ng-container [ngSwitch]="selectedType">
+      <ng-container *ngSwitchCase="0">
+        <form class="form-body" [formGroup]="loginForm">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" [formControl]="email" placeholder="Email" aria-label="Email">
+          </div>
+          <div class="input-group mb-3">
+            <input type="password" class="form-control" [formControl]="password" placeholder="Password" aria-label="Password">
+          </div>
+        </form>
+        
+        <div class="form-footer">
+          <button type="submit" class="btn action-button">Log in</button>
+          <a class="action-link">Change password</a>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="1">
+        <form class="form-body" [formGroup]="registerForm">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" [formControl]="email" placeholder="Email" aria-label="Email">
+          </div>
+          <div class="input-group mb-3">
+            <input type="password" class="form-control" [formControl]="password" placeholder="Password" aria-label="Password">
+          </div>
+          <div class="input-group mb-3">
+            <input type="password" class="form-control" [formControl]="confirmPassword" placeholder="Confirm Password" aria-label="Confirm Password">
+          </div>
+        </form>
+        <div class="form-footer">
+          <button type="submit" class="btn action-button">Register</button>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
