@@ -20,7 +20,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { LoginPageComponent } from './login-page/login-page.component';
 
 const routers: Routes = [
-  { path: '', component: LoginPageComponent },
+  { path: '', component: HomePageComponent },
   { path: 'filter', loadChildren: './filter/filter.module#FilterModule' },
   { path: 'stock-detail', loadChildren: './stock-detail/stock-detail.module#StockDetailModule' },
   { path: 'indicators', component: IndicatorsComponent},
