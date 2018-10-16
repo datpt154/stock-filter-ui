@@ -12,16 +12,16 @@ export class ReportRatioComponent implements OnChanges {
   @Input() companyCode: string;
   @Input() selectedFilterTimeCode: string;
 
-  private reportFinanceRatioData: any;
-  private reportFinanceData: any;
-  public barChartOptions: any = {
+  reportFinanceRatioData: any;
+  reportFinanceData: any;
+  barChartOptions: any = {
     scaleShowVerticalLines: true,
     responsive: true
   };
-  public barChartLabels: string[];
-  public barChartType = 'bar';
-  public barChartLegend = true;
-  public barChartData: any[] = [
+  barChartLabels: string[];
+  barChartType = 'bar';
+  barChartLegend = true;
+  barChartData: any[] = [
     { data: [], label: '' }
   ];
 

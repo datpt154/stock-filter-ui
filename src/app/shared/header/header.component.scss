@@ -3,8 +3,6 @@
 $defaultHeight: 1.5rem;
 :host {
   nav.navbar {
-    background-color: $dark-color !important;
-
     .dropdown{
       &:hover{
         cursor: pointer;
@@ -20,10 +18,10 @@ $defaultHeight: 1.5rem;
         position: relative;
         flex-basis: 30%;
         justify-content: flex-end;
-        
+
         input.search-input{
           width: 100%;
-  
+
           &:focus{
             box-shadow: none;
             border-color: #ced4da;
