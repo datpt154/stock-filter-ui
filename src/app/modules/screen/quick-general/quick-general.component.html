@@ -1,0 +1,81 @@
+  <div class="mt-5">
+    <ngb-tabset>
+      <ngb-tab title="Doanh thu">
+        <ng-template ngbTabContent>
+          <div class="font-weight-bold d-flex">Lợi nhuận cao nhất</div>
+          <div class="d-flex">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" colspan="2">Năm</th>
+                          </tr>
+                        <tr>
+                            <th scope="col">Mã CK</th>
+                            <th scope="col">Lợi nhuận($b)</th>
+                          </tr>
+                      </thead>
+                    <tbody>
+                          <tr *ngFor="let row of data.quater">
+                            <ng-container *ngFor="let item of row">
+                                <td>{{item}}</td>
+                            </ng-container>
+                          </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" colspan="2">Quý</th>
+                          </tr>
+                        <tr>
+                            <th scope="col">Mã CK</th>
+                            <th scope="col">Lợi nhuận($b)</th>
+                          </tr>
+                      </thead>
+                    <tbody>
+                          <tr *ngFor="let row of data.quater">
+                            <ng-container *ngFor="let item of row">
+                                <td>{{item}}</td>
+                            </ng-container>
+                          </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" colspan="2">TTM</th>
+                          </tr>
+                        <tr>
+                            <th scope="col">Mã CK</th>
+                            <th scope="col">Lợi nhuận($b)</th>
+                          </tr>
+                      </thead>
+                    <tbody>
+                          <tr *ngFor="let row of data.quater">
+                            <ng-container *ngFor="let item of row">
+                                <td>{{item}}</td>
+                            </ng-container>
+                          </tr>
+                    </tbody>
+                </table>
+            </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Lợi nhuận">
+        <ng-template ngbTabContent>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="EPS">
+        <ng-template ngbTabContent>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="P/E & P/B">
+        <ng-template ngbTabContent>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="MC/NWC & EV/EBITDA">
+        <ng-template ngbTabContent>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
