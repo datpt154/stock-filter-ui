@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FilterService } from '../../../services/business.service/filter.service';
 
 @Component({
   selector: 'app-quick-general',
@@ -7,33 +8,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuickGeneralComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _filterService: FilterService,
+  ) { }
 
-  data: any = {
-    quater: [
-      ['VMC', 2392.5 ],
-      ['VMC', 2392.5 ],
-      ['VMC', 2392.5 ],
-      ['VMC', 2392.5 ],
-      ['VMC', 2392.5 ],
-    ],
-    year: [
-      ['VNM', 2392.5 ],
-      ['HPG', 2392.5 ],
-      ['FLC', 2392.5 ],
-      ['VMC', 2392.5 ],
-      ['ROS', 2392.5 ],
-    ],
-    tmt: [
-      ['HAG', 2392.5 ],
-      ['GAS', 2392.5 ],
-      ['FLC', 2392.5 ],
-      ['VMC', 2392.5 ],
-      ['ROS', 2392.5 ],
-    ]
+  tableHeaderTab1 = {
+    header: 'Doanh Thu Cao Nhất',
+    table1: {
+      header: 'Năm',
+      headerColumn1: 'Mã Ck',
+      headerColumn2: 'Doanh thu($)'
+    },
+    table2: {
+      header: 'Quý',
+      headerColumn1: 'Mã Ck',
+      headerColumn2: 'Doanh thu($)'
+    },
+    table3: {
+      header: 'TTM',
+      headerColumn1: 'Mã Ck',
+      headerColumn2: 'Doanh thu($)'
+    },
   };
 
+  tableDataTab1: any;
+
   ngOnInit() {
+    this._filterService.getScreenRevenue().subscribe(data => {
+      this.tableDataTab1 = data;
+    });
   }
 
 }

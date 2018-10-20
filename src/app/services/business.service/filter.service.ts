@@ -36,4 +36,8 @@ export class FilterService {
     return this.apiService.getDetailStockFinanceRatio(companyCode, filterTime);
   }
 
+  public getScreenRevenue(): Observable<any> {
+    return this.apiService.getScreenRevenue();
+  }
+
 }

@@ -6,9 +6,15 @@
 @import "../app/home-page/home-page.component.scss";
 @import "../app/filter/second-filter/second-filter-selection/second-filter-selection.component.scss";
 
-html, body {
+@import "./variables.scss";
+
+body {
   // font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-  font-size: 62.5%;
+  font-size: 81.25%;
+}
+
+.w-45 {
+    width: 45% !important;
 }
 
 .w-20 {

@@ -20,11 +20,11 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + "api/filter";
+    const url = this.API_URL + 'api/filter';
 
     return this.http
       .post<any>(url, JSON.stringify(searchInput), httpOptions)
-      .pipe(catchError(this.handleError))
+      .pipe(catchError(this.handleError));
   }
 
   public compareFiltered(searchInput: ComparedFilterInput): Observable<any> {
@@ -35,7 +35,7 @@ export class ApiService {
 
     return this.http
       .post<any>(url, JSON.stringify(searchInput), httpOptions)
-      .pipe(catchError(this.handleError))
+      .pipe(catchError(this.handleError));
   }
 
   public searchCompany(searchPattern: string): Observable<any> {
@@ -46,7 +46,7 @@ export class ApiService {
 
     return this.http
       .get<any>(url, httpOptions)
-      .pipe(catchError(this.handleError))
+      .pipe(catchError(this.handleError));
   }
 
   public getDetailstock(companyCode: string, filterTime: string): Observable<any> {
@@ -94,6 +94,17 @@ export class ApiService {
       .pipe(catchError(this.handleError));
   }
 
+  public getScreenRevenue(): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    const url = this.API_URL + 'api/screenRevenue/';
+
+    return this.http
+      .get<any>(url, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
@@ -108,6 +119,5 @@ export class ApiService {
     // return an observable with a user-facing error message
     return throwError(
       'Something bad happened; please try again later.');
-  };
-
+  }
 }
