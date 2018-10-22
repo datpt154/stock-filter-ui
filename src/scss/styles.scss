@@ -6,11 +6,8 @@
 @import "../app/home-page/home-page.component.scss";
 @import "../app/filter/second-filter/second-filter-selection/second-filter-selection.component.scss";
 
-@import "./variables.scss";
-
 body {
-  // font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-  font-size: 81.25%;
+  font-size: 87.5%;
 }
 
 .w-45 {
@@ -22,9 +19,5 @@ body {
 }
 .w-15 {
     width: 15% !important;
-}
-
-div.mat-horizontal-content-container {
-    padding: 0;
 }
 
