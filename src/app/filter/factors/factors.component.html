@@ -6,7 +6,7 @@
   <form [formGroup]="factorsFormGroup">
     <div class="card bg-light mt-2" *ngFor="let factor of factors; let idx=index" [formGroupName]="factor.code">
       <div class="card-body">
-        <h5 class="card-title">{{factor.title}}</h5>
+        <h6 class="card-title">{{factor.title}}</h6>
         <div>
           <ng-container *ngFor="let dataItem of factor.dataItems; let dataItemIndex=index">
             <ng-container *ngIf="dataItem.isShow">
