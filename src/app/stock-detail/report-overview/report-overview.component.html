@@ -98,13 +98,12 @@
   </div>
   <div class="col-12 col-lg-3">
     <app-report-small-table title="Kế hoạch 2018" [tableData]="data?.plans"></app-report-small-table>
-
-    <app-report-small-table title="Valuation" [tableData]="data?.valuation"></app-report-small-table>
+    <app-report-small-table title="Định giá" [tableData]="data?.valuation"></app-report-small-table>
     <app-report-small-table title="Score" [tableData]="data?.score"></app-report-small-table>
-    <app-report-small-table title="Liquidity Ratio" [tableData]="data?.liquidityRatio"></app-report-small-table>
-    <app-report-small-table title="Activity turnover" [tableData]="data?.activityTurnover"></app-report-small-table>
-    <app-report-small-table title="Interpretation of Solvency ratios" [tableData]="data?.interpretationOfSolvencyRatios"></app-report-small-table>
-    <app-report-small-table title=" Risk ratio" [tableData]="data?.riskRatio"></app-report-small-table>
+    <app-report-small-table title="Hệ số thanh toán" [tableData]="data?.liquidityRatio"></app-report-small-table>
+    <app-report-small-table title="Hệ số hoạt động" [tableData]="data?.activityTurnover"></app-report-small-table>
+    <app-report-small-table title="Đòn bẩy tài chính" [tableData]="data?.interpretationOfSolvencyRatios"></app-report-small-table>
+    <app-report-small-table title="Hệ số rủi ro" [tableData]="data?.riskRatio"></app-report-small-table>
 
     <ng-template #popContent let-greeting="greeting">
       <canvas baseChart width="480px" height="300px" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"

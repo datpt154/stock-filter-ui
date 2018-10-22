@@ -1,14 +1,14 @@
 <div class="font-weight-bold text-center">{{tableHeader?.header}}</div>
 <div class="d-flex">
   <table class="table table-bordered table-hover">
-    <thead class="text-center">
+    <thead class="">
       <tr>
         <th scope="col" colspan="2">{{tableHeader?.table1?.header}}</th>
       </tr>
-      <tr>
+      <!-- <tr>
         <th scope="col">{{tableHeader?.table1?.headerColumn1}}</th>
         <th scope="col">{{tableHeader?.table1?.headerColumn2}}</th>
-      </tr>
+      </tr> -->
     </thead>
     <tbody>
       <tr *ngFor="let row of tableData?.dataYear">
@@ -18,14 +18,14 @@
     </tbody>
   </table>
   <table class="table table-bordered table-hover">
-    <thead class="text-center">
+    <thead class="">
       <tr>
         <th scope="col" colspan="2">{{tableHeader?.table2?.header}}</th>
       </tr>
-      <tr>
+      <!-- <tr>
         <th scope="col">{{tableHeader?.table2?.headerColumn1}}</th>
         <th scope="col">{{tableHeader?.table2?.headerColumn2}}</th>
-      </tr>
+      </tr> -->
     </thead>
     <tbody>
       <tr *ngFor="let row of tableData?.dataQuarter">
@@ -35,14 +35,14 @@
     </tbody>
   </table>
   <table class="table table-bordered table-hover">
-    <thead class="text-center">
+    <thead class="">
       <tr>
         <th scope="col" colspan="2">{{tableHeader?.table3?.header}}</th>
       </tr>
-      <tr>
+      <!-- <tr>
         <th scope="col">{{tableHeader?.table3?.headerColumn1}}</th>
         <th scope="col">{{tableHeader?.table3?.headerColumn2}}</th>
-      </tr>
+      </tr> -->
     </thead>
     <tbody>
       <tr *ngFor="let row of tableData?.dataTTM">
