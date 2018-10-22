@@ -1,29 +1,43 @@
 <div class="mt-5">
-  <ngb-tabset>
-    <ngb-tab title="Doanh thu">
+  <ngb-tabset (tabChange)="tabChange($event)">
+    <ngb-tab title="Doanh thu" id="revenueTabId">
       <ng-template ngbTabContent>
-          <div class="d-flex justify-content-around">
-        <app-quick-general-table class="w-45"
-          [tableHeader]="tableHeaderTab1" [tableData]="tableDataTab1?.dataScreenLeft"></app-quick-general-table>
-        <app-quick-general-table class="w-45"
-          [tableHeader]="tableHeaderTab1" [tableData]="tableDataTab1?.dataScreenRight"></app-quick-general-table>
+        <div class="d-flex justify-content-around">
+          <app-quick-general-table class="w-45" [tableHeader]="headerTable1" [tableData]="tableDataTab?.dataScreenLeft"></app-quick-general-table>
+          <app-quick-general-table class="w-45" [tableHeader]="headerTable2" [tableData]="tableDataTab?.dataScreenRight"></app-quick-general-table>
         </div>
       </ng-template>
     </ngb-tab>
-    <ngb-tab title="Lợi nhuận">
+    <ngb-tab title="Lợi nhuận" id="profitTabId">
       <ng-template ngbTabContent>
+        <div class="d-flex justify-content-around">
+          <app-quick-general-table class="w-45" [tableHeader]="headerTable1" [tableData]="tableDataTab?.dataScreenLeft"></app-quick-general-table>
+          <app-quick-general-table class="w-45" [tableHeader]="headerTable2" [tableData]="tableDataTab?.dataScreenRight"></app-quick-general-table>
+        </div>
       </ng-template>
     </ngb-tab>
-    <ngb-tab title="EPS">
+    <ngb-tab title="EPS" id="epsTabId">
       <ng-template ngbTabContent>
+        <div class="d-flex justify-content-around">
+          <app-quick-general-table class="w-45" [tableHeader]="headerTable1" [tableData]="tableDataTab?.dataScreenLeft"></app-quick-general-table>
+          <app-quick-general-table class="w-45" [tableHeader]="headerTable2" [tableData]="tableDataTab?.dataScreenRight"></app-quick-general-table>
+        </div>
       </ng-template>
     </ngb-tab>
-    <ngb-tab title="P/E & P/B">
+    <ngb-tab title="P/E & P/B" id="pePBTabId">
       <ng-template ngbTabContent>
+        <div class="d-flex justify-content-around">
+          <app-quick-general-table class="w-45" [tableHeader]="headerTable1" [tableData]="tableDataTab?.dataScreenLeft"></app-quick-general-table>
+          <app-quick-general-table class="w-45" [tableHeader]="headerTable2" [tableData]="tableDataTab?.dataScreenRight"></app-quick-general-table>
+        </div>
       </ng-template>
     </ngb-tab>
-    <ngb-tab title="MC/NWC & EV/EBITDA">
+    <ngb-tab title="MC/NWC & EV/EBITDA" id="mcNWCTabId">
       <ng-template ngbTabContent>
+        <div class="d-flex justify-content-around">
+          <app-quick-general-table class="w-45" [tableHeader]="headerTable1" [tableData]="tableDataTab?.dataScreenLeft"></app-quick-general-table>
+          <app-quick-general-table class="w-45" [tableHeader]="headerTable2" [tableData]="tableDataTab?.dataScreenRight"></app-quick-general-table>
+        </div>
       </ng-template>
     </ngb-tab>
   </ngb-tabset>

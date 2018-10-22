@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { QuickGeneraalTableHeader } from '../../../interface/quick-generaal-table-header';
+import { IQuickGeneralTableHeader, IQuickGeneralTableData } from '../../../interface/quick-general-table-dto';
 
 @Component({
   selector: 'app-quick-general-table',
@@ -8,13 +8,12 @@ import { QuickGeneraalTableHeader } from '../../../interface/quick-generaal-tabl
 })
 export class QuickGeneralTableComponent implements OnInit {
 
-  @Input() tableHeader: QuickGeneraalTableHeader;
-  @Input() tableData: any;
+  @Input() tableHeader: IQuickGeneralTableHeader;
+  @Input() tableData: IQuickGeneralTableData;
 
   constructor() { }
 
   ngOnInit() {
-    
   }
 
 }

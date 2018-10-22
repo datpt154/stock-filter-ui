@@ -40,4 +40,20 @@ export class FilterService {
     return this.apiService.getScreenRevenue();
   }
 
+  public getScreenProfit(): Observable<any> {
+    return this.apiService.getScreenProfit();
+  }
+
+  public getScreenEPS(): Observable<any> {
+    return this.apiService.getScreenEPS();
+  }
+
+  public getScreenPE_PB(): Observable<any> {
+    return this.apiService.getScreenPE_PB();
+  }
+
+  public getScreenMCNWC_EVEBITDA(): Observable<any> {
+    return this.apiService.getScreenMCNWC_EVEBITDA();
+  }
+
 }
