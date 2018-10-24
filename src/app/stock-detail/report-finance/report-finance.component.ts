@@ -18,7 +18,6 @@ export class ReportFinanceComponent implements OnChanges {
   };
   barChartLabels: string[];
   barChartType = 'bar';
-  barChartLegend = true;
   barChartData: any[] = [
     { data: [], label: '' }
   ];
@@ -33,7 +32,7 @@ export class ReportFinanceComponent implements OnChanges {
       this._filterService.getDetailStockMore(this.companyCode, this.selectedFilterTimeCode)
         .subscribe(data => {
           this.reportFinanceData = data;
-          this.barChartLabels = this.reportFinanceData.headers.slice(1);
+          this.barChartLabels = this.reportFinanceData.headers.slice(2);
         });
     }
   }
@@ -41,8 +40,7 @@ export class ReportFinanceComponent implements OnChanges {
   showColumnCharts(popover, data: any) {
     if (!popover.isOpen()) {
       const clone = JSON.parse(JSON.stringify(this.barChartData));
-      clone[0].data = data.slice(2);
-      clone[0].label = data[0];
+      clone[0].data = data.slice(3);
       this.barChartData = clone;
 
       popover.open();

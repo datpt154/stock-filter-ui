@@ -107,7 +107,7 @@
 
     <ng-template #popContent let-greeting="greeting">
       <canvas baseChart width="480px" height="300px" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-        [legend]="barChartLegend" [colors]="barChartColors" [chartType]="barChartType" (chartHover)="chartHovered($event)"
+        [legend]="false" [colors]="barChartColors" [chartType]="barChartType" (chartHover)="chartHovered($event)"
         (chartClick)="chartClicked($event)"></canvas>
     </ng-template>
   </div>

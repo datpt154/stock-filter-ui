@@ -15,7 +15,6 @@ export class ReportOverviewComponent implements OnInit, OnChanges {
   };
   public barChartLabels: string[];
   public barChartType = 'bar';
-  public barChartLegend = true;
   public barChartData: any[] = [
     { data: [], label: '' }
   ];
@@ -35,9 +34,8 @@ export class ReportOverviewComponent implements OnInit, OnChanges {
 
   showColumnCharts(popover, data: any) {
     if (!popover.isOpen()) {
-      let clone = JSON.parse(JSON.stringify(this.barChartData));
+      const clone = JSON.parse(JSON.stringify(this.barChartData));
       clone[0].data = data.slice(2);
-      clone[0].label = data[0];
       this.barChartData = clone;
 
       popover.open();
