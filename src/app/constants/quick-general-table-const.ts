@@ -4,190 +4,130 @@ export class QuickGeneralTableConstants {
   public static revenueHeaderTab: IQuickGeneralTableHeader = {
     header: 'Doanh Thu Cao Nhất ($b)',
     table1: {
-      header: 'Năm',
-      headerColumn1: 'CP',
-      headerColumn2: 'Doanh thu($b)'
+      header: 'Năm'
     },
     table2: {
-      header: 'Quý',
-      headerColumn1: 'CP',
-      headerColumn2: 'Doanh thu($b)'
+      header: 'Quý'
     },
     table3: {
-      header: 'TTM',
-      headerColumn1: 'CP',
-      headerColumn2: 'Doanh thu($b)'
+      header: 'TTM'
     }
   };
 
   public static highestRevenueHeaderTab: IQuickGeneralTableHeader = {
     header: 'Tăng trưởng Doanh Thu Cao Nhất (%)',
     table1: {
-      header: 'Năm',
-      headerColumn1: 'CP',
-      headerColumn2: 'TT doanh thu(%)'
+      header: 'Năm'
     },
     table2: {
-      header: 'Quý',
-      headerColumn1: 'CP',
-      headerColumn2: 'TT doanh thu($)'
+      header: 'Quý'
     },
     table3: {
-      header: 'TTM',
-      headerColumn1: 'CP',
-      headerColumn2: 'TT doanh thu($)'
+      header: 'TTM'
     }
   };
 
   public static profitHeaderTab: IQuickGeneralTableHeader = {
     header: 'Lợi nhuận cao nhất ($b)',
     table1: {
-      header: 'Năm',
-      headerColumn1: 'CP',
-      headerColumn2: 'Lợi nhuận($b)'
+      header: 'Năm'
     },
     table2: {
-      header: 'Quý',
-      headerColumn1: 'CP',
-      headerColumn2: 'Lợi nhuận($b)'
+      header: 'Quý'
     },
     table3: {
-      header: 'TTM',
-      headerColumn1: 'CP',
-      headerColumn2: 'Lợi nhuận($b)'
+      header: 'TTM'
     }
   };
 
   public static highestProfitHeaderTab: IQuickGeneralTableHeader = {
     header: 'Tăng trưởng Lợi nhuận cao nhất (%)',
     table1: {
-      header: 'Năm',
-      headerColumn1: 'CP',
-      headerColumn2: 'TT lợi nhuận(%)'
+      header: 'Năm'
     },
     table2: {
-      header: 'Quý',
-      headerColumn1: 'CP',
-      headerColumn2: 'TT Lợi nhuận(%)'
+      header: 'Quý'
     },
     table3: {
-      header: 'TTM',
-      headerColumn1: 'CP',
-      headerColumn2: 'TT Lợi nhuận'
+      header: 'TTM'
     }
   };
 
   public static epsHeaderTab: IQuickGeneralTableHeader = {
     header: 'EPS cao Nhất',
     table1: {
-      header: 'Năm',
-      headerColumn1: 'CP',
-      headerColumn2: 'EPS($k)'
+      header: 'Năm'
     },
     table2: {
-      header: 'Quý',
-      headerColumn1: 'CP',
-      headerColumn2: 'EPS($)'
+      header: 'Quý'
     },
     table3: {
-      header: 'TTM',
-      headerColumn1: 'CP',
-      headerColumn2: 'EPS($)'
+      header: 'TTM'
     }
   };
 
   public static highestEPSHeaderTab: IQuickGeneralTableHeader = {
     header: 'Tăng trưởng EPS cao Nhất (%)',
     table1: {
-      header: '',
-      headerColumn1: '',
-      headerColumn2: 'TT EPS(%)'
+      header: 'Năm'
     },
     table2: {
-      header: 'Quý',
-      headerColumn1: 'CP',
-      headerColumn2: 'TT EPS(%)'
+      header: 'Quý'
     },
     table3: {
-      header: 'TTM',
-      headerColumn1: 'CP',
-      headerColumn2: 'TT EPS(%)'
+      header: 'TTM'
     }
   };
 
   public static pePbHeaderTab: IQuickGeneralTableHeader = {
     header: 'P/E thấp Nhất',
     table1: {
-      header: 'Năm',
-      headerColumn1: 'CP',
-      headerColumn2: 'P/E'
+      header: 'Năm'
     },
     table2: {
-      header: 'Quý',
-      headerColumn1: 'CP',
-      headerColumn2: 'P/E'
+      header: 'Quý'
     },
     table3: {
-      header: 'TTM',
-      headerColumn1: 'CP',
-      headerColumn2: 'P/E'
+      header: 'TTM'
     }
   };
 
   public static lowestPePbHeaderTab: IQuickGeneralTableHeader = {
     header: 'P/B thấp Nhất',
     table1: {
-      header: 'Năm',
-      headerColumn1: 'CP',
-      headerColumn2: 'P/B'
+      header: 'Năm'
     },
     table2: {
-      header: 'Quý',
-      headerColumn1: 'CP',
-      headerColumn2: 'P/B'
+      header: 'Quý'
     },
     table3: {
-      header: 'TTM',
-      headerColumn1: 'CP',
-      headerColumn2: 'P/B'
+      header: 'TTM'
     }
   };
 
   public static mcNwcHeaderTab: IQuickGeneralTableHeader = {
     header: 'MC/NWC thấp Nhất',
     table1: {
-      header: 'Năm',
-      headerColumn1: 'CP',
-      headerColumn2: 'MC/NWC'
+      header: 'Năm'
     },
     table2: {
-      header: 'Quý',
-      headerColumn1: 'CP',
-      headerColumn2: 'MC/NWC'
+      header: 'Quý'
     },
     table3: {
-      header: 'TTM',
-      headerColumn1: 'CP',
-      headerColumn2: 'MC/NWC'
+      header: 'TTM'
     }
   };
 
   public static lowestMcNwcHeaderTab: IQuickGeneralTableHeader = {
     header: 'MC/NWC thấp Nhất',
     table1: {
-      header: 'Năm',
-      headerColumn1: 'CP',
-      headerColumn2: 'MC/NWC'
+      header: 'Năm'
     },
     table2: {
-      header: 'Quý',
-      headerColumn1: 'CP',
-      headerColumn2: 'MC/NWC'
+      header: 'Quý'
     },
     table3: {
-      header: 'TTM',
-      headerColumn1: 'CP',
-      headerColumn2: 'MC/NWC'
+      header: 'TTM'
     }
   };
 

@@ -28,13 +28,13 @@
                 {{row.targetPrice}}
               </td>
               <td class="text-right">
-                {{row.revenue | number:'1.1-1'}}
+                {{row.revenue | number:'1.2-2'}}
               </td>
               <td class="text-right">
-                {{row.pretaxProfit | number:'1.1-1'}}
+                {{row.pretaxProfit | number:'1.2-2'}}
               </td>
               <td class="text-right">
-                {{row.netProfit | number:'1.1-1'}}
+                {{row.netProfit | number:'1.2-2'}}
               </td>
               <td class="text-right">
                 {{row.timeRecommendations | date:'shortDate'}}
@@ -87,7 +87,7 @@
                   <td [ngClass]="alignTable(item)">{{item}}</td>
                 </ng-container>
                 <ng-container *ngIf="idx > 1">
-                  <td [ngClass]="alignTable(item)">{{item | number:'1.1-1'}}</td>
+                  <td [ngClass]="alignTable(item)">{{item | number:'1.2-2'}}</td>
                 </ng-container>
               </ng-container>
             </tr>
