@@ -1,12 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { QuickGeneralComponent } from './quick-general/quick-general.component';
+import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { QuickGeneralTableComponent } from './quick-general-table/quick-general-table.component';
+import { QuickGeneralTableComponent } from 'src/app/modules/screen/quick-general/quick-general-table/quick-general-table.component';
+import { CanslimComponent } from './canslim/canslim.component';
+import { FisherComponent } from './fisher/fisher.component';
+import { GrahamChecklistComponent } from './graham-checklist/graham-checklist.component';
+import { GramhamNcavComponent } from './gramham-ncav/gramham-ncav.component';
+import { GramhamNetComponent } from './gramham-net/gramham-net.component';
+import { QuickGeneralComponent } from './quick-general/quick-general.component';
+import { callNgModuleLifecycle } from '@angular/core/src/view/ng_module';
 
 const routers: Routes = [
   { path: 'quickGeneral', component: QuickGeneralComponent },
+  { path: 'gramhamNet', component: GramhamNetComponent },
+  { path: 'gramhamNCav', component: GramhamNcavComponent },
+  { path: 'canslim', component: CanslimComponent },
+  { path: 'fisher', component: FisherComponent },
+  { path: 'grahamChecklist', component: GrahamChecklistComponent },
   { path: '**', redirectTo: 'quickGeneral' }
 ];
 
@@ -16,6 +27,10 @@ const routers: Routes = [
     NgbModule,
     RouterModule.forChild(routers)
   ],
-  declarations: [QuickGeneralComponent, QuickGeneralTableComponent]
+  declarations: [
+    QuickGeneralComponent, QuickGeneralTableComponent,
+    GramhamNcavComponent, GramhamNetComponent, CanslimComponent,
+    FisherComponent, GrahamChecklistComponent
+  ]
 })
 export class ScreenModule { }

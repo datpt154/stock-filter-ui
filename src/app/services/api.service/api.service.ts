@@ -149,6 +149,17 @@ export class ApiService {
       .pipe(catchError(this.handleError));
   }
 
+  public getScreenNetNet(): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    const url = this.API_URL + 'api/screenNetNet/';
+
+    return this.http
+      .get<any>(url, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

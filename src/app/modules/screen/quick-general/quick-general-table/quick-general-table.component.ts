@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IQuickGeneralTableHeader } from '../../../interface/quick-general-table-dto';
+import { IQuickGeneralTableHeader } from '../../../../interface/quick-general-table-dto';
 
 @Component({
   selector: 'app-quick-general-table',

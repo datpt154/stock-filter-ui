@@ -56,4 +56,8 @@ export class FilterService {
     return this.apiService.getScreenMCNWC_EVEBITDA();
   }
 
+  public getScreenNetNet(): Observable<any> {
+    return this.apiService.getScreenNetNet();
+  }
+
 }
