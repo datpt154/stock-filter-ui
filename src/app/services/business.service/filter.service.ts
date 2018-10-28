@@ -4,6 +4,7 @@ import { DataItem } from '../../interface/data-item';
 import { ApiService } from '../api.service/api.service';
 import { BasicFilterDTO } from '../../interface/basic-filter-dto';
 import { BasicFilterInput, ComparedFilterInput } from '../../interface/api-input';
+import { ScreenDto } from '../../interface/screen-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -56,8 +57,24 @@ export class FilterService {
     return this.apiService.getScreenMCNWC_EVEBITDA();
   }
 
-  public getScreenNetNet(): Observable<any> {
+  public getScreenNetNet(): Observable<ScreenDto> {
     return this.apiService.getScreenNetNet();
+  }
+
+  public getScrenNCAV(): Observable<ScreenDto> {
+    return this.apiService.getScrenNCAV();
+  }
+
+  public getScrenCANSLIM(): Observable<ScreenDto> {
+    return this.apiService.getScrenCANSLIM();
+  }
+
+  public getScrenPhilipFisherGrowth(): Observable<ScreenDto> {
+    return this.apiService.getScrenPhilipFisherGrowth();
+  }
+
+  public screnGrahamChecklist(): Observable<ScreenDto> {
+    return this.apiService.screnGrahamChecklist();
   }
 
 }

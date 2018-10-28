@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilterService } from '../../../services/business.service/filter.service';
+import { ScreenDto } from '../../../interface/screen-dto';
 
 @Component({
   selector: 'app-gramham-net',
@@ -7,7 +8,7 @@ import { FilterService } from '../../../services/business.service/filter.service
   styleUrls: ['./gramham-net.component.css']
 })
 export class GramhamNetComponent implements OnInit {
-  data: any;
+  data: ScreenDto;
 
   constructor(private filter: FilterService) { }
 

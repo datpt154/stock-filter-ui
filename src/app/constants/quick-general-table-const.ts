@@ -119,7 +119,7 @@ export class QuickGeneralTableConstants {
   };
 
   public static lowestMcNwcHeaderTab: IQuickGeneralTableHeader = {
-    header: 'MC/NWC thấp Nhất',
+    header: 'EV/EBITDA thấp Nhất',
     table1: {
       header: 'Năm'
     },

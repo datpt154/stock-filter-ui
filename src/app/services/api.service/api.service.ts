@@ -6,6 +6,7 @@ import { DataItem } from '../../interface/data-item';
 import { BasicFilterDTO } from '../../interface/basic-filter-dto';
 import { BasicFilterInput, ComparedFilterInput } from '../../interface/api-input';
 import { environment } from '../../../environments/environment';
+import { ScreenDto } from 'src/app/interface/screen-dto';
 
 
 @Injectable({
@@ -149,11 +150,55 @@ export class ApiService {
       .pipe(catchError(this.handleError));
   }
 
-  public getScreenNetNet(): Observable<any> {
+  public getScreenNetNet(): Observable<ScreenDto> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + 'api/screenNetNet/';
+    const url = this.API_URL + 'api/screenNetNet';
+
+    return this.http
+      .get<any>(url, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getScrenNCAV(): Observable<ScreenDto> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    const url = this.API_URL + 'api/screnNCAV';
+
+    return this.http
+      .get<any>(url, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getScrenCANSLIM(): Observable<ScreenDto> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    const url = this.API_URL + 'api/screnCANSLIM';
+
+    return this.http
+      .get<any>(url, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getScrenPhilipFisherGrowth(): Observable<ScreenDto> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    const url = this.API_URL + 'api/screnPhilipFisherGrowth';
+
+    return this.http
+      .get<any>(url, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public screnGrahamChecklist(): Observable<ScreenDto> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    const url = this.API_URL + 'api/screnGrahamChecklist';
 
     return this.http
       .get<any>(url, httpOptions)
