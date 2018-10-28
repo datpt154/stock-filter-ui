@@ -5,6 +5,8 @@ import { ServicesModule } from '../services/services.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
+import { PaginationComponent } from './pagination/pagination.component';
+import { FilterResultTableComponent } from './filter-result-table/filter-result-table.component';
 
 @NgModule({
   imports: [
@@ -16,8 +18,14 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     ServicesModule,
-    HeaderComponent
+    HeaderComponent,
+    PaginationComponent,
+    FilterResultTableComponent
   ],
-  declarations: [HeaderComponent]
+  declarations: [
+    HeaderComponent,
+    PaginationComponent,
+    FilterResultTableComponent
+  ]
 })
 export class SharedModule { }

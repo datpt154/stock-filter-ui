@@ -1,0 +1,22 @@
+:host {
+    table.table {
+      thead.thead-light {
+        tr {
+          th {
+            div {
+              display: flex;
+              height: 1rem;
+              justify-content: space-between;
+              
+              button.sort-btn {
+                cursor: pointer;
+                border: none;
+                background-color: transparent;
+                outline: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }

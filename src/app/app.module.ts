@@ -13,7 +13,6 @@ import { FormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from './shared/angular-material-design/material.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { Ng5SliderModule } from 'ng5-slider';
 import { HomePageComponent } from './home-page/home-page.component';
 import { IndicatorsComponent } from './indicators/indicators.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
@@ -40,7 +39,6 @@ const routers: Routes = [
       NgbModule,
       MaterialModule,
       AngularFontAwesomeModule,
-      Ng5SliderModule,
       BrowserAnimationsModule,
       SharedModule,
       HttpClientModule,

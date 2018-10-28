@@ -1,0 +1,31 @@
+<table class="table table-bordered table-hover" *ngIf="tableData">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col" *ngFor="let column of tableData.header; let comlumnIndex = index">
+          <div>
+            {{column.title}}
+            <button *ngIf="column.sortType !== sortType.NONE" class="sort-btn" (click)="sortByColumn(column, comlumnIndex)">
+              <i class="sort-icon fa fa-sort"></i>
+            </button>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of tableData.body; let rowIndex = index">
+        <th scope="row">{{row.index}}</th>
+        <td>{{row.companyCode}}</td>
+        <td>{{row.companyName}}</td>
+        <td>{{row.stockExchange}}</td>
+        <td>{{row.price}}</td>
+        <td *ngFor="let dynamicColumn of row.searchItems">
+          {{dynamicColumn.value}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <app-pagination 
+    [totalPage]="tableData.pagination.total" 
+    [currentPage]="tableData.pagination.currentPage" 
+    (pageChange)="goToPage($event)">
+  </app-pagination>

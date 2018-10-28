@@ -1,10 +1,37 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import * as _ from 'lodash';
 import { DataItem } from '../../../interface/data-item';
 import { BasicFilterDTO } from '../../../interface/basic-filter-dto';
+import { FilterTableColumn, SortType, TableData } from '../../../interface/filter-table-dto';
 
-
+// here are some columns that will be fixed on UI (always be showed)
+const TABLE_DEFAULT_COLUMN: FilterTableColumn[] = [
+  {
+    title: 'No.',
+    code: 'rowIndex',
+    sortType: SortType.NONE
+  },
+  {
+    title: 'Mã chứng khoán',
+    code: 'companyCode',
+    sortType: SortType.ASD
+  },
+  {
+    title: 'Tên công ty',
+    code: 'companyName',
+    sortType: SortType.NONE
+  },
+  {
+    title: 'Sàn',
+    code: 'stockExchange',
+    sortType: SortType.NONE
+  },
+  {
+    title: 'Giá',
+    code: 'price',
+    sortType: SortType.NONE
+  },
+];
 @Component({
   selector: 'app-first-filter-result',
   templateUrl: './first-filter-result.component.html',
@@ -15,47 +42,37 @@ export class FirstFilterResultComponent implements OnInit {
   @Input() selectedDataItems: DataItem[];
   @Input() searchResult: BasicFilterDTO[] = [];
 
-  // here are some columns that will be fixed on UI (always be showed)
-  private fixedColumns = ['rowIndex', 'companyCode', 'companyName', 'stockExchange', 'price'];
-  private displayedColumns;
-  private dataSource;
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-
+  public tableData: TableData = {
+    title: 'Kết quả lọc cổ phiếu dựa trên các chỉ số cơ bản',
+    header: [],
+    body: [],
+    data: [],
+    numOfDefaultColumn: TABLE_DEFAULT_COLUMN.length,
+    pagination: {
+      size: 10,
+      total: 0,
+      currentPage: 1
+    }
+  };
 
   constructor() { }
 
-  // ngOnChanges(changes: SimpleChanges) {
-  //   // if (changes.selectedDataItems && changes.selectedDataItems.currentValue) {
-  //     // update displayedColumns whenever selectedDataItems has been changed
-  //     this.displayedColumns = [...this.fixedColumns];
-  //     this.selectedDataItems.forEach(dataItem => {
-  //       this.displayedColumns.push(dataItem.code);
-  //     })
-
-  //     // initialize data after input are binded sucessfully
-  //     this.dataSource = new MatTableDataSource<BasicFilterDTO>(this.searchResult);
-  //     this.dataSource.paginator = this.paginator;
-  //     this.dataSource.sort = this.sort;
-  //   // }
-  // }
-
   ngOnInit() {
-    this.displayedColumns = [...this.fixedColumns];
-    this.selectedDataItems.forEach(dataItem => {
-      this.displayedColumns.push(dataItem.code);
+    const dynamicHeader: FilterTableColumn[] = this.selectedDataItems.map(dataItem => {
+      return {
+        title: dataItem.title,
+        code: dataItem.code,
+        sortType: SortType.NONE
+      };
     });
 
-    // initialize data after input are binded sucessfully
-    this.dataSource = new MatTableDataSource<BasicFilterDTO>(this.searchResult);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.tableData.header = [...TABLE_DEFAULT_COLUMN, ...dynamicHeader];
+    this.tableData.data = this.searchResult;
+    this.tableData.pagination.total = Math.ceil(this.searchResult.length / this.tableData.pagination.size);
   }
 
   private backToFilterInput(): void {
     this.searchResult = [];
     this.triggerBackToFilterInput.emit();
   }
-
 }

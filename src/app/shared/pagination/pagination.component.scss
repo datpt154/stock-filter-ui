@@ -1,0 +1,37 @@
+@import "../../../scss/variables.scss";
+
+:host {
+    nav {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-bottom: 20px;
+
+        .detail-label {
+            margin-right: 10px;
+            color: $text-grey-color;
+        }
+
+        ul.pagination {
+            margin: 0;
+
+            li.page-item {
+
+                &.selected {
+                    button.page-link {
+                        background-color: $dark-color;
+                        color: $light-color;
+
+                        &:focus {
+                            box-shadow: none;
+                        }
+                    }
+                }
+
+                button.page-link {
+                    color: $text-grey-color;
+                }
+            }
+        }
+    }
+}

@@ -1,7 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { DataItem } from '../../../interface/data-item';
-import { PrefixNot } from '@angular/compiler';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -9,7 +7,7 @@ import { BasicFilterInput } from '../../../interface/api-input';
 
 import * as _ from 'lodash';
 import { CommonConstants } from '../../../constants/common-const';
-import { Options, LabelType } from 'ng5-slider/options';
+import { DefaultFormatter } from 'ng2-nouislider';
 
 @Component({
   selector: 'app-first-selection',
@@ -48,17 +46,25 @@ export class FirstFilterSelectionComponent implements OnInit, OnChanges {
     }
   }
 
-  getOption(dataItem: DataItem): Options {
-    const option: Options = {
-      floor: dataItem.min,
-      ceil: dataItem.max,
+  getOption(dataItem: DataItem) {
+    return {
+      connect: true,
+      margin: dataItem.step,
+      start: [dataItem.min, dataItem.max],
+      format: new DefaultFormatter(),
       step: dataItem.step,
-      translate: (value: number, label: LabelType): string => {
-        return [dataItem.unit, value].join(' ');
+      tooltips: [true, true],
+      range: {
+        min: dataItem.min,
+        max: dataItem.max
+      },
+      pips: {
+        mode: 'count',
+        density: 2,
+        values: 6,
+        stepped: false
       }
     };
-
-    return option;
   }
 
   private nextStep(): void {

@@ -1,0 +1,31 @@
+<nav>
+  <span class="detail-label">Trang {{currentPage + ' / ' + totalPage}}</span>
+  <ul class="pagination">
+    <li class="page-item">
+      <button class="page-link" (click)="handlePageChange(1)" aria-label="Trang đầu">
+        <span aria-hidden="true" >&laquo;</span>
+      </button>
+    </li>
+    <li class="page-item" *ngIf="currentPage > numOfPageVisible/2 && totalPage > numOfPageVisible">
+      <button class="page-link">...</button>
+    </li>
+    <ng-container *ngFor="let pageNumber of paginationData;">
+      <li class="page-item" 
+      *ngIf="(pageNumber < (currentPage + numOfPageVisible/2) && pageNumber > (currentPage - numOfPageVisible/2)) 
+      || (currentPage <= numOfPageVisible/2 && pageNumber < numOfPageVisible) 
+      || (currentPage > (totalPage - numOfPageVisible/2) && pageNumber > (totalPage - numOfPageVisible + 1))" 
+      [ngClass]="{'selected': currentPage === pageNumber}">
+        <button class="page-link" (click)="handlePageChange(pageNumber)">{{pageNumber}}</button>
+      </li>
+    </ng-container>
+    <li class="page-item" *ngIf="currentPage <= (totalPage - numOfPageVisible/2) && totalPage > numOfPageVisible">
+      <button class="page-link">...</button>
+    </li>
+    <li class="page-item">
+      <button class="page-link" (click)="handlePageChange(totalPage)" aria-label="Trang cuối">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </button>
+    </li>
+  </ul>
+</nav>

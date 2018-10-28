@@ -1,9 +1,10 @@
 export interface BasicFilterDTO {
-  companyName: string,
-  companyCode: string,
+  companyName: string;
+  companyCode: string;
   searchItems: SearchItemDTO[];
-  stockExchange: string,
-  price: number
+  stockExchange: string;
+  price: number;
+  index?: number;
 }
 
 interface SearchItemDTO {
