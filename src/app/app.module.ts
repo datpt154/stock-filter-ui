@@ -22,6 +22,7 @@ const routers: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'filter', loadChildren: './filter/filter.module#FilterModule' },
   { path: 'screen', loadChildren: './modules/screen/screen.module#ScreenModule' },
+  { path: 'ptkt', loadChildren: './modules/ptkt/ptkt.module#PtktModule' },
   { path: 'stock-detail', loadChildren: './stock-detail/stock-detail.module#StockDetailModule' },
   { path: 'indicators', component: IndicatorsComponent},
   { path: '**', redirectTo: 'filter' }

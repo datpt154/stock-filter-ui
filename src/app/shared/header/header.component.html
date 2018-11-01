@@ -1,8 +1,8 @@
 <div class="bg-dark navbar-dark navbar-expand-lg">
   <nav class="navbar container">
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03"
-      aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+      aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" routerLink="/">
@@ -39,18 +39,21 @@
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link" id="navbarDropdown" role="button" href="https://banggia-hn.vndirect.com.vn/chart/" target="_blank">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" [attr.data-toggle]="isMobileScreen ? 'dropdown' : ''"
+            aria-haspopup="true" aria-expanded="false">
             PTKT
           </a>
-          <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Breakout</a>
-          <a class="dropdown-item" href="#">Swing tradeare</a>
-        </div> -->
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="https://banggia-hn.vndirect.com.vn/chart/" target="_blank">Chart</a>
+            <a class="dropdown-item" routerLink="/ptkt/breakResistance">Phá kháng cự</a>
+            <a class="dropdown-item" routerLink="/ptkt/breakSupport">Thủng hỗ trợ</a>
+            <a class="dropdown-item" routerLink="/ptkt/swingTrade">Swing trade</a>
+          </div>
         </li>
       </ul>
       <div class="form-inline search-form my-2 my-lg-0">
-        <input class="form-control search-input mr-0" type="search" placeholder="Search" aria-label="Search" [ngbTypeahead]="searchCompany"
-          (selectItem)="selectACompany($event)" [(ngModel)]="selectedCompanyModel" />
+        <input class="form-control search-input mr-0" type="search" placeholder="Search" aria-label="Search"
+          [ngbTypeahead]="searchCompany" (selectItem)="selectACompany($event)" [(ngModel)]="selectedCompanyModel" />
         <button class="btn btn-search btn-outline my-2 my-sm-0" type="submit">
           <i class="fa fa-search" aria-hidden="true"> </i>
         </button>

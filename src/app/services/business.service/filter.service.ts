@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BasicFilterInput, ComparedFilterInput } from '../../interface/api-input';
 import { BasicFilterDTO } from '../../interface/basic-filter-dto';
-import { CanslimDto, FisherDto, GramhamNCavDto, GramhamNetDto, GrahamChecklistDto } from '../../interface/screen-dto';
+import { PTKTDto } from '../../interface/ptkt-dto';
+import { CanslimDto, FisherDto, GrahamChecklistDto, GramhamNCavDto, GramhamNetDto } from '../../interface/screen-dto';
 import { ApiService } from '../api.service/api.service';
 
 @Injectable({
@@ -74,6 +75,18 @@ export class FilterService {
 
   public screnGrahamChecklist(): Observable<GrahamChecklistDto> {
     return this.apiService.screnGrahamChecklist();
+  }
+
+  public getScreenBreakSupport(): Observable<PTKTDto> {
+    return this.apiService.getScreenBreakSupport();
+  }
+
+  public getScreenBreakResistance(): Observable<PTKTDto> {
+    return this.apiService.getScreenBreakResistance();
+  }
+
+  public getScreenTrendTrader(): Observable<PTKTDto> {
+    return this.apiService.getScreenTrendTrader();
   }
 
 }

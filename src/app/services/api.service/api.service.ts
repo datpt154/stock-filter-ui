@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { CanslimDto, FisherDto, GrahamChecklistDto, GramhamNCavDto, GramhamNetDto } from 'src/app/interface/screen-dto';
 import { environment } from '../../../environments/environment';
 import { BasicFilterInput, ComparedFilterInput } from '../../interface/api-input';
+import { PTKTDto } from '../../interface/ptkt-dto';
 
 
 @Injectable({
@@ -197,6 +198,39 @@ export class ApiService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
     const url = this.API_URL + 'api/screnGrahamChecklist';
+
+    return this.http
+      .get<any>(url, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getScreenBreakSupport(): Observable<PTKTDto> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    const url = this.API_URL + 'api/screnBreakSupport';
+
+    return this.http
+      .get<any>(url, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getScreenBreakResistance(): Observable<PTKTDto> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    const url = this.API_URL + 'api/screnBreakResistance';
+
+    return this.http
+      .get<any>(url, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getScreenTrendTrader(): Observable<PTKTDto> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    const url = this.API_URL + 'api/screnTrendTrader';
 
     return this.http
       .get<any>(url, httpOptions)
