@@ -1,4 +1,4 @@
-<div class="alert alert-danger mt-3" role="alert">
+<div class="alert alert-success mt-3" role="alert">
   Graham checklist là 10 tiêu chí chọn cổ phiếu của ngài Graham khi quyết định đầu tư vào một cổ phiếu. Nó bao gồm:
   (1)Tỷ số lợi nhuận/thị giá (E/P) cao gấp đôi lãi suất trái phiếu xếp hạng AAA (2) P/E của cổ phiếu thấp hơn hoặc bằng
   40% so với P/E của toàn thị trường. (3)Tỷ suất cổ tức/giá của cổ phiếu lớn hơn 2/3 của lãi suất trái phiếu xếp hạng
@@ -7,6 +7,7 @@
   ngắn hạn lớn hơn nợ ngắn hạn ít nhất 2 lần. (8) Toàn bộ nợ nhỏ hơn 2 lần giá trị tài sản lưu động ròng. (9)Tỷ suất
   lợi nhuận trên cổ phiếu (EPS) tăng trưởng 7%/năm trở lên trong vòng 10 năm qua. (10) Công ty có sự tăng trưởng lợi
   nhuận hàng năm ít nhất 7 lần trong vòng 10 năm qua.
+  <br>
   Do TTCKVN mới phát triển, nên chúng tôi sẽ lấy tiêu chí 5 năm cho hai điều kiện (9) và (10). Với lãi suất trái phiếu
   dùng để so sánh là lãi suất đi vay của các cty lớn trên sàn. Bộ lọc sẽ lọc ra những cổ phiếu thỏa mãn trên 7 tiêu chí
 
@@ -21,7 +22,7 @@
       <th scope="col">Công ty</th>
       <th scope="col">Sàn</th>
       <th scope="col">Giá</th>
-      <th scope="col">NWC($b)</th>
+      <th scope="col">Graham Score</th>
       <th scope="col">Vốn hóa ($b)</th>
       <th scope="col">P/E</th>
       <th scope="col">P/B</th>
@@ -32,18 +33,18 @@
   </thead>
   <tbody>
     <tr *ngFor="let row of data; let idx=index">
-      <td>{{idx}}</td>
+      <td>{{idx + 1}}</td>
       <td>{{row?.code}}</td>
       <td>{{row?.name}}</td>
       <td>{{row?.exchange}}</td>
       <td class="text-right">{{row?.price | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.marketCap | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.nwc| number:'1.2-2'}}</td>
+      <td class="text-right">{{row?.grahamScore | number:'1.2-2'}}</td>
+      <td class="text-right">{{row?.marketCap| number:'1.2-2'}}</td>
       <td class="text-right">{{row?.pe | number:'1.2-2'}}</td>
       <td class="text-right">{{row?.pb | number:'1.2-2'}}</td>
       <td class="text-right">{{row?.eps | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.fScrore}}</td>
-      <td class="text-right">{{row?.cScrore}}</td>
+      <td class="text-right">{{row?.fScrore | number:'1.2-2'}}</td>
+      <td class="text-right">{{row?.cScrore | number:'1.2-2'}}</td>
     </tr>
   </tbody>
 </table>

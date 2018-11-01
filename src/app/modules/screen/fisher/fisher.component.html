@@ -1,8 +1,9 @@
-<div class="alert alert-danger mt-3" role="alert">
+<div class="alert alert-success mt-3" role="alert">
   Philip Fisher Growth là cách lựa chọn cổ phiếu tăng trưởng mạnh của Philip Fisher, được ông giới thiệu trong cuốn
   sách “Cổ phiếu thường lợi nhuận phi thường”. Đây là một số tiêu chí trong 15 tiêu chí chọn cổ phiếu của ông. Đó là
   những cổ phiếu có tốc độ tăng trưởng doanh thu cao, biên lợi nhuận gộp cao hơn trung bình ngành và Peg thấp. Theo
   ông, nếu bạn nắm giữ một cổ phiếu tốt đủ lâu, nó sẽ đem lại lợi nhuận lớn cho bạn.
+  <br>
   Bộ lọc này bao gồm những cổ phiếu có tốc độ tăng trưởng cao hơn tăng trưởng chung của ngành trong 3 năm gần nhất,
   biên lợi nhuận gộp cao hơn, tăng trưởng doanh thu 2 năm liên tiếp và Peg thấp.
 </div>
@@ -16,29 +17,29 @@
       <th scope="col">Công ty</th>
       <th scope="col">Sàn</th>
       <th scope="col">Giá</th>
-      <th scope="col">NWC($b)</th>
-      <th scope="col">Vốn hóa ($b)</th>
+      <th scope="col">TT LNST(%)</th>
+      <th scope="col">Peg</th>
+      <th scope="col">Nợ/VCSH</th>
+      <th scope="col">FCF($b)</th>
       <th scope="col">P/E</th>
-      <th scope="col">P/B</th>
-      <th scope="col">EPS</th>
       <th scope="col">F-Score</th>
       <th scope="col">C-Score</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let row of data; let idx=index">
-      <td>{{idx}}</td>
+      <td>{{idx + 1}}</td>
       <td>{{row?.code}}</td>
       <td>{{row?.name}}</td>
       <td>{{row?.exchange}}</td>
       <td class="text-right">{{row?.price | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.marketCap | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.nwc| number:'1.2-2'}}</td>
+      <td class="text-right">{{row?.grossProfitYoy | number:'1.2-2'}}</td>
+      <td class="text-right">{{row?.peg| number:'1.2-2'}}</td>
+      <td class="text-right">{{row?.debtToEquityRatio | number:'1.2-2'}}</td>
+      <td class="text-right">{{row?.fcf | number:'1.2-2'}}</td>
       <td class="text-right">{{row?.pe | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.pb | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.eps | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.fScrore}}</td>
-      <td class="text-right">{{row?.cScrore}}</td>
+      <td class="text-right">{{row?.fScrore | number:'1.2-2'}}</td>
+      <td class="text-right">{{row?.cScrore | number:'1.2-2'}}</td>
     </tr>
   </tbody>
 </table>

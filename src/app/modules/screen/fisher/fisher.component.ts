@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilterService } from '../../../services/business.service/filter.service';
-import { ScreenDto } from '../../../interface/screen-dto';
+import { FisherDto } from '../../../interface/screen-dto';
 
 @Component({
   selector: 'app-fisher',
@@ -8,7 +8,7 @@ import { ScreenDto } from '../../../interface/screen-dto';
   styleUrls: ['./fisher.component.css']
 })
 export class FisherComponent implements OnInit {
-  data: ScreenDto;
+  data: FisherDto;
 
   constructor(private filter: FilterService) { }
 

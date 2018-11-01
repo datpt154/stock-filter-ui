@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GrahamChecklistDto } from '../../../interface/screen-dto';
 import { FilterService } from '../../../services/business.service/filter.service';
-import { ScreenDto } from '../../../interface/screen-dto';
 
 @Component({
   selector: 'app-graham-checklist',
@@ -8,7 +8,7 @@ import { ScreenDto } from '../../../interface/screen-dto';
   styleUrls: ['./graham-checklist.component.css']
 })
 export class GrahamChecklistComponent implements OnInit {
-  data: ScreenDto;
+  data: GrahamChecklistDto;
 
   constructor(private filter: FilterService) { }
 

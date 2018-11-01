@@ -1,8 +1,9 @@
-<div class="alert alert-danger mt-3" role="alert">
+<div class="alert alert-success mt-3" role="alert">
   Phương pháp đầu tư NCAV Bargain là cách đầu tư mua với giá cổ phiếu được “chiết khấu” mạnh, được Graham giới thiệu
   trong cuốn “Nhà đầu tư thông minh”. Cách tiếp cận của phương pháp này là mua một công ty có vốn hóa thấp hơn Tài sản
   ngắn hạn ròng (NCAV = Net current asset value) được tính bằng tài sản ngắn hạn trừ đi nợ ngắn hạn. Vì tài sản đã
   chiết khấu với giá rất thấp nên rủi ro giảm giá tiếp rất thấp.
+  <br>
   Một nghiên cứu của tờ Finance Analyst Journal cho biết trong vòng 13 năm, lợi nhuận trung bình của phương pháp này là
   29.4%/năm so với 11.5%/năm của NYSE-AMEX Index.
 </div>
@@ -27,18 +28,18 @@
   </thead>
   <tbody>
     <tr *ngFor="let row of data; let idx=index">
-      <td>{{idx}}</td>
+      <td>{{idx + 1}}</td>
       <td>{{row?.code}}</td>
       <td>{{row?.name}}</td>
       <td>{{row?.exchange}}</td>
       <td class="text-right">{{row?.price | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.marketCap | number:'1.2-2'}}</td>
       <td class="text-right">{{row?.nwc| number:'1.2-2'}}</td>
+      <td class="text-right">{{row?.marketCap | number:'1.2-2'}}</td>
       <td class="text-right">{{row?.pe | number:'1.2-2'}}</td>
       <td class="text-right">{{row?.pb | number:'1.2-2'}}</td>
       <td class="text-right">{{row?.eps | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.fScrore}}</td>
-      <td class="text-right">{{row?.cScrore}}</td>
+      <td class="text-right">{{row?.fScrore | number:'1.2-2'}}</td>
+      <td class="text-right">{{row?.cScrore | number:'1.2-2'}}</td>
     </tr>
   </tbody>
 </table>

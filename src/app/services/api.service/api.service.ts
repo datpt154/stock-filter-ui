@@ -1,12 +1,10 @@
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
-import { Observable, throwError, of } from 'rxjs';
-import { DataItem } from '../../interface/data-item';
-import { BasicFilterDTO } from '../../interface/basic-filter-dto';
-import { BasicFilterInput, ComparedFilterInput } from '../../interface/api-input';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { CanslimDto, FisherDto, GrahamChecklistDto, GramhamNCavDto, GramhamNetDto } from 'src/app/interface/screen-dto';
 import { environment } from '../../../environments/environment';
-import { ScreenDto } from 'src/app/interface/screen-dto';
+import { BasicFilterInput, ComparedFilterInput } from '../../interface/api-input';
 
 
 @Injectable({
@@ -150,7 +148,7 @@ export class ApiService {
       .pipe(catchError(this.handleError));
   }
 
-  public getScreenNetNet(): Observable<ScreenDto> {
+  public getScreenNetNet(): Observable<GramhamNetDto> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
@@ -161,7 +159,7 @@ export class ApiService {
       .pipe(catchError(this.handleError));
   }
 
-  public getScrenNCAV(): Observable<ScreenDto> {
+  public getScrenNCAV(): Observable<GramhamNCavDto> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
@@ -172,7 +170,7 @@ export class ApiService {
       .pipe(catchError(this.handleError));
   }
 
-  public getScrenCANSLIM(): Observable<ScreenDto> {
+  public getScrenCANSLIM(): Observable<CanslimDto> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
@@ -183,7 +181,7 @@ export class ApiService {
       .pipe(catchError(this.handleError));
   }
 
-  public getScrenPhilipFisherGrowth(): Observable<ScreenDto> {
+  public getScrenPhilipFisherGrowth(): Observable<FisherDto> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
@@ -194,7 +192,7 @@ export class ApiService {
       .pipe(catchError(this.handleError));
   }
 
-  public screnGrahamChecklist(): Observable<ScreenDto> {
+  public screnGrahamChecklist(): Observable<GrahamChecklistDto> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };

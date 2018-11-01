@@ -1,8 +1,9 @@
-<div class="alert alert-danger mt-3" role="alert">
+<div class="alert alert-success mt-3" role="alert">
   CANSLIM là phương pháp đầu tư được giới thiệu bởi William O'Neill, thông qua cuốn sách “Kiếm tiền bằng cách đầu tư
   chứng khoán” nổi tiếng của ông. Phương pháp này gồm 7 tiêu chí: (1) C = Lãi ròng trên mỗi quý (2) A = Tăng trưởng lợi
   nhuận hằng năm (3) N = Thông tin mới về công ty (4) S = Quan hệ cung cầu cổ phiếu (5) L = Đà tăng của nó so với thị
   trường (6) I = sự quan tâm của nhà đầu tư tổ chức (7) M = xu hướng thị trường.
+  <br>
   Bộ lọc này sẽ lọc ra những cổ phiếu có tiêu chí (1) và (2) dựa vào báo cáo tài chính của công ty. Đó là những cty có
   tốc độ tăng trường lợi nhuận mỗi quý và so với quý cùng kỳ là 15%, tốc độ tăng trưởng hai năm gần nhất trên 10% và có
   ROE cao. (Tiêu chí dự phóng tăng trưởng của năm tiếp theo không nằm trong này)
@@ -17,29 +18,29 @@
       <th scope="col">Công ty</th>
       <th scope="col">Sàn</th>
       <th scope="col">Giá</th>
-      <th scope="col">NWC($b)</th>
-      <th scope="col">Vốn hóa ($b)</th>
+      <th scope="col">TT EPS(%)</th>
+      <th scope="col">EPS</th>
+      <th scope="col">ROE(%)</th>
       <th scope="col">P/E</th>
       <th scope="col">P/B</th>
-      <th scope="col">EPS</th>
       <th scope="col">F-Score</th>
       <th scope="col">C-Score</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let row of data; let idx=index">
-      <td>{{idx}}</td>
+      <td>{{idx + 1}}</td>
       <td>{{row?.code}}</td>
       <td>{{row?.name}}</td>
       <td>{{row?.exchange}}</td>
       <td class="text-right">{{row?.price | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.marketCap | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.nwc| number:'1.2-2'}}</td>
+      <td class="text-right">{{row?.epsYoy | number:'1.2-2'}}</td>
+      <td class="text-right">{{row?.eps| number:'1.2-2'}}</td>
+      <td class="text-right">{{row?.roeYoy | number:'1.2-2'}}</td>
       <td class="text-right">{{row?.pe | number:'1.2-2'}}</td>
       <td class="text-right">{{row?.pb | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.eps | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.fScrore}}</td>
-      <td class="text-right">{{row?.cScrore}}</td>
+      <td class="text-right">{{row?.fScrore | number:'1.2-2'}}</td>
+      <td class="text-right">{{row?.cScrore | number:'1.2-2'}}</td>
     </tr>
   </tbody>
 </table>

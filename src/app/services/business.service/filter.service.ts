@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DataItem } from '../../interface/data-item';
-import { ApiService } from '../api.service/api.service';
-import { BasicFilterDTO } from '../../interface/basic-filter-dto';
 import { BasicFilterInput, ComparedFilterInput } from '../../interface/api-input';
-import { ScreenDto } from '../../interface/screen-dto';
+import { BasicFilterDTO } from '../../interface/basic-filter-dto';
+import { CanslimDto, FisherDto, GramhamNCavDto, GramhamNetDto, GrahamChecklistDto } from '../../interface/screen-dto';
+import { ApiService } from '../api.service/api.service';
 
 @Injectable({
   providedIn: 'root',
@@ -57,23 +56,23 @@ export class FilterService {
     return this.apiService.getScreenMCNWC_EVEBITDA();
   }
 
-  public getScreenNetNet(): Observable<ScreenDto> {
+  public getScreenNetNet(): Observable<GramhamNetDto> {
     return this.apiService.getScreenNetNet();
   }
 
-  public getScrenNCAV(): Observable<ScreenDto> {
+  public getScrenNCAV(): Observable<GramhamNCavDto> {
     return this.apiService.getScrenNCAV();
   }
 
-  public getScrenCANSLIM(): Observable<ScreenDto> {
+  public getScrenCANSLIM(): Observable<CanslimDto> {
     return this.apiService.getScrenCANSLIM();
   }
 
-  public getScrenPhilipFisherGrowth(): Observable<ScreenDto> {
+  public getScrenPhilipFisherGrowth(): Observable<FisherDto> {
     return this.apiService.getScrenPhilipFisherGrowth();
   }
 
-  public screnGrahamChecklist(): Observable<ScreenDto> {
+  public screnGrahamChecklist(): Observable<GrahamChecklistDto> {
     return this.apiService.screnGrahamChecklist();
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilterService } from '../../../services/business.service/filter.service';
-import { ScreenDto } from '../../../interface/screen-dto';
+import { GramhamNCavDto } from '../../../interface/screen-dto';
 
 @Component({
   selector: 'app-gramham-ncav',
@@ -8,7 +8,7 @@ import { ScreenDto } from '../../../interface/screen-dto';
   styleUrls: ['./gramham-ncav.component.css']
 })
 export class GramhamNcavComponent implements OnInit {
-  data: ScreenDto;
+  data: GramhamNCavDto;
 
   constructor(private filter: FilterService) { }
 

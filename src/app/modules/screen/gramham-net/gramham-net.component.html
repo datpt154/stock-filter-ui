@@ -1,9 +1,10 @@
-<div class="alert alert-danger mt-3" role="alert">
+<div class="alert alert-success mt-3" role="alert">
   Phương pháp đầu tư NET NET là cách đầu tư mua với giá cổ phiếu được “chiết khấu” mạnh, được Graham giới thiệu trong
   cuốn “Nhà đầu tư thông minh”. Cách tiếp cận của phương pháp này là mua một công ty mà thị trường đang định giá tài
   sản của nó rất rẻ và rủi ro đầu tư rất thấp ngay cả khi công ty phá sản. Tức là tìm những cty có vốn hóa thấp hơn cả
   Vốn lưu động ròng (NNWC). Đa số những cty này được gọi là “cigar butts”, tức là những cty làm ăn kém nên giá thị
   trường giảm theo thời gian.
+  <br>
   Đây được xem là phương pháp đầu tư an toàn và dễ dàng nhất cho NĐT khi Đầu tư giá trị.
 </div>
 
@@ -27,18 +28,18 @@
   </thead>
   <tbody>
     <tr *ngFor="let row of data; let idx=index">
-      <td>{{idx}}</td>
+      <td>{{idx + 1}}</td>
       <td>{{row?.code}}</td>
       <td>{{row?.name}}</td>
       <td>{{row?.exchange}}</td>
       <td class="text-right">{{row?.price | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.marketCap | number:'1.2-2'}}</td>
       <td class="text-right">{{row?.nwc| number:'1.2-2'}}</td>
+      <td class="text-right">{{row?.marketCap | number:'1.2-2'}}</td>
       <td class="text-right">{{row?.pe | number:'1.2-2'}}</td>
       <td class="text-right">{{row?.pb | number:'1.2-2'}}</td>
       <td class="text-right">{{row?.eps | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.fScrore}}</td>
-      <td class="text-right">{{row?.cScrore}}</td>
+      <td class="text-right">{{row?.fScrore | number:'1.2-2'}}</td>
+      <td class="text-right">{{row?.cScrore | number:'1.2-2'}}</td>
     </tr>
   </tbody>
 </table>

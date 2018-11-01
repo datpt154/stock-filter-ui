@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilterService } from '../../../services/business.service/filter.service';
-import { ScreenDto } from 'src/app/interface/screen-dto';
+import { CanslimDto } from '../../../interface/screen-dto';
 
 @Component({
   selector: 'app-canslim',
@@ -8,7 +8,7 @@ import { ScreenDto } from 'src/app/interface/screen-dto';
   styleUrls: ['./canslim.component.css']
 })
 export class CanslimComponent implements OnInit {
-  data: ScreenDto;
+  data: CanslimDto;
 
   constructor(private filter: FilterService) { }
 
