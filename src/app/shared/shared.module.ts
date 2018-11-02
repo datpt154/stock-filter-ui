@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { PaginationComponent } from './pagination/pagination.component';
 import { FilterResultTableComponent } from './filter-result-table/filter-result-table.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { FilterResultTableComponent } from './filter-result-table/filter-result-
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    RouterModule
+    RouterModule,
+    ChartsModule
   ],
   exports: [
     ServicesModule,

@@ -11,6 +11,17 @@ import { BasicFilterDTO } from 'src/app/interface/basic-filter-dto';
 export class FilterResultTableComponent implements OnInit {
   @Input() tableData: TableData;
   public sortType = SortType;
+  public chartConfig = {
+    options: {
+      scaleShowVerticalLines: true,
+      responsive: true
+    },
+    labels: [],
+    type: 'bar',
+    legend: false,
+    data: [{ data: [], label: '' }],
+    colors: []
+  };
 
   constructor() { }
 
@@ -55,14 +66,13 @@ export class FilterResultTableComponent implements OnInit {
   sortProcessing(code: string, columnIndex: number, sortType: SortType) {
     if (this.tableData.data.length) {
       const sortNum = sortType === SortType.ASD ? 1 : -1;
-      const isDefaultColumn = (columnIndex - this.tableData.numOfDefaultColumn) < 0;
-      const type = typeof (this.getValueByCode(this.tableData.data[0], isDefaultColumn, code, columnIndex));
+      const type = typeof (this.tableData.data[0][code]);
       switch (type) {
         case 'number':
           this.tableData.data.sort((a: BasicFilterDTO, b: BasicFilterDTO) => {
             let result = 0;
-            const aValue = this.getValueByCode(a, isDefaultColumn, code, columnIndex);
-            const bValue = this.getValueByCode(b, isDefaultColumn, code, columnIndex);
+            const aValue = a[code];
+            const bValue = b[code];
             if (aValue === bValue) {
               return this.sortByCompanyCodeAsc(a, b);
             } else {
@@ -74,8 +84,8 @@ export class FilterResultTableComponent implements OnInit {
         case 'string':
           this.tableData.data.sort((a: BasicFilterDTO, b: BasicFilterDTO) => {
             let result = 0;
-            const aValue = this.getValueByCode(a, isDefaultColumn, code, columnIndex);
-            const bValue = this.getValueByCode(b, isDefaultColumn, code, columnIndex);
+            const aValue = a[code];
+            const bValue = b[code];
             if (aValue === bValue) {
               return this.sortByCompanyCodeAsc(a, b);
             } if (aValue < bValue) {
@@ -90,14 +100,6 @@ export class FilterResultTableComponent implements OnInit {
     }
   }
 
-  private getValueByCode(row: BasicFilterDTO, isDefaultColumn: boolean, code: string, columnIndex: number) {
-    if (isDefaultColumn) {
-      return row[code];
-    } else {
-      return row.searchItems[columnIndex - this.tableData.numOfDefaultColumn].value;
-    }
-  }
-
   private sortByCompanyCodeAsc(a: BasicFilterDTO, b: BasicFilterDTO): number {
     const aCode = a.companyCode.toUpperCase();
     const bCode = b.companyCode.toUpperCase();
@@ -107,6 +109,30 @@ export class FilterResultTableComponent implements OnInit {
       return 1;
     } else {
       return 0;
+    }
+  }
+
+  public showColumnCharts(popover: any, columnName: string) {
+    const temp = [];
+    this.tableData.data.forEach(row => {
+      if (!_.isNil(row[columnName])) {
+        temp.push(row[columnName]);
+      }
+    });
+
+    this.chartConfig.labels = _.map(this.tableData.data, 'companyCode');
+
+    if (!popover.isOpen()) {
+      const clone = _.cloneDeep(this.chartConfig.data);
+      clone[0].data = temp;
+      this.chartConfig.data = clone;
+      popover.open();
+    }
+  }
+
+  public closeColumnCharts(popover): void {
+    if (popover.isOpen()) {
+      popover.close();
     }
   }
 }

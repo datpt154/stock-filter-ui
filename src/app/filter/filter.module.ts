@@ -12,7 +12,6 @@ import { FirstFilterComponent } from './first-filter/first-filter.component';
 import { SecondFilterResultComponent } from './second-filter/second-filter-result/second-filter-result.component';
 import { SecondFilterSelectionComponent } from './second-filter/second-filter-selection/second-filter-selection.component';
 import { SecondFilterComponent } from './second-filter/second-filter.component';
-import { ChartsModule } from 'ng2-charts';
 import { NouisliderModule } from 'ng2-nouislider';
 
 const routers: Routes = [
@@ -30,7 +29,6 @@ const routers: Routes = [
     MaterialModule,
     SharedModule,
     NgbModule,
-    ChartsModule,
     RouterModule.forChild(routers),
     NouisliderModule
   ],

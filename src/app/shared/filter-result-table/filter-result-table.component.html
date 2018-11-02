@@ -13,19 +13,39 @@
     </thead>
     <tbody>
       <tr *ngFor="let row of tableData.body; let rowIndex = index">
-        <th scope="row">{{row.index}}</th>
-        <td>{{row.companyCode}}</td>
-        <td>{{row.companyName}}</td>
-        <td>{{row.stockExchange}}</td>
-        <td>{{row.price}}</td>
-        <td *ngFor="let dynamicColumn of row.searchItems">
-          {{dynamicColumn.value}}
-        </td>
+        <th scope="row"><p>{{row.index}}</p></th>
+        <ng-container *ngFor="let column of tableData.header; let comlumnIndex = index; let isLastColumn = last">
+          <ng-container *ngIf="comlumnIndex > 0">
+            <td>
+              <p *ngIf="column.showChart" 
+                [ngbPopover]="popContent" 
+                triggers="manual" 
+                #p1="ngbPopover" 
+                [placement]="isLastColumn ? 'left' : 'right'" 
+                (mouseenter)="showColumnCharts(p1, column.code)" 
+                (mouseleave)="closeColumnCharts(p1)">
+                {{row[column.code]}}
+              </p>
+              <p *ngIf="!column.showChart">{{row[column.code]}}</p>
+            </td>
+          </ng-container>
+        </ng-container>
       </tr>
     </tbody>
   </table>
   <app-pagination 
+    *ngIf="tableData.pagination.visible"
     [totalPage]="tableData.pagination.total" 
     [currentPage]="tableData.pagination.currentPage" 
     (pageChange)="goToPage($event)">
   </app-pagination>
+  <ng-template #popContent let-greeting="greeting">
+    <canvas baseChart width="480px" height="300px" 
+      [datasets]="chartConfig.data" 
+      [labels]="chartConfig.labels" 
+      [options]="chartConfig.options"
+      [legend]="chartConfig.legend" 
+      [colors]="chartConfig.colors" 
+      [chartType]="chartConfig.type"
+    ></canvas>
+  </ng-template>

@@ -47,8 +47,8 @@ export class FirstFilterResultComponent implements OnInit {
     header: [],
     body: [],
     data: [],
-    numOfDefaultColumn: TABLE_DEFAULT_COLUMN.length,
     pagination: {
+      visible: true,
       size: 10,
       total: 0,
       currentPage: 1
@@ -67,7 +67,13 @@ export class FirstFilterResultComponent implements OnInit {
     });
 
     this.tableData.header = [...TABLE_DEFAULT_COLUMN, ...dynamicHeader];
-    this.tableData.data = this.searchResult;
+    this.tableData.data = this.searchResult.map(item => {
+      _.forEach(item.searchItems, searchItem => {
+        item[searchItem.code] = searchItem.value;
+      });
+      delete item.searchItems;
+      return item;
+    });
     this.tableData.pagination.total = Math.ceil(this.searchResult.length / this.tableData.pagination.size);
   }
 

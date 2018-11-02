@@ -3,7 +3,26 @@ import { BasicFilterDTO } from '../../../interface/basic-filter-dto';
 import { DataItem } from '../../../interface/data-item';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import * as _ from 'lodash';
+import { TableData, SortType, FilterTableColumn } from '../../../interface/filter-table-dto';
 
+const TABLE_DEFAULT_COLUMN: FilterTableColumn[] = [
+  {
+    title: 'No.',
+    code: 'rowIndex',
+    sortType: SortType.NONE
+  },
+  {
+    title: 'Mã chứng khoán',
+    code: 'companyCode',
+    sortType: SortType.ASD
+  },
+  {
+    title: 'Giá',
+    code: 'price',
+    sortType: SortType.NONE,
+    showChart: true
+  },
+];
 @Component({
   selector: 'app-second-filter-result',
   templateUrl: './second-filter-result.component.html',
@@ -14,89 +33,44 @@ export class SecondFilterResultComponent implements OnInit {
   @Input() selectedDataItems: DataItem[];
   @Input() searchResult: BasicFilterDTO[] = [];
 
-  // here are some columns that will be fixed on UI (always be showed)
-  private fixedColumns = ['rowIndex', 'companyCode', 'price'];
-  private displayedColumns = [];
-  private dataSource;
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-
-  private reportFinanceData: any;
-  public barChartOptions: any = {
-    scaleShowVerticalLines: true,
-    responsive: true
+  public tableData: TableData = {
+    title: 'Kết quả so sanh phiếu dựa trên các chỉ số cơ bản',
+    header: [],
+    body: [],
+    data: [],
+    pagination: {
+      visible: false,
+      size: 10,
+      total: 0,
+      currentPage: 1
+    }
   };
-  public barChartLabels: string[];
-  public barChartType = 'bar';
-  public barChartLegend = false;
-  public barChartData: any[] = [
-    { data: [], label: '' }
-  ];
-
 
   constructor() { }
 
-  // ngOnChanges(changes: SimpleChanges) {
-  //   // if (changes.selectedDataItems && changes.selectedDataItems.currentValue) {
-  //     // update displayedColumns whenever selectedDataItems has been changed
-  //     this.displayedColumns = [...this.fixedColumns];
-  //     this.selectedDataItems.forEach(dataItem => {
-  //       this.displayedColumns.push(dataItem.code);
-  //     })
-
-  //     // initialize data after input are binded sucessfully
-  //     this.dataSource = new MatTableDataSource<BasicFilterDTO>(this.searchResult);
-  //     this.dataSource.paginator = this.paginator;
-  //     this.dataSource.sort = this.sort;
-  //   // }
-  // }
-
   ngOnInit() {
-    this.displayedColumns = [...this.fixedColumns];
-    this.selectedDataItems.forEach(dataItem => {
-      this.displayedColumns.push(dataItem.code);
+    const dynamicHeader: FilterTableColumn[] = this.selectedDataItems.map(dataItem => {
+      return {
+        title: dataItem.title,
+        code: dataItem.code,
+        sortType: SortType.NONE,
+        showChart: true
+      };
     });
 
-    // initialize data after input are binded sucessfully
-    this.dataSource = new MatTableDataSource<BasicFilterDTO>(this.searchResult);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.tableData.header = [...TABLE_DEFAULT_COLUMN, ...dynamicHeader];
+    this.tableData.data = this.searchResult.map(item => {
+      _.forEach(item.searchItems, searchItem => {
+        item[searchItem.code] = searchItem.value;
+      });
+      delete item.searchItems;
+      return item;
+    });
+    this.tableData.pagination.total = Math.ceil(this.searchResult.length / this.tableData.pagination.size);
   }
 
   private backToFilterInput(): void {
     this.searchResult = [];
     this.triggerBackToFilterInput.emit();
   }
-
-  showColumnCharts(popover: any, columnName: string) {
-    const temp = [];
-    this.dataSource.data.forEach(row => {
-      if (!_.isNil(row[columnName])) {
-        temp.push(row[columnName]);
-      } else {
-        const searchItem = row.searchItems.find(item => item.code === columnName);
-        temp.push(searchItem.value);
-      }
-    });
-
-    this.barChartLabels = _.map(this.dataSource.data, 'companyCode');
-
-    if (!popover.isOpen()) {
-      const clone = JSON.parse(JSON.stringify(this.barChartData));
-      clone[0].data = temp;
-      // clone[0].label = data[0];
-      this.barChartData = clone;
-
-      popover.open();
-    }
-  }
-
-
-  closeColumnCharts(popover): void {
-    if (popover.isOpen()) {
-      popover.close();
-    }
-  }
-
 }

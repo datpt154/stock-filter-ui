@@ -61,7 +61,7 @@ export class FirstFilterSelectionComponent implements OnInit, OnChanges {
       pips: {
         mode: 'count',
         density: 2,
-        values: 6,
+        values: dataItem.max < 10 ? dataItem.max + 1 : 6,
         stepped: false
       }
     };
