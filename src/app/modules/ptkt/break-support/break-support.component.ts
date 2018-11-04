@@ -14,7 +14,7 @@ export class BreakSupportComponent implements OnInit {
   constructor(private filter: FilterService) { }
 
   ngOnInit() {
-    this.filter.getScreenBreakResistance().subscribe(data => {
+    this.filter.getScreenBreakSupport().subscribe(data => {
       this.data = data;
     });
   }

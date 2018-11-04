@@ -14,7 +14,7 @@ export class SwingTradeComponent implements OnInit {
   constructor(private filter: FilterService) { }
 
   ngOnInit() {
-    this.filter.getScreenBreakResistance().subscribe(data => {
+    this.filter.getScreenTrendTrader().subscribe(data => {
       this.data = data;
     });
   }
