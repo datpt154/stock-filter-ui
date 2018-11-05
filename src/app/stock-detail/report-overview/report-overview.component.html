@@ -97,7 +97,54 @@
     </table>
   </div>
   <div class="col-12 col-lg-3">
-    <app-report-small-table title="Kế hoạch 2018" [tableData]="data?.plans"></app-report-small-table>
+    <!-- table ke hoach -->
+    <table class="table table-bordered table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th colspan="3">{{title}}</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <ng-container *ngIf="data?.plans; else noData">
+          <ng-container *ngFor="let row of data?.plans; let idx = index">
+            <ng-container *ngIf="idx < data?.plans.length -1">
+              <tr class="bg-light">
+                <td class="w-25 text-left">
+                  {{row[0]}}
+                </td>
+                <td class="w-25 text-right">
+                  {{row[1]}}(%)
+                </td>
+                <td class="text-right">
+                  {{row[2] | number:'1.2-2'}}($b)
+                </td>
+              </tr>
+            </ng-container>
+            <ng-container *ngIf="idx == data?.plans.length -1">
+              <tr class="bg-light">
+                <td class="w-50 text-left">
+                  {{row[0]}}
+                </td>
+                <td class="w-15 text-right">
+                  {{row[1]}} (%)
+                </td>
+                <td class="text-right">
+                  {{row[2] | number:'1.2-2'}}
+                </td>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+        <ng-template #noData>
+          <tr>
+            <td colspan="2">Không có data</td>
+          </tr>
+        </ng-template>
+
+      </tbody>
+    </table>
+
     <app-report-small-table title="Định giá" [tableData]="data?.valuation"></app-report-small-table>
     <app-report-small-table title="Score" [tableData]="data?.score"></app-report-small-table>
     <app-report-small-table title="Hệ số thanh toán" [tableData]="data?.liquidityRatio"></app-report-small-table>
