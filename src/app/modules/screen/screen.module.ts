@@ -10,6 +10,7 @@ import { GramhamNcavComponent } from './gramham-ncav/gramham-ncav.component';
 import { GramhamNetComponent } from './gramham-net/gramham-net.component';
 import { QuickGeneralComponent } from './quick-general/quick-general.component';
 import { callNgModuleLifecycle } from '@angular/core/src/view/ng_module';
+import { GrowthForecastComponent } from './growth-forecast/growth-forecast.component';
 
 const routers: Routes = [
   { path: 'quickGeneral', component: QuickGeneralComponent },
@@ -18,6 +19,7 @@ const routers: Routes = [
   { path: 'canslim', component: CanslimComponent },
   { path: 'fisher', component: FisherComponent },
   { path: 'grahamChecklist', component: GrahamChecklistComponent },
+  { path: 'growth-forecast', component: GrowthForecastComponent },
   { path: '**', redirectTo: 'quickGeneral' }
 ];
 
@@ -30,7 +32,7 @@ const routers: Routes = [
   declarations: [
     QuickGeneralComponent, QuickGeneralTableComponent,
     GramhamNcavComponent, GramhamNetComponent, CanslimComponent,
-    FisherComponent, GrahamChecklistComponent
+    FisherComponent, GrahamChecklistComponent, GrowthForecastComponent
   ]
 })
 export class ScreenModule { }

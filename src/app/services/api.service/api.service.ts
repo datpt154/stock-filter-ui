@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { CanslimDto, FisherDto, GrahamChecklistDto, GramhamNCavDto, GramhamNetDto } from 'src/app/interface/screen-dto';
+import { CanslimDto, FisherDto, GrahamChecklistDto, GramhamNCavDto, GramhamNetDto, DBTTMDto } from 'src/app/interface/screen-dto';
 import { environment } from '../../../environments/environment';
 import { BasicFilterInput, ComparedFilterInput } from '../../interface/api-input';
 import { PTKTDto } from '../../interface/ptkt-dto';
@@ -231,6 +231,17 @@ export class ApiService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
     const url = this.API_URL + 'api/screnTrendTrader';
+
+    return this.http
+      .get<any>(url, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getscreenDBTTM(): Observable<DBTTMDto> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    const url = this.API_URL + 'api/screnDBTTM';
 
     return this.http
       .get<any>(url, httpOptions)

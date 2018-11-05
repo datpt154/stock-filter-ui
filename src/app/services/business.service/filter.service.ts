@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { BasicFilterInput, ComparedFilterInput } from '../../interface/api-input';
 import { BasicFilterDTO } from '../../interface/basic-filter-dto';
 import { PTKTDto } from '../../interface/ptkt-dto';
-import { CanslimDto, FisherDto, GrahamChecklistDto, GramhamNCavDto, GramhamNetDto } from '../../interface/screen-dto';
+import { CanslimDto, FisherDto, GrahamChecklistDto, GramhamNCavDto, GramhamNetDto, DBTTMDto } from '../../interface/screen-dto';
 import { ApiService } from '../api.service/api.service';
 
 @Injectable({
@@ -87,6 +87,10 @@ export class FilterService {
 
   public getScreenTrendTrader(): Observable<PTKTDto> {
     return this.apiService.getScreenTrendTrader();
+  }
+
+  public getscreenDBTTM(): Observable<DBTTMDto> {
+    return this.apiService.getscreenDBTTM();
   }
 
 }
