@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as _ from 'lodash';
-import { TableData, FilterTableColumn, SortType } from '../../interface/filter-table-dto';
-import { BasicFilterDTO } from 'src/app/interface/basic-filter-dto';
+import { TableData, FilterTableColumn, SortType, DataType } from '../../interface/filter-table-dto';
 
 @Component({
   selector: 'app-filter-result-table',
@@ -11,6 +10,7 @@ import { BasicFilterDTO } from 'src/app/interface/basic-filter-dto';
 export class FilterResultTableComponent implements OnInit {
   @Input() tableData: TableData;
   public sortType = SortType;
+  public dataType = DataType;
   public chartConfig = {
     options: {
       scaleShowVerticalLines: true,
@@ -26,6 +26,13 @@ export class FilterResultTableComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.tableData.pagination.total = Math.ceil(this.tableData.data.length / this.tableData.pagination.size);
+    if (this.tableData.pagination.total <= this.tableData.pagination.size) {
+      this.tableData.pagination.visible = false;
+    }
+    if (!this.tableData.pagination.visible) {
+      this.tableData.pagination.size = this.tableData.data.length;
+    }
     this.updateSearchResultIndex();
     this.goToPage(this.tableData.pagination.currentPage);
   }
@@ -45,7 +52,15 @@ export class FilterResultTableComponent implements OnInit {
     }
   }
 
-  public sortByColumn(column: FilterTableColumn, columnIndex: number) {
+  public sortByColumn(column: FilterTableColumn) {
+    column = this.updateComlumnSortType(column);
+    this.tableData.data = this.sortTableDataByColumnCode(column.code, column.sortType);
+    this.tableData.pagination.currentPage = 1;
+    this.updateSearchResultIndex();
+    this.goToPage(this.tableData.pagination.currentPage);
+  }
+
+  private updateComlumnSortType(column: FilterTableColumn) {
     if (column.sortType === SortType.DEFAULT) {
       const currentSortBy = this.tableData.header.find(col => col.sortType !== SortType.NONE && col.sortType !== SortType.DEFAULT);
       if (!_.isNil(currentSortBy)) {
@@ -57,59 +72,14 @@ export class FilterResultTableComponent implements OnInit {
     } else {
       column.sortType = SortType.ASD;
     }
-    this.sortProcessing(column.code, columnIndex, column.sortType);
-    this.tableData.pagination.currentPage = 1;
-    this.updateSearchResultIndex();
-    this.goToPage(this.tableData.pagination.currentPage);
+    return column;
   }
 
-  sortProcessing(code: string, columnIndex: number, sortType: SortType) {
+  sortTableDataByColumnCode(code: string, sortType: SortType) {
     if (this.tableData.data.length) {
-      const sortNum = sortType === SortType.ASD ? 1 : -1;
-      const type = typeof (this.tableData.data[0][code]);
-      switch (type) {
-        case 'number':
-          this.tableData.data.sort((a: BasicFilterDTO, b: BasicFilterDTO) => {
-            let result = 0;
-            const aValue = a[code];
-            const bValue = b[code];
-            if (aValue === bValue) {
-              return this.sortByCompanyCodeAsc(a, b);
-            } else {
-              result = aValue - bValue;
-            }
-            return result * sortNum;
-          });
-          break;
-        case 'string':
-          this.tableData.data.sort((a: BasicFilterDTO, b: BasicFilterDTO) => {
-            let result = 0;
-            const aValue = a[code];
-            const bValue = b[code];
-            if (aValue === bValue) {
-              return this.sortByCompanyCodeAsc(a, b);
-            } if (aValue < bValue) {
-              result = -1;
-            } else {
-              result = 1;
-            }
-            return result * sortNum;
-          });
-          break;
-      }
+      return _.orderBy(this.tableData.data, [code, 'companyCode'], [sortType === SortType.ASD ? 'asc' : 'desc', 'asc']);
     }
-  }
-
-  private sortByCompanyCodeAsc(a: BasicFilterDTO, b: BasicFilterDTO): number {
-    const aCode = a.companyCode.toUpperCase();
-    const bCode = b.companyCode.toUpperCase();
-    if (aCode < bCode) {
-      return -1;
-    } else if (aCode > bCode) {
-      return 1;
-    } else {
-      return 0;
-    }
+    return [];
   }
 
   public showColumnCharts(popover: any, columnName: string) {

@@ -5,6 +5,8 @@ export interface FilterTableColumn {
     code: string;
     sortType: SortType;
     showChart?: boolean;
+    width?: number;
+    dataType?: DataType;
 }
 
 export enum SortType {
@@ -12,6 +14,11 @@ export enum SortType {
     DESC,
     DEFAULT,
     NONE
+}
+
+export enum DataType {
+    Number,
+    String
 }
 
 export interface TableData {

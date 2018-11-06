@@ -1,22 +1,24 @@
-<table class="table table-bordered table-hover" *ngIf="tableData">
+<table class="table table-bordered table-hover" *ngIf="tableData && tableData.body.length > 0">
     <thead class="thead-light">
-      <tr>
-        <th scope="col" *ngFor="let column of tableData.header; let comlumnIndex = index">
-          <div>
-            {{column.title}}
-            <button *ngIf="column.sortType !== sortType.NONE" class="sort-btn" (click)="sortByColumn(column, comlumnIndex)">
-              <i class="sort-icon fa fa-sort"></i>
-            </button>
-          </div>
-        </th>
+      <tr class="d-flex">
+        <ng-container *ngFor="let column of tableData.header; let comlumnIndex = index">
+          <th class="{{(column.width && column.width !== 0)  ? 'col-' + column.width : 'col'}}" scope="col" >
+            <div>
+              {{column.title}}
+              <button *ngIf="column.sortType !== sortType.NONE" class="sort-btn" (click)="sortByColumn(column)">
+                <i class="sort-icon fa fa-sort"></i>
+              </button>
+            </div>
+          </th>
+        </ng-container>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let row of tableData.body; let rowIndex = index">
-        <th scope="row"><p>{{row.index}}</p></th>
+      <tr class="d-flex" *ngFor="let row of tableData.body; let rowIndex = index">
+        <th scope="row" class="col-1"><p>{{row.index}}</p></th>
         <ng-container *ngFor="let column of tableData.header; let comlumnIndex = index; let isLastColumn = last">
           <ng-container *ngIf="comlumnIndex > 0">
-            <td>
+            <td class="{{(column.width && column.width !== 0) ? 'col-' + column.width : 'col'}}" [ngClass]="{'text-right':column.dataType === dataType.Number}">
               <p *ngIf="column.showChart" 
                 [ngbPopover]="popContent" 
                 triggers="manual" 
@@ -24,28 +26,31 @@
                 [placement]="isLastColumn ? 'left' : 'right'" 
                 (mouseenter)="showColumnCharts(p1, column.code)" 
                 (mouseleave)="closeColumnCharts(p1)">
-                {{row[column.code]}}
+                {{column.dataType === dataType.Number ? (row[column.code] | number:'1.2-2') : (row[column.code])}}
               </p>
-              <p *ngIf="!column.showChart">{{row[column.code]}}</p>
+              <p *ngIf="!column.showChart"> {{column.dataType === dataType.Number ? (row[column.code] | number:'1.2-2') : (row[column.code])}}</p>
             </td>
           </ng-container>
         </ng-container>
       </tr>
     </tbody>
-  </table>
-  <app-pagination 
-    *ngIf="tableData.pagination.visible"
-    [totalPage]="tableData.pagination.total" 
-    [currentPage]="tableData.pagination.currentPage" 
-    (pageChange)="goToPage($event)">
-  </app-pagination>
-  <ng-template #popContent let-greeting="greeting">
-    <canvas baseChart width="480px" height="300px" 
-      [datasets]="chartConfig.data" 
-      [labels]="chartConfig.labels" 
-      [options]="chartConfig.options"
-      [legend]="chartConfig.legend" 
-      [colors]="chartConfig.colors" 
-      [chartType]="chartConfig.type"
-    ></canvas>
-  </ng-template>
+</table>
+<app-pagination 
+  *ngIf="tableData.pagination.visible"
+  [totalPage]="tableData.pagination.total" 
+  [currentPage]="tableData.pagination.currentPage" 
+  (pageChange)="goToPage($event)">
+</app-pagination>
+<div *ngIf="tableData.body.length === 0" class="alert alert-secondary" role="alert">
+  Không tìm thấy cổ phiếu thỏa mãn!
+</div>
+<ng-template #popContent let-greeting="greeting">
+  <canvas baseChart width="480px" height="300px" 
+    [datasets]="chartConfig.data" 
+    [labels]="chartConfig.labels" 
+    [options]="chartConfig.options"
+    [legend]="chartConfig.legend" 
+    [colors]="chartConfig.colors" 
+    [chartType]="chartConfig.type"
+  ></canvas>
+</ng-template>

@@ -2,34 +2,44 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import * as _ from 'lodash';
 import { DataItem } from '../../../interface/data-item';
 import { BasicFilterDTO } from '../../../interface/basic-filter-dto';
-import { FilterTableColumn, SortType, TableData } from '../../../interface/filter-table-dto';
+import { FilterTableColumn, SortType, TableData, DataType } from '../../../interface/filter-table-dto';
 
 // here are some columns that will be fixed on UI (always be showed)
 const TABLE_DEFAULT_COLUMN: FilterTableColumn[] = [
   {
     title: 'No.',
     code: 'rowIndex',
-    sortType: SortType.NONE
+    sortType: SortType.NONE,
+    width: 1,
+    dataType: DataType.String
   },
   {
-    title: 'Mã chứng khoán',
+    title: 'Cổ phiếu',
     code: 'companyCode',
-    sortType: SortType.ASD
+    sortType: SortType.ASD,
+    width: 1,
+    dataType: DataType.String
   },
   {
     title: 'Tên công ty',
     code: 'companyName',
-    sortType: SortType.NONE
+    sortType: SortType.NONE,
+    width: 0,
+    dataType: DataType.String
   },
   {
     title: 'Sàn',
     code: 'stockExchange',
-    sortType: SortType.NONE
+    sortType: SortType.DEFAULT,
+    width: 1,
+    dataType: DataType.String
   },
   {
     title: 'Giá',
     code: 'price',
-    sortType: SortType.NONE
+    sortType: SortType.DEFAULT,
+    width: 1,
+    dataType: DataType.Number
   },
 ];
 @Component({
@@ -62,7 +72,9 @@ export class FirstFilterResultComponent implements OnInit {
       return {
         title: dataItem.title,
         code: dataItem.code,
-        sortType: SortType.NONE
+        sortType: SortType.DEFAULT,
+        width: 1,
+        dataType: DataType.Number
       };
     });
 
@@ -74,7 +86,6 @@ export class FirstFilterResultComponent implements OnInit {
       delete item.searchItems;
       return item;
     });
-    this.tableData.pagination.total = Math.ceil(this.searchResult.length / this.tableData.pagination.size);
   }
 
   private backToFilterInput(): void {

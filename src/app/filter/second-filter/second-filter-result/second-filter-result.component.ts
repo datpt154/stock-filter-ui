@@ -3,24 +3,28 @@ import { BasicFilterDTO } from '../../../interface/basic-filter-dto';
 import { DataItem } from '../../../interface/data-item';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import * as _ from 'lodash';
-import { TableData, SortType, FilterTableColumn } from '../../../interface/filter-table-dto';
+import { TableData, SortType, FilterTableColumn, DataType } from '../../../interface/filter-table-dto';
 
 const TABLE_DEFAULT_COLUMN: FilterTableColumn[] = [
   {
     title: 'No.',
     code: 'rowIndex',
-    sortType: SortType.NONE
+    sortType: SortType.NONE,
+    width: 1,
+    dataType: DataType.String
   },
   {
     title: 'Mã chứng khoán',
     code: 'companyCode',
-    sortType: SortType.ASD
+    sortType: SortType.ASD,
+    dataType: DataType.String
   },
   {
     title: 'Giá',
     code: 'price',
-    sortType: SortType.NONE,
-    showChart: true
+    sortType: SortType.DEFAULT,
+    showChart: true,
+    dataType: DataType.Number
   },
 ];
 @Component({
@@ -53,8 +57,9 @@ export class SecondFilterResultComponent implements OnInit {
       return {
         title: dataItem.title,
         code: dataItem.code,
-        sortType: SortType.NONE,
-        showChart: true
+        sortType: SortType.DEFAULT,
+        showChart: true,
+        dataType: DataType.Number
       };
     });
 
@@ -66,7 +71,6 @@ export class SecondFilterResultComponent implements OnInit {
       delete item.searchItems;
       return item;
     });
-    this.tableData.pagination.total = Math.ceil(this.searchResult.length / this.tableData.pagination.size);
   }
 
   private backToFilterInput(): void {
