@@ -1,0 +1,24 @@
+<h5 class="mt-3">
+  HƯỚNG DẪN SỬ DỤNG
+</h5>
+<div class="wrapper collection">
+  <div class="card">
+    <div class="list-group list-group-flush">
+      <a class="list-group-item" *ngFor="let item of userGuideData; let itemindex = index;" (click)="scrollToElement('user-guide-' + itemindex)">
+        <h5 class="mb-1">{{item.title}}</h5>
+        <p class="mb-1">{{item.hint}}</p>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="wrapper">
+  <div class="card" *ngFor="let item of userGuideData; let itemindex = index;" id="user-guide-{{itemindex}}">
+    <div class="card-body">
+      <h5 class="card-title">{{item.title}}</h5>
+      <ng-container *ngFor="let content of item.detail">
+        <img class="img-fluid card-img" src="assets/user-guide/{{content.content}}" *ngIf="content.type === userGuideDataType.Image && content.content !== ''" />
+        <p *ngIf="content.type === userGuideDataType.Text" class="card-text">{{content.content}}</p>
+      </ng-container>
+    </div>
+  </div>
+</div>

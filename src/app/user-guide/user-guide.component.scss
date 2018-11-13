@@ -1,0 +1,38 @@
+:host {
+  div.wrapper {
+    padding: 20px;
+    background-color: #eeeeeebf;
+    border-radius: 3px;
+    margin: 20px 0 5px 0;
+
+    div.card {
+      background-color: transparent;
+
+      div.list-group {
+        a.list-group-item {
+          background-color: transparent;
+        }
+      }
+
+      div.card-body {
+        img.card-img {
+          padding: 0 40px;
+          margin-bottom: 20px;
+        }
+      }
+    }
+
+    &.collection {
+      div.card {
+        div.list-group {
+          a.list-group-item {
+            &:hover {
+              background-color: #ddd;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+}

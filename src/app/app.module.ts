@@ -17,6 +17,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { IndicatorsComponent } from './indicators/indicators.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { UserGuideComponent } from './user-guide/user-guide.component';
 
 const routers: Routes = [
   { path: '', component: HomePageComponent },
@@ -25,6 +26,7 @@ const routers: Routes = [
   { path: 'ptkt', loadChildren: './modules/ptkt/ptkt.module#PtktModule' },
   { path: 'stock-detail', loadChildren: './stock-detail/stock-detail.module#StockDetailModule' },
   { path: 'indicators', component: IndicatorsComponent},
+  { path: 'user-guide', component: UserGuideComponent },
   { path: '**', redirectTo: 'filter' }
 ];
 @NgModule({
@@ -32,7 +34,8 @@ const routers: Routes = [
       AppComponent,
       HomePageComponent,
       IndicatorsComponent,
-      LoginPageComponent
+      LoginPageComponent,
+      UserGuideComponent
    ],
    imports: [
       BrowserModule,
