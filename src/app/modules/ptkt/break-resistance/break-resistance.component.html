@@ -8,33 +8,33 @@
 <h5 class="text-center mt-5 font-weight-bold">Phá đỉnh</h5>
 <table class="table table-bordered table-hover">
   <thead class="text-center">
-    <tr>
-      <th scope="col">STT</th>
-      <th scope="col">Cổ phiếu</th>
-      <th scope="col" class="col-4">Công ty</th>
-      <th scope="col">Sàn</th>
-      <th scope="col">Giá đóng cửa</th>
-      <th scope="col">Giá kháng cự</th>
-      <th scope="col">ADX(14)</th>
-      <th scope="col">RSI(14)</th>
-      <th scope="col">MACD</th>
-      <th scope="col">Vol</th>
-      <th scope="col">Ngày break</th>
+    <tr class="d-flex">
+      <th scope="col" class="col index-col">STT</th>
+      <th scope="col" class="col-1">Cổ phiếu</th>
+      <th scope="col" class="col-3">Công ty</th>
+      <th scope="col" class="col">Sàn</th>
+      <th scope="col" class="col">Giá đóng cửa</th>
+      <th scope="col" class="col">Giá kháng cự</th>
+      <th scope="col" class="col">ADX(14)</th>
+      <th scope="col" class="col">RSI(14)</th>
+      <th scope="col" class="col">MACD</th>
+      <th scope="col" class="col">Vol</th>
+      <th scope="col" class="col">Ngày break</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let row of data; let idx=index">
-      <td>{{idx + 1}}</td>
-      <td>{{row?.code}}</td>
-      <td>{{row?.name}}</td>
-      <td>{{row?.exchange}}</td>
-      <td class="text-right">{{row?.price | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.breakPrice | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.adx14| number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.rsi14 | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.macd | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.volume | number:'1.0-0'}}</td>
-      <td class="text-right">{{row?.breakTime}}</td>
+    <tr class="d-flex" *ngFor="let row of data; let idx=index">
+      <td scope="col" class="col index-col">{{idx + 1}}</td>
+      <td scope="col" class="col-1">{{row?.code}}</td>
+      <td scope="col" class="col-3">{{row?.name}}</td>
+      <td scope="col" class="col">{{row?.exchange}}</td>
+      <td scope="col" class="col text-right">{{row?.price | number:'1.2-2'}}</td>
+      <td scope="col" class="col text-right">{{row?.breakPrice | number:'1.2-2'}}</td>
+      <td scope="col" class="col text-right">{{row?.adx14| number:'1.2-2'}}</td>
+      <td scope="col" class="col text-right">{{row?.rsi14 | number:'1.2-2'}}</td>
+      <td scope="col" class="col text-right">{{row?.macd | number:'1.2-2'}}</td>
+      <td scope="col" class="col text-right">{{row?.volume | number:'1.0-0'}}</td>
+      <td scope="col" class="col text-right">{{row?.breakTime}}</td>
     </tr>
   </tbody>
 </table>
