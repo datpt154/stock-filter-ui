@@ -20,18 +20,18 @@
           margin-bottom: 20px;
         }
       }
-    }
 
-    &.collection {
-      div.card {
-        div.list-group {
-          a.list-group-item {
-            &:hover {
-              background-color: #ddd;
-              cursor: pointer;
-            }
+      div.list-group {
+        a.list-group-item {
+          &:hover {
+            background-color: #ddd;
+            cursor: pointer;
           }
         }
+      }
+  
+      &.card-detail {
+        margin-bottom: 15px;
       }
     }
   }

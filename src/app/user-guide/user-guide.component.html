@@ -12,7 +12,7 @@
   </div>
 </div>
 <div class="wrapper">
-  <div class="card" *ngFor="let item of userGuideData; let itemindex = index;" id="user-guide-{{itemindex}}">
+  <div class="card card-detail" *ngFor="let item of userGuideData; let itemindex = index;" id="user-guide-{{itemindex}}">
     <div class="card-body">
       <h5 class="card-title">{{item.title}}</h5>
       <ng-container *ngFor="let content of item.detail">

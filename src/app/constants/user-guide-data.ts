@@ -44,7 +44,7 @@ export const UserGuideData = [
       },
       {
         type: UserGuideDataType.Image,
-        content: '',
+        content: 'filter1_step3.PNG',
       },
     ]
   },
@@ -70,7 +70,7 @@ export const UserGuideData = [
       },
       {
         type: UserGuideDataType.Image,
-        content: '',
+        content: 'filter2_step2.PNG',
       },
       {
         type: UserGuideDataType.Text,
@@ -78,7 +78,7 @@ export const UserGuideData = [
       },
       {
         type: UserGuideDataType.Image,
-        content: '',
+        content: 'filter2_step3.PNG',
       },
     ]
   },
@@ -92,7 +92,7 @@ export const UserGuideData = [
       },
       {
         type: UserGuideDataType.Image,
-        content: '',
+        content: 'screen1.PNG',
       },
       {
         type: UserGuideDataType.Text,
@@ -100,7 +100,7 @@ export const UserGuideData = [
       },
       {
         type: UserGuideDataType.Image,
-        content: '',
+        content: 'screen2.PNG',
       },
     ]
   },
@@ -114,7 +114,7 @@ export const UserGuideData = [
       },
       {
         type: UserGuideDataType.Image,
-        content: '',
+        content: 'ptkt_pkc.PNG',
       },
       {
         type: UserGuideDataType.Text,
@@ -132,7 +132,7 @@ export const UserGuideData = [
       },
       {
         type: UserGuideDataType.Image,
-        content: '',
+        content: 'search1.PNG',
       },
       {
         type: UserGuideDataType.Text,
@@ -140,7 +140,7 @@ export const UserGuideData = [
       },
       {
         type: UserGuideDataType.Image,
-        content: '',
+        content: 'search2.PNG',
       },
       {
         type: UserGuideDataType.Text,
@@ -148,7 +148,7 @@ export const UserGuideData = [
       },
       {
         type: UserGuideDataType.Image,
-        content: '',
+        content: 'search3.PNG',
       },
     ]
   },

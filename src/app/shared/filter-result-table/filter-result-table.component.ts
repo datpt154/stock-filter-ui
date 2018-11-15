@@ -27,7 +27,7 @@ export class FilterResultTableComponent implements OnInit {
 
   ngOnInit() {
     this.tableData.pagination.total = Math.ceil(this.tableData.data.length / this.tableData.pagination.size);
-    if (this.tableData.pagination.total <= this.tableData.pagination.size) {
+    if (this.tableData.data.length <= this.tableData.pagination.size) {
       this.tableData.pagination.visible = false;
     }
     if (!this.tableData.pagination.visible) {
