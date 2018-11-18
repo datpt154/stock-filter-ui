@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FilterService } from './business.service/filter.service';
 import { HelperService } from './business.service/helper.service';
+import { GoogleAnalyticsEventsService } from './business.service/GoogleAnalyticsEvents.service';
 
 @NgModule({
   imports: [
@@ -10,7 +11,7 @@ import { HelperService } from './business.service/helper.service';
     HttpClientModule
   ],
   exports: [],
-  providers: [FilterService, HelperService],
+  providers: [FilterService, HelperService, GoogleAnalyticsEventsService],
   declarations: []
 })
 export class ServicesModule { }
