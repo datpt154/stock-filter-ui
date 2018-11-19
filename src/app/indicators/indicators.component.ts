@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FinancialIndicatorsGuideData } from '../constants/user-guide-data';
 
 @Component({
   selector: 'app-indicators',
@@ -8,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class IndicatorsComponent implements OnInit {
 
   constructor() { }
+  
+  public indicatorGuideData = FinancialIndicatorsGuideData;
 
   ngOnInit() {
   }

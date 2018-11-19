@@ -28,4 +28,10 @@ html {
 .table { // override bootstrap table
   font-size: 0.85rem;
   line-height: 1;
+  tr.d-flex {
+    .index-col {
+        flex: 0 0 45px;
+        max-width: 45px;
+    }
+  }
 }

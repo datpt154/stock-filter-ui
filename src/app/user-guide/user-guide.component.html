@@ -17,7 +17,13 @@
       <h5 class="card-title">{{item.title}}</h5>
       <ng-container *ngFor="let content of item.detail">
         <img class="img-fluid card-img" src="assets/user-guide/{{content.content}}" *ngIf="content.type === userGuideDataType.Image && content.content !== ''" />
-        <p *ngIf="content.type === userGuideDataType.Text" class="card-text">{{content.content}}</p>
+        <p class="card-text" *ngIf="content.type === userGuideDataType.Text">{{content.content}}</p>
+        <p class="card-text category-text" *ngIf="content.type === userGuideDataType.Category"><b>{{content.content}}</b></p>
+        <ng-container *ngIf="content.type === userGuideDataType.TextDetail">
+          <p class="card-text card-text-detail" *ngFor="let textDetail of content.content; let i = index;">
+            {{(i + 1) + '. ' + textDetail}}
+          </p>
+        </ng-container>
       </ng-container>
     </div>
   </div>

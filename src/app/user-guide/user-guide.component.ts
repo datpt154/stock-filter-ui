@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, Input } from '@angular/core';
 import { UserGuideData, UserGuideDataType } from '../constants/user-guide-data';
 
 @Component({
@@ -12,7 +12,7 @@ export class UserGuideComponent implements OnInit {
     private elementRef: ElementRef, 
   ) { }
 
-  public userGuideData = UserGuideData;
+  @Input() userGuideData = UserGuideData;
   public userGuideDataType = UserGuideDataType;
   ngOnInit() {
   }
