@@ -19,7 +19,6 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" routerLink="/filter/firstFilter">Bộ lọc</a>
             <a class="dropdown-item" routerLink="/filter/secondFilter">So sánh</a>
-            <a class="dropdown-item" routerLink="/indicators">Các chỉ số</a>
           </div>
         </li>
 
@@ -47,15 +46,19 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="https://banggia-hn.vndirect.com.vn/chart/" target="_blank">Chart</a>
             <a class="dropdown-item" routerLink="/ptkt/breakResistance">Phá đỉnh</a>
-            <a class="dropdown-item" routerLink="/ptkt/breakSupport">Phá đáy</a>
+            <a class="dropdown-item" routerLink="/ptkt/breakSupport">Bollinger bands</a>
             <a class="dropdown-item" routerLink="/ptkt/swingTrade">Trend trader</a>
           </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" role="button"
-            aria-haspopup="true" aria-expanded="false" routerLink="/user-guide">
-            HDSD
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" [attr.data-toggle]="isMobileScreen ? 'dropdown' : ''"
+            aria-haspopup="true" aria-expanded="false">
+            Hướng Dẫn
           </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="/guide/userGuide">Hướng dẫn sử dụng</a>
+            <a class="dropdown-item" routerLink="/guide/indicators">Các chỉ số</a>
+          </div>
         </li>
       </ul>
       <div class="form-inline search-form my-2 my-lg-0">

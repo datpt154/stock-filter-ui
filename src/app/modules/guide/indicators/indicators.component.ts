@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FinancialIndicatorsGuideData } from '../constants/user-guide-data';
+import { FinancialIndicatorsGuideData } from '../../../constants/user-guide-data';
 
 @Component({
   selector: 'app-indicators',

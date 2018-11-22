@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, Input } from '@angular/core';
-import { UserGuideData, UserGuideDataType } from '../constants/user-guide-data';
+import { UserGuideData, UserGuideDataType } from '../../../constants/user-guide-data';
 
 @Component({
   selector: 'app-user-guide',

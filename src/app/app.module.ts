@@ -14,10 +14,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from './shared/angular-material-design/material.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HomePageComponent } from './home-page/home-page.component';
-import { IndicatorsComponent } from './indicators/indicators.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { UserGuideComponent } from './user-guide/user-guide.component';
 
 const routers: Routes = [
   { path: '', component: HomePageComponent },
@@ -25,17 +23,14 @@ const routers: Routes = [
   { path: 'screen', loadChildren: './modules/screen/screen.module#ScreenModule' },
   { path: 'ptkt', loadChildren: './modules/ptkt/ptkt.module#PtktModule' },
   { path: 'stock-detail', loadChildren: './stock-detail/stock-detail.module#StockDetailModule' },
-  { path: 'indicators', component: IndicatorsComponent},
-  { path: 'user-guide', component: UserGuideComponent },
+  { path: 'guide', loadChildren: './modules/guide/guide.module#GuideModule' },
   { path: '**', redirectTo: 'filter' }
 ];
 @NgModule({
    declarations: [
       AppComponent,
       HomePageComponent,
-      IndicatorsComponent,
-      LoginPageComponent,
-      UserGuideComponent
+      LoginPageComponent
    ],
    imports: [
       BrowserModule,
