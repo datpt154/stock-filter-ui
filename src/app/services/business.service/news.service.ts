@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api.service/api.service';
-import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { NewsListItem, EditNewsItem, NewsCategory } from 'src/app/models/news';
 import { map } from 'rxjs/operators';
@@ -13,7 +12,7 @@ import * as moment from 'moment';
 export class NewsService {
 
   constructor (
-    private apiService: ApiService
+    private apiService: ApiService  
   ) { }
 
   public getNewsList(): Observable<NewsListItem[]> {
@@ -35,7 +34,16 @@ export class NewsService {
     return this.apiService.postToAPI('api/news', data);
   }
 
+  public updateNews(data: EditNewsItem) {
+    return this.apiService.putToAPI('api/news', data);
+  }
+
+  public deleteNews(id: number) {
+    return this.apiService.deleteToAPI('api/news/' + id);
+  }
+
   public getListFilterForCreateNew(): Observable<NewsCategory[]> {
     return this.apiService.getFromAPI('api/newscategory');
   }
+
 }

@@ -1,12 +1,12 @@
 import { OnInit, Component } from '@angular/core';
 import * as _ from 'lodash';
-import { Observable, of } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
+import { Observable, of, empty } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap, map, flatMap } from 'rxjs/operators';
 import { FilterService } from '../../../services/business.service/filter.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { EditNewsItem } from 'src/app/models/news';
+import { EditNewsItem, NewsListItem } from 'src/app/models/news';
 import { NewsService } from 'src/app/services/business.service/news.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 const NUMBER_SHOW_FILTER_RESULT = 10;
 
@@ -32,20 +32,37 @@ export class CreateNewsComponent implements OnInit {
   });
   public showAlert = false;
   public listFilter = [];
+  private editNewsId = 0;
 
   constructor(
     private filterService: FilterService,
     private newsService: NewsService,
-    private router: Router
+    private router: Router,
+    private activeRoute: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-    this.newsService.getListFilterForCreateNew().subscribe(result => {
-      this.listFilter = result;
-    })
+    this.newsService.getListFilterForCreateNew().pipe(
+      flatMap(result => {
+        this.listFilter = result;
+        return this.activeRoute.params
+      }),
+      flatMap(params => {
+        if (params.id) {
+          return this.newsService.getNewsDetail(params.id);
+        } else {
+          return empty();
+        }
+      })
+    ).subscribe(result => {
+      if (!_.isEmpty(result)) {
+        this.editNewsId = result.id;
+        this.updateDataForEdit(result);
+      }
+    });
   }
 
-  selectACompany(event: any) {
+  public selectACompany(event: any) {
     event.preventDefault();
     const companyCode = _.trim(event.item.split('-')[0]);
     const selectedValue: string[] = this.createNewsForm.get('companyTag').value;
@@ -55,7 +72,7 @@ export class CreateNewsComponent implements OnInit {
     this.createNewsForm.get('searchCompany').reset();
   }
 
-  searchCompany = (text$: Observable<string>) =>
+  public searchCompany = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(200),
       distinctUntilChanged(),
@@ -64,30 +81,38 @@ export class CreateNewsComponent implements OnInit {
       })
     )
 
-  removeTag(tag: string) {
+  public removeTag(tag: string) {
     const selectedValue: string[] = this.createNewsForm.get('companyTag').value;
     if (selectedValue.indexOf(tag) !== -1) {
       selectedValue.splice(selectedValue.indexOf(tag), 1);
     }
   }
 
-  saveNews() {
+  public saveNews() {
     const selectedTag: string[] = this.createNewsForm.get('companyTag').value;
     if (this.createNewsForm.valid && selectedTag.length) {
-      const formValue= this.createNewsForm.value;
-      const apiJson: EditNewsItem = {
-        title: formValue.subject,
-        thumnailUrl: formValue.thumbnail,
-        categoryId: formValue.filter,
-        listTag: formValue.companyTag,
-        content: formValue.content
-      }
-      this.newsService.saveNews(apiJson).subscribe(result => {
-        console.log('save');
+      this.saveToServer().subscribe(result => {
         this.router.navigate(['news/listNews']);
-      })
+      });
     } else {
       this.showAlert = true;
+    }
+  }
+
+  private saveToServer() {
+    const formValue = this.createNewsForm.value;
+    const apiJson: EditNewsItem = {
+      title: formValue.subject,
+      thumnailUrl: formValue.thumbnail,
+      categoryId: formValue.filter,
+      listTag: formValue.companyTag,
+      content: formValue.content
+    }
+    if (this.editNewsId === 0) {
+      return this.newsService.saveNews(apiJson);
+    } else {
+      apiJson.id = this.editNewsId;
+      return this.newsService.updateNews(apiJson);
     }
   }
 
@@ -106,5 +131,15 @@ export class CreateNewsComponent implements OnInit {
         }
       })
     );
+  }
+
+  private updateDataForEdit(result: NewsListItem) {
+    const formValue = this.createNewsForm.value;
+    formValue.subject = result.title;
+    formValue.thumbnail = result.thumbnailUrl;
+    formValue.companyTag = result.tag;
+    formValue.filter = result.categoryId;
+    formValue.content = result.content;
+    this.createNewsForm.setValue(formValue);
   }
 }

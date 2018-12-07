@@ -39,7 +39,7 @@ export class ApiService {
       .pipe(catchError(this.handleError));
   }
 
-  public deleteToAPI(path: string, param: any, option = httpOptions): Observable<any> {
+  public deleteToAPI(path: string, option = httpOptions): Observable<any> {
     const url = API_URL + path;
     return this.http
       .delete(url, option)

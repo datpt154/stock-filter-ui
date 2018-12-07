@@ -6,4 +6,12 @@
     <!-- <div [froalaEditor]="editorOption" [(froalaModel)]="editorContent">Hello, Froala!</div> -->
     <div [froalaView]="newsData.content"></div>
   </main>
+  <div class="admin-action">
+    <button class="edit-btn" (click)="redirectToEdit()">
+      <i class="fa fa-edit" aria-hidden="true"></i>
+    </button>
+    <button class="delete-btn" (click)="deleteNews()">
+      <i class="fa fa-trash-o" aria-hidden="true"></i>
+    </button>
+  </div>
 </ng-container>

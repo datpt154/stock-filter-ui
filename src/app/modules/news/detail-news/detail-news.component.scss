@@ -1,8 +1,36 @@
+@import "../../../../scss/variables.scss";
+
 :host {
     main {
         margin-top: 40px;
         div.fr-view {
             padding-bottom: 30px;
+        }
+    }
+    div.admin-action {
+    position: fixed;
+    right: 0;
+    display: flex;
+    top: 60px;
+
+        button {
+            height: 40px;
+            width: 40px;
+            font-size: 25px;
+            padding-left: 8px;
+            display: flex;
+            background: none;
+            border: 2px solid $dark-color;
+            color: $dark-color;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 5px;
+
+            &.edit-btn{
+                i.fa {
+                    padding-top: 3px;
+                }
+            }
         }
     }
 }
