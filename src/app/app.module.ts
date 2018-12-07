@@ -24,6 +24,7 @@ const routers: Routes = [
   { path: 'ptkt', loadChildren: './modules/ptkt/ptkt.module#PtktModule' },
   { path: 'stock-detail', loadChildren: './stock-detail/stock-detail.module#StockDetailModule' },
   { path: 'guide', loadChildren: './modules/guide/guide.module#GuideModule' },
+  { path: 'news', loadChildren: './modules/news/news.module#NewsModule' },
   { path: '**', redirectTo: 'filter' }
 ];
 @NgModule({

@@ -25,12 +25,11 @@ const routers: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule,
     MaterialModule,
     SharedModule,
     NgbModule,
+    NouisliderModule,
     RouterModule.forChild(routers),
-    NouisliderModule
   ],
   declarations: [
     FirstFilterResultComponent,

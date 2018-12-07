@@ -25,10 +25,14 @@
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/font-awesome/scss/font-awesome.scss",
+              "./node_modules/froala-editor/css/froala_editor.pkgd.min.css",
+              "./node_modules/froala-editor/css/froala_style.min.css",
               "src/scss/styles.scss"
             ],
             "scripts": [
-              "./node_modules/chart.js/dist/Chart.bundle.min.js"
+              "./node_modules/chart.js/dist/Chart.bundle.min.js",
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/froala-editor/js/froala_editor.pkgd.min.js"
             ]
           },
           "configurations": {

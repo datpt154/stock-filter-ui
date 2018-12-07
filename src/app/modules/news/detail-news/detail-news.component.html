@@ -1,0 +1,9 @@
+<ng-container *ngIf="newsData">
+  <h4 class="mt-3">
+    {{newsData.title}}
+  </h4>
+  <main>
+    <!-- <div [froalaEditor]="editorOption" [(froalaModel)]="editorContent">Hello, Froala!</div> -->
+    <div [froalaView]="newsData.content"></div>
+  </main>
+</ng-container>

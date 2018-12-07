@@ -7,20 +7,50 @@ import { environment } from '../../../environments/environment';
 import { BasicFilterInput, ComparedFilterInput } from '../../interface/api-input';
 import { PTKTDto } from '../../interface/ptkt-dto';
 
-
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+const API_URL = environment.API_URL;
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  private API_URL = environment.API_URL;
 
   constructor(private http: HttpClient) { }
 
+  public getFromAPI(path: string, option = httpOptions): Observable<any> {
+    const url = API_URL + path;
+    return this.http
+      .get(url, option)
+      .pipe(catchError(this.handleError));
+  }
+
+  public postToAPI(path: string, param: any, option = httpOptions): Observable<any> {
+    const url = API_URL + path;
+    return this.http
+      .post(url, JSON.stringify(param), option)
+      .pipe(catchError(this.handleError));
+  }
+
+  public putToAPI(path: string, param: any, option = httpOptions): Observable<any> {
+    const url = API_URL + path;
+    return this.http
+      .put(url, JSON.stringify(param), option)
+      .pipe(catchError(this.handleError));
+  }
+
+  public deleteToAPI(path: string, param: any, option = httpOptions): Observable<any> {
+    const url = API_URL + path;
+    return this.http
+      .delete(url, option)
+      .pipe(catchError(this.handleError));
+  }
+  
   public basicFilter(searchInput: BasicFilterInput): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + 'api/filter';
+    const url = API_URL + 'api/filter';
 
     return this.http
       .post<any>(url, JSON.stringify(searchInput), httpOptions)
@@ -31,7 +61,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + 'api/Compare';
+    const url = API_URL + 'api/Compare';
 
     return this.http
       .post<any>(url, JSON.stringify(searchInput), httpOptions)
@@ -42,7 +72,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + 'api/autocompletestock/' + searchPattern;
+    const url = API_URL + 'api/autocompletestock/' + searchPattern;
 
     return this.http
       .get<any>(url, httpOptions)
@@ -53,7 +83,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + 'api/detailstock';
+    const url = API_URL + 'api/detailstock';
     const parameters = {
       time: filterTime,
       code: companyCode
@@ -68,7 +98,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + 'api/detailstockmore';
+    const url = API_URL + 'api/detailstockmore';
     const parameters = {
       time: filterTime,
       code: companyCode
@@ -83,7 +113,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + 'api/detailstockfinanceratio';
+    const url = API_URL + 'api/detailstockfinanceratio';
     const parameters = {
       time: filterTime,
       code: companyCode
@@ -98,7 +128,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + 'api/screenRevenue/';
+    const url = API_URL + 'api/screenRevenue/';
 
     return this.http
       .get<any>(url, httpOptions)
@@ -109,7 +139,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + 'api/screenProfit/';
+    const url = API_URL + 'api/screenProfit/';
 
     return this.http
       .get<any>(url, httpOptions)
@@ -120,7 +150,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + 'api/screenEPS/';
+    const url = API_URL + 'api/screenEPS/';
 
     return this.http
       .get<any>(url, httpOptions)
@@ -131,7 +161,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + 'api/screenPE_PB/';
+    const url = API_URL + 'api/screenPE_PB/';
 
     return this.http
       .get<any>(url, httpOptions)
@@ -142,7 +172,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + 'api/screenMCNWC_EVEBITDA/';
+    const url = API_URL + 'api/screenMCNWC_EVEBITDA/';
 
     return this.http
       .get<any>(url, httpOptions)
@@ -153,7 +183,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + 'api/screenNetNet';
+    const url = API_URL + 'api/screenNetNet';
 
     return this.http
       .get<any>(url, httpOptions)
@@ -164,7 +194,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + 'api/screnNCAV';
+    const url = API_URL + 'api/screnNCAV';
 
     return this.http
       .get<any>(url, httpOptions)
@@ -175,7 +205,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + 'api/screnCANSLIM';
+    const url = API_URL + 'api/screnCANSLIM';
 
     return this.http
       .get<any>(url, httpOptions)
@@ -186,7 +216,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + 'api/screnPhilipFisherGrowth';
+    const url = API_URL + 'api/screnPhilipFisherGrowth';
 
     return this.http
       .get<any>(url, httpOptions)
@@ -197,7 +227,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + 'api/screnGrahamChecklist';
+    const url = API_URL + 'api/screnGrahamChecklist';
 
     return this.http
       .get<any>(url, httpOptions)
@@ -208,7 +238,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + 'api/screnBreakSupport';
+    const url = API_URL + 'api/screnBreakSupport';
 
     return this.http
       .get<any>(url, httpOptions)
@@ -219,7 +249,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + 'api/screnBreakResistance';
+    const url = API_URL + 'api/screnBreakResistance';
 
     return this.http
       .get<any>(url, httpOptions)
@@ -230,7 +260,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + 'api/screnTrendTrader';
+    const url = API_URL + 'api/screnTrendTrader';
 
     return this.http
       .get<any>(url, httpOptions)
@@ -241,7 +271,7 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const url = this.API_URL + 'api/screnDBTTM';
+    const url = API_URL + 'api/screnDBTTM';
 
     return this.http
       .get<any>(url, httpOptions)
