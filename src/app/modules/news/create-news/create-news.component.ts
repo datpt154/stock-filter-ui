@@ -103,7 +103,7 @@ export class CreateNewsComponent implements OnInit {
     const formValue = this.createNewsForm.value;
     const apiJson: EditNewsItem = {
       title: formValue.subject,
-      thumnailUrl: formValue.thumbnail,
+      thumbnailUrl: formValue.thumbnail,
       categoryId: formValue.filter,
       listTag: formValue.companyTag,
       content: formValue.content

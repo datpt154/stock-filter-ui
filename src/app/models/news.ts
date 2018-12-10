@@ -15,7 +15,7 @@ export interface NewsListItem {
 export interface EditNewsItem {
     id?: number;
     title: string;
-    thumnailUrl: string;
+    thumbnailUrl: string;
     listTag: string[];
     content: string;
     categoryId: number
