@@ -9,6 +9,8 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { FilterResultTableComponent } from './filter-result-table/filter-result-table.component';
 import { ChartsModule } from 'ng2-charts';
 import { ModalComponent } from './modal/modal.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { LogInComponent } from './log-in/log-in.component';
 
 @NgModule({
   imports: [
@@ -24,18 +26,22 @@ import { ModalComponent } from './modal/modal.component';
     HeaderComponent,
     PaginationComponent,
     FilterResultTableComponent,
-    ModalComponent
+    ModalComponent,
+    LogInComponent,
+    SignUpComponent
   ],
   declarations: [
     HeaderComponent,
     PaginationComponent,
     FilterResultTableComponent,
+    ModalComponent,
+    LogInComponent,
+    SignUpComponent
+  ],
+  entryComponents: [
     ModalComponent
   ],
-  entryComponents:[
-    ModalComponent
-  ],
-  providers:[
+  providers: [
     NgbActiveModal
   ]
 })

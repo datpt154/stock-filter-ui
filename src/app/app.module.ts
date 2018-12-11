@@ -16,6 +16,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HomePageComponent } from './home-page/home-page.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider } from 'angular4-social-login';
 
 const routers: Routes = [
   { path: '', component: HomePageComponent },
@@ -27,6 +28,14 @@ const routers: Routes = [
   { path: 'news', loadChildren: './modules/news/news.module#NewsModule' },
   { path: '**', redirectTo: 'filter' }
 ];
+
+const config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider('513462605172-t92vuah13jnp529gjkt384mvl5uormg9.apps.googleusercontent.com')
+  }
+]);
+
 @NgModule({
    declarations: [
       AppComponent,
@@ -44,6 +53,7 @@ const routers: Routes = [
       HttpClientModule,
       ServicesModule,
       PdfViewerModule,
+      SocialLoginModule.initialize(config),
       RouterModule.forRoot(routers),
       ReactiveFormsModule
    ],
