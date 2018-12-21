@@ -12,15 +12,15 @@ import * as moment from 'moment';
 export class NewsService {
 
   constructor (
-    private apiService: ApiService  
+    private apiService: ApiService
   ) { }
 
   public getNewsList(): Observable<NewsListItem[]> {
-    return this.apiService.getFromAPI('api/news').pipe(
+    return this.apiService.getFromAPI('api/listnews').pipe(
       map((result: NewsListItem[]) => {
         return _.map(result, item => {
           item.createdTime = _.isEmpty(item.createdTime) ? '' : moment(item.createdTime).format('DD/MM/YYYY HH:mm');
-          return item
+          return item;
         });
       })
     );

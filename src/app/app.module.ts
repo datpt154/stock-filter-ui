@@ -15,7 +15,6 @@ import { MaterialModule } from './shared/angular-material-design/material.module
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HomePageComponent } from './home-page/home-page.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-import { LoginPageComponent } from './login-page/login-page.component';
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider } from 'angular4-social-login';
 
 const routers: Routes = [
@@ -40,7 +39,6 @@ const config = new AuthServiceConfig([
    declarations: [
       AppComponent,
       HomePageComponent,
-      LoginPageComponent
    ],
    imports: [
       BrowserModule,

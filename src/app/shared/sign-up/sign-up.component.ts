@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GoogleLoginProvider, AuthService } from 'angular4-social-login';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up',
@@ -7,10 +8,51 @@ import { GoogleLoginProvider, AuthService } from 'angular4-social-login';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
+  signUpForm: FormGroup;
+  submitted = false;
 
-  constructor(private authService: AuthService) { }
+  account_validation_messages = {
+    'username': [
+      { type: 'required', message: 'Username is required' },
+      { type: 'minlength', message: 'Username must be at least 5 characters long' },
+      { type: 'maxlength', message: 'Username cannot be more than 25 characters long' },
+      { type: 'pattern', message: 'Your username must contain only numbers and letters' },
+      { type: 'validUsername', message: 'Your username has already been taken' }
+    ],
+    'email': [
+      { type: 'required', message: 'Email is required' },
+      { type: 'pattern', message: 'Enter a valid email' }
+    ],
+    'confirm_password': [
+      { type: 'required', message: 'Confirm password is required' },
+      { type: 'areEqual', message: 'Password mismatch' }
+    ],
+    'password': [
+      { type: 'required', message: 'Password is required' },
+      { type: 'minlength', message: 'Password must be at least 5 characters long' },
+      { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number' }
+    ],
+    'terms': [
+      { type: 'pattern', message: 'You must accept terms and conditions' }
+    ]
+  };
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
+    this.signUpForm = this.formBuilder.group({
+      username: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(15)])],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [
+        Validators.required, Validators.minLength(6)],
+         // this is for the letters (both uppercase and lowercase) and numbers validation
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
+      ],
+      confirmPassword: ['', Validators.required]
+    });
   }
 
   signInWithGoogle(): void {
@@ -25,4 +67,6 @@ export class SignUpComponent implements OnInit {
     this.authService.signOut();
   }
 
+  // convenience getter for easy access to form fields
+  get f() { return this.signUpForm.controls; }
 }

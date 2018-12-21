@@ -18,7 +18,7 @@ export class ListNewsComponent implements OnInit {
   ngOnInit() {
     this.newsService.getNewsList().subscribe(result => {
       this.listNewData = result;
-    })
+    });
   }
 
 }
