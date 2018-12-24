@@ -1,12 +1,13 @@
-import { OnInit, Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash';
-import { Observable, of, empty } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap, map, flatMap } from 'rxjs/operators';
-import { FilterService } from '../../../services/business.service/filter.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import * as moment from 'moment';
+import { Observable, empty, of } from 'rxjs';
+import { debounceTime, distinctUntilChanged, flatMap, map, switchMap } from 'rxjs/operators';
 import { EditNewsItem, NewsListItem } from 'src/app/models/news';
 import { NewsService } from 'src/app/services/business.service/news.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { FilterService } from '../../../services/business.service/filter.service';
 
 const NUMBER_SHOW_FILTER_RESULT = 10;
 
@@ -45,7 +46,7 @@ export class CreateNewsComponent implements OnInit {
     this.newsService.getListFilterForCreateNew().pipe(
       flatMap(result => {
         this.listFilter = result;
-        return this.activeRoute.params
+        return this.activeRoute.params;
       }),
       flatMap(params => {
         if (params.id) {
@@ -106,8 +107,10 @@ export class CreateNewsComponent implements OnInit {
       thumbnailUrl: formValue.thumbnail,
       categoryId: formValue.filter,
       listTag: formValue.companyTag,
-      content: formValue.content
-    }
+      content: formValue.content,
+      createdTime: moment().format('DD/MM/YYYY')
+    };
+
     if (this.editNewsId === 0) {
       return this.newsService.saveNews(apiJson);
     } else {

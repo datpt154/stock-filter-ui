@@ -1,7 +1,7 @@
 import { OnInit, Component } from '@angular/core';
 import * as _ from 'lodash';
 import { NewsService } from 'src/app/services/business.service/news.service';
-import { NewsListItem } from 'src/app/models/news';
+import { NewsListItem, FilterNewsDTO } from 'src/app/models/news';
 
 @Component({
   selector: 'app-list-news',
@@ -10,14 +10,22 @@ import { NewsListItem } from 'src/app/models/news';
 })
 
 export class ListNewsComponent implements OnInit {
-  public listNewData: NewsListItem[] = [];
+  listNewData: NewsListItem[] = [];
+  totalRows = 0;
+
+
   constructor(
     private newsService: NewsService
   ) { }
 
   ngOnInit() {
-    this.newsService.getNewsList().subscribe(result => {
-      this.listNewData = result;
+    const listInput: FilterNewsDTO = {
+      start: 0,
+      numRow: 10
+    };
+
+    this.newsService.getNewsList(listInput).subscribe(result => {
+      this.listNewData = result.listData;
     });
   }
 

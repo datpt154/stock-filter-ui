@@ -9,7 +9,7 @@ export interface NewsListItem {
     tag: string;
     content: string;
     categoryId: string;
-    userId: number
+    userId: number;
 }
 
 export interface EditNewsItem {
@@ -18,11 +18,21 @@ export interface EditNewsItem {
     thumbnailUrl: string;
     listTag: string[];
     content: string;
-    categoryId: number
+    categoryId: number;
+    createdTime: string;
 }
 
 export interface NewsCategory {
     id: number;
     code: string;
     name: string;
+}
+
+export interface FilterNewsDTO {
+  start: number;
+  numRow: number;
+  createdTime?: string;
+  title?: string;
+  categoryId?: number;
+  listTag?: string[];
 }
