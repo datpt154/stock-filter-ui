@@ -15,6 +15,13 @@
       </a>
     </article>
   </section>
+
+  <app-pagination
+    *ngIf="pagination.visible"
+    [totalPage]="pagination.total"
+    [currentPage]="pagination.currentPage"
+    (pageChange)="goToPage($event)">
+  </app-pagination>
 </main>
 <!-- <div [froalaEditor]="editorOption" [(froalaModel)]="editorContent">Hello, Froala!</div>
 <div [froalaView]="editorContent"></div>

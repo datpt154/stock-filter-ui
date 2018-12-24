@@ -2,6 +2,7 @@ import { OnInit, Component } from '@angular/core';
 import * as _ from 'lodash';
 import { NewsService } from 'src/app/services/business.service/news.service';
 import { NewsListItem, FilterNewsDTO } from 'src/app/models/news';
+import { Pagination } from '../../../interface/filter-table-dto';
 
 @Component({
   selector: 'app-list-news',
@@ -11,12 +12,28 @@ import { NewsListItem, FilterNewsDTO } from 'src/app/models/news';
 
 export class ListNewsComponent implements OnInit {
   listNewData: NewsListItem[] = [];
-  totalRows = 0;
+  pagination: Pagination = {
+    visible: false,
+    size: 10,
+    total: 0,
+    currentPage: 1
+  };
 
 
   constructor(
     private newsService: NewsService
   ) { }
+
+
+  // this.tableData.pagination.total = Math.ceil(this.tableData.data.length / this.tableData.pagination.size);
+  //   if (this.tableData.data.length <= this.tableData.pagination.size) {
+  //     this.tableData.pagination.visible = false;
+  //   }
+  //   if (!this.tableData.pagination.visible) {
+  //     this.tableData.pagination.size = this.tableData.data.length;
+  //   }
+  //   this.updateSearchResultIndex();
+  //   this.goToPage(this.tableData.pagination.currentPage);
 
   ngOnInit() {
     const listInput: FilterNewsDTO = {
@@ -26,7 +43,23 @@ export class ListNewsComponent implements OnInit {
 
     this.newsService.getNewsList(listInput).subscribe(result => {
       this.listNewData = result.listData;
+      this.pagination.total = Math.ceil(result.totalRows / this.pagination.size);
+      this.pagination.visible = result.totalRows > this.pagination.size ? true : false;
     });
+  }
+
+  public goToPage(pageNum: number) {
+    if (pageNum <= this.pagination.total && pageNum > 0) {
+      this.pagination.currentPage = pageNum;
+
+      const listInput: FilterNewsDTO = {
+        start: 10 * (pageNum - 1) - 1,
+        numRow: 10
+      };
+      this.newsService.getNewsList(listInput).subscribe(result => {
+        this.listNewData = result.listData;
+      });
+    }
   }
 
 }

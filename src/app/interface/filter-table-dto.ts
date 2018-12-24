@@ -26,10 +26,12 @@ export interface TableData {
     header: FilterTableColumn[];
     body: BasicFilterDTO[];
     data: BasicFilterDTO[];
-    pagination: {
-        visible: boolean,
-        size: number,
-        total: number,
-        currentPage: number
-    };
+    pagination: Pagination;
+}
+
+export interface Pagination {
+  visible: boolean;
+  size: number;
+  total: number;
+  currentPage: number;
 }
