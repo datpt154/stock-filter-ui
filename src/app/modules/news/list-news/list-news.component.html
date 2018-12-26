@@ -4,8 +4,8 @@
 <main>
   <section>
     <article *ngFor="let news of listNewData">
-      <a class="item-wrapper" [routerLink]="'/news/newsDetail/'+ news.id">
-        <img class="thumbnail" [src]="news.thumbnailUrl"/>
+      <a class="item-wrapper" [routerLink]="'/news/newsDetail/'+ news?.id">
+        <img class="thumbnail" [src]="news?.thumbnailUrl"/>
         <div class="detail">
           <span class="time">{{news.createdTime}}</span>
           <div class="subject">
@@ -23,6 +23,3 @@
     (pageChange)="goToPage($event)">
   </app-pagination>
 </main>
-<!-- <div [froalaEditor]="editorOption" [(froalaModel)]="editorContent">Hello, Froala!</div>
-<div [froalaView]="editorContent"></div>
-<button (click)="logContent()">Content</button> -->

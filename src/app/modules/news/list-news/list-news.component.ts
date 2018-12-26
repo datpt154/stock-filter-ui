@@ -25,16 +25,6 @@ export class ListNewsComponent implements OnInit {
   ) { }
 
 
-  // this.tableData.pagination.total = Math.ceil(this.tableData.data.length / this.tableData.pagination.size);
-  //   if (this.tableData.data.length <= this.tableData.pagination.size) {
-  //     this.tableData.pagination.visible = false;
-  //   }
-  //   if (!this.tableData.pagination.visible) {
-  //     this.tableData.pagination.size = this.tableData.data.length;
-  //   }
-  //   this.updateSearchResultIndex();
-  //   this.goToPage(this.tableData.pagination.currentPage);
-
   ngOnInit() {
     const listInput: FilterNewsDTO = {
       start: 0,
@@ -53,7 +43,7 @@ export class ListNewsComponent implements OnInit {
       this.pagination.currentPage = pageNum;
 
       const listInput: FilterNewsDTO = {
-        start: 10 * (pageNum - 1) - 1,
+        start: 10 * (pageNum - 1),
         numRow: 10
       };
       this.newsService.getNewsList(listInput).subscribe(result => {
