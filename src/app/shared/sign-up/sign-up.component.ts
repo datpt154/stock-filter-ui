@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { GoogleLoginProvider, AuthService } from 'angular4-social-login';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService, GoogleLoginProvider, SocialUser } from 'angular4-social-login';
+import { RegisterDTO } from '../../interface/register-DTO';
+import { AuthenticationService } from '../../services/business.service/authenticationService.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,6 +12,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
   submitted = false;
+  user: SocialUser;
+  loggedIn: boolean;
 
   account_validation_messages = {
     'username': [
@@ -39,12 +43,14 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private authenticationService: AuthenticationService
   ) {}
+
 
   ngOnInit() {
     this.signUpForm = this.formBuilder.group({
-      username: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(15)])],
+      fullName: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(25)])],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [
         Validators.required, Validators.minLength(6)],
@@ -52,6 +58,29 @@ export class SignUpComponent implements OnInit {
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
       ],
       confirmPassword: ['', Validators.required]
+    });
+
+    this.authService.authState.subscribe((socialUser) => {
+      this.user = socialUser;
+      this.loggedIn = (socialUser != null);
+      if (this.loggedIn) {
+        const userInfo: RegisterDTO = {
+          name: socialUser.name,
+          email: socialUser.email,
+          password: '',
+          provider: socialUser.provider,
+          idProvider: socialUser.id
+        };
+
+        this.authenticationService.register(userInfo).subscribe(
+          data => {
+            console.log(data);
+          },
+          err => {
+            console.log(err);
+          }
+        );
+      }
     });
   }
 

@@ -12,19 +12,19 @@
       </button>
     </div>
     <div class="modal-body">
-      <form [formGroup]="signUpForm">
+      <!-- <form [formGroup]="signUpForm">
         <div class="form-group">
-          <label for="loginUsername">User name</label>
+          <label for="loginFullname">Full name</label>
           <input
             type="email"
             class="form-control"
-            id="loginUsername"
+            id="loginFullname"
             placeholder="Full name"
-            formControlName="username"
-            [ngClass]="{ 'is-invalid': f.username.errors && (f.username.dirty || f.username.touched)}"
+            formControlName="fullName"
+            [ngClass]="{ 'is-invalid': f.fullName.errors && (f.fullName.dirty || f.fullName.touched)}"
           />
-          <div *ngFor="let validation of account_validation_messages.username" class="invalid-feedback">
-            <div *ngIf="f.username.hasError(validation.type) && (f.username.dirty || f.username.touched)">{{validation.message}}</div>
+          <div *ngFor="let validation of account_validation_messages.fullName" class="invalid-feedback">
+            <div *ngIf="f.fullName.hasError(validation.type) && (f.fullName.dirty || f.fullName.touched)">{{validation.message}}</div>
           </div>
         </div>
         <div class="form-group">
@@ -69,25 +69,16 @@
             <div *ngIf="f.rePassword.hasError(validation.type) && (f.rePassword.dirty || f.rePassword.touched)">{{validation.message}}</div>
           </div>
         </div>
-
-        <button type="submit" class="btn btn-primary" [disabled]="!signUpForm.valid">Submit</button>
-      </form>
+      </form> -->
 
       <div class="social-auth d-flex flex-column">
-        <button
-          type="button"
-          class="btn btn-primary w-75  ml-auto mr-auto mt-3 mb-3"
-        >
+        <button type="button" class="btn btn-primary w-75  ml-auto mr-auto mt-3 mb-3" [disabled]="!signUpForm.valid">
           Log in
         </button>
         <div class="label text-center">
           <span>Or, Sign up via single sign-on</span>
         </div>
-        <button
-          type="button"
-          class="btn btn-info w-75 mt-3 ml-auto mr-auto"
-          (click)="signInWithGoogle()"
-        >
+        <button type="button"class="btn btn-info w-75 mt-3 ml-auto mr-auto" (click)="signInWithGoogle()">
           Sign up with Google
         </button>
         <!--
