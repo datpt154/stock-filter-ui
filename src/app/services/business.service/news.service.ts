@@ -27,7 +27,7 @@ export class NewsService {
     // );
   }
 
-  public getNewsDetail(id: number): Observable<NewsListItem> {
+  public getNewsDetail(id: number): Observable<EditNewsItem> {
     return this.apiService.getFromAPI('api/news/' + id);
   }
 
@@ -36,7 +36,7 @@ export class NewsService {
   }
 
   public updateNews(data: EditNewsItem) {
-    return this.apiService.putToAPI('api/news', data);
+    return this.apiService.postToAPI('api/news', data);
   }
 
   public deleteNews(id: number) {

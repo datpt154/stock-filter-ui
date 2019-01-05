@@ -136,11 +136,11 @@ export class CreateNewsComponent implements OnInit {
     );
   }
 
-  private updateDataForEdit(result: NewsListItem) {
+  private updateDataForEdit(result: EditNewsItem) {
     const formValue = this.createNewsForm.value;
     formValue.subject = result.title;
     formValue.thumbnail = result.thumbnailUrl;
-    formValue.companyTag = result.tag;
+    formValue.companyTag = result.listTag;
     formValue.filter = result.categoryId;
     formValue.content = result.content;
     this.createNewsForm.setValue(formValue);

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService, GoogleLoginProvider, SocialUser } from 'angular4-social-login';
-import { RegisterDTO } from '../../interface/register-DTO';
 import { AuthenticationService } from '../../services/business.service/authenticationService.service';
+import { RegisterDTO } from '../../interface/register-dto';
 
 @Component({
   selector: 'app-sign-up',
