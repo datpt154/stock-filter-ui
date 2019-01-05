@@ -26,7 +26,7 @@ const routers: Routes = [
     NgbModule,
     MaterialModule,
     SharedModule,
-    FroalaEditorModule.forRoot(), 
+    FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
     RouterModule.forChild(routers)
   ],

@@ -1,5 +1,5 @@
 import { OnInit, Component } from '@angular/core';
-import { NewsListItem } from 'src/app/models/news';
+import { NewsListItem, EditNewsItem } from 'src/app/models/news';
 import { NewsService } from 'src/app/services/business.service/news.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { flatMap } from 'rxjs/operators';
@@ -13,7 +13,7 @@ import { HelperService } from 'src/app/services/business.service/helper.service'
 })
 
 export class DetailNewsComponent implements OnInit {
-  public newsData: NewsListItem;
+  public newsData: EditNewsItem;
 
   constructor(
     private newsService: NewsService,
@@ -29,11 +29,11 @@ export class DetailNewsComponent implements OnInit {
       })
     ).subscribe(result => {
       this.newsData = result;
-    })
+    });
   }
 
   redirectToEdit() {
-    this.router.navigate(['/news/editNews/' + this.newsData.id])
+    this.router.navigate(['/news/editNews/' + this.newsData.id]);
   }
 
   deleteNews() {
