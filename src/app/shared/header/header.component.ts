@@ -1,9 +1,19 @@
 import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  switchMap
+} from 'rxjs/operators';
 import { FilterService } from '../../services/business.service/filter.service';
 import * as _ from 'lodash';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../redux/reducers';
+import { User } from '../../interface/user';
+import { AuthService } from 'angular4-social-login';
+import { AuthenticationService } from '../../services/business.service/authenticationService.service';
 
 const NUMBER_SHOW_FILTER_RESULT = 10;
 @Component({
@@ -14,6 +24,7 @@ const NUMBER_SHOW_FILTER_RESULT = 10;
 export class HeaderComponent implements OnInit {
   isMobileScreen = false;
   selectedCompanyModel: string;
+  logginUser$ = this.store.select(store => store.logginUser);
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -23,7 +34,9 @@ export class HeaderComponent implements OnInit {
     if (newScreenIsMobile !== this.isMobileScreen) {
       this.isMobileScreen = newScreenIsMobile;
       if (!this.isMobileScreen) {
-        const showNav = this.ref.nativeElement.querySelector('.nav-item.dropdown.show');
+        const showNav = this.ref.nativeElement.querySelector(
+          '.nav-item.dropdown.show'
+        );
         if (showNav) {
           showNav.classList.remove('show');
           showNav.querySelector('.dropdown-menu.show').classList.remove('show');
@@ -35,10 +48,17 @@ export class HeaderComponent implements OnInit {
   constructor(
     private _filterService: FilterService,
     private router: Router,
-    private ref: ElementRef
-  ) { }
+    private ref: ElementRef,
+    private store: Store<AppState>,
+    private authService: AuthService,
+    private authenticationService: AuthenticationService,
+  ) {}
 
   ngOnInit() {
+    // todo [datphan] for testing
+    this.logginUser$.subscribe(data => {
+      console.log(data);
+    });
   }
 
   private filter(searchPattern: string): Observable<string[]> {
@@ -48,7 +68,9 @@ export class HeaderComponent implements OnInit {
 
     return this._filterService.searchCompany(searchPattern).pipe(
       map(data => {
-        const result = data.map(company => [company.code.toUpperCase(), company.name].join(' - '));
+        const result = data.map(company =>
+          [company.code.toUpperCase(), company.name].join(' - ')
+        );
         if (result.length > NUMBER_SHOW_FILTER_RESULT) {
           return result.slice(0, NUMBER_SHOW_FILTER_RESULT);
         } else {
@@ -62,7 +84,14 @@ export class HeaderComponent implements OnInit {
     event.preventDefault();
     const companyCode = event.item.split('-')[0];
     this.selectedCompanyModel = '';
-    this.router.navigate(['/stock-detail'], {queryParams: { companyCode: companyCode }});
+    this.router.navigate(['/stock-detail'], {
+      queryParams: { companyCode: companyCode }
+    });
+  }
+
+  logout() {
+    // todo [datphan] do we need to call social logout or not? or just only call system logout?
+    this.authService.signOut();
   }
 
   searchCompany = (text$: Observable<string>) =>
@@ -73,5 +102,4 @@ export class HeaderComponent implements OnInit {
         return this.filter(val || '');
       })
     )
-
 }

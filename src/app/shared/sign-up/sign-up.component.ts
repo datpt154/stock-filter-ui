@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService, GoogleLoginProvider, SocialUser } from 'angular4-social-login';
 import { AuthenticationService } from '../../services/business.service/authenticationService.service';
 import { RegisterDTO } from '../../interface/register-dto';
+import { User } from '../../interface/user';
 
 @Component({
   selector: 'app-sign-up',
@@ -12,8 +13,7 @@ import { RegisterDTO } from '../../interface/register-dto';
 export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
   submitted = false;
-  user: SocialUser;
-  loggedIn: boolean;
+  logginUser: User;
 
   account_validation_messages = {
     'username': [
@@ -58,29 +58,6 @@ export class SignUpComponent implements OnInit {
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
       ],
       confirmPassword: ['', Validators.required]
-    });
-
-    this.authService.authState.subscribe((socialUser) => {
-      this.user = socialUser;
-      this.loggedIn = (socialUser != null);
-      if (this.loggedIn) {
-        const userInfo: RegisterDTO = {
-          name: socialUser.name,
-          email: socialUser.email,
-          password: '',
-          provider: socialUser.provider,
-          idProvider: socialUser.id
-        };
-
-        this.authenticationService.register(userInfo).subscribe(
-          data => {
-            console.log(data);
-          },
-          err => {
-            console.log(err);
-          }
-        );
-      }
     });
   }
 

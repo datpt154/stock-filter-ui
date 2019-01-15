@@ -67,10 +67,13 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" routerLink="/news/listNews">Tin Tức</a>
-            <a class="dropdown-item" routerLink="/news/createNews">Tạo tin tức mới</a>
+            <ng-container *ngIf="logginUser$ | async">
+              <a class="dropdown-item" routerLink="/news/createNews">Tạo tin tức mới</a>
+            </ng-container>
           </div>
         </li>
       </ul>
+
       <div class="form-inline search-form my-2 my-lg-0">
         <input class="form-control search-input mr-0" type="search" placeholder="Search" aria-label="Search"
           [ngbTypeahead]="searchCompany" (selectItem)="selectACompany($event)" [(ngModel)]="selectedCompanyModel" />
@@ -80,13 +83,30 @@
       </div>
     </div>
 
-    <a class="btn btn-bd-download d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="#" data-toggle="modal" data-target="#loginModal">Log in</a>
-    <a class="btn btn-primary badge-pill d-lg-inline-block mb-3 mb-md-0" href="#" data-toggle="modal" data-target="#signupModal">Sign up</a>
+    <ul class="navbar-nav mr-auto ml-3 mt-2 mt-lg-0">
+      <ng-container *ngIf="logginUser$ | async as user; else loginInBar">
+        <li class="nav-item dropdown">
+          <a id="navbarDropdown" role="button">
+            <img class="user-profile" src="{{user.photoUrl}}">
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item">My Profile</a>
+            <a class="dropdown-item">Account setting</a>
+            <a class="dropdown-item" (click)="logout()">Logout</a>
+          </div>
+        </li>
+      </ng-container>
+      <ng-template #loginInBar>
+        <a class="btn bg-danger text-light d-lg-inline-block mb-3 mb-md-0" href="#" data-toggle="modal" data-target="#loginModal">Get started</a>
+        <a class="btn btn-primary badge-pill d-lg-inline-block ml-3 mb-md-0" href="#" data-toggle="modal" data-target="#loginModal">Log in</a>
+      </ng-template>
+    </ul>
+
   </nav>
 </div>
 
 <!-- Modal login-->
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+<div #closeAddExpenseModal class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
   <!-- <div class="modal-dialog modal-dialog-centered" role="document"> -->
     <!-- <div class="modal-content"> -->
       <app-log-in></app-log-in>

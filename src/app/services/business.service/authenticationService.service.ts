@@ -9,7 +9,7 @@ import { RegisterDTO } from '../../interface/register-dto';
 export class AuthenticationService {
   constructor(private apiService: ApiService) {}
 
-  register(userInfo: RegisterDTO): Observable<any> {
-    return this.apiService.postToAPI('api/register', userInfo);
+  login(userInfo: RegisterDTO): Observable<any> {
+    return this.apiService.postToAPI('api/login', userInfo);
   }
 }

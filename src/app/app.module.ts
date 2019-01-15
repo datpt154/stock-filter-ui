@@ -16,16 +16,18 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HomePageComponent } from './home-page/home-page.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider } from 'angular4-social-login';
+import { reducers } from './redux/reducers';
+import { StoreModule } from '@ngrx/store';
 
 const routers: Routes = [
-  { path: '', component: HomePageComponent },
-  { path: 'filter', loadChildren: './filter/filter.module#FilterModule' },
-  { path: 'screen', loadChildren: './modules/screen/screen.module#ScreenModule' },
-  { path: 'ptkt', loadChildren: './modules/ptkt/ptkt.module#PtktModule' },
-  { path: 'stock-detail', loadChildren: './stock-detail/stock-detail.module#StockDetailModule' },
-  { path: 'guide', loadChildren: './modules/guide/guide.module#GuideModule' },
-  { path: 'news', loadChildren: './modules/news/news.module#NewsModule' },
-  { path: '**', redirectTo: 'filter' }
+  { path: '', component: HomePageComponent, runGuardsAndResolvers: 'always' },
+  { path: 'filter', loadChildren: './filter/filter.module#FilterModule', runGuardsAndResolvers: 'always'  },
+  { path: 'screen', loadChildren: './modules/screen/screen.module#ScreenModule', runGuardsAndResolvers: 'always'  },
+  { path: 'ptkt', loadChildren: './modules/ptkt/ptkt.module#PtktModule', runGuardsAndResolvers: 'always'  },
+  { path: 'stock-detail', loadChildren: './stock-detail/stock-detail.module#StockDetailModule', runGuardsAndResolvers: 'always'  },
+  { path: 'guide', loadChildren: './modules/guide/guide.module#GuideModule', runGuardsAndResolvers: 'always'  },
+  { path: 'news', loadChildren: './modules/news/news.module#NewsModule', runGuardsAndResolvers: 'always'  },
+  { path: '**', redirectTo: 'filter', runGuardsAndResolvers: 'always'  }
 ];
 
 const config = new AuthServiceConfig([
@@ -51,8 +53,10 @@ const config = new AuthServiceConfig([
       HttpClientModule,
       ServicesModule,
       PdfViewerModule,
+      StoreModule.forRoot(reducers),
       SocialLoginModule.initialize(config),
-      RouterModule.forRoot(routers),
+      // RouterModule.forRoot(routers),
+      RouterModule.forRoot(routers, {onSameUrlNavigation: 'reload'}),
       ReactiveFormsModule
    ],
    providers: [],

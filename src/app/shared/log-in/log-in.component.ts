@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AuthService, GoogleLoginProvider, SocialUser } from 'angular4-social-login';
+import * as _ from 'lodash';
+import { User } from '../../interface/user';
 
 @Component({
   selector: 'app-log-in',
@@ -7,23 +9,18 @@ import { AuthService, GoogleLoginProvider, SocialUser } from 'angular4-social-lo
   styleUrls: ['./log-in.component.scss']
 })
 export class LogInComponent implements OnInit {
-  private user: SocialUser;
-  private loggedIn: boolean;
+  private logginUser: User;
+
+  @ViewChild('closeBtn') closeBtn: ElementRef;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-      this.loggedIn = (user != null);
-    });
   }
 
-  logInWithGoogle(): void {
+  LogInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(data => {
-      console.log(data);
-    }).catch(err => {
-      console.log(err);
+      this.closeBtn.nativeElement.click();
     });
   }
 

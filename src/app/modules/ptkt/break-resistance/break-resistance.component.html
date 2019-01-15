@@ -1,3 +1,7 @@
+<ng-container *ngIf="!(logginUser$ | async); else loginInBar">
+  chua login
+</ng-container>
+<ng-template #loginInBar>
 <div class="alert alert-success mt-3" role="alert">
   Phá kháng cự là những mã "breakout" ra khỏi vùng kháng cự và có thể hình thành một xu hướng tăng mới. Thường được hay
   sử dụng bởi Breakout Trader. Rủi ro trong cách đầu tư này khá cao và lợi nhuận mang lại cũng rất cao.
@@ -38,3 +42,4 @@
     </tr>
   </tbody>
 </table>
+</ng-template>
