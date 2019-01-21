@@ -8,6 +8,7 @@ import { debounceTime, distinctUntilChanged, flatMap, map, switchMap } from 'rxj
 import { EditNewsItem, NewsListItem } from 'src/app/models/news';
 import { NewsService } from 'src/app/services/business.service/news.service';
 import { FilterService } from '../../../services/business.service/filter.service';
+import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 
 const NUMBER_SHOW_FILTER_RESULT = 10;
 
@@ -34,6 +35,7 @@ export class CreateNewsComponent implements OnInit {
   public showAlert = false;
   public listFilter = [];
   private editNewsId = 0;
+  public Editor = DecoupledEditor;
 
   constructor(
     private filterService: FilterService,
@@ -62,6 +64,13 @@ export class CreateNewsComponent implements OnInit {
       }
     });
   }
+
+    public onReady( editor ) {
+        editor.ui.view.editable.element.parentElement.insertBefore(
+            editor.ui.view.toolbar.element,
+            editor.ui.view.editable.element
+        );
+    }
 
   public selectACompany(event: any) {
     event.preventDefault();
