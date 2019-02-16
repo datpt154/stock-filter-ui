@@ -1,26 +1,26 @@
-import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
-import { DataItem } from '../../../interface/data-item';
-import { Subject, Observable, of } from 'rxjs';
-import { CommonConstants } from '../../../constants/common-const';
-import * as _ from 'lodash';
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
-import { FilterService } from '../../../services/business.service/filter.service';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, OnChanges } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material';
+import * as _ from 'lodash';
+import { Observable, Subject, of } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
+import { FilterConstant } from '../../../constants/filter-constant';
 import { ComparedFilterInput } from '../../../interface/api-input';
+import { DataItem } from '../../../interface/data-item';
+import { FilterService } from '../../../services/business.service/filter.service';
 
 const NUMBER_SHOW_FILTER_RESULT = 7;
 @Component({
-  selector: 'second-filter-selection',
+  selector: 'app-second-filter-selection',
   templateUrl: './second-filter-selection.component.html',
   styleUrls: ['./second-filter-selection.component.scss']
 })
-export class SecondFilterSelectionComponent implements OnInit {
+export class SecondFilterSelectionComponent implements OnInit, OnChanges {
   @Input() selectedDataItems: DataItem[] = [];
   @Output() next: EventEmitter<any> = new EventEmitter();
   @Output() selectionChanged: EventEmitter<any> = new EventEmitter();
 
-  private otherFactors = CommonConstants.otherFactors;
+  private otherFactors = FilterConstant.otherFactors;
   private selectedDataItemAsString: string;
   private selectedCompanies: string[] = [];
 
@@ -35,14 +35,14 @@ export class SecondFilterSelectionComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
     // whenever users change the selectedDataItems, we have to reset the current selections
     if (changes.selectedDataItems && changes.selectedDataItems.currentValue) {
-      this.selectedDataItemAsString =  "";
+      this.selectedDataItemAsString =  '';
       this.selectedDataItems.forEach(item => {
         if (_.isEmpty(this.selectedDataItemAsString)) {
           this.selectedDataItemAsString += item.title;
         } else {
-          this.selectedDataItemAsString += ", " + item.title;
+          this.selectedDataItemAsString += ', ' + item.title;
         }
-      })
+      });
       this.handleValueChange();
     }
   }
@@ -54,13 +54,13 @@ export class SecondFilterSelectionComponent implements OnInit {
           debounceTime(200),
           distinctUntilChanged(),
           switchMap(val => {
-            return this.filter(val || '')
-          })       
+            return this.filter(val || '');
+          })
         );
 
     this.filtersFormGroup.valueChanges.subscribe(value => {
       this.handleValueChange();
-    })
+    });
   }
 
   private buildFilterFactorsFb(): FormGroup {
@@ -76,7 +76,7 @@ export class SecondFilterSelectionComponent implements OnInit {
 
   private filter(searchPattern: string): Observable<any> {
     if (_.isNil(searchPattern) || _.isEmpty(searchPattern)) {
-      return of([]);          
+      return of([]);
     }
 
     return this._filterService.searchCompany(searchPattern).pipe(
@@ -93,19 +93,19 @@ export class SecondFilterSelectionComponent implements OnInit {
   private addCompanyForFilter(selectedItem: MatAutocompleteSelectedEvent): void {
     const newCompany = selectedItem.option.value;
     if (_.isEmpty(this.selectedCompanies.filter(item => item === newCompany))) {
-      this.selectedCompanies.push(newCompany)
+      this.selectedCompanies.push(newCompany);
     }
 
     // clear the autosugesstion
-    this.companySearchControl.setValue("");
-    //update the validation of formbuilder
+    this.companySearchControl.setValue('');
+    // update the validation of formbuilder
     this.updateValidationForFb();
   }
 
 
   private removeSelectedCompany(company: string): void {
     _.remove(this.selectedCompanies, item => item === company);
-    //update the validation of formbuilder
+    // update the validation of formbuilder
     this.updateValidationForFb();
   }
 
@@ -124,7 +124,7 @@ export class SecondFilterSelectionComponent implements OnInit {
         time: this.filtersFormGroup.get('timeFilter').value,
         stocks: this.selectedCompanies,
         searchDataitems: this.selectedDataItems
-      }
+      };
 
       this.selectionChanged.emit(output);
     }
@@ -136,7 +136,7 @@ export class SecondFilterSelectionComponent implements OnInit {
         time: this.filtersFormGroup.get('timeFilter').value,
         stocks: this.selectedCompanies,
         searchDataitems: this.selectedDataItems
-      }
+      };
 
       this.next.emit(output);
     }

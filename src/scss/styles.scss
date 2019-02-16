@@ -1,40 +1,69 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import "~nouislider/distribute/nouislider.min.css";
-@import "./common.scss";
-@import "../app/app.component.scss";
-@import "../app/shared/header/header.component.scss";
-@import "../app/home-page/home-page.component.scss";
-@import "../app/filter/first-filter/first-filter-selection/first-selection.component.scss";
-@import "../app/filter/second-filter/second-filter-selection/second-filter-selection.component.scss";
-@import "../app/shared/filter-result-table/filter-result-table.component.scss";
-@import "../app/modules/guide/user-guide/user-guide.component.scss";
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~nouislider/distribute/nouislider.min.css';
+@import './common.scss';
+@import '../app/app.component.scss';
+@import '../app/shared/header/header.component.scss';
+@import '../app/home-page/home-page.component.scss';
+@import '../app/filter/first-filter/first-filter-selection/first-selection.component.scss';
+@import '../app/filter/second-filter/second-filter-selection/second-filter-selection.component.scss';
+@import '../app/shared/filter-result-table/filter-result-table.component.scss';
+@import '../app/modules/guide/user-guide/user-guide.component.scss';
 
 html {
   font-size: 87.5%;
 }
-body{
-  font-family: "Gotham SSm A","Gotham SSm B",sans-serif;
+body {
+  font-family: 'Gotham SSm A', 'Gotham SSm B', sans-serif;
 }
 
 .w-48 {
-    width: 48% !important;
+  width: 48% !important;
 }
 
 .w-20 {
-    width: 20% !important;
+  width: 20% !important;
 }
 .w-15 {
-    width: 15% !important;
+  width: 15% !important;
 }
 
-.table { // override bootstrap table
+.table {
+  // override bootstrap table
   font-size: 0.85rem;
   line-height: 1;
   tr.d-flex {
     .index-col {
-        flex: 0 0 45px;
-        max-width: 45px;
+      flex: 0 0 45px;
+      max-width: 45px;
     }
   }
+}
+
+.subscriber_only {
+  width: 160px;
+  height: 20px;
+  border: 1px solid #666666;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  margin-top: -10px;
+  left: 50%;
+  margin-left: -90px;
+}
+
+.blur3-left {
+  background: url(../assets/blur.png) -10px -24px no-repeat;
+  width: 100%;
+  height: 14px;
+  display: block;
+  min-width: 20px;
+}
+
+.blur3-right {
+  background: url(../assets/blur.png) right -23px no-repeat;
+  width: 100%;
+  height: 14px;
+  display: block;
+  min-width: 20px;
 }

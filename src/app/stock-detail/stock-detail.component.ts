@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonConstants } from '../constants/common-const';
-import { FilterService } from '../services/business.service/filter.service';
 import { ActivatedRoute } from '@angular/router';
-import * as _ from 'lodash';
+import { FilterConstant } from '../constants/filter-constant';
+import { FilterService } from '../services/business.service/filter.service';
 
 @Component({
   selector: 'app-stock-detail',
@@ -11,7 +10,7 @@ import * as _ from 'lodash';
 })
 export class StockDetailComponent implements OnInit {
   public dataOverivew: any;
-  public otherFactors = CommonConstants.otherFactors;
+  public otherFactors = FilterConstant.otherFactors;
   public companyCode: string;
   public selectedFilterTimeCode: string;
 

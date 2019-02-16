@@ -1,5 +1,11 @@
 <ng-container *ngIf="!(logginUser$ | async); else loginInBar">
-  chua login
+
+  <div class="border noTop" style="height:70px; position: relative;">
+    <div class="s116 subscriber_only" onclick="location.href='r/stockreports-unpdlk/'" style="cursor:pointer;width:160;height:20px;padding:7px;border: 1px solid #90afdc; background-color:#90afdc; box-sizing: content-box;">
+        <a href="r/stockreports-unpdlk/" style="color:white">Click to Unlock</a>
+    </div>
+</div>
+
 </ng-container>
 <ng-template #loginInBar>
 <div class="alert alert-success mt-3" role="alert">

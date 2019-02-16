@@ -1,13 +1,13 @@
-import { Factor } from '../interface/factor';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { BasicFilterInput } from '../interface/api-input';
-import { FilterService } from '../services/business.service/filter.service';
-import { BasicFilterDTO } from '../interface/basic-filter-dto';
-import { CommonConstants } from '../constants/common-const';
 import { ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
+import { BasicFilterInput } from '../interface/api-input';
+import { BasicFilterDTO } from '../interface/basic-filter-dto';
 import { DataItem } from '../interface/data-item';
+import { Factor } from '../interface/factor';
+import { FilterService } from '../services/business.service/filter.service';
+import { FilterConstant } from '../constants/filter-constant';
 
 export abstract class StockFilter {
   @ViewChild('stepper') stepper: MatStepper;
@@ -15,7 +15,7 @@ export abstract class StockFilter {
   private factorDeatailSearchInput: BasicFilterInput;
   private selectedDataItems: DataItem[];
   protected searchResult: BasicFilterDTO[] = [];
-  protected factorsData: Factor[] = CommonConstants.factors;
+  protected factorsData: Factor[] = FilterConstant.factors;
   protected isFilterPageReady = false;
 
   constructor(

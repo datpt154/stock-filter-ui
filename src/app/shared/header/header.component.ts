@@ -55,10 +55,6 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // todo [datphan] for testing
-    this.logginUser$.subscribe(data => {
-      console.log(data);
-    });
   }
 
   private filter(searchPattern: string): Observable<string[]> {

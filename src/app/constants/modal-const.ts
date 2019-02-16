@@ -3,4 +3,4 @@ export const ModalAttribute = {
     message: 'Bạn muốn xóa tin này?',
     closeLabel: 'Hủy',
     nextLabel: 'Đồng ý',
-}
+};

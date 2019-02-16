@@ -12,7 +12,7 @@
 
   <mat-step>
     <ng-template matStepLabel>Thông số lọc</ng-template>
-<second-filter-selection [selectedDataItems]="selectedDataItems" (next)="nextToFilterResult($event)" (selectionChanged)="factorDeatailChangeHandle($event)"></second-filter-selection>
+<app-second-filter-selection [selectedDataItems]="selectedDataItems" (next)="nextToFilterResult($event)" (selectionChanged)="factorDeatailChangeHandle($event)"></app-second-filter-selection>
   </mat-step>
 
   <mat-step>

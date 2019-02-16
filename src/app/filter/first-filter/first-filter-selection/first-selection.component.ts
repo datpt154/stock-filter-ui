@@ -1,13 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { DataItem } from '../../../interface/data-item';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import * as _ from 'lodash';
+import { DefaultFormatter } from 'ng2-nouislider';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { FilterConstant } from '../../../constants/filter-constant';
 import { BasicFilterInput } from '../../../interface/api-input';
+import { DataItem } from '../../../interface/data-item';
 
-import * as _ from 'lodash';
-import { CommonConstants } from '../../../constants/common-const';
-import { DefaultFormatter } from 'ng2-nouislider';
 
 @Component({
   selector: 'app-first-selection',
@@ -23,7 +23,7 @@ export class FirstFilterSelectionComponent implements OnInit, OnChanges {
   private ngUnsubscribe: Subject<any> = new Subject();
   private selectedStockExchanges: string[] = [];
   private otherFactosFormGroup: FormGroup;
-  private otherFactors = CommonConstants.otherFactors;
+  private otherFactors = FilterConstant.otherFactors;
   currentOrientation = 'horizontal';
 
   constructor(private _formBuilder: FormBuilder) { }

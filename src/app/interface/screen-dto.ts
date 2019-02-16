@@ -12,7 +12,7 @@ export interface GramhamNCavDto {
   nwc: number;
 }
 
-export interface GramhamNetDto {
+interface GramhamNet {
   cScrore: number;
   code: string;
   eps: number;
@@ -24,6 +24,11 @@ export interface GramhamNetDto {
   pb: number;
   pe: number;
   price: number;
+}
+
+export interface GramhamNetDto {
+  data: GramhamNet[];
+  limitData: boolean;
 }
 
 export interface CanslimDto {

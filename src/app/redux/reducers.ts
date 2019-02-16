@@ -11,3 +11,12 @@ export interface AppState {
 export const reducers = {
     logginUser: userReducer
 };
+
+
+export function getState(store: Store<AppState>): AppState {
+  let state: AppState;
+
+  store.pipe(take(1)).subscribe(s => state = s);
+
+  return state;
+}

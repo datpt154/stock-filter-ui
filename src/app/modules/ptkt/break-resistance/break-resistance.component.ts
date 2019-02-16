@@ -7,7 +7,7 @@ import { AppState } from '../../../redux/reducers';
 @Component({
   selector: 'app-break-resistance',
   templateUrl: './break-resistance.component.html',
-  styleUrls: ['./break-resistance.component.css']
+  styleUrls: ['./break-resistance.component.scss']
 })
 export class BreakResistanceComponent implements OnInit {
 

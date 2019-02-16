@@ -22,7 +22,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
     private authenticationService: AuthenticationService,
-    private store: Store<AppState>,
+    private store: Store<AppState>
   ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -34,42 +34,42 @@ export class AppComponent implements OnInit, OnDestroy {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
-        console.log('aaaaa NavigationEnd' );
+        console.log('aaaaa NavigationEnd');
       }
     });
   }
 
   ngOnInit() {
     this.authService.authState.subscribe((socialUser: SocialUser) => {
-      this.store.dispatch(new Actions.UpdateUserAction(socialUser));
-      this.router.navigate([this.router.url]);
-
-      if (socialUser) {
-        const userInfo: RegisterDTO = {
-          name: socialUser.name,
-          email: socialUser.email,
-          password: '',
-          provider: socialUser.provider,
-          idProvider: socialUser.id
-        };
-
-        // this.store.dispatch(new Actions.UpdateUserAction(this.logginUser));
-
-        this.authenticationService.login(userInfo).subscribe(
-          data => {
-            console.log(data);
-          },
-          err => {
-            console.log(err);
-          }
-        );
+      if (!socialUser) { // not login social network yet
+        this.store.dispatch(new Actions.UpdateUserAction(undefined));
+        this.router.navigate([this.router.url]);
+        return;
       }
+
+      const userInfo: RegisterDTO = {
+        name: socialUser.name,
+        email: socialUser.email,
+        password: '',
+        provider: socialUser.provider,
+        idProvider: socialUser.id
+      };
+
+      this.authenticationService.login(userInfo).subscribe(
+        data => {
+          this.store.dispatch(new Actions.UpdateUserAction(data));
+          this.router.navigate([this.router.url]);
+        },
+        err => {
+          console.log(err);
+        }
+      );
     });
   }
 
   ngOnDestroy() {
     if (this.navigationSubscription) {
-       this.navigationSubscription.unsubscribe();
+      this.navigationSubscription.unsubscribe();
     }
   }
 }

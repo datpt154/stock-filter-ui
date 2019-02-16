@@ -13,9 +13,9 @@ import { callNgModuleLifecycle } from '@angular/core/src/view/ng_module';
 import { GrowthForecastComponent } from './growth-forecast/growth-forecast.component';
 
 const routers: Routes = [
-  { path: 'quickGeneral', component: QuickGeneralComponent },
-  { path: 'gramhamNet', component: GramhamNetComponent },
-  { path: 'gramhamNCav', component: GramhamNcavComponent },
+  { path: 'quickGeneral', component: QuickGeneralComponent, runGuardsAndResolvers: 'always' },
+  { path: 'gramhamNet', component: GramhamNetComponent, runGuardsAndResolvers: 'always' },
+  { path: 'gramhamNCav', component: GramhamNcavComponent, runGuardsAndResolvers: 'always' },
   { path: 'canslim', component: CanslimComponent },
   { path: 'fisher', component: FisherComponent },
   { path: 'grahamChecklist', component: GrahamChecklistComponent },
