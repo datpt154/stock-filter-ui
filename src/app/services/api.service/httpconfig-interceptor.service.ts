@@ -16,11 +16,8 @@ export class HttpconfigInterceptorService {
     const logginUser = getState(this.store).logginUser;
     if (logginUser) {
       request = request.clone({ headers: request.headers.set('UserId', logginUser.id) });
-    } else {
-      request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
     }
-
-    request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
+    request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
 
     return next.handle(request).pipe(
       map((event: HttpEvent<any>) => {
