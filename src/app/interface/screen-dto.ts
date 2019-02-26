@@ -1,4 +1,4 @@
-export interface GramhamNCavDto {
+interface GramhamNCav {
   name: string;
   code: string;
   exchange: string;
@@ -10,6 +10,11 @@ export interface GramhamNCavDto {
   fScrore: number;
   cScrore: number;
   nwc: number;
+}
+
+export interface GramhamNCavDto {
+  data: GramhamNCav[];
+  limitData: boolean;
 }
 
 interface GramhamNet {
@@ -31,7 +36,7 @@ export interface GramhamNetDto {
   limitData: boolean;
 }
 
-export interface CanslimDto {
+interface Canslim {
   cScrore: number;
   code: string;
   eps: number;
@@ -45,7 +50,12 @@ export interface CanslimDto {
   roeYoy: number;
 }
 
-export interface FisherDto {
+export interface CanslimDto {
+  data: Canslim[];
+  limitData: boolean;
+}
+
+export interface Fisher {
   cScrore: number;
   code: string;
   debtToEquityRatio: number;
@@ -59,7 +69,12 @@ export interface FisherDto {
   price: number;
 }
 
-export interface GrahamChecklistDto {
+export interface FisherDto {
+  data: Fisher[];
+  limitData: boolean;
+}
+
+interface GrahamChecklist {
   cScrore: number;
   code: string;
   eps: number;
@@ -73,7 +88,12 @@ export interface GrahamChecklistDto {
   price: number;
 }
 
-export interface DBTTMDto {
+export interface GrahamChecklistDto {
+  data: GrahamChecklist[];
+  limitData: boolean;
+}
+
+export interface DBTTM {
   name: string;
   code: string;
   exchange: string;
@@ -85,4 +105,9 @@ export interface DBTTMDto {
   eps: number;
   fScrore: number;
   cScrore: number;
+}
+
+export interface DBTTMDto {
+  data: DBTTM[];
+  limitData: boolean;
 }

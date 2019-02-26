@@ -1,12 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FilterService } from '../../../services/business.service/filter.service';
-import { GramhamNetDto } from '../../../interface/screen-dto';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../../redux/reducers';
 import * as _ from 'lodash';
 import { finalize } from 'rxjs/operators';
 import { CommonConstants } from 'src/app/constants/common-const';
-import { NavigationEnd, Router } from '@angular/router';
+import { GramhamNetDto } from '../../../interface/screen-dto';
+import { AppState } from '../../../redux/reducers';
+import { FilterService } from '../../../services/business.service/filter.service';
 
 @Component({
   selector: 'app-gramham-net',
@@ -36,7 +36,8 @@ export class GramhamNetComponent implements OnInit, OnDestroy {
   loadData() {
     this.isLoading = true;
 
-    this.filter.getScreenNetNet()
+    this.filter
+      .getScreenNetNet()
       .pipe(
         finalize(() => {
           this.isLoading = false;

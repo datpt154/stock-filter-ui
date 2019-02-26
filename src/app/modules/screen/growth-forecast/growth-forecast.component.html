@@ -1,43 +1,121 @@
-<div class="alert alert-success mt-3" role="alert">
-  Đây là những doanh nghiệp dự phóng có kết quả kinh doanh tốt, được tính dựa trên tình hình sản xuất kinh doanh của doanh
-  nghiệp, kế hoạch kinh doanh và một số yếu tố khác. Được sắp xếp theo thứ tự những doanh nghiệp có dự kiến có đà tăng trưởng
-  cao nhất cho đến thấp nhất. Dữ liệu sẽ thay đổi theo từng quý, dựa vào thực tế thực hiện của doanh nghiệp.
-  <br> Mua và nắm giữ những cổ phiếu tăng trưởng mạnh, là một chiến lược đầu tư tốt nhất cho kế hoạch đầu tư trung hạn 3-9 tháng.
-  Đặc biết là gần mùa công bố BCTC.
-</div>
+<div>
+  <div *ngIf="isLoading; else dataReady" class="d-flex justify-content-center mt-5">
+    <div class="spinner-border text-success" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
 
-<h5 class="text-center mt-5 font-weight-bold">Doanh nghiệp dự báo tăn trưởng mạnh</h5>
-<table class="table table-bordered table-hover">
-  <thead class="text-center">
-    <tr>
-      <th scope="cSol">STT</th>
-      <th scope="col">Cổ phiếu</th>
-      <th scope="col">Công ty</th>
-      <th scope="col">Sàn</th>
-      <th scope="col">Giá</th>
-      <th scope="col">Luỹ kế LNST từ đầu năm($b)</th>
-      <th scope="col">Luỹ kế LNST so với năm trước(%)</th>
-      <th scope="col">P/E</th>
-      <th scope="col">P/B</th>
-      <th scope="col">EPS</th>
-      <th scope="col">F-Score</th>
-      <th scope="col">C-Score</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let row of data; let idx=index">
-      <td>{{idx + 1}}</td>
-      <td>{{row?.code}}</td>
-      <td>{{row?.name}}</td>
-      <td>{{row?.exchange}}</td>
-      <td class="text-right">{{row?.price | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.result| number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.yoy | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.pe | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.pb | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.eps | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.fScrore | number:'1.2-2'}}</td>
-      <td class="text-right">{{row?.cScrore | number:'1.2-2'}}</td>
-    </tr>
-  </tbody>
-</table>
+  <ng-template #dataReady>
+    <div class="alert alert-success mt-3" role="alert">
+      Đây là những doanh nghiệp dự phóng có kết quả kinh doanh tốt, được tính dựa trên tình hình sản xuất kinh doanh của
+      doanh nghiệp, kế hoạch kinh doanh và một số yếu tố khác. Được sắp xếp theo thứ tự những doanh nghiệp có dự kiến có
+      đà tăng trưởng cao nhất cho đến thấp nhất. Dữ liệu sẽ thay đổi theo từng quý, dựa vào thực tế thực hiện của doanh
+      nghiệp.
+      <br />
+      Mua và nắm giữ những cổ phiếu tăng trưởng mạnh, là một chiến lược đầu tư tốt nhất cho kế hoạch đầu tư trung hạn
+      3-9 tháng. Đặc biết là gần mùa công bố BCTC.
+    </div>
+
+    <div style="position: relative;">
+      <ng-container *ngIf="data?.limitData">
+        <div
+          class="s116 subscriber_only"
+          onclick="location.href='r/stockreports-unpdlk/'"
+          style="cursor:pointer;width:160;height:20px;padding:7px;border: 1px solid #90afdc; background-color:#90afdc; box-sizing: content-box;"
+        >
+          <a href="r/stockreports-unpdlk/" style="color:white">Click to Unlock</a>
+        </div>
+      </ng-container>
+      <h5 class="text-center mt-5 font-weight-bold">Doanh nghiệp dự báo tăn trưởng mạnh</h5>
+      <table class="table table-bordered table-hover">
+        <thead class="text-center">
+          <tr>
+            <th scope="cSol">STT</th>
+            <th scope="col">Cổ phiếu</th>
+            <th scope="col">Công ty</th>
+            <th scope="col">Sàn</th>
+            <th scope="col">Giá</th>
+            <th scope="col">Luỹ kế LNST từ đầu năm($b)</th>
+            <th scope="col">Luỹ kế LNST so với năm trước(%)</th>
+            <th scope="col">P/E</th>
+            <th scope="col">P/B</th>
+            <th scope="col">EPS</th>
+            <th scope="col">F-Score</th>
+            <th scope="col">C-Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="data?.limitData; else NolimitData">
+            <tr *ngFor="let row of data?.data; let idx = index">
+              <td>{{ idx + 1 }}</td>
+              <td>{{ row?.code }}</td>
+              <td>{{ row?.name }}</td>
+              <td>{{ row?.exchange }}</td>
+              <td class="text-right">{{ row?.price | number: '1.2-2' }}</td>
+              <td class="text-right">{{ row?.result | number: '1.2-2' }}</td>
+              <td class="text-right">{{ row?.yoy | number: '1.2-2' }}</td>
+              <td class="text-right">{{ row?.pe | number: '1.2-2' }}</td>
+              <td class="text-right">{{ row?.pb | number: '1.2-2' }}</td>
+              <td class="text-right">{{ row?.eps | number: '1.2-2' }}</td>
+              <td class="text-right">{{ row?.fScrore | number: '1.2-2' }}</td>
+              <td class="text-right">{{ row?.cScrore | number: '1.2-2' }}</td>
+            </tr>
+
+            <tr *ngFor="let row of dumpArray">
+              <td>{{ row }}</td>
+              <td>
+                <a class="blur3-left " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+              </td>
+              <td>
+                <a class="blur3-left " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+              </td>
+              <td>
+                <a class="blur3-left " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+              </td>
+              <td>
+                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+              </td>
+              <td>
+                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+              </td>
+              <td>
+                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+              </td>
+              <td>
+                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+              </td>
+              <td>
+                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+              </td>
+              <td>
+                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+              </td>
+              <td>
+                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+              </td>
+              <td>
+                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+              </td>
+            </tr>
+          </ng-container>
+          <ng-template #NolimitData>
+            <tr *ngFor="let row of data?.data; let idx = index">
+              <td>{{ idx + 1 }}</td>
+              <td>{{ row?.code }}</td>
+              <td>{{ row?.name }}</td>
+              <td>{{ row?.exchange }}</td>
+              <td class="text-right">{{ row?.price | number: '1.2-2' }}</td>
+              <td class="text-right">{{ row?.result | number: '1.2-2' }}</td>
+              <td class="text-right">{{ row?.yoy | number: '1.2-2' }}</td>
+              <td class="text-right">{{ row?.pe | number: '1.2-2' }}</td>
+              <td class="text-right">{{ row?.pb | number: '1.2-2' }}</td>
+              <td class="text-right">{{ row?.eps | number: '1.2-2' }}</td>
+              <td class="text-right">{{ row?.fScrore | number: '1.2-2' }}</td>
+              <td class="text-right">{{ row?.cScrore | number: '1.2-2' }}</td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </table>
+    </div>
+  </ng-template>
+</div>
