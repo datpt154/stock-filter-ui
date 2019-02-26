@@ -42,6 +42,7 @@
             <th scope="col">EPS</th>
             <th scope="col">F-Score</th>
             <th scope="col">C-Score</th>
+            <th scope="col">Mô hình</th>
           </tr>
         </thead>
         <tbody>
@@ -59,6 +60,9 @@
               <td class="text-right">{{ row?.eps | number: '1.2-2' }}</td>
               <td class="text-right">{{ row?.fScrore | number: '1.2-2' }}</td>
               <td class="text-right">{{ row?.cScrore | number: '1.2-2' }}</td>
+              <td class="text-right">
+                show
+              </td>
             </tr>
 
             <tr *ngFor="let row of dumpArray">
@@ -96,6 +100,9 @@
               <td>
                 <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
               </td>
+              <td>
+                show
+              </td>
             </tr>
           </ng-container>
           <ng-template #NolimitData>
@@ -112,6 +119,16 @@
               <td class="text-right">{{ row?.eps | number: '1.2-2' }}</td>
               <td class="text-right">{{ row?.fScrore | number: '1.2-2' }}</td>
               <td class="text-right">{{ row?.cScrore | number: '1.2-2' }}</td>
+              <td class="text-right">
+                <a
+                  [ngbPopover]="popContent"
+                  triggers="mouseenter:mouseleave"
+                  #p1="ngbPopover"
+                  placement="left"
+                  >show</a
+                >
+                <!-- <img src="url(../../../../assets/blur.png)" alt="" width="500" height="600"> -->
+              </td>
             </tr>
           </ng-template>
         </tbody>
@@ -119,3 +136,7 @@
     </div>
   </ng-template>
 </div>
+
+<ng-template #popContent let-greeting="greeting">
+  <img src="https://drive.google.com/uc?id=1oqskJ0HlChF2bXFsysjnE97OlIeeAS4i" alt="" />
+</ng-template>
