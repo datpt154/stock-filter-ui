@@ -51,14 +51,6 @@ export class GramhamNetComponent implements OnInit, OnDestroy {
       });
   }
 
-  toggleWithGreeting(popover, greeting: string, language: string) {
-    if (popover.isOpen()) {
-      popover.close();
-    } else {
-      popover.open();
-    }
-  }
-
   ngOnDestroy() {
     if (this.navigationSubscription) {
       this.navigationSubscription.unsubscribe();
