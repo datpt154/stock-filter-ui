@@ -1,12 +1,14 @@
-export interface PTKTDto {
-    adx14: number;
-    breakPrice: number;
+interface PTKTD {
     breakTime: string;
-    code: number;
-    exchange: number;
-    macd: number;
-    name: string;
-    price: number;
-    rsi14: number;
-    volume: number;
+    code: string;
+    icon: string;
+    imageLink: string;
+    pattern: string;
+    stringStatus: string;
+    trend: string;
+}
+
+export interface PTKTDto {
+  data: PTKTD[];
+  limitData: boolean;
 }
