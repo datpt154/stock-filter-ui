@@ -32,7 +32,12 @@ export class HelperService {
         }, (close) => {
           obser.eror();
         }
-      )
-    })
+      );
+    });
+  }
+
+  getPatternImage(patternIcon: string): string {
+    const temp = patternIcon.trim();
+    return `assets/chart-pattern/${temp}.jpg`;
   }
 }

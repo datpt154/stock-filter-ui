@@ -1,0 +1,39 @@
+<div class="alert alert-success mt-3" role="alert">
+  Mô hình giá là phương pháp đầu tư rất hiệu quả và được Richard W. Schabacker tổng hợp và phát triển. Mô hình giá có
+  xác suất thành công lên tới hơn 70%, và có giá mục tiêu rõ ràng, nên đây là một phương pháp giao dịch rất được nhiều
+  nhà đầu tư sử dụng rộng rãi.
+  <br />
+  Bộ lọc bao gồm những mô hình giá đang hình thành và đã hoàn thành đúng chuẩn, đi kèm với tín hiệu khối lượng hoặc MACD
+  phân kỳ để tăng xác suất thành công của mô hình.
+</div>
+
+<h5 class="text-center mt-5 font-weight-bold">Trend trader</h5>
+<table class="table table-bordered table-hover">
+  <thead class="text-center">
+    <tr>
+      <th scope="cSol">STT</th>
+      <th scope="col">Cổ phiếu</th>
+      <th scope="col">Mô hình giá</th>
+      <th scope="col">Tín hiệu</th>
+      <th scope="col">Tình trạng</th>
+      <th scope="col">Ngày break</th>
+      <th scope="col">Biểu đồ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of data?.data; let idx = index">
+      <td>{{ idx + 1 }}</td>
+      <td>{{ row?.code }}</td>
+      <td class="d-flex justify-content-between align-items-center p-0 pl-3">
+        <span>{{ row?.pattern }}</span>
+        <img [src]="helper.getPatternImage(row?.icon)" style="height: 35px;">
+      </td>
+      <td>{{ row?.trend }}</td>
+      <td class="text-right">{{ row?.stringStatus }}</td>
+      <td class="text-right">{{ row?.breakTime }}</td>
+      <td class="text-right">
+        chart
+      </td>
+    </tr>
+  </tbody>
+</table>

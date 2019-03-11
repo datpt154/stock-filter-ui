@@ -2,22 +2,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { ChartPatternComponent } from './chart-pattern.component';
 
-import { SwingTradeComponent } from './swing-trade.component';
 
-describe('SwingTradeComponent', () => {
-  let component: SwingTradeComponent;
-  let fixture: ComponentFixture<SwingTradeComponent>;
+describe('ChartPatternComponent', () => {
+  let component: ChartPatternComponent;
+  let fixture: ComponentFixture<ChartPatternComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SwingTradeComponent ]
+      declarations: [ ChartPatternComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SwingTradeComponent);
+    fixture = TestBed.createComponent(ChartPatternComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
