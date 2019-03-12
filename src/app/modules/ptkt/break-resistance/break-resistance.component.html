@@ -7,8 +7,9 @@
 
   <ng-template #dataReady>
     <div class="alert alert-success mt-3" role="alert">
-      Danh mục cổ phiếu "Breakout" là bộ lọc những cổ phiếu vừa phá đỉnh hoặc vừa phá đáy. Chúng cho tín hiệu thị trường sắp bước vào chu kỳ tăng(giảm) mới.
-      <br/>
+      Danh mục cổ phiếu "Breakout" là bộ lọc những cổ phiếu vừa phá đỉnh hoặc vừa phá đáy. Chúng cho tín hiệu thị trường
+      sắp bước vào chu kỳ tăng(giảm) mới.
+      <br />
       MUA/BÁN cổ phiếu theo tín hiệu này thường cho mức lợi nhuận cao và nhanh nhất, nhưng đi kèm rủi ro cũng khá cao
     </div>
 
@@ -22,29 +23,34 @@
           <a href="r/stockreports-unpdlk/" style="color:white">Click to Unlock</a>
         </div>
       </ng-container>
-      <h5 class="text-center mt-5 font-weight-bold">Graham checklist</h5>
+      <h5 class="text-center mt-5 font-weight-bold">Tín hiệu Breakout</h5>
       <table class="table table-bordered table-hover">
         <thead class="text-center">
           <tr>
             <th scope="cSol">STT</th>
             <th scope="col">Cổ phiếu</th>
-            <th scope="col" >Mô hình</th>
-            <th scope="col" >Tín hiệu</th>
-            <th scope="col" >Tình trạng</th>
-            <th scope="col" >Ngày break</th>
-            <th scope="col" >Chart</th>
+            <th scope="col">Mô hình giá</th>
+            <th scope="col">Tín hiệu</th>
+            <th scope="col">Tình trạng</th>
+            <th scope="col">Ngày break</th>
+            <th scope="col">Biểu đồ</th>
           </tr>
         </thead>
         <tbody>
           <ng-container *ngIf="data?.limitData; else NolimitData">
             <tr *ngFor="let row of data?.data; let idx = index">
-              <td>{{idx + 1}}</td>
-              <td>{{row?.code}}</td>
-              <td>{{row?.trend}}</td>
-              <td>{{row?.pattern}}</td>
-              <td>{{row?.stringStatus}}</td>
-              <td>{{row?.breakTime}}</td>
-              <td>chart</td>
+              <td>{{ idx + 1 }}</td>
+              <td>{{ row?.code }}</td>
+              <td class="d-flex justify-content-between align-items-center p-0 pl-3">
+                <span>{{ row?.pattern }}</span>
+                <img [src]="helper.getPatternImage(row?.icon)" style="height: 35px;" />
+              </td>
+              <td>{{ row?.trend }}</td>
+              <td class="text-right">{{ row?.stringStatus }}</td>
+              <td class="text-right">{{ row?.breakTime }}</td>
+              <td class="text-right">
+                <a (click)="openChart(content, row?.imageLink)">show</a>
+              </td>
             </tr>
 
             <tr *ngFor="let row of dumpArray">
@@ -67,23 +73,21 @@
               <td>
                 <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
               </td>
-              <td>
-                <a class="blur3-left " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
-              </td>
             </tr>
           </ng-container>
           <ng-template #NolimitData>
             <tr *ngFor="let row of data?.data; let idx = index">
-              <td>{{idx + 1}}</td>
-              <td>{{row?.code}}</td>
-              <td>{{row?.trend}}</td>
-              <td>{{row?.pattern}}</td>
-              <td>{{row?.stringStatus}}</td>
-              <td class="text-right">{{row?.breakTime}}</td>
-              <td>
-                <a
-                (click)="openChart(content, row?.imageLink)"
-                >show</a>
+              <td>{{ idx + 1 }}</td>
+              <td>{{ row?.code }}</td>
+              <td class="d-flex justify-content-between align-items-center p-0 pl-3">
+                <span>{{ row?.pattern }}</span>
+                <img [src]="helper.getPatternImage(row?.icon)" style="height: 35px;" />
+              </td>
+              <td>{{ row?.trend }}</td>
+              <td class="text-right">{{ row?.stringStatus }}</td>
+              <td class="text-right">{{ row?.breakTime }}</td>
+              <td class="text-right">
+                <a (click)="openChart(content, row?.imageLink)">show</a>
               </td>
             </tr>
           </ng-template>
@@ -93,21 +97,10 @@
   </ng-template>
 </div>
 
-<ng-template #popContent let-greeting="greeting">
-  <img src="https://drive.google.com/uc?id=1oqskJ0HlChF2bXFsysjnE97OlIeeAS4i" alt="" />
-</ng-template>
-
 <ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title">Modal title</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
   <div class="modal-body">
-    <img src="https://lh3.googleusercontent.com/YKMO5NllN8LA-4tEnfcIpqB0PL5EPBzk-fsjpLNu-UPikb2Q4pZFsz8TaaoV6PYXBILJkr5D1Fe-m5sNbPmdhZwNxmWOrkzqbk_ru_LLH6qwGYHoTvNsflRJlYcAWbhnaLeuzxDg=w2400" alt="" />
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    <img class="w-100 h-100"
+      [src]="imageURL"
+    />
   </div>
 </ng-template>
