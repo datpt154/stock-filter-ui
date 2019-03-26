@@ -84,7 +84,7 @@
               <td class="text-right">{{ row?.stringStatus }}</td>
               <td class="text-right">{{ row?.breakTime }}</td>
               <td class="text-right">
-                <a (click)="openChart(content, row?.imageLink)">show</a>
+                  <fa [name]="'line-chart'" [size]=1 (click)="openChart(content, row?.imageLink)"></fa>
               </td>
             </tr>
           </ng-template>

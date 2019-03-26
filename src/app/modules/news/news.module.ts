@@ -9,6 +9,7 @@ import { ListNewsComponent } from './list-news/list-news.component';
 import { DetailNewsComponent } from './detail-news/detail-news.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 const routers: Routes = [
   { path: 'createNews', component: CreateNewsComponent },
@@ -27,6 +28,8 @@ const routers: Routes = [
     MaterialModule,
     SharedModule,
     CKEditorModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
     RouterModule.forChild(routers)
   ],
   declarations: [

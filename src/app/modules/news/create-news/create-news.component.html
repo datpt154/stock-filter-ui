@@ -36,7 +36,7 @@
   </div>
   <div class="form-group">
     <label>Nội Dung</label>
-    <ckeditor [editor]="Editor" data="<p>Hello, world!</p>" formControlName="content" (ready)="onReady($event)"></ckeditor>
+    <div [froalaEditor]="editorOption" formControlName="content">Nội dung...</div>
   </div>
   <div class="alert alert-danger" role="alert" *ngIf="showAlert">
     Bạn chưa nhập đầy đủ các mục cần thiết!

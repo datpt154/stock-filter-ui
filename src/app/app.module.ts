@@ -1,24 +1,21 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-
-import { AppComponent } from './app.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
-import { SharedModule } from './shared/shared.module';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ServicesModule } from './services/services.module';
-import { FormsModule } from '@angular/forms';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { MaterialModule } from './shared/angular-material-design/material.module';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { HomePageComponent } from './home-page/home-page.component';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
-import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider } from 'angular4-social-login';
-import { reducers } from './redux/reducers';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
+import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
+import { AuthServiceConfig, GoogleLoginProvider, SocialLoginModule } from 'angular4-social-login';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { AppComponent } from './app.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { reducers } from './redux/reducers';
 import { HttpconfigInterceptorService } from './services/api.service/httpconfig-interceptor.service';
+import { ServicesModule } from './services/services.module';
+import { MaterialModule } from './shared/angular-material-design/material.module';
+import { SharedModule } from './shared/shared.module';
 
 const routers: Routes = [
   { path: '', component: HomePageComponent},
@@ -48,7 +45,7 @@ const config = new AuthServiceConfig([
       FormsModule,
       NgbModule,
       MaterialModule,
-      AngularFontAwesomeModule,
+      Angular2FontawesomeModule,
       BrowserAnimationsModule,
       SharedModule,
       HttpClientModule,

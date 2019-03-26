@@ -4,11 +4,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { Observable, empty, of } from 'rxjs';
-import { debounceTime, distinctUntilChanged, flatMap, map, switchMap } from 'rxjs/operators';
-import { EditNewsItem, NewsListItem } from 'src/app/models/news';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  flatMap,
+  map,
+  switchMap
+} from 'rxjs/operators';
+import { EditNewsItem } from 'src/app/models/news';
 import { NewsService } from 'src/app/services/business.service/news.service';
 import { FilterService } from '../../../services/business.service/filter.service';
-import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 
 const NUMBER_SHOW_FILTER_RESULT = 10;
 
@@ -17,60 +22,55 @@ const NUMBER_SHOW_FILTER_RESULT = 10;
   templateUrl: './create-news.component.html',
   styleUrls: ['./create-news.component.scss']
 })
-
 export class CreateNewsComponent implements OnInit {
   public editorOption: Object = {
     heightMin: 400,
     imageUpload: false,
     placeholderText: 'Nhập văn bản...'
   };
+
   public createNewsForm = new FormGroup({
     subject: new FormControl('', Validators.required),
     thumbnail: new FormControl('', Validators.required),
     searchCompany: new FormControl(''),
     companyTag: new FormControl([]),
     filter: new FormControl('', Validators.required),
-    content: new FormControl('', Validators.required),
+    content: new FormControl('', Validators.required)
   });
   public showAlert = false;
   public listFilter = [];
   private editNewsId = 0;
-  public Editor = DecoupledEditor;
 
   constructor(
     private filterService: FilterService,
     private newsService: NewsService,
     private router: Router,
-    private activeRoute: ActivatedRoute,
-  ) { }
+    private activeRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.newsService.getListFilterForCreateNew().pipe(
-      flatMap(result => {
-        this.listFilter = result;
-        return this.activeRoute.params;
-      }),
-      flatMap(params => {
-        if (params.id) {
-          return this.newsService.getNewsDetail(params.id);
-        } else {
-          return empty();
+    this.newsService
+      .getListFilterForCreateNew()
+      .pipe(
+        flatMap(result => {
+          this.listFilter = result;
+          return this.activeRoute.params;
+        }),
+        flatMap(params => {
+          if (params.id) {
+            return this.newsService.getNewsDetail(params.id);
+          } else {
+            return empty();
+          }
+        })
+      )
+      .subscribe(result => {
+        if (!_.isEmpty(result)) {
+          this.editNewsId = result.id;
+          this.updateDataForEdit(result);
         }
-      })
-    ).subscribe(result => {
-      if (!_.isEmpty(result)) {
-        this.editNewsId = result.id;
-        this.updateDataForEdit(result);
-      }
-    });
+      });
   }
-
-    public onReady( editor ) {
-        editor.ui.view.editable.element.parentElement.insertBefore(
-            editor.ui.view.toolbar.element,
-            editor.ui.view.editable.element
-        );
-    }
 
   public selectACompany(event: any) {
     event.preventDefault();
@@ -89,7 +89,7 @@ export class CreateNewsComponent implements OnInit {
       switchMap(val => {
         return this.filter(val || '');
       })
-    )
+    );
 
   public removeTag(tag: string) {
     const selectedValue: string[] = this.createNewsForm.get('companyTag').value;
@@ -135,7 +135,9 @@ export class CreateNewsComponent implements OnInit {
 
     return this.filterService.searchCompany(searchPattern).pipe(
       map(data => {
-        const result = data.map(company => [company.code.toUpperCase(), company.name].join(' - '));
+        const result = data.map(company =>
+          [company.code.toUpperCase(), company.name].join(' - ')
+        );
         if (result.length > NUMBER_SHOW_FILTER_RESULT) {
           return result.slice(0, NUMBER_SHOW_FILTER_RESULT);
         } else {
