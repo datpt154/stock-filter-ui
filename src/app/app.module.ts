@@ -31,7 +31,11 @@ const routers: Routes = [
 const config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider('513462605172-t92vuah13jnp529gjkt384mvl5uormg9.apps.googleusercontent.com')
+    // server
+    provider: new GoogleLoginProvider('513462605172-88v3v6fheuogvduuooq1f8ljbshls7gm.apps.googleusercontent.com')
+    // local
+    // provider: new GoogleLoginProvider('513462605172-t92vuah13jnp529gjkt384mvl5uormg9.apps.googleusercontent.com')
+
   }
 ]);
 
