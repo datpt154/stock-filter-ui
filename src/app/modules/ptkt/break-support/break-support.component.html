@@ -8,15 +8,23 @@
   <ng-template #dataReady>
     <div class="alert alert-success mt-3" role="alert">
       Bollinger bands, được phát triển bởi John Bollinger vào năm 1983, chỉ báo cho tín hiệu mua khi giá cắt lên dải trên của Bollinger
-      bands. Theo nhà sáng lập John Bollinger thì cách sử dụng BollingerBand hiệu quả nhất là khi nó cắt lên đồ thị có mô
-      hình W hoặc M.
-      <br /> Bộ lọc Bollinger Band (20) là các cổ phiếu có tín hiệu giá cắt lên đường BB trên của mô hình W cho tín hiệu MUA, và
-      giá cắt xuống đường BB dưới của mô hình M cho tín hiệu BÁN.
+      bands. Theo nhà sáng lập John Bollinger thì cách sử dụng BollingerBand hiệu quả nhất là khi nó cắt lên đồ thị có mô hình W hoặc M.
+      Điều kiện lọc như sau:
+      <br />
+      <ul>
+        <li>Xuất hiện mô hình W (hoặc M)</li>
+        <li>Giá cắt lên đường BB(20) trên, mô hình W Hoặc giá cắt xuống đường BB(20) dưới, mô hình M</li>
+        <li>Giá trị giao dịch trung bình 3 tháng > 500m</li>
+      </ul>
     </div>
 
     <div style="position: relative;">
       <ng-container *ngIf="data?.limitData">
-        <div class="s116 subscriber_only" onclick="location.href='r/stockreports-unpdlk/'" style="cursor:pointer;width:160;height:20px;padding:7px;border: 1px solid #90afdc; background-color:#90afdc; box-sizing: content-box;">
+        <div
+          class="s116 subscriber_only"
+          onclick="location.href='r/stockreports-unpdlk/'"
+          style="cursor:pointer;width:160;height:20px;padding:7px;border: 1px solid #90afdc; background-color:#90afdc; box-sizing: content-box;"
+        >
           <a href="r/stockreports-unpdlk/" style="color:white">Click to Unlock</a>
         </div>
       </ng-container>
@@ -29,7 +37,7 @@
             <th scope="col">Mô hình giá</th>
             <th scope="col">Tín hiệu</th>
             <th scope="col">Tình trạng</th>
-            <th scope="col">Ngày break</th>
+            <th scope="col">Ngày</th>
             <th scope="col">Biểu đồ</th>
           </tr>
         </thead>
@@ -84,7 +92,7 @@
               <td class="text-right">{{ row?.stringStatus }}</td>
               <td class="text-right">{{ row?.breakTime }}</td>
               <td class="text-right">
-                  <fa [name]="'line-chart'" [size]=1 (click)="openChart(content, row?.imageLink)"></fa>
+                <fa [name]="'line-chart'" [size]="1" (click)="openChart(content, row?.imageLink)"></fa>
               </td>
             </tr>
           </ng-template>

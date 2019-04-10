@@ -1,5 +1,8 @@
 <div>
-  <div *ngIf="isLoading; else dataReady" class="d-flex justify-content-center mt-5">
+  <div
+    *ngIf="isLoading; else dataReady"
+    class="d-flex justify-content-center mt-5"
+  >
     <div class="spinner-border text-success" role="status">
       <span class="sr-only">Loading...</span>
     </div>
@@ -7,14 +10,23 @@
 
   <ng-template #dataReady>
     <div class="alert alert-success mt-3" role="alert">
-      CANSLIM là phương pháp đầu tư được giới thiệu bởi William O'Neill, thông qua cuốn sách “Kiếm tiền bằng cách đầu tư
-      chứng khoán” nổi tiếng của ông. Phương pháp này gồm 7 tiêu chí: (1) C = Lãi ròng trên mỗi quý (2) A = Tăng trưởng
-      lợi nhuận hằng năm (3) N = Thông tin mới về công ty (4) S = Quan hệ cung cầu cổ phiếu (5) L = Đà tăng của nó so
-      với thị trường (6) I = sự quan tâm của nhà đầu tư tổ chức (7) M = xu hướng thị trường.
-      <br />
-      Bộ lọc này sẽ lọc ra những cổ phiếu có tiêu chí (1) và (2) dựa vào báo cáo tài chính của công ty. Đó là những cty
-      có tốc độ tăng trường lợi nhuận mỗi quý và so với quý cùng kỳ là 15%, tốc độ tăng trưởng hai năm gần nhất trên 10%
-      và có ROE cao. (Tiêu chí dự phóng tăng trưởng của năm tiếp theo không nằm trong này)
+      CANSLIM là phương pháp đầu tư được giới thiệu bởi William O'Neill, thông
+      qua cuốn sách “Kiếm tiền bằng cách đầu tư chứng khoán” nổi tiếng của ông.
+      Phương pháp này gồm 7 tiêu chí: (1) C = Lãi ròng trên mỗi quý (2) A = Tăng
+      trưởng lợi nhuận hằng năm (3) N = Thông tin mới về công ty (4) S = Quan hệ
+      cung cầu cổ phiếu (5) L = Đà tăng của nó so với thị trường (6) I = sự quan
+      tâm của nhà đầu tư tổ chức (7) M = xu hướng thị trường. Tiêu chí lọc như
+      sau:
+      <ul>
+        <li>Tăng trưởng lợi nhuận Quý này với Quý trước > 15%</li>
+        <li>Tăng trưởng lợi nhuận Quý này với Quý năm trước > 15%</li>
+        <li>Tăng trưởng lợi nhuận năm nay > 10%</li>
+        <li>Tăng trưởng lợi nhuận năm trước > 10%</li>
+        <li>ROE > 15%</li>
+        <li>Giá CP so với đỉnh 52 tuần > -15%</li>
+        <li>Thứ hạng sức mạnh với thị trường thuộc Top 25%</li>
+        <li>Giá CP nằm trên MA(50)</li>
+      </ul>
     </div>
 
     <div style="position: relative;">
@@ -24,7 +36,9 @@
           onclick="location.href='r/stockreports-unpdlk/'"
           style="cursor:pointer;width:160;height:20px;padding:7px;border: 1px solid #90afdc; background-color:#90afdc; box-sizing: content-box;"
         >
-          <a href="r/stockreports-unpdlk/" style="color:white">Click to Unlock</a>
+          <a href="r/stockreports-unpdlk/" style="color:white"
+            >Click to Unlock</a
+          >
         </div>
       </ng-container>
       <h5 class="text-center mt-5 font-weight-bold">CANSLIM</h5>
@@ -65,37 +79,70 @@
             <tr *ngFor="let row of dumpArray">
               <td>{{ row }}</td>
               <td>
-                <a class="blur3-left " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-left "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-left " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-left "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-left " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-left "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
             </tr>
           </ng-container>

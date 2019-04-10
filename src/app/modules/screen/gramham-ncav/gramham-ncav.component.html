@@ -1,5 +1,8 @@
 <div>
-  <div *ngIf="isLoading; else dataReady" class="d-flex justify-content-center mt-5">
+  <div
+    *ngIf="isLoading; else dataReady"
+    class="d-flex justify-content-center mt-5"
+  >
     <div class="spinner-border text-success" role="status">
       <span class="sr-only">Loading...</span>
     </div>
@@ -7,13 +10,14 @@
 
   <ng-template #dataReady>
     <div class="alert alert-success mt-3" role="alert">
-      Phương pháp đầu tư NCAV Bargain là cách đầu tư mua với giá cổ phiếu được “chiết khấu” mạnh, được Graham giới thiệu
-      trong cuốn “Nhà đầu tư thông minh”. Cách tiếp cận của phương pháp này là mua một công ty có vốn hóa thấp hơn Tài
-      sản ngắn hạn ròng (NCAV = Net current asset value) được tính bằng tài sản ngắn hạn trừ đi nợ ngắn hạn. Vì tài sản
-      đã chiết khấu với giá rất thấp nên rủi ro giảm giá tiếp rất thấp.
-      <br />
-      Một nghiên cứu của tờ Finance Analyst Journal cho biết trong vòng 13 năm, lợi nhuận trung bình của phương pháp này
-      là 29.4%/năm so với 11.5%/năm của NYSE-AMEX Index.
+      Phương pháp đầu tư NCAV Bargain là cách đầu tư mua với giá cổ phiếu được “chiết khấu” mạnh, được Graham giới thiệu trong cuốn “Nhà đầu tư thông
+      minh”. Cách tiếp cận của phương pháp này là mua một công ty có vốn hóa thấp hơn Tài sản ngắn hạn ròng (NCAV = Net current asset value) được tính
+      bằng tài sản ngắn hạn trừ đi nợ ngắn hạn. Vì tài sản đã chiết khấu với giá rất thấp nên rủi ro giảm giá tiếp rất thấp. Tiêu chí lọc như sau:
+      <ul>
+        <li>P/NCAV < 1</li>
+        <li>Khối lượng giao dịch trung bình 3 tháng > 50.000</li>
+        <li>Không thuộc ngành tài chính</li>
+      </ul>
     </div>
 
     <div style="position: relative;">
@@ -23,10 +27,14 @@
           onclick="location.href='r/stockreports-unpdlk/'"
           style="cursor:pointer;width:160;height:20px;padding:7px;border: 1px solid #90afdc; background-color:#90afdc; box-sizing: content-box;"
         >
-          <a href="r/stockreports-unpdlk/" style="color:white">Click to Unlock</a>
+          <a href="r/stockreports-unpdlk/" style="color:white"
+            >Click to Unlock</a
+          >
         </div>
       </ng-container>
-      <h5 class="text-center mt-5 font-weight-bold">Benjamin Graham NCAV Bargain</h5>
+      <h5 class="text-center mt-5 font-weight-bold">
+        Benjamin Graham NCAV Bargain
+      </h5>
       <table class="table table-bordered table-hover">
         <thead class="text-center">
           <tr>
@@ -64,37 +72,70 @@
             <tr *ngFor="let row of dumpArray">
               <td>{{ row }}</td>
               <td>
-                <a class="blur3-left " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-left "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-left " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-left "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-left " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-left "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
             </tr>
           </ng-container>

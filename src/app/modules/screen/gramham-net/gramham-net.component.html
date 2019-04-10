@@ -1,5 +1,8 @@
 <div>
-  <div *ngIf="isLoading; else dataReady" class="d-flex justify-content-center mt-5">
+  <div
+    *ngIf="isLoading; else dataReady"
+    class="d-flex justify-content-center mt-5"
+  >
     <div class="spinner-border text-success" role="status">
       <span class="sr-only">Loading...</span>
     </div>
@@ -7,13 +10,16 @@
 
   <ng-template #dataReady>
     <div class="alert alert-success mt-3" role="alert">
-      Phương pháp đầu tư NET NET là cách đầu tư mua với giá cổ phiếu được “chiết khấu” mạnh, được Graham giới thiệu
-      trong cuốn “Nhà đầu tư thông minh”. Cách tiếp cận của phương pháp này là mua một công ty mà thị trường đang định
-      giá tài sản của nó rất rẻ và rủi ro đầu tư rất thấp ngay cả khi công ty phá sản. Tức là tìm những cty có vốn hóa
-      thấp hơn cả Vốn lưu động ròng (NNWC). Đa số những cty này được gọi là “cigar butts”, tức là những cty làm ăn kém
-      nên giá thị trường giảm theo thời gian.
+      Phương pháp đầu tư NET NET là cách đầu tư mua với giá cổ phiếu được “chiết khấu” mạnh, được Graham giới thiệu trong cuốn “Nhà đầu tư thông minh”.
+      Cách tiếp cận của phương pháp này là mua một công ty mà thị trường đang định giá tài sản của nó rất rẻ và rủi ro đầu tư rất thấp ngay cả khi công
+      ty phá sản. Tức là tìm những cty có vốn hóa thấp hơn cả Vốn lưu động ròng (NNWC). Đa số những cty này được gọi là “cigar butts”, tức là những cty
+      làm ăn kém nên giá thị trường giảm theo thời gian. Tiêu chí lọc như sau:
       <br />
-      Đây được xem là phương pháp đầu tư an toàn và dễ dàng nhất cho NĐT khi Đầu tư giá trị.
+      <ul>
+        <li>P/NNWC < 1</li>
+        <li>Khối lượng giao dịch trung bình 3 tháng > 50.000</li>
+        <li>Không thuộc ngành tài chính</li>
+      </ul>
     </div>
 
     <div style="position: relative;">
@@ -23,10 +29,14 @@
           onclick="location.href='r/stockreports-unpdlk/'"
           style="cursor:pointer;width:160;height:20px;padding:7px;border: 1px solid #90afdc; background-color:#90afdc; box-sizing: content-box;"
         >
-          <a href="r/stockreports-unpdlk/" style="color:white">Click to Unlock</a>
+          <a href="r/stockreports-unpdlk/" style="color:white"
+            >Click to Unlock</a
+          >
         </div>
       </ng-container>
-      <h5 class="text-center mt-5 font-weight-bold">Benjamin Graham Net Nets</h5>
+      <h5 class="text-center mt-5 font-weight-bold">
+        Benjamin Graham Net Nets
+      </h5>
       <table class="table table-bordered table-hover">
         <thead class="text-center">
           <tr>
@@ -65,37 +75,70 @@
             <tr *ngFor="let row of dumpArray">
               <td>{{ row }}</td>
               <td>
-                <a class="blur3-left " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-left "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-left " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-left "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-left " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-left "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
               <td>
-                <a class="blur3-right " href="https://www.stockopedia.com/r/stockreports-unpdlk/"></a>
+                <a
+                  class="blur3-right "
+                  href="https://www.stockopedia.com/r/stockreports-unpdlk/"
+                ></a>
               </td>
             </tr>
           </ng-container>
