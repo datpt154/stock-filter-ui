@@ -13,21 +13,13 @@ import * as _ from 'lodash';
   templateUrl: './growth-forecast.component.html',
   styleUrls: ['./growth-forecast.component.css']
 })
-export class GrowthForecastComponent implements OnInit, OnDestroy {
+export class GrowthForecastComponent implements OnInit {
   data: DBTTMDto;
   isLoading = true;
   // this is dump array, to be used in data is limited, so we can render 10 rows, included real data on UI
   dumpArray = [];
-  navigationSubscription: any;
 
-  constructor(private filter: FilterService, private store: Store<AppState>, private router: Router) {
-    this.navigationSubscription = this.router.events.subscribe((e: any) => {
-      // If it is a NavigationEnd event re-initalise the component
-      if (e instanceof NavigationEnd) {
-        this.loadData();
-      }
-    });
-  }
+  constructor(private filter: FilterService) { }
 
   ngOnInit() {
     this.loadData();
@@ -49,11 +41,5 @@ export class GrowthForecastComponent implements OnInit, OnDestroy {
           this.dumpArray = _.range(data.data.length + 1, CommonConstants.ARRAY_MAX_ROWS_LIMIT_DATA + 1);
         }
       });
-  }
-
-  ngOnDestroy() {
-    if (this.navigationSubscription) {
-      this.navigationSubscription.unsubscribe();
-    }
   }
 }

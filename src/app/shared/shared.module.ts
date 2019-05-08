@@ -8,8 +8,6 @@ import { RouterModule } from '@angular/router';
 import { PaginationComponent } from './pagination/pagination.component';
 import { FilterResultTableComponent } from './filter-result-table/filter-result-table.component';
 import { ChartsModule } from 'ng2-charts';
-import { ModalComponent } from './modal/modal.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
 import { LogInComponent } from './log-in/log-in.component';
 
 @NgModule({
@@ -26,21 +24,15 @@ import { LogInComponent } from './log-in/log-in.component';
     HeaderComponent,
     PaginationComponent,
     FilterResultTableComponent,
-    ModalComponent,
-    LogInComponent,
-    SignUpComponent
+    LogInComponent
   ],
   declarations: [
     HeaderComponent,
     PaginationComponent,
     FilterResultTableComponent,
-    ModalComponent,
-    LogInComponent,
-    SignUpComponent
+    LogInComponent
   ],
-  entryComponents: [
-    ModalComponent
-  ],
+  entryComponents: [ ],
   providers: [
     NgbActiveModal
   ]

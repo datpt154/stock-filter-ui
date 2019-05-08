@@ -1,12 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { GrahamChecklistDto } from '../../../interface/screen-dto';
-import { FilterService } from '../../../services/business.service/filter.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {GrahamChecklistDto} from '../../../interface/screen-dto';
+import {FilterService} from '../../../services/business.service/filter.service';
 import * as _ from 'lodash';
-import { NavigationEnd, Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { AppState } from '../../../redux/reducers';
-import { finalize } from 'rxjs/operators';
-import { CommonConstants } from '../../../constants/common-const';
+import {finalize} from 'rxjs/operators';
+import {CommonConstants} from '../../../constants/common-const';
 
 @Component({
   selector: 'app-graham-checklist',
@@ -18,16 +15,8 @@ export class GrahamChecklistComponent implements OnInit, OnDestroy {
   isLoading = true;
   // this is dump array, to be used in data is limited, so we can render 10 rows, included real data on UI
   dumpArray = [];
-  navigationSubscription: any;
 
-  constructor(private filter: FilterService, private store: Store<AppState>, private router: Router) {
-    this.navigationSubscription = this.router.events.subscribe((e: any) => {
-      // If it is a NavigationEnd event re-initalise the component
-      if (e instanceof NavigationEnd) {
-        this.loadData();
-      }
-    });
-  }
+  constructor(private filter: FilterService) { }
 
   ngOnInit() {
     this.loadData();
@@ -51,9 +40,5 @@ export class GrahamChecklistComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
-    if (this.navigationSubscription) {
-      this.navigationSubscription.unsubscribe();
-    }
-  }
+  ngOnDestroy() { }
 }

@@ -1,11 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { finalize } from 'rxjs/operators';
-import { CommonConstants } from '../../../constants/common-const';
-import { PTKTDto } from '../../../interface/ptkt-dto';
-import { FilterService } from '../../../services/business.service/filter.service';
-import { HelperService } from '../../../services/business.service/helper.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {finalize} from 'rxjs/operators';
+import {CommonConstants} from '../../../constants/common-const';
+import {PTKTDto} from '../../../interface/ptkt-dto';
+import {FilterService} from '../../../services/business.service/filter.service';
+import {HelperService} from '../../../services/business.service/helper.service';
 import * as _ from 'lodash';
 
 @Component({
@@ -13,13 +13,12 @@ import * as _ from 'lodash';
   templateUrl: './chart-pattern.component.html',
   styleUrls: ['./chart-pattern.component.css']
 })
-export class ChartPatternComponent implements OnInit, OnDestroy {
+export class ChartPatternComponent implements OnInit {
   data: PTKTDto;
   imageURL = '';
   isLoading = true;
   // this is dump array, to be used in data is limited, so we can render 10 rows, included real data on UI
   dumpArray = [];
-  navigationSubscription: any;
 
   constructor(
     private filter: FilterService,
@@ -27,12 +26,7 @@ export class ChartPatternComponent implements OnInit, OnDestroy {
     private helper: HelperService,
     private modalService: NgbModal
   ) {
-    this.navigationSubscription = this.router.events.subscribe((e: any) => {
-      // If it is a NavigationEnd event re-initalise the component
-      if (e instanceof NavigationEnd) {
-        this.loadData();
-      }
-    });
+
   }
 
   ngOnInit() {
@@ -62,9 +56,4 @@ export class ChartPatternComponent implements OnInit, OnDestroy {
     this.modalService.open(content, { centered: true, size: 'lg' });
   }
 
-  ngOnDestroy() {
-    if (this.navigationSubscription) {
-      this.navigationSubscription.unsubscribe();
-    }
-  }
 }

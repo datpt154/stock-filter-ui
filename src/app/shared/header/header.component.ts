@@ -1,19 +1,13 @@
-import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  map,
-  switchMap
-} from 'rxjs/operators';
-import { FilterService } from '../../services/business.service/filter.service';
+import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {Observable, of} from 'rxjs';
+import {debounceTime, distinctUntilChanged, map, switchMap} from 'rxjs/operators';
+import {FilterService} from '../../services/business.service/filter.service';
 import * as _ from 'lodash';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { AppState } from '../../redux/reducers';
-import { User } from '../../interface/user';
-import { AuthService } from 'angular4-social-login';
-import { AuthenticationService } from '../../services/business.service/authenticationService.service';
+import {Router} from '@angular/router';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../redux/reducers';
+import {AuthService} from 'angular4-social-login';
+import * as Actions from '../../redux/actions';
 
 const NUMBER_SHOW_FILTER_RESULT = 10;
 @Component({
@@ -25,6 +19,8 @@ export class HeaderComponent implements OnInit {
   isMobileScreen = false;
   selectedCompanyModel: string;
   logginUser$ = this.store.select(store => store.logginUser);
+
+  @ViewChild('content') content: ElementRef;
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -50,11 +46,14 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private ref: ElementRef,
     private store: Store<AppState>,
-    private authService: AuthService,
-    private authenticationService: AuthenticationService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
+    const user = JSON.parse(localStorage.getItem('user')) || undefined;
+    if (user) {
+      this.store.dispatch(new Actions.UpdateUserAction(user));
+    }
   }
 
   private filter(searchPattern: string): Observable<string[]> {
@@ -87,7 +86,12 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     // todo [datphan] do we need to call social logout or not? or just only call system logout?
-    this.authService.signOut();
+    this.authService.signOut().then(() => {
+      localStorage.setItem('user', '');
+      localStorage.clear();
+      this.store.dispatch(new Actions.UpdateUserAction(undefined));
+      window.location.reload(); // after log-in successfully, we need to reload page
+    });
   }
 
   searchCompany = (text$: Observable<string>) =>
@@ -97,5 +101,5 @@ export class HeaderComponent implements OnInit {
       switchMap(val => {
         return this.filter(val || '');
       })
-    )
+    );
 }

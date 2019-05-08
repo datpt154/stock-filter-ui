@@ -1,10 +1,8 @@
-import { OnInit, Component } from '@angular/core';
-import { NewsListItem, EditNewsItem } from 'src/app/models/news';
-import { NewsService } from 'src/app/services/business.service/news.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { flatMap } from 'rxjs/operators';
-import { HelperService } from 'src/app/services/business.service/helper.service';
-// import * as _ from 'lodash';
+import {Component, OnInit} from '@angular/core';
+import {EditNewsItem} from 'src/app/models/news';
+import {NewsService} from 'src/app/services/business.service/news.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {flatMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-detail-news',
@@ -19,7 +17,6 @@ export class DetailNewsComponent implements OnInit {
     private newsService: NewsService,
     private activeRoute: ActivatedRoute,
     private router: Router,
-    private helperService: HelperService
   ) { }
 
   ngOnInit() {
@@ -37,13 +34,13 @@ export class DetailNewsComponent implements OnInit {
   }
 
   deleteNews() {
-    this.helperService.openModal('Xác nhận', 'Bạn muốn xóa tin này?').pipe(
-      flatMap(confirm => {
-        return this.newsService.deleteNews(this.newsData.id);
-      })
-    ).subscribe(result => {
-      this.router.navigate(['news/listNews']);
-    });
+    // this.helperService.openModal('Xác nhận', 'Bạn muốn xóa tin này?').pipe(
+    //   flatMap(confirm => {
+    //     return this.newsService.deleteNews(this.newsData.id);
+    //   })
+    // ).subscribe(result => {
+    //   this.router.navigate(['news/listNews']);
+    // });
   }
 
 }

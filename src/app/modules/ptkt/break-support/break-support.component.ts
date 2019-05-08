@@ -1,26 +1,24 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { PTKTDto } from '../../../interface/ptkt-dto';
-import { FilterService } from '../../../services/business.service/filter.service';
-import { HelperService } from '../../../services/business.service/helper.service';
-import { AppState } from '../../../redux/reducers';
-import { Router, NavigationEnd } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { finalize } from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
+import {PTKTDto} from '../../../interface/ptkt-dto';
+import {FilterService} from '../../../services/business.service/filter.service';
+import {HelperService} from '../../../services/business.service/helper.service';
+import {Router} from '@angular/router';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {finalize} from 'rxjs/operators';
 import * as _ from 'lodash';
-import { CommonConstants } from '../../../constants/common-const';
+import {CommonConstants} from '../../../constants/common-const';
 
 @Component({
   selector: 'app-break-support',
   templateUrl: './break-support.component.html',
   styleUrls: ['./break-support.component.css']
 })
-export class BreakSupportComponent implements OnInit, OnDestroy {
+export class BreakSupportComponent implements OnInit {
   data: PTKTDto;
   imageURL = '';
   isLoading = true;
   // this is dump array, to be used in data is limited, so we can render 10 rows, included real data on UI
   dumpArray = [];
-  navigationSubscription: any;
 
   constructor(
     private filter: FilterService,
@@ -28,12 +26,7 @@ export class BreakSupportComponent implements OnInit, OnDestroy {
     private helper: HelperService,
     private modalService: NgbModal
   ) {
-    this.navigationSubscription = this.router.events.subscribe((e: any) => {
-      // If it is a NavigationEnd event re-initalise the component
-      if (e instanceof NavigationEnd) {
-        this.loadData();
-      }
-    });
+
   }
 
   ngOnInit() {
@@ -63,9 +56,4 @@ export class BreakSupportComponent implements OnInit, OnDestroy {
     this.modalService.open(content, { centered: true, size: 'lg' });
   }
 
-  ngOnDestroy() {
-    if (this.navigationSubscription) {
-      this.navigationSubscription.unsubscribe();
-    }
-  }
 }

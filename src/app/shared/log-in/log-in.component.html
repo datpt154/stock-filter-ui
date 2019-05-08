@@ -13,73 +13,11 @@
       </button>
     </div>
     <div class="modal-body">
-      <!-- <form [formGroup]="signUpForm">
-        <div class="form-group">
-          <label for="loginFullname">Full name</label>
-          <input
-            type="email"
-            class="form-control"
-            id="loginFullname"
-            placeholder="Full name"
-            formControlName="fullName"
-            [ngClass]="{ 'is-invalid': f.fullName.errors && (f.fullName.dirty || f.fullName.touched)}"
-          />
-          <div *ngFor="let validation of account_validation_messages.fullName" class="invalid-feedback">
-            <div *ngIf="f.fullName.hasError(validation.type) && (f.fullName.dirty || f.fullName.touched)">{{validation.message}}</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="signupEmail">Email</label>
-          <input
-            type="email"
-            class="form-control"
-            id="signupEmail"
-            placeholder="Email"
-            formControlName="email"
-            [ngClass]="{ 'is-invalid': f.email.errors && (f.email.dirty || f.email.touched)}"
-          />
-          <div *ngFor="let validation of account_validation_messages.email" class="invalid-feedback">
-            <div *ngIf="f.email.hasError(validation.type) && (f.email.dirty || f.email.touched)">{{validation.message}}</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="signupPassword" class="w-100">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="signupPassword"
-            placeholder="Password"
-            formControlName="password"
-            [ngClass]="{ 'is-invalid': f.password.errors && (f.password.dirty || f.password.touched)}"
-          />
-          <div *ngFor="let validation of account_validation_messages.password" class="invalid-feedback">
-            <div *ngIf="f.password.hasError(validation.type) && (f.password.dirty || f.password.touched)">{{validation.message}}</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="signupConfirmPassword" class="w-100">Confirm password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="signupConfirmPassword"
-            placeholder="Retype password"
-            formControlName="confirmPassword"
-            [ngClass]="{ 'is-invalid': f.rePassword.errors && (f.rePassword.dirty || f.rePassword.touched)}"
-          />
-          <div *ngFor="let validation of account_validation_messages.confirm_password" class="invalid-feedback">
-            <div *ngIf="f.rePassword.hasError(validation.type) && (f.rePassword.dirty || f.rePassword.touched)">{{validation.message}}</div>
-          </div>
-        </div>
-      </form> -->
-
       <div class="social-auth d-flex flex-column">
-        <!-- <button type="button" class="btn btn-primary w-75  ml-auto mr-auto mt-3 mb-3">
-          Log in
-        </button> -->
         <!-- <div class="label text-center">
           <span>Log in up via single sign-on</span>
         </div> -->
-        <button type="button"class="btn btn-info w-75 mt-3 ml-auto mr-auto" (click)="LogInWithGoogle()">
+        <button type="button"class="btn btn-info w-75 mt-3 ml-auto mr-auto" (click)="logInWithGoogle()">
           Log in up with Google
         </button>
         <!--

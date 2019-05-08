@@ -13,21 +13,13 @@ import * as _ from 'lodash';
   templateUrl: './gramham-ncav.component.html',
   styleUrls: ['./gramham-ncav.component.css']
 })
-export class GramhamNcavComponent implements OnInit, OnDestroy {
+export class GramhamNcavComponent implements OnInit {
   data: GramhamNCavDto;
   isLoading = true;
   // this is dump array, to be used in data is limited, so we can render 10 rows, included real data on UI
   dumpArray = [];
-  navigationSubscription: any;
 
-  constructor(private filter: FilterService, private store: Store<AppState>, private router: Router) {
-    this.navigationSubscription = this.router.events.subscribe((e: any) => {
-      // If it is a NavigationEnd event re-initalise the component
-      if (e instanceof NavigationEnd) {
-        this.loadData();
-      }
-    });
-  }
+  constructor(private filter: FilterService) { }
 
   ngOnInit() {
     this.loadData();
@@ -51,9 +43,4 @@ export class GramhamNcavComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
-    if (this.navigationSubscription) {
-      this.navigationSubscription.unsubscribe();
-    }
-  }
 }
