@@ -1,4 +1,4 @@
-import { Factor } from '../interface/factor';
+import {Factor} from '../interface/factor';
 
 export class FilterConstant {
   public static otherFactors = {
@@ -50,7 +50,7 @@ export class FilterConstant {
           unit: 'bil'
         },
         {
-          title: 'Lợi nhuận gộp',
+          title: '',
           code: 'GROSS_PROFIT',
           max: 20000,
           min: 0,
@@ -711,4 +711,261 @@ export class FilterConstant {
       ]
     }
   ];
+
+  public static factors_: any[] = [
+    {
+      title: 'Doanh thu thuần',
+      code: 'NET_REVENUE',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>100', '>500', '>1000', '>5000', '>10000']
+    },
+    {
+      title: 'Lợi nhuận ròng',
+      code: 'NET_INCOME',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>100', '>500', '>1000', '>5000', '>10000']
+    },
+    {
+      title: 'EPS',
+      code: 'EPS',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>1', '>2', '>5', '>10', '>20']
+    },
+    {
+      title: 'Giá trị sổ sách',
+      code: 'BOOK_VALUE',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>10', '15', '20', '>25']
+    },
+    {
+      title: 'Giá thị trường',
+      code: 'MARKET_PRICE',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>10', '>20', '>50', '>100']
+    },
+    {
+      title: 'Vốn hóa',
+      code: 'MARKET_CAPITAL',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>500', '>1000', '>5000', '>10000', '>50000']
+    },
+    {
+      title: 'Doanh thu thuần (YOY)',
+      code: 'NET_REVENUE_YOY',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+    },
+    {
+      title: 'Lợi nhuận ròng (YOY)',
+      code: 'GROSS_PROFIT_YOY',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+    },
+    {
+      title: 'EPS (YOY)',
+      code: 'EPS_YOY',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+    },
+    {
+      title: 'EBITDA (YOY)',
+      code: 'EBITDA_YOY',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+    },
+    {
+      title: 'Nợ (YOY)',
+      code: 'DEBT_YOY',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+    },
+    {
+      title: 'VCSH (YOY)',
+      code: 'EQUITY_YOY',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+    },
+    {
+      title: 'Vốn hoá (YOY)',
+      code: 'MARKET_CAPITAL_YOY',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+    },
+    {
+      title: 'Tài sản (YOY)',
+      code: 'TOTAL_ASSETS_YOY',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+    },
+    {
+      title: 'P/E',
+      code: 'P_E',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>8', '>10', '>15', '>20']
+    },
+    {
+      title: 'Peg',
+      code: 'PEG',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>0.1', '>0.2', '>0.3', '>0.5', '>1.0']
+    },
+    {
+      title: 'P/B',
+      code: 'P_B',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>0.5', '>1', '>1.5', '>2', '>3']
+    },
+    {
+      title: 'P/S',
+      code: 'P_S',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>0.5', '>1', '>1.5', '>2', '>3']
+    },
+    {
+      title: 'EV/EBITDA',
+      code: 'EV_EBITDA',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>8', '>10', '>15', '>20']
+    },
+    {
+      title: 'EV/EBIT',
+      code: 'EV_EBIT',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>8', '>10', '>15', '>20']
+    },
+    {
+      title: 'EV/FCF',
+      code: 'EV_FCF',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>8', '>10', '>15', '>20']
+    },
+    {
+      title: 'REV/FCF',
+      code: 'REV_FCF',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>8', '>10', '>15', '>20']
+    },
+    {
+      title: 'MC/CFO',
+      code: 'MC_CFO',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>8', '>10', '>15', '>20']
+    },
+    {
+      title: 'MC/NWC',
+      code: 'MC_NWC',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>8', '>10', '>15', '>20']
+    },
+    {
+      title: 'Capex/Rev',
+      code: 'CAPEX_REV',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>1', '>2', '>3', '>5', '>10']
+    },
+    {
+      title: 'ROIC',
+      code: 'ROIC',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+    },
+    {
+      title: 'ROCE',
+      code: 'ROCE',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+    },
+    {
+      title: 'ROE',
+      code: 'ROE',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+    },
+    {
+      title: 'ROA',
+      code: 'ROA',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>1', '>2', '>3', '>5', '>10']
+    },
+    {
+      title: 'Biên lợi nhuận gộp',
+      code: 'GROSS_PROFIT_MARGIN',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+    },
+    {
+      title: 'LN hoạt động biên',
+      code: 'OPERATING_PROFIT_MARGIN',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+    },
+    {
+      title: 'LN trước thuế',
+      code: 'PRETAX_PROFIT_MARGIN',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+    },
+    {
+      title: 'Biên lãi ròng',
+      code: 'NET_PROFIT_MARGIN',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+    },
+    {
+      title: 'Tỷ suất cổ tức',
+      code: 'DIV_YIELD',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>1', '>2', '>3', '>5', '>10']
+    },
+    {
+      title: 'Tỷ suất EBIT',
+      code: 'EBIT_REV',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+    },
+    {
+      title: 'Tỷ suất EBITDA',
+      code: 'EBITDA_REV',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+    }
+  ];
 }
+
+

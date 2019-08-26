@@ -18,14 +18,14 @@ import {MaterialModule} from './shared/angular-material-design/material.module';
 import {SharedModule} from './shared/shared.module';
 
 const routers: Routes = [
-  { path: '', component: HomePageComponent},
-  { path: 'filter', loadChildren: './filter/filter.module#FilterModule'  },
-  { path: 'screen', loadChildren: './modules/screen/screen.module#ScreenModule'  },
-  { path: 'ptkt', loadChildren: './modules/ptkt/ptkt.module#PtktModule'  },
-  { path: 'stock-detail', loadChildren: './stock-detail/stock-detail.module#StockDetailModule'  },
-  { path: 'guide', loadChildren: './modules/guide/guide.module#GuideModule'  },
-  { path: 'news', loadChildren: './modules/news/news.module#NewsModule'  },
-  { path: '**', redirectTo: 'filter'},
+  {path: '', component: HomePageComponent},
+  {path: 'filter', loadChildren: './modules/filter/filter.module#FilterModule'},
+  {path: 'screen', loadChildren: './modules/screen/screen.module#ScreenModule'},
+  {path: 'ptkt', loadChildren: './modules/ptkt/ptkt.module#PtktModule'},
+  {path: 'stock-detail', loadChildren: './stock-detail/stock-detail.module#StockDetailModule'},
+  {path: 'guide', loadChildren: './modules/guide/guide.module#GuideModule'},
+  {path: 'news', loadChildren: './modules/news/news.module#NewsModule'},
+  {path: '**', redirectTo: 'filter'},
 ];
 
 const config = new AuthServiceConfig([
@@ -39,31 +39,32 @@ const config = new AuthServiceConfig([
 ]);
 
 @NgModule({
-   declarations: [
-      AppComponent,
-      HomePageComponent,
-   ],
-   imports: [
-      BrowserModule,
-      FormsModule,
-      NgbModule,
-      MaterialModule,
-      Angular2FontawesomeModule,
-      BrowserAnimationsModule,
-      SharedModule,
-      HttpClientModule,
-      ServicesModule,
-      PdfViewerModule,
-      StoreModule.forRoot(reducers),
-      SocialLoginModule.initialize(config),
-      RouterModule.forRoot(routers, {enableTracing: true}),
-      ReactiveFormsModule
-   ],
-   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HttpconfigInterceptorService, multi: true }
-   ],
-   bootstrap: [
-      AppComponent
-   ]
+  declarations: [
+    AppComponent,
+    HomePageComponent,
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    NgbModule,
+    MaterialModule,
+    Angular2FontawesomeModule,
+    BrowserAnimationsModule,
+    SharedModule,
+    HttpClientModule,
+    ServicesModule,
+    PdfViewerModule,
+    StoreModule.forRoot(reducers),
+    SocialLoginModule.initialize(config),
+    RouterModule.forRoot(routers, {enableTracing: true}),
+    ReactiveFormsModule
+  ],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: HttpconfigInterceptorService, multi: true}
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
-export class AppModule { }
+export class AppModule {
+}

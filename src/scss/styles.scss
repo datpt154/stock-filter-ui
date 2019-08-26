@@ -1,12 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/scss/bootstrap";
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import '~nouislider/distribute/nouislider.min.css';
 @import './common.scss';
 @import '../app/app.component.scss';
 @import '../app/shared/header/header.component.scss';
 @import '../app/home-page/home-page.component.scss';
-@import '../app/filter/first-filter/first-filter-selection/first-selection.component.scss';
-@import '../app/filter/second-filter/second-filter-selection/second-filter-selection.component.scss';
+@import '../app/modules/filter/first-filter/first-filter-selection/first-selection.component.scss';
+@import '../app/modules/filter/second-filter/second-filter-selection/second-filter-selection.component.scss';
 @import '../app/shared/filter-result-table/filter-result-table.component.scss';
 @import '../app/modules/guide/user-guide/user-guide.component.scss';
 

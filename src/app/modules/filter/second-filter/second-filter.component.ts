@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
-import { FilterConstant } from '../../constants/filter-constant';
-import { BasicFilterDTO } from '../../interface/basic-filter-dto';
-import { Factor } from '../../interface/factor';
-import { StockFilter } from '../../models/filter';
-import { FilterService } from '../../services/business.service/filter.service';
+import { FilterConstant } from '../../../constants/filter-constant';
+import { BasicFilterDTO } from '../../../interface/basic-filter-dto';
+import { Factor } from '../../../interface/factor';
+import { StockFilter } from '../../../models/filter';
+import { FilterService } from '../../../services/business.service/filter.service';
 @Component({
   selector: 'app-second-filter',
   templateUrl: './second-filter.component.html',

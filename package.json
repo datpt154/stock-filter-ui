@@ -29,12 +29,12 @@
     "@ckeditor/ckeditor5-angular": "^1.0.1",
     "@ckeditor/ckeditor5-build-decoupled-document": "^11.2.0",
     "@ckeditor/ckeditor5-easy-image": "^10.0.4",
-    "@ng-bootstrap/ng-bootstrap": "^3.2.0",
+    "@ng-bootstrap/ng-bootstrap": "^4.2.1",
     "@ngrx/store": "^5.2.0",
     "angular-froala-wysiwyg": "^2.9.3",
     "angular2-fontawesome": "^5.2.1",
     "angular4-social-login": "^1.1.1",
-    "bootstrap": "^4.3.1",
+    "bootstrap": "^4.0.0",
     "chart.js": "^2.7.2",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
@@ -50,9 +50,10 @@
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.11.2",
-    "@angular/cli": "~6.0.8",
     "@angular/compiler-cli": "^6.0.3",
+    "@angular-devkit/build-angular": "^0.11.2",
+    "typescript": "^2.7.2",
+    "@angular/cli": "~6.0.8",
     "@angular/language-service": "^6.0.3",
     "@types/google.analytics": "0.0.39",
     "@types/jasmine": "~2.8.6",
@@ -69,7 +70,6 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "^5.4.1",
     "ts-node": "~5.0.1",
-    "tslint": "~5.9.1",
-    "typescript": "^2.7.2"
+    "tslint": "~5.9.1"
   }
 }

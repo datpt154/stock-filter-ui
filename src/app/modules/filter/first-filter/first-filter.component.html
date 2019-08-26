@@ -1,0 +1,124 @@
+<h5 class="mt-3">
+  <!--  LỌC CỔ PHIẾU DỰA TRÊN CÁC CHỈ SỐ CƠ BẢN-->
+
+</h5>
+
+<!--<mat-horizontal-stepper [linear]="true" #stepper (selectionChange)="stepperSelectChange($event)">-->
+<!--  <mat-step [stepControl]="factorsFormGroup">-->
+<!--    <ng-template matStepLabel>Điều kiện lọc</ng-template>-->
+<!--    <app-factors [factors]="factorsData" [factorsFormGroup]="factorsFormGroup" (next)="nextToFactorsDetail($event)" (factorsChange)="factorsChangeHandle($event)">-->
+<!--    </app-factors>-->
+<!--  </mat-step>-->
+
+<!--  <mat-step>-->
+<!--    <ng-template matStepLabel>Thông số lọc</ng-template>-->
+<!--    <app-first-selection [selectedDataItems]="selectedDataItems" (next)="nextToFilterResult($event)" (selectionChanged)="factorDeatailChangeHandle($event)"></app-first-selection>-->
+<!--  </mat-step>-->
+
+<!--  <mat-step>-->
+<!--    <ng-template matStepLabel>Kết quả lọc</ng-template>-->
+<!--    <ng-container *ngIf="isFilterPageReady">-->
+<!--      <app-first-filter-result [selectedDataItems]="selectedDataItems" [searchResult]="searchResult"-->
+<!--        (triggerBackToFilterInput)="triggerBackToFilterInput()"></app-first-filter-result>-->
+<!--    </ng-container>-->
+<!--  </mat-step>-->
+<!--</mat-horizontal-stepper>-->
+<div class="position-relative">
+  <div class="position-absolute" style="right: 120px; top: 10px">Filters <span
+    class="badge badge-info">{{selectedTotal}}</span></div>
+  <ngb-tabset>
+
+    <ngb-tab title="Phân tích cơ bản">
+      <ng-template ngbTabContent>
+        <form [formGroup]="ptcbForm">
+<!--          <div class="d-flex flex-wrap">-->
+<!--            <div class="form-group; p-3" style="width: 160px" *ngFor="let item of countries; index as idx">-->
+<!--              <label [for]="idx">{{ item?.title }}:</label>-->
+<!--              <select class="form-control" [id]="idx" [formControlName]="item?.code" [ngClass]="item.isSelected ? 'bg-success' : ''">-->
+<!--                <option *ngFor="let option of item?.ranges" [value]="option">{{option}}</option>-->
+<!--              </select>-->
+<!--            </div>-->
+<!--          </div>-->
+
+          <table class="table">
+            <tr class="form-group; p-3" *ngFor="let row of rowsTottal">
+              <td *ngFor="let item of countries | sliceArrayPipe:row;">
+                <label [for]="idx">{{ item?.title }}:</label>
+                <select class="form-control" [id]="idx" [formControlName]="item?.code" [ngClass]="item.isSelected ? 'bg-success' : ''">
+                  <option *ngFor="let option of item?.ranges" [value]="option">{{option}}</option>
+                </select>
+              </td>
+            </tr>
+          </table>
+
+        </form>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab title="Phân tích kỹ thuật">
+      <ng-template ngbTabContent>
+        <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla
+          facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu,
+          congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices
+          et. Sed diam urna, egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus
+          faucibus nisl enim, nec tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci
+          varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem
+          aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.</p>
+      </ng-template>
+    </ngb-tab>
+
+  </ngb-tabset>
+
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-dark" [disabled]="selectedTotal === 0">Tìm kiếm</button>
+  </div>
+</div>
+
+<span style="margin-top: 10px">Total: 37</span>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Country</th>
+    <th scope="col">Area</th>
+    <th scope="col">Population</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let country of countries">
+    <th scope="row">{{ country.id }}</th>
+    <td>
+      <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px">
+      {{ country.name }}
+    </td>
+    <td>{{ country.area | number}}</td>
+    <td>{{ country.population | number }}</td>
+  </tr>
+  </tbody>
+</table>
+
+<!--<div class="d-flex justify-content-between p-2">-->
+<!--  <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">-->
+<!--  </ngb-pagination>-->
+
+<!--  <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">-->
+<!--    <option [ngValue]="2">2 items per page</option>-->
+<!--    <option [ngValue]="4">4 items per page</option>-->
+<!--    <option [ngValue]="6">6 items per page</option>-->
+<!--  </select>-->
+<!--</div>-->
+
+
+<!--<div class="dropdown col-sm-10">-->
+<!--  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example-->
+<!--    <span class="caret"></span></button>-->
+<!--  <ul class="dropdown-menu">-->
+<!--    <li><a href="#">HTML</a></li>-->
+<!--    <li><a href="#">CSS</a></li>-->
+<!--    <li><a href="#">JavaScript</a></li>-->
+<!--  </ul>-->
+<!--</div>-->
+
+
+
+

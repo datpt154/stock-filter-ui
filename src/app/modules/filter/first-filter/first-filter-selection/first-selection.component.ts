@@ -4,9 +4,9 @@ import * as _ from 'lodash';
 import { DefaultFormatter } from 'ng2-nouislider';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { FilterConstant } from '../../../constants/filter-constant';
-import { BasicFilterInput } from '../../../interface/api-input';
-import { DataItem } from '../../../interface/data-item';
+import { FilterConstant } from '../../../../constants/filter-constant';
+import { BasicFilterInput } from '../../../../interface/api-input';
+import { DataItem } from '../../../../interface/data-item';
 
 
 @Component({
