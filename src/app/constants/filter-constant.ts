@@ -712,13 +712,31 @@ export class FilterConstant {
     }
   ];
 
-  public static factors_: any[] = [
+  /*[
+  - any => khong truyen len
+  - range co 2 loai:
+     . 1-5
+     . >100, <10
+  -
+PTCB: [
+{
+  code: NET_REVENUE,
+  range: '>100'
+},
+{
+  code: NET_REVENUE,
+  range: '>100'
+}
+]
+  ] */
+
+  public static factors_ptcb: any[] = [
     {
       title: 'Doanh thu thuần',
       code: 'NET_REVENUE',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>100', '>500', '>1000', '>5000', '>10000']
+      ranges: ['any', '>100 ti', '>500 ti', '>1000', '>5000', '>10000']
     },
     {
       title: 'Lợi nhuận ròng',
@@ -965,6 +983,121 @@ export class FilterConstant {
       isShow: true,
       ranges: ['any', '>5', '>10', '>15', '>20', '>25']
     }
+  ];
+
+  public static factors_ptkt: any[] = [
+    {
+      title: 'Giá trị giao dich',
+      code: '1',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>0.5 tỷ', '0.5-1 tỷ', '1-5 tỷ', '5-10 tỷ', '>10 tỷ']
+    },
+    {
+      title: 'Relative strength',
+      code: '2',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '>50%', '>60%', '>70%', '>80%', '>90%']
+    },
+    {
+      title: 'RSI(14)',
+      code: '3',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '<20', '20-30', '30-50', '50-70', '70-80', '>80']
+    },
+    {
+      title: 'Volume',
+      code: '4',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '<50k', '50-100k', '100-500k', '500-1000k', '>1000k']
+    },
+    {
+      title: 'Volume/Trung bình Volume(20)',
+      code: '5',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '<10%', '10-20%', '20-50%', '50-100%', '>100%']
+    },
+    {
+      title: '52WH',
+      code: '6',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '<10%', '10-20%', '20-30%', '30-40%', '40-50%', '>50%']
+    },
+    {
+      title: '52WL',
+      code: '7',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '<10%', '10-20%', '20-50%', '50-100%', '>100%']
+    },
+    {
+      title: 'ADX(14)',
+      code: '8',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '<10', '10-20', '20-30', '30-40', '>40']
+    },
+    {
+      title: 'Stochastic',
+      code: '9',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '<20', '20-30', '30-50', '50-70', '70-80', '>80']
+    },
+    {
+      title: 'Price & MA10',
+      code: '10',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '< -20%', '-20% to -10%', '-10% to 0', '10-20%', '>20%']
+    },
+    {
+      title: 'Price & MA20',
+      code: '11',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '< -20%', '-20% to -10%', '-10% to 0', '10-20%', '>20%']
+    },
+    {
+      title: 'Price & MA50',
+      code: '12',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '< -20%', '-20% to -10%', '-10% to 0', '10-20%', '>20%']
+    },
+    {
+      title: 'Price & MA200',
+      code: '13',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '< -20%', '-20% to -10%', '-10% to 0', '10-20%', '>20%']
+    },
+    {
+      title: 'MA10 & MA20',
+      code: '14',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '< -20%', '-20% to -10%', '-10% to 0', '10-20%', '>20%']
+    },
+    {
+      title: 'MA20 & MA50',
+      code: '15',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '< -20%', '-20% to -10%', '-10% to 0', '10-20%', '>20%']
+    },
+    {
+      title: 'MA50 & MA200',
+      code: '16',
+      isSelected: false,
+      isShow: true,
+      ranges: ['any', '< -20%', '-20% to -10%', '-10% to 0', '10-20%', '>20%']
+    },
   ];
 }
 

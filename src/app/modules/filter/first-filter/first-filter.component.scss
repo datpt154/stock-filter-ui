@@ -1,5 +1,21 @@
 :host ::ng-deep {
-  .table th, .table td {
-    border-top: none;
+  .first-filter-input {
+    .table th, .table td {
+      border-top: none;
+      padding-bottom: 0px;
+
+      label {
+        margin-bottom: 0.25rem;
+      }
+
+      select {
+        height: auto;
+      }
+
+      .form-control {
+        font-size: 0.8rem;
+      }
+    }
   }
+
 }

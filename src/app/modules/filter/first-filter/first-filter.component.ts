@@ -1,96 +1,108 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import { MatStepper } from '@angular/material/stepper';
-import { Title } from '@angular/platform-browser';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {MatStepper} from '@angular/material/stepper';
+import {Title} from '@angular/platform-browser';
 import * as _ from 'lodash';
-import { FilterConstant } from '../../../constants/filter-constant';
-import { BasicFilterDTO } from '../../../interface/basic-filter-dto';
-import { Factor } from '../../../interface/factor';
-import { StockFilter } from '../../../models/filter';
-import { FilterService } from '../../../services/business.service/filter.service';
+import {FilterConstant} from '../../../constants/filter-constant';
+import {BasicFilterDTO} from '../../../interface/basic-filter-dto';
+import {Factor} from '../../../interface/factor';
+import {FilterService} from '../../../services/business.service/filter.service';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 
-const HIDDEN_FIELDS_BY_DEFAULT = [
-  {
-    code: 'FINANCE',
-    dataItem: 'GROSS_PROFIT'
-  },
-  {
-    code: 'FINANCE',
-    dataItem: 'SHARE_S_OUSTANDING'
-  }
-];
 @Component({
   selector: 'app-first-filter',
   templateUrl: './first-filter.component.html',
   styleUrls: ['./first-filter.component.scss']
 })
-export class FirstFilterComponent extends StockFilter implements OnInit, OnDestroy {
-  protected factorsData: Factor[] = _.cloneDeep(FilterConstant.factors);
-
-  private factorsFormGroup: FormGroup;
+export class FirstFilterComponent implements OnInit, OnDestroy {
   protected isFilterPageReady = false;
   protected searchResult: BasicFilterDTO[] = [];
-
-  @ViewChild('stepper') stepper: MatStepper;
-
-  countries: any[] = FilterConstant.factors_;
-
-  ptcbForm: FormGroup;
   private ngUnsubscribe: Subject<any> = new Subject();
-  selectedTotal = 0;
-  rowsTottal = [];
+
+  factors_ptcb: any[] = FilterConstant.factors_ptcb;
+  factors_ptkt: any[] = FilterConstant.factors_ptkt;
+  ptcbForm: FormGroup;
+  ptktForm: FormGroup;
+  selectedPTCBTotal = 0;
+  selectedPTKTTotal = 0;
+  ptcbRowsTotal = [];
+  ptktRowsTotal = [];
+  initialPTCBForm = {};
+  initialPKTForm = {};
 
   constructor(
     protected _formBuilder: FormBuilder,
     protected _filterService: FilterService,
     private titleService: Title
   ) {
-    super(_formBuilder, _filterService);
   }
 
   ngOnInit() {
     this.titleService.setTitle('LỌC CỔ PHIẾU DỰA TRÊN CÁC CHỈ SỐ CƠ BẢN');
-    this.factorsFormGroup = this.buildFactorsFb();
-    this.setDefault();
+    this.initializePTCBForm();
+    this.initializePTKTForm();
+  }
 
-    const temp = {};
-    this.countries.forEach(factor => {
-      temp[factor.code] = [factor.ranges[0]];
+  private initializePTCBForm(): void {
+    this.factors_ptcb.forEach(factor => {
+      this.initialPTCBForm[factor.code] = [factor.ranges[0]];
     });
-
-    this.ptcbForm = this._formBuilder.group(temp);
+    this.ptcbForm = this._formBuilder.group(this.initialPTCBForm);
 
     this.ptcbForm.valueChanges
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(value => {
         let count = 0;
-        this.countries.forEach(factor => {
+        this.factors_ptcb.forEach(factor => {
           const valueOfSelection = this.ptcbForm.get(factor.code).value;
-          if (valueOfSelection !== 'any') {
+          if (valueOfSelection === 'any') {
+            factor.isSelected = false;
+          } else {
             count = count + 1;
             factor.isSelected = true;
           }
         });
 
-        this.selectedTotal = count;
+        this.selectedPTCBTotal = count;
       });
 
-     const rows = Math.round(this.countries.length / 5);
-     this.rowsTottal = _.range(rows);
+    // count how many rows do we need to show 6 items on a row
+    const rows = Math.ceil(this.factors_ptcb.length / 6);
+    this.ptcbRowsTotal = _.range(rows);
   }
 
-  private setDefault(): void {
-    HIDDEN_FIELDS_BY_DEFAULT.forEach(hiddenField => {
-      const factor = this.factorsData.find(fd => fd.code === hiddenField.code);
-      if (!_.isNil(factor)) {
-        const hiddenDataItem = factor.dataItems.find(dataItem => dataItem.code === hiddenField.dataItem);
-        if (!_.isNil(hiddenDataItem)) {
-          hiddenDataItem.isShow = false;
-        }
-      }
+  private initializePTKTForm(): void {
+    this.factors_ptkt.forEach(factor => {
+      this.initialPKTForm[factor.code] = [factor.ranges[0]];
     });
+    this.ptktForm = this._formBuilder.group(this.initialPKTForm);
+
+    this.ptktForm.valueChanges
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(value => {
+        let count = 0;
+        this.factors_ptkt.forEach(factor => {
+          const valueOfSelection = this.ptktForm.get(factor.code).value;
+          if (valueOfSelection === 'any') {
+            factor.isSelected = false;
+          } else {
+            count = count + 1;
+            factor.isSelected = true;
+          }
+        });
+
+        this.selectedPTKTTotal = count;
+      });
+
+    // count how many rows do we need to show 6 items on a row
+    const rows = Math.ceil(this.factors_ptkt.length / 6);
+    this.ptktRowsTotal = _.range(rows);
+  }
+
+  resetFilterInput(): void {
+    this.ptcbForm.reset(this.initializePTCBForm());
+    this.ptktForm.reset(this.initializePTKTForm());
   }
 
   protected getFilterResult(searchInput) {

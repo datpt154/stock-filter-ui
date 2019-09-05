@@ -1,48 +1,14 @@
-<h5 class="mt-3">
-  <!--  LỌC CỔ PHIẾU DỰA TRÊN CÁC CHỈ SỐ CƠ BẢN-->
-
-</h5>
-
-<!--<mat-horizontal-stepper [linear]="true" #stepper (selectionChange)="stepperSelectChange($event)">-->
-<!--  <mat-step [stepControl]="factorsFormGroup">-->
-<!--    <ng-template matStepLabel>Điều kiện lọc</ng-template>-->
-<!--    <app-factors [factors]="factorsData" [factorsFormGroup]="factorsFormGroup" (next)="nextToFactorsDetail($event)" (factorsChange)="factorsChangeHandle($event)">-->
-<!--    </app-factors>-->
-<!--  </mat-step>-->
-
-<!--  <mat-step>-->
-<!--    <ng-template matStepLabel>Thông số lọc</ng-template>-->
-<!--    <app-first-selection [selectedDataItems]="selectedDataItems" (next)="nextToFilterResult($event)" (selectionChanged)="factorDeatailChangeHandle($event)"></app-first-selection>-->
-<!--  </mat-step>-->
-
-<!--  <mat-step>-->
-<!--    <ng-template matStepLabel>Kết quả lọc</ng-template>-->
-<!--    <ng-container *ngIf="isFilterPageReady">-->
-<!--      <app-first-filter-result [selectedDataItems]="selectedDataItems" [searchResult]="searchResult"-->
-<!--        (triggerBackToFilterInput)="triggerBackToFilterInput()"></app-first-filter-result>-->
-<!--    </ng-container>-->
-<!--  </mat-step>-->
-<!--</mat-horizontal-stepper>-->
-<div class="position-relative">
+<div class="position-relative mt-3">
   <div class="position-absolute" style="right: 12px; top: 10px">Filters <span
-    class="badge badge-info">{{selectedTotal}}</span></div>
+    class="badge badge-info">{{selectedPTCBTotal + selectedPTKTTotal}}</span></div>
   <ngb-tabset>
 
     <ngb-tab title="Phân tích cơ bản">
       <ng-template ngbTabContent>
-        <form [formGroup]="ptcbForm">
-<!--          <div class="d-flex flex-wrap">-->
-<!--            <div class="form-group; p-3" style="width: 160px" *ngFor="let item of countries; index as idx">-->
-<!--              <label [for]="idx">{{ item?.title }}:</label>-->
-<!--              <select class="form-control" [id]="idx" [formControlName]="item?.code" [ngClass]="item.isSelected ? 'bg-success' : ''">-->
-<!--                <option *ngFor="let option of item?.ranges" [value]="option">{{option}}</option>-->
-<!--              </select>-->
-<!--            </div>-->
-<!--          </div>-->
-
+        <form [formGroup]="ptcbForm" class="first-filter-input">
           <table class="table">
-            <tr class="form-group; p-3" *ngFor="let row of rowsTottal">
-              <td *ngFor="let item of countries | sliceArrayPipe:row;">
+            <tr class="form-group; p-3" *ngFor="let row of ptcbRowsTotal; let idx = index">
+              <td *ngFor="let item of factors_ptcb | sliceArrayPipe : row;">
                 <label [for]="idx">{{ item?.title }}:</label>
                 <select class="form-control" [id]="idx" [formControlName]="item?.code" [ngClass]="item.isSelected ? 'bg-success' : ''">
                   <option *ngFor="let option of item?.ranges" [value]="option">{{option}}</option>
@@ -50,27 +16,32 @@
               </td>
             </tr>
           </table>
-
         </form>
       </ng-template>
     </ngb-tab>
 
     <ngb-tab title="Phân tích kỹ thuật">
       <ng-template ngbTabContent>
-        <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla
-          facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu,
-          congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices
-          et. Sed diam urna, egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus
-          faucibus nisl enim, nec tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci
-          varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem
-          aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.</p>
+        <form [formGroup]="ptktForm" class="first-filter-input">
+          <table class="table">
+            <tr class="form-group; p-3" *ngFor="let row of ptktRowsTotal; let idx = index">
+              <td *ngFor="let item of factors_ptkt | sliceArrayPipe : row;">
+                <label [for]="idx">{{ item?.title }}:</label>
+                <select class="form-control" [id]="idx" [formControlName]="item?.code" [ngClass]="item.isSelected ? 'bg-success' : ''">
+                  <option *ngFor="let option of item?.ranges" [value]="option">{{option}}</option>
+                </select>
+              </td>
+            </tr>
+          </table>
+        </form>
       </ng-template>
     </ngb-tab>
 
   </ngb-tabset>
 
   <div class="d-flex justify-content-end">
-    <button class="btn btn-dark" [disabled]="selectedTotal === 0">Tìm kiếm</button>
+    <button class="btn btn-dark" (click)="resetFilterInput()">Reset</button>
+    <button class="btn btn-dark ml-2" [disabled]="(selectedPTCBTotal + selectedPTKTTotal) === 0">Tìm kiếm</button>
   </div>
 </div>
 
@@ -85,7 +56,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let country of countries">
+  <tr *ngFor="let country of factors_ptkt">
     <th scope="row">{{ country.id }}</th>
     <td>
       <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px">
