@@ -1,6 +1,31 @@
-import {Factor} from '../interface/factor';
+import {Factor, FactorNew} from '../interface/factor';
+import {DataType, FilterTableColumn, SortType} from '../interface/filter-table-dto';
 
 export class FilterConstant {
+
+  public static TABLE_DEFAULT_COLUMN: FilterTableColumn[] = [
+    {
+      title: 'No.',
+      code: 'rowIndex',
+      sortType: SortType.NONE,
+      width: 1,
+      dataType: DataType.String
+    },
+    {
+      title: 'Mã chứng khoán',
+      code: 'companyCode',
+      sortType: SortType.ASD,
+      dataType: DataType.String
+    },
+    {
+      title: 'Giá',
+      code: 'price',
+      sortType: SortType.DEFAULT,
+      showChart: true,
+      dataType: DataType.Number
+    },
+  ];
+
   public static otherFactors = {
     filterTimes: [
       {
@@ -712,392 +737,770 @@ export class FilterConstant {
     }
   ];
 
-  /*[
-  - any => khong truyen len
-  - range co 2 loai:
-     . 1-5
-     . >100, <10
-  -
-PTCB: [
-{
-  code: NET_REVENUE,
-  range: '>100'
-},
-{
-  code: NET_REVENUE,
-  range: '>100'
-}
-]
-  ] */
-
-  public static factors_ptcb: any[] = [
+  public static factors_ptcb: FactorNew[] = [
     {
       title: 'Doanh thu thuần',
       code: 'NET_REVENUE',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>100 ti', '>500 ti', '>1000', '>5000', '>10000']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>100 tỉ', value: '>100'},
+        {key: '>500 tỉ', value: '>500'},
+        {key: '>1000 tỉ', value: '>1000'},
+        {key: '>5000 tỉ', value: '>5000'},
+        {key: '>10000 tỉ', value: '>1000'}
+      ]
     },
     {
       title: 'Lợi nhuận ròng',
       code: 'NET_INCOME',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>100', '>500', '>1000', '>5000', '>10000']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>100 tỉ', value: '>100'},
+        {key: '>500 tỉ', value: '>500'},
+        {key: '>1000 tỉ', value: '>1000'},
+        {key: '>5000 tỉ', value: '>5000'},
+        {key: '>10000 tỉ', value: '>1000'}
+      ]
     },
     {
       title: 'EPS',
       code: 'EPS',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>1', '>2', '>5', '>10', '>20']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>1', value: '>1'},
+        {key: '>2', value: '>2'},
+        {key: '>5', value: '>5'},
+        {key: '>10', value: '>10'},
+        {key: '>20 ', value: '>20'}
+      ]
     },
     {
       title: 'Giá trị sổ sách',
       code: 'BOOK_VALUE',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>10', '15', '20', '>25']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20', value: '>20'},
+        {key: '>25 ', value: '>25'}
+      ]
     },
     {
       title: 'Giá thị trường',
       code: 'MARKET_PRICE',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>10', '>20', '>50', '>100']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>10', value: '>10'},
+        {key: '>20', value: '>20'},
+        {key: '>50', value: '>50'},
+        {key: '>100 ', value: '>100'}
+      ]
     },
     {
       title: 'Vốn hóa',
       code: 'MARKET_CAPITAL',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>500', '>1000', '>5000', '>10000', '>50000']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>500 tỉ', value: '>500'},
+        {key: '>1000 tỉ', value: '>1000'},
+        {key: '>5000 tỉ', value: '>5000'},
+        {key: '>10000 tỉ', value: '>10000'},
+        {key: '>50000 tỉ', value: '>50000'}
+      ]
     },
     {
       title: 'Doanh thu thuần (YOY)',
       code: 'NET_REVENUE_YOY',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20', value: '>20'},
+        {key: '>25 ', value: '>25'}
+      ]
     },
     {
       title: 'Lợi nhuận ròng (YOY)',
       code: 'GROSS_PROFIT_YOY',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20', value: '>20'},
+        {key: '>25 ', value: '>25'}
+      ]
     },
     {
       title: 'EPS (YOY)',
       code: 'EPS_YOY',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20', value: '>20'},
+        {key: '>25 ', value: '>25'}
+      ]
     },
     {
       title: 'EBITDA (YOY)',
       code: 'EBITDA_YOY',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20', value: '>20'},
+        {key: '>25 ', value: '>25'}
+      ]
     },
     {
       title: 'Nợ (YOY)',
       code: 'DEBT_YOY',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20', value: '>20'},
+        {key: '>25 ', value: '>25'}
+      ]
     },
     {
       title: 'VCSH (YOY)',
       code: 'EQUITY_YOY',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20', value: '>20'},
+        {key: '>25 ', value: '>25'}
+      ]
     },
     {
       title: 'Vốn hoá (YOY)',
       code: 'MARKET_CAPITAL_YOY',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20', value: '>20'},
+        {key: '>25 ', value: '>25'}
+      ]
     },
     {
       title: 'Tài sản (YOY)',
       code: 'TOTAL_ASSETS_YOY',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20', value: '>20'},
+        {key: '>25 ', value: '>25'}
+      ]
     },
     {
       title: 'P/E',
       code: 'P_E',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>8', '>10', '>15', '>20']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>8', value: '>8'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20', value: '>20'}
+      ]
     },
     {
       title: 'Peg',
       code: 'PEG',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>0.1', '>0.2', '>0.3', '>0.5', '>1.0']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>0.1', value: '>0.1'},
+        {key: '>0.2', value: '>0.2'},
+        {key: '>0.3', value: '>0.3'},
+        {key: '>0.5', value: '>0.5'},
+        {key: '>1.0', value: '>1.0'}
+      ]
     },
     {
       title: 'P/B',
       code: 'P_B',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>0.5', '>1', '>1.5', '>2', '>3']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>0.5', value: '>0.5'},
+        {key: '>1', value: '>1'},
+        {key: '>1.5', value: '>1.5'},
+        {key: '>2', value: '>2'},
+        {key: '>3', value: '>3'}
+      ]
     },
     {
       title: 'P/S',
       code: 'P_S',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>0.5', '>1', '>1.5', '>2', '>3']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>0.5', value: '>0.5'},
+        {key: '>1', value: '>1'},
+        {key: '>1.5', value: '>1.5'},
+        {key: '>2', value: '>2'},
+        {key: '>3', value: '>3'}
+      ]
     },
     {
       title: 'EV/EBITDA',
       code: 'EV_EBITDA',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>8', '>10', '>15', '>20']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>8', value: '>8'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20 ', value: '>20'}
+      ]
     },
     {
       title: 'EV/EBIT',
       code: 'EV_EBIT',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>8', '>10', '>15', '>20']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>8', value: '>8'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20 ', value: '>20'}
+      ]
     },
     {
       title: 'EV/FCF',
       code: 'EV_FCF',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>8', '>10', '>15', '>20']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>8', value: '>8'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20 ', value: '>20'}
+      ]
     },
     {
       title: 'REV/FCF',
       code: 'REV_FCF',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>8', '>10', '>15', '>20']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>8', value: '>8'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20 ', value: '>20'}
+      ]
     },
     {
       title: 'MC/CFO',
       code: 'MC_CFO',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>8', '>10', '>15', '>20']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>8', value: '>8'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20 ', value: '>20'}
+      ]
     },
     {
       title: 'MC/NWC',
       code: 'MC_NWC',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>8', '>10', '>15', '>20']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>8', value: '>8'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20 ', value: '>20'}
+      ]
     },
     {
       title: 'Capex/Rev',
       code: 'CAPEX_REV',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>1', '>2', '>3', '>5', '>10']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>1', value: '>1'},
+        {key: '>2', value: '>2'},
+        {key: '>3', value: '>3'},
+        {key: '>5', value: '>5'},
+        {key: '>10 ', value: '>10'}
+      ]
     },
     {
       title: 'ROIC',
       code: 'ROIC',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20', value: '>20'},
+        {key: '>25', value: '>25'}
+      ]
     },
     {
       title: 'ROCE',
       code: 'ROCE',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20', value: '>20'},
+        {key: '>25', value: '>25'}
+      ]
     },
     {
       title: 'ROE',
       code: 'ROE',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20', value: '>20'},
+        {key: '>25', value: '>25'}
+      ]
     },
     {
       title: 'ROA',
       code: 'ROA',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>1', '>2', '>3', '>5', '>10']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>1', value: '>1'},
+        {key: '>2', value: '>2'},
+        {key: '>3', value: '>3'},
+        {key: '>5', value: '>5'},
+        {key: '>10', value: '>10'}
+      ]
     },
     {
       title: 'Biên lợi nhuận gộp',
       code: 'GROSS_PROFIT_MARGIN',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20', value: '>20'},
+        {key: '>25 ', value: '>25'}
+      ]
     },
     {
       title: 'LN hoạt động biên',
       code: 'OPERATING_PROFIT_MARGIN',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20', value: '>20'},
+        {key: '>25 ', value: '>25'}
+      ]
     },
     {
       title: 'LN trước thuế',
       code: 'PRETAX_PROFIT_MARGIN',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20', value: '>20'},
+        {key: '>25 ', value: '>25'}
+      ]
     },
     {
       title: 'Biên lãi ròng',
       code: 'NET_PROFIT_MARGIN',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20', value: '>20'},
+        {key: '>25 ', value: '>25'}
+      ]
     },
     {
       title: 'Tỷ suất cổ tức',
       code: 'DIV_YIELD',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>1', '>2', '>3', '>5', '>10']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>1', value: '>1'},
+        {key: '>2', value: '>2'},
+        {key: '>3', value: '>3'},
+        {key: '>5', value: '>5'},
+        {key: '>10 ', value: '>10'}
+      ]
     },
     {
       title: 'Tỷ suất EBIT',
       code: 'EBIT_REV',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20', value: '>20'},
+        {key: '>25 ', value: '>25'}
+      ]
     },
     {
       title: 'Tỷ suất EBITDA',
       code: 'EBITDA_REV',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>5', '>10', '>15', '>20', '>25']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>5', value: '>5'},
+        {key: '>10', value: '>10'},
+        {key: '>15', value: '>15'},
+        {key: '>20', value: '>20'},
+        {key: '>25 ', value: '>25'}
+      ]
     }
   ];
 
-  public static factors_ptkt: any[] = [
+  public static factors_ptkt: FactorNew[] = [
     {
       title: 'Giá trị giao dich',
-      code: '1',
+      code: 'VOL_MONEY',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>0.5 tỷ', '0.5-1 tỷ', '1-5 tỷ', '5-10 tỷ', '>10 tỷ']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>0.5 tỷ', value: '>5'},
+        {key: '0.5-1 tỷ', value: '0.5-1'},
+        {key: '1-5 tỷ', value: '1-5'},
+        {key: '5-10 tỷ', value: '5-10'},
+        {key: '>10 tỷ', value: '>10'}
+      ]
     },
     {
       title: 'Relative strength',
-      code: '2',
+      code: 'RANKIBD',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '>50%', '>60%', '>70%', '>80%', '>90%']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '>50%', value: '>50'},
+        {key: '>60%', value: '>60'},
+        {key: '>70%', value: '>70'},
+        {key: '>80%', value: '>80'},
+        {key: '>90%', value: '>90'}
+      ]
     },
     {
       title: 'RSI(14)',
-      code: '3',
+      code: 'RSI_14',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '<20', '20-30', '30-50', '50-70', '70-80', '>80']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '<20', value: '<20'},
+        {key: '20-30', value: '20 to 30'},
+        {key: '30-50', value: '30 to 50'},
+        {key: '50-70', value: '50 to 70'},
+        {key: '70-80', value: '70 to 80'},
+        {key: '>80', value: '>80'},
+      ]
     },
     {
       title: 'Volume',
-      code: '4',
+      code: 'VOL',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '<50k', '50-100k', '100-500k', '500-1000k', '>1000k']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '<50k', value: '<50'},
+        {key: '50-100K', value: '50 to 100'},
+        {key: '100-500k', value: '100 to 500'},
+        {key: '500-1000k', value: '500 to 1000'},
+        {key: '>1000k', value: '>1000'}
+      ]
     },
     {
       title: 'Volume/Trung bình Volume(20)',
-      code: '5',
+      code: 'V_MA20',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '<10%', '10-20%', '20-50%', '50-100%', '>100%']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '<10%', value: '<10'},
+        {key: '10%-20%', value: '10 to 20'},
+        {key: '20%-50%', value: '20 to 50'},
+        {key: '50%-100%', value: '50 to 100'},
+        {key: '>100%', value: '>100'},
+      ]
+    },
+    {
+      title: 'Volume/Trung bình Volume(50)',
+      code: 'V_MA50',
+      isSelected: false,
+      isShow: true,
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '<10%', value: '<10'},
+        {key: '10%-20%', value: '10 to 20'},
+        {key: '20%-50%', value: '20 to 50'},
+        {key: '50%-100%', value: '50 to 100'},
+        {key: '>100%', value: '>100'},
+      ]
     },
     {
       title: '52WH',
-      code: '6',
+      code: 'WH52',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '<10%', '10-20%', '20-30%', '30-40%', '40-50%', '>50%']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '<10%', value: '<10'},
+        {key: '10%-20%', value: '10 to 20'},
+        {key: '20%-30%', value: '20 to 30'},
+        {key: '30%-40%', value: '30 to 40'},
+        {key: '40%-50%', value: '40 to 50'},
+        {key: '>50%', value: '>50'},
+      ]
     },
     {
       title: '52WL',
-      code: '7',
+      code: 'WL52',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '<10%', '10-20%', '20-50%', '50-100%', '>100%']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '<10%', value: '<10'},
+        {key: '10%-20%', value: '10 to 20'},
+        {key: '20%-50%', value: '20 to 50'},
+        {key: '50%-100%', value: '50 to 100'},
+        {key: '>100%', value: '>100'},
+      ]
     },
     {
       title: 'ADX(14)',
-      code: '8',
+      code: 'ADX_14',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '<10', '10-20', '20-30', '30-40', '>40']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '<10', value: '<10'},
+        {key: '10 to 20', value: '10 to 20'},
+        {key: '20 to 30', value: '20 to 30'},
+        {key: '30 to 40', value: '30 to 40'},
+        {key: '>40', value: '>40'},
+      ]
+    },
+    {
+      title: 'MACD',
+      code: 'MACD',
+      isSelected: false,
+      isShow: true,
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '< -1', value: '<-1'},
+        {key: '-1 to -0.5', value: '-1 to -0.5'},
+        {key: '-0.5 to 0', value: '-0.5 to 0'},
+        {key: '0 to 0.5', value: '0 to 0.5'},
+        {key: '0.5 to 1', value: '0.5 to 1'},
+        {key: '>1', value: '>1'}
+      ]
     },
     {
       title: 'Stochastic',
-      code: '9',
+      code: 'STOCHK',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '<20', '20-30', '30-50', '50-70', '70-80', '>80']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '<20', value: '<20'},
+        {key: '20-30', value: '20 to 30'},
+        {key: '30-50', value: '30 to 50'},
+        {key: '50-70', value: '50 to 70'},
+        {key: '70-80', value: '70 to 80'},
+        {key: '>80', value: '>80'}
+      ]
     },
     {
       title: 'Price & MA10',
-      code: '10',
+      code: 'PRICE_MA10',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '< -20%', '-20% to -10%', '-10% to 0', '10-20%', '>20%']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '< -20%', value: '<-20'},
+        {key: '-20% to -10%', value: '-20 to -10'},
+        {key: '-10% to 0', value: '10 to 0'},
+        {key: '10-20%', value: '10 to 20'},
+        {key: '>20%', value: '>20'}
+      ]
     },
     {
       title: 'Price & MA20',
-      code: '11',
+      code: 'PRICE_MA20',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '< -20%', '-20% to -10%', '-10% to 0', '10-20%', '>20%']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '< -20%', value: '<-20'},
+        {key: '-20% to -10%', value: '-20 to -10'},
+        {key: '-10% to 0', value: '10 to 0'},
+        {key: '10-20%', value: '10 to 20'},
+        {key: '>20%', value: '>20'}
+      ]
     },
     {
       title: 'Price & MA50',
-      code: '12',
+      code: 'PRICE_MA50',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '< -20%', '-20% to -10%', '-10% to 0', '10-20%', '>20%']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '< -20%', value: '<-20'},
+        {key: '-20% to -10%', value: '-20 to -10'},
+        {key: '-10% to 0', value: '10 to 0'},
+        {key: '10-20%', value: '10 to 20'},
+        {key: '>20%', value: '>20'}
+      ]
     },
     {
       title: 'Price & MA200',
-      code: '13',
+      code: 'PRICE_MA200',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '< -20%', '-20% to -10%', '-10% to 0', '10-20%', '>20%']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '< -20%', value: '<-20'},
+        {key: '-20% to -10%', value: '-20 to -10'},
+        {key: '-10% to 0', value: '10 to 0'},
+        {key: '10-20%', value: '10 to 20'},
+        {key: '>20%', value: '>20'}
+      ]
     },
     {
       title: 'MA10 & MA20',
-      code: '14',
+      code: 'MA10_MA20',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '< -20%', '-20% to -10%', '-10% to 0', '10-20%', '>20%']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '< -20%', value: '<-20'},
+        {key: '-20% to -10%', value: '-20 to -10'},
+        {key: '-10% to 0', value: '10 to 0'},
+        {key: '10-20%', value: '10 to 20'},
+        {key: '>20%', value: '>20'}
+      ]
     },
     {
       title: 'MA20 & MA50',
-      code: '15',
+      code: 'MA20_MA50',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '< -20%', '-20% to -10%', '-10% to 0', '10-20%', '>20%']
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '< -20%', value: '<-20'},
+        {key: '-20% to -10%', value: '-20 to -10'},
+        {key: '-10% to 0', value: '10 to 0'},
+        {key: '10-20%', value: '10 to 20'},
+        {key: '>20%', value: '>20'}
+      ]
     },
     {
       title: 'MA50 & MA200',
-      code: '16',
+      code: 'MA50_MA200',
       isSelected: false,
       isShow: true,
-      ranges: ['any', '< -20%', '-20% to -10%', '-10% to 0', '10-20%', '>20%']
-    },
+      ranges: [
+        {key: 'any', value: ''},
+        {key: '< -20%', value: '<-20'},
+        {key: '-20% to -10%', value: '-20 to -10'},
+        {key: '-10% to 0', value: '10 to 0'},
+        {key: '10-20%', value: '10 to 20'},
+        {key: '>20%', value: '>20'}
+      ]
+    }
   ];
 }
 

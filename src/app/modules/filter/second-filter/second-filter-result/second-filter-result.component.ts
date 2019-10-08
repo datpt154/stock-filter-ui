@@ -1,32 +1,11 @@
-import { Component, OnInit, Output, Input, EventEmitter, ViewChild } from '@angular/core';
-import { BasicFilterDTO } from '../../../../interface/basic-filter-dto';
-import { DataItem } from '../../../../interface/data-item';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {BasicFilterDTO} from '../../../../interface/basic-filter-dto';
+import {DataItem} from '../../../../interface/data-item';
 import * as _ from 'lodash';
-import { TableData, SortType, FilterTableColumn, DataType } from '../../../../interface/filter-table-dto';
+import {DataType, FilterTableColumn, SortType, TableData} from '../../../../interface/filter-table-dto';
+import {FilterConstant} from '../../../../constants/filter-constant';
 
-const TABLE_DEFAULT_COLUMN: FilterTableColumn[] = [
-  {
-    title: 'No.',
-    code: 'rowIndex',
-    sortType: SortType.NONE,
-    width: 1,
-    dataType: DataType.String
-  },
-  {
-    title: 'Mã chứng khoán',
-    code: 'companyCode',
-    sortType: SortType.ASD,
-    dataType: DataType.String
-  },
-  {
-    title: 'Giá',
-    code: 'price',
-    sortType: SortType.DEFAULT,
-    showChart: true,
-    dataType: DataType.Number
-  },
-];
+
 @Component({
   selector: 'app-second-filter-result',
   templateUrl: './second-filter-result.component.html',
@@ -50,7 +29,8 @@ export class SecondFilterResultComponent implements OnInit {
     }
   };
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     const dynamicHeader: FilterTableColumn[] = this.selectedDataItems.map(dataItem => {
@@ -63,7 +43,7 @@ export class SecondFilterResultComponent implements OnInit {
       };
     });
 
-    this.tableData.header = [...TABLE_DEFAULT_COLUMN, ...dynamicHeader];
+    this.tableData.header = [...FilterConstant.TABLE_DEFAULT_COLUMN, ...dynamicHeader];
     this.tableData.data = this.searchResult.map(item => {
       _.forEach(item.searchItems, searchItem => {
         item[searchItem.code] = searchItem.value;

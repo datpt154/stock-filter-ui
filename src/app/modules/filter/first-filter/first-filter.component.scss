@@ -8,14 +8,19 @@
         margin-bottom: 0.25rem;
       }
 
-      select {
-        height: auto;
-      }
-
       .form-control {
         font-size: 0.8rem;
       }
     }
+  }
+
+  select {
+    height: auto !important;
+    min-width: 60px;
+  }
+
+  .badge {
+    line-height: normal !important;
   }
 
 }

@@ -1,14 +1,13 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {MatStepper} from '@angular/material/stepper';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Title} from '@angular/platform-browser';
 import * as _ from 'lodash';
 import {FilterConstant} from '../../../constants/filter-constant';
-import {BasicFilterDTO} from '../../../interface/basic-filter-dto';
-import {Factor} from '../../../interface/factor';
+import {FactorNew} from '../../../interface/factor';
 import {FilterService} from '../../../services/business.service/filter.service';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
+import {DataType, SortType} from '../../../interface/filter-table-dto';
 
 @Component({
   selector: 'app-first-filter',
@@ -17,11 +16,10 @@ import {Subject} from 'rxjs';
 })
 export class FirstFilterComponent implements OnInit, OnDestroy {
   protected isFilterPageReady = false;
-  protected searchResult: BasicFilterDTO[] = [];
   private ngUnsubscribe: Subject<any> = new Subject();
 
-  factors_ptcb: any[] = FilterConstant.factors_ptcb;
-  factors_ptkt: any[] = FilterConstant.factors_ptkt;
+  factors_ptcb: FactorNew[] = FilterConstant.factors_ptcb;
+  factors_ptkt: FactorNew[] = FilterConstant.factors_ptkt;
   ptcbForm: FormGroup;
   ptktForm: FormGroup;
   selectedPTCBTotal = 0;
@@ -30,6 +28,20 @@ export class FirstFilterComponent implements OnInit, OnDestroy {
   ptktRowsTotal = [];
   initialPTCBForm = {};
   initialPKTForm = {};
+  searchDataitems: any[];
+
+  isShowedResult = false;
+  page = 1;
+  pageSize = 10;
+  collectionSize = 0;
+  searchedCompanies: any[] = [];
+  tableHeader = FilterConstant.TABLE_DEFAULT_COLUMN;
+
+  quaterYear = ['Quý', 'Năm'];
+  quaterYearControl = new FormControl(this.quaterYear[0]);
+  hoseExchange = new FormControl(true);
+  hnxExchange = new FormControl(true);
+  upcomExchange = new FormControl(true);
 
   constructor(
     protected _formBuilder: FormBuilder,
@@ -44,9 +56,13 @@ export class FirstFilterComponent implements OnInit, OnDestroy {
     this.initializePTKTForm();
   }
 
+  get companies(): any[] {
+    return this.searchedCompanies.slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+  }
+
   private initializePTCBForm(): void {
     this.factors_ptcb.forEach(factor => {
-      this.initialPTCBForm[factor.code] = [factor.ranges[0]];
+      this.initialPTCBForm[factor.code] = [factor.ranges[0].value];
     });
     this.ptcbForm = this._formBuilder.group(this.initialPTCBForm);
 
@@ -56,7 +72,7 @@ export class FirstFilterComponent implements OnInit, OnDestroy {
         let count = 0;
         this.factors_ptcb.forEach(factor => {
           const valueOfSelection = this.ptcbForm.get(factor.code).value;
-          if (valueOfSelection === 'any') {
+          if (valueOfSelection === '') {
             factor.isSelected = false;
           } else {
             count = count + 1;
@@ -74,7 +90,7 @@ export class FirstFilterComponent implements OnInit, OnDestroy {
 
   private initializePTKTForm(): void {
     this.factors_ptkt.forEach(factor => {
-      this.initialPKTForm[factor.code] = [factor.ranges[0]];
+      this.initialPKTForm[factor.code] = [factor.ranges[0].value];
     });
     this.ptktForm = this._formBuilder.group(this.initialPKTForm);
 
@@ -84,7 +100,7 @@ export class FirstFilterComponent implements OnInit, OnDestroy {
         let count = 0;
         this.factors_ptkt.forEach(factor => {
           const valueOfSelection = this.ptktForm.get(factor.code).value;
-          if (valueOfSelection === 'any') {
+          if (valueOfSelection === '') {
             factor.isSelected = false;
           } else {
             count = count + 1;
@@ -103,10 +119,82 @@ export class FirstFilterComponent implements OnInit, OnDestroy {
   resetFilterInput(): void {
     this.ptcbForm.reset(this.initializePTCBForm());
     this.ptktForm.reset(this.initializePTKTForm());
+    this.isShowedResult = false;
   }
 
-  protected getFilterResult(searchInput) {
-    return this._filterService.basicFilter(searchInput);
+  search(): void {
+    this._filterService.basicFilter(this.getSearchParams()).subscribe(data => {
+      this.collectionSize = data.length;
+
+      const dynamicHeader = this.getDynamicHeader();
+      this.tableHeader = [...FilterConstant.TABLE_DEFAULT_COLUMN, ...dynamicHeader];
+      this.searchedCompanies = data.map((company, i) => ({id: i + 1, ...company}));
+      this.isShowedResult = true;
+    });
+  }
+
+  private getDynamicHeader(): any[] {
+    return this.searchDataitems.map(dataItem => {
+      return {
+        title: dataItem.title,
+        code: dataItem.code,
+        sortType: SortType.DEFAULT,
+        showChart: true,
+        dataType: DataType.Number
+      };
+    });
+  }
+
+  private getSearchParams(): any {
+    this.searchDataitems = [];
+    this.factors_ptcb.forEach(factor => {
+      const valueOfSelection = this.ptcbForm.get(factor.code).value;
+      if (valueOfSelection !== '') {
+        this.searchDataitems.push({
+          title: factor.title,
+          code: factor.code,
+          compareValues: valueOfSelection
+        });
+      }
+    });
+
+    this.factors_ptkt.forEach(factor => {
+      const valueOfSelection = this.ptktForm.get(factor.code).value;
+      if (valueOfSelection !== '') {
+        this.searchDataitems.push({
+          title: factor.title,
+          code: factor.code,
+          compareValues: valueOfSelection
+        });
+      }
+    });
+
+    return {
+      time: this.quaterYearControl.value,
+      stockExchanges: this.getStockeExchanges(),
+      searchDataitems: this.searchDataitems
+    };
+  }
+
+  private getStockeExchanges(): string[] {
+    const result = [];
+
+    if (this.hoseExchange.value) {
+      result.push('HOSE');
+    }
+    if (this.hnxExchange.value) {
+      result.push('HNX');
+    }
+    if (this.upcomExchange.value) {
+      result.push('UPCOM');
+    }
+
+    return result;
+  }
+
+  get isDisableSearchButton(): boolean {
+    return (this.selectedPTCBTotal + this.selectedPTKTTotal === 0)
+        && (this.upcomExchange.value || this.hnxExchange.value || this.hoseExchange.value);
   }
 
   ngOnDestroy() {
