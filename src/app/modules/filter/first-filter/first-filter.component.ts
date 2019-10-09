@@ -29,6 +29,7 @@ export class FirstFilterComponent implements OnInit, OnDestroy {
   initialPTCBForm = {};
   initialPKTForm = {};
   searchDataitems: any[];
+  searchDataPtkts: any[];
 
   isShowedResult = false;
   page = 1;
@@ -146,6 +147,32 @@ export class FirstFilterComponent implements OnInit, OnDestroy {
   }
 
   private getSearchParams(): any {
+    this.getSearchDataItems();
+    this.getSearchPtkts();
+
+    return {
+      time: this.quaterYearControl.value,
+      stockExchanges: this.getStockeExchanges(),
+      searchDataitems: this.searchDataitems,
+      searchDataPtkt: this.searchDataPtkts
+    };
+  }
+
+  private getSearchPtkts(): void {
+    this.searchDataPtkts = [];
+    this.factors_ptkt.forEach(factor => {
+      const valueOfSelection = this.ptktForm.get(factor.code).value;
+      if (valueOfSelection !== '') {
+        this.searchDataPtkts.push({
+          title: factor.title,
+          code: factor.code,
+          compareValues: valueOfSelection
+        });
+      }
+    });
+  }
+
+  private getSearchDataItems(): void {
     this.searchDataitems = [];
     this.factors_ptcb.forEach(factor => {
       const valueOfSelection = this.ptcbForm.get(factor.code).value;
@@ -157,23 +184,6 @@ export class FirstFilterComponent implements OnInit, OnDestroy {
         });
       }
     });
-
-    this.factors_ptkt.forEach(factor => {
-      const valueOfSelection = this.ptktForm.get(factor.code).value;
-      if (valueOfSelection !== '') {
-        this.searchDataitems.push({
-          title: factor.title,
-          code: factor.code,
-          compareValues: valueOfSelection
-        });
-      }
-    });
-
-    return {
-      time: this.quaterYearControl.value,
-      stockExchanges: this.getStockeExchanges(),
-      searchDataitems: this.searchDataitems
-    };
   }
 
   private getStockeExchanges(): string[] {
