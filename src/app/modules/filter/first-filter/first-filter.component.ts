@@ -28,7 +28,7 @@ export class FirstFilterComponent implements OnInit, OnDestroy {
   ptktRowsTotal = [];
   initialPTCBForm = {};
   initialPKTForm = {};
-  searchDataitems: any[];
+  searchDataptcbs: any[];
   searchDataPtkts: any[];
 
   isShowedResult = false;
@@ -135,25 +135,43 @@ export class FirstFilterComponent implements OnInit, OnDestroy {
   }
 
   private getDynamicHeader(): any[] {
-    return this.searchDataitems.map(dataItem => {
-      return {
-        title: dataItem.title,
-        code: dataItem.code,
-        sortType: SortType.DEFAULT,
-        showChart: true,
-        dataType: DataType.Number
-      };
+    const dynamicHeaders = [];
+
+    this.searchDataptcbs.forEach(item => {
+      dynamicHeaders.push(
+        {
+          title: item.title,
+          code: item.code,
+          sortType: SortType.DEFAULT,
+          showChart: true,
+          dataType: DataType.Number
+        }
+      );
     });
+
+    this.searchDataPtkts.forEach(item => {
+      dynamicHeaders.push(
+        {
+          title: item.title,
+          code: item.code,
+          sortType: SortType.DEFAULT,
+          showChart: true,
+          dataType: DataType.Number
+        }
+      );
+    });
+
+    return dynamicHeaders;
   }
 
   private getSearchParams(): any {
-    this.getSearchDataItems();
+    this.getSearchPtcbs();
     this.getSearchPtkts();
 
     return {
       time: this.quaterYearControl.value,
       stockExchanges: this.getStockeExchanges(),
-      searchDataitems: this.searchDataitems,
+      searchDataitems: this.searchDataptcbs,
       searchDataPtkt: this.searchDataPtkts
     };
   }
@@ -172,12 +190,12 @@ export class FirstFilterComponent implements OnInit, OnDestroy {
     });
   }
 
-  private getSearchDataItems(): void {
-    this.searchDataitems = [];
+  private getSearchPtcbs(): void {
+    this.searchDataptcbs = [];
     this.factors_ptcb.forEach(factor => {
       const valueOfSelection = this.ptcbForm.get(factor.code).value;
       if (valueOfSelection !== '') {
-        this.searchDataitems.push({
+        this.searchDataptcbs.push({
           title: factor.title,
           code: factor.code,
           compareValues: valueOfSelection

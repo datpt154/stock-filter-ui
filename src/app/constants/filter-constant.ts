@@ -745,11 +745,11 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>100 tỉ', value: '>100'},
-        {key: '>500 tỉ', value: '>500'},
-        {key: '>1000 tỉ', value: '>1000'},
-        {key: '>5000 tỉ', value: '>5000'},
-        {key: '>10000 tỉ', value: '>1000'}
+        {key: '<500 tỉ', value: '<500'},
+        {key: '500-1000 tỉ', value: '500 to 1000'},
+        {key: '1000-5000 tỉ', value: '1000 to 5000'},
+        {key: '5000-10000 tỉ', value: '5000 to 10000'},
+        {key: '>10000 tỉ', value: '>10000'}
       ]
     },
     {
@@ -759,11 +759,11 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>100 tỉ', value: '>100'},
-        {key: '>500 tỉ', value: '>500'},
-        {key: '>1000 tỉ', value: '>1000'},
-        {key: '>5000 tỉ', value: '>5000'},
-        {key: '>10000 tỉ', value: '>1000'}
+        {key: '<500 tỉ', value: '<500'},
+        {key: '500-1000 tỉ', value: '500 to 1000'},
+        {key: '1000-5000 tỉ', value: '1000 to 5000'},
+        {key: '5000-10000 tỉ', value: '5000 to 10000'},
+        {key: '>10000 tỉ', value: '>10000'}
       ]
     },
     {
@@ -773,11 +773,11 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>1', value: '>1'},
-        {key: '>2', value: '>2'},
-        {key: '>5', value: '>5'},
-        {key: '>10', value: '>10'},
-        {key: '>20 ', value: '>20'}
+        {key: '<1000', value: '<1000'},
+        {key: '1000-2000', value: '1000 to 2000'},
+        {key: '2000-5000', value: '2000 to 5000'},
+        {key: '5000-10000', value: '5000 to 10000'},
+        {key: '>10000 ', value: '>10000'}
       ]
     },
     {
@@ -787,11 +787,11 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
-        {key: '>20', value: '>20'},
-        {key: '>25 ', value: '>25'}
+        {key: '<5000', value: '>5'},
+        {key: '5000-10000', value: '5000 to 10000'},
+        {key: '10000-15000', value: '10000 to 15000'},
+        {key: '15000-20000', value: '15000 to 20000'},
+        {key: '>20000 ', value: '>20000'}
       ]
     },
     {
@@ -801,11 +801,11 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>10', value: '>10'},
-        {key: '>20', value: '>20'},
-        {key: '>50', value: '>50'},
-        {key: '>100 ', value: '>100'}
+        {key: '<5000', value: '>5'},
+        {key: '5000-10000', value: '5000 to 10000'},
+        {key: '10000-20000', value: '10000 to 20000'},
+        {key: '20000-50000', value: '20000 to 50000'},
+        {key: '>50000 ', value: '>50000'}
       ]
     },
     {
@@ -815,123 +815,123 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>500 tỉ', value: '>500'},
-        {key: '>1000 tỉ', value: '>1000'},
-        {key: '>5000 tỉ', value: '>5000'},
-        {key: '>10000 tỉ', value: '>10000'},
-        {key: '>50000 tỉ', value: '>50000'}
+        {key: '<500 tỉ', value: '<500'},
+        {key: '500-1000 tỉ', value: '500 to 1000'},
+        {key: '1000-5000 tỉ', value: '1000 to 5000'},
+        {key: '5000-10000 tỉ', value: '5000 to 10000'},
+        {key: '>10000 tỉ', value: '>10000'}
       ]
     },
     {
-      title: 'Doanh thu thuần (YOY)',
+      title: 'Tăng trưởng Doanh thu (YOY)',
       code: 'NET_REVENUE_YOY',
       isSelected: false,
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
-        {key: '>20', value: '>20'},
-        {key: '>25 ', value: '>25'}
+        {key: '<10%', value: '<10'},
+        {key: '10-20%', value: '10 to 20'},
+        {key: '20-50%', value: '20 to 50'},
+        {key: '50-100%', value: '50 to 100'},
+        {key: '>100%', value: '>100'}
       ]
     },
     {
-      title: 'Lợi nhuận ròng (YOY)',
+      title: 'Tăng trưởng Lợi nhuận (YOY)',
       code: 'GROSS_PROFIT_YOY',
       isSelected: false,
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
-        {key: '>20', value: '>20'},
-        {key: '>25 ', value: '>25'}
+        {key: '<10%', value: '<10'},
+        {key: '10-20%', value: '10 to 20'},
+        {key: '20-50%', value: '20 to 50'},
+        {key: '50-100%', value: '50 to 100'},
+        {key: '>100%', value: '>100'}
       ]
     },
     {
-      title: 'EPS (YOY)',
+      title: 'Tăng trưởng EPS (YOY)',
       code: 'EPS_YOY',
       isSelected: false,
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
-        {key: '>20', value: '>20'},
-        {key: '>25 ', value: '>25'}
+        {key: '<10%', value: '<10'},
+        {key: '10-20%', value: '10 to 20'},
+        {key: '20-50%', value: '20 to 50'},
+        {key: '50-100%', value: '50 to 100'},
+        {key: '>100%', value: '>100'}
       ]
     },
     {
-      title: 'EBITDA (YOY)',
+      title: 'Tăng trưởng EBITDA (YOY)',
       code: 'EBITDA_YOY',
       isSelected: false,
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
-        {key: '>20', value: '>20'},
-        {key: '>25 ', value: '>25'}
+        {key: '<10%', value: '<10'},
+        {key: '10-20%', value: '10 to 20'},
+        {key: '20-50%', value: '20 to 50'},
+        {key: '50-100%', value: '50 to 100'},
+        {key: '>100%', value: '>100'}
       ]
     },
     {
-      title: 'Nợ (YOY)',
+      title: 'Tăng trưởng Nợ (YOY)',
       code: 'DEBT_YOY',
       isSelected: false,
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
-        {key: '>20', value: '>20'},
-        {key: '>25 ', value: '>25'}
+        {key: '<10%', value: '<10'},
+        {key: '10-20%', value: '10 to 20'},
+        {key: '20-50%', value: '20 to 50'},
+        {key: '50-100%', value: '50 to 100'},
+        {key: '>100%', value: '>100'}
       ]
     },
     {
-      title: 'VCSH (YOY)',
+      title: 'Tăng trưởng VCSH (YOY)',
       code: 'EQUITY_YOY',
       isSelected: false,
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
-        {key: '>20', value: '>20'},
-        {key: '>25 ', value: '>25'}
+        {key: '<10%', value: '<10'},
+        {key: '10-20%', value: '10 to 20'},
+        {key: '20-50%', value: '20 to 50'},
+        {key: '50-100%', value: '50 to 100'},
+        {key: '>100%', value: '>100'}
       ]
     },
     {
-      title: 'Vốn hoá (YOY)',
+      title: 'Tăng trưởng Vốn hoá (YOY)',
       code: 'MARKET_CAPITAL_YOY',
       isSelected: false,
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
-        {key: '>20', value: '>20'},
-        {key: '>25 ', value: '>25'}
+        {key: '<10%', value: '<10'},
+        {key: '10-20%', value: '10 to 20'},
+        {key: '20-50%', value: '20 to 50'},
+        {key: '50-100%', value: '50 to 100'},
+        {key: '>100%', value: '>100'}
       ]
     },
     {
-      title: 'Tài sản (YOY)',
+      title: 'Tăng trưởng Tài sản (YOY)',
       code: 'TOTAL_ASSETS_YOY',
       isSelected: false,
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
-        {key: '>20', value: '>20'},
-        {key: '>25 ', value: '>25'}
+        {key: '<10%', value: '<10'},
+        {key: '10-20%', value: '10 to 20'},
+        {key: '20-50%', value: '20 to 50'},
+        {key: '50-100%', value: '50 to 100'},
+        {key: '>100%', value: '>100'}
       ]
     },
     {
@@ -941,10 +941,10 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>8', value: '>8'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
+        {key: '<5', value: '<5'},
+        {key: '5-10', value: '5 to 10'},
+        {key: '10-15', value: '10 to 15'},
+        {key: '15-20', value: '15 to 20'},
         {key: '>20', value: '>20'}
       ]
     },
@@ -955,10 +955,10 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>0.1', value: '>0.1'},
-        {key: '>0.2', value: '>0.2'},
-        {key: '>0.3', value: '>0.3'},
-        {key: '>0.5', value: '>0.5'},
+        {key: '<0.1', value: '<0.1'},
+        {key: '0.1-0.3', value: '0.1 to 0.3'},
+        {key: '0.3-0.5', value: '0.3 to 0.5'},
+        {key: '0.5-1.0', value: '0.5 to 1.0'},
         {key: '>1.0', value: '>1.0'}
       ]
     },
@@ -969,11 +969,11 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>0.5', value: '>0.5'},
-        {key: '>1', value: '>1'},
-        {key: '>1.5', value: '>1.5'},
-        {key: '>2', value: '>2'},
-        {key: '>3', value: '>3'}
+        {key: '<0.5', value: '<0.5'},
+        {key: '0.5-1.0', value: '0.5 to 1.0'},
+        {key: '1.0-1.5', value: '1.0 to 1.5'},
+        {key: '1.5-2.0', value: '1.5 to 2.0'},
+        {key: '>2.0', value: '>2.0'}
       ]
     },
     {
@@ -983,11 +983,11 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>0.5', value: '>0.5'},
-        {key: '>1', value: '>1'},
-        {key: '>1.5', value: '>1.5'},
-        {key: '>2', value: '>2'},
-        {key: '>3', value: '>3'}
+        {key: '<0.5', value: '<0.5'},
+        {key: '0.5-1.0', value: '0.5 to 1.0'},
+        {key: '1.0-1.5', value: '1.0 to 1.5'},
+        {key: '1.5-2.0', value: '1.5 to 2.0'},
+        {key: '>2.0', value: '>2.0'}
       ]
     },
     {
@@ -997,10 +997,10 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>8', value: '>8'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
+        {key: '<5', value: '<5'},
+        {key: '5-10', value: '5 to 10'},
+        {key: '10-15', value: '10 to 15'},
+        {key: '15-20', value: '15 to 20'},
         {key: '>20 ', value: '>20'}
       ]
     },
@@ -1011,10 +1011,10 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>8', value: '>8'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
+        {key: '<5', value: '<5'},
+        {key: '5-10', value: '5 to 10'},
+        {key: '10-15', value: '10 to 15'},
+        {key: '15-20', value: '15 to 20'},
         {key: '>20 ', value: '>20'}
       ]
     },
@@ -1025,10 +1025,10 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>8', value: '>8'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
+        {key: '<5', value: '<5'},
+        {key: '5-10', value: '5 to 10'},
+        {key: '10-15', value: '10 to 15'},
+        {key: '15-20', value: '15 to 20'},
         {key: '>20 ', value: '>20'}
       ]
     },
@@ -1039,10 +1039,10 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>8', value: '>8'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
+        {key: '<5', value: '<5'},
+        {key: '5-10', value: '5 to 10'},
+        {key: '10-15', value: '10 to 15'},
+        {key: '15-20', value: '15 to 20'},
         {key: '>20 ', value: '>20'}
       ]
     },
@@ -1053,10 +1053,10 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>8', value: '>8'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
+        {key: '<5', value: '<5'},
+        {key: '5-10', value: '5 to 10'},
+        {key: '10-15', value: '10 to 15'},
+        {key: '15-20', value: '15 to 20'},
         {key: '>20 ', value: '>20'}
       ]
     },
@@ -1067,10 +1067,10 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>8', value: '>8'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
+        {key: '<5', value: '<5'},
+        {key: '5-10', value: '5 to 10'},
+        {key: '10-15', value: '10 to 15'},
+        {key: '15-20', value: '15 to 20'},
         {key: '>20 ', value: '>20'}
       ]
     },
@@ -1081,11 +1081,11 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>1', value: '>1'},
-        {key: '>2', value: '>2'},
-        {key: '>3', value: '>3'},
-        {key: '>5', value: '>5'},
-        {key: '>10 ', value: '>10'}
+        {key: '<10%', value: '<10'},
+        {key: '10-15%', value: '10 to 15'},
+        {key: '15-20%', value: '15 to 20'},
+        {key: '20-25%', value: '20 to 25'},
+        {key: '>25% ', value: '>25'}
       ]
     },
     {
@@ -1095,11 +1095,11 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
-        {key: '>20', value: '>20'},
-        {key: '>25', value: '>25'}
+        {key: '<10%', value: '<10'},
+        {key: '10-15%', value: '10 to 15'},
+        {key: '15-20%', value: '15 to 20'},
+        {key: '20-25%', value: '20 to 25'},
+        {key: '>25% ', value: '>25'}
       ]
     },
     {
@@ -1109,11 +1109,11 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
-        {key: '>20', value: '>20'},
-        {key: '>25', value: '>25'}
+        {key: '<10%', value: '<10'},
+        {key: '10-15%', value: '10 to 15'},
+        {key: '15-20%', value: '15 to 20'},
+        {key: '20-25%', value: '20 to 25'},
+        {key: '>25% ', value: '>25'}
       ]
     },
     {
@@ -1123,11 +1123,11 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
-        {key: '>20', value: '>20'},
-        {key: '>25', value: '>25'}
+        {key: '<10%', value: '<10'},
+        {key: '10-15%', value: '10 to 15'},
+        {key: '15-20%', value: '15 to 20'},
+        {key: '20-25%', value: '20 to 25'},
+        {key: '>25% ', value: '>25'}
       ]
     },
     {
@@ -1137,11 +1137,12 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>1', value: '>1'},
-        {key: '>2', value: '>2'},
-        {key: '>3', value: '>3'},
-        {key: '>5', value: '>5'},
-        {key: '>10', value: '>10'}
+        {key: '<2%', value: '<2'},
+        {key: '2-4%', value: '2 to 4'},
+        {key: '4-6%', value: '4 to 6'},
+        {key: '6-8%', value: '6 to 8'},
+        {key: '8-10%', value: '8 to 10'},
+        {key: '>10%', value: '>10'}
       ]
     },
     {
@@ -1151,11 +1152,11 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
-        {key: '>20', value: '>20'},
-        {key: '>25 ', value: '>25'}
+        {key: '<10%', value: '<10'},
+        {key: '10-15%', value: '10 to 15'},
+        {key: '15-20%', value: '15 to 20'},
+        {key: '20-25%', value: '20 to 25'},
+        {key: '>25% ', value: '>25'}
       ]
     },
     {
@@ -1165,11 +1166,11 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
-        {key: '>20', value: '>20'},
-        {key: '>25 ', value: '>25'}
+        {key: '<10%', value: '<10'},
+        {key: '10-15%', value: '10 to 15'},
+        {key: '15-20%', value: '15 to 20'},
+        {key: '20-25%', value: '20 to 25'},
+        {key: '>25% ', value: '>25'}
       ]
     },
     {
@@ -1179,11 +1180,11 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
-        {key: '>20', value: '>20'},
-        {key: '>25 ', value: '>25'}
+        {key: '<10%', value: '<10'},
+        {key: '10-15%', value: '10 to 15'},
+        {key: '15-20%', value: '15 to 20'},
+        {key: '20-25%', value: '20 to 25'},
+        {key: '>25% ', value: '>25'}
       ]
     },
     {
@@ -1193,11 +1194,11 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
-        {key: '>20', value: '>20'},
-        {key: '>25 ', value: '>25'}
+        {key: '<10%', value: '<10'},
+        {key: '10-15%', value: '10 to 15'},
+        {key: '15-20%', value: '15 to 20'},
+        {key: '20-25%', value: '20 to 25'},
+        {key: '>25% ', value: '>25'}
       ]
     },
     {
@@ -1207,11 +1208,12 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>1', value: '>1'},
-        {key: '>2', value: '>2'},
-        {key: '>3', value: '>3'},
-        {key: '>5', value: '>5'},
-        {key: '>10 ', value: '>10'}
+        {key: '<2%', value: '<2'},
+        {key: '2-4%', value: '2 to 4'},
+        {key: '4-6%', value: '4 to 6'},
+        {key: '6-8%', value: '6 to 8'},
+        {key: '8-10%', value: '8 to 10'},
+        {key: '>10%', value: '>10'}
       ]
     },
     {
@@ -1221,11 +1223,11 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
-        {key: '>20', value: '>20'},
-        {key: '>25 ', value: '>25'}
+        {key: '<10%', value: '<10'},
+        {key: '10-15%', value: '10 to 15'},
+        {key: '15-20%', value: '15 to 20'},
+        {key: '20-25%', value: '20 to 25'},
+        {key: '>25% ', value: '>25'}
       ]
     },
     {
@@ -1235,11 +1237,11 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>5', value: '>5'},
-        {key: '>10', value: '>10'},
-        {key: '>15', value: '>15'},
-        {key: '>20', value: '>20'},
-        {key: '>25 ', value: '>25'}
+        {key: '<10%', value: '<10'},
+        {key: '10-15%', value: '10 to 15'},
+        {key: '15-20%', value: '15 to 20'},
+        {key: '20-25%', value: '20 to 25'},
+        {key: '>25% ', value: '>25'}
       ]
     }
   ];
@@ -1252,10 +1254,10 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '>0.5 tỷ', value: '>5'},
-        {key: '0.5-1 tỷ', value: '0.5-1'},
-        {key: '1-5 tỷ', value: '1-5'},
-        {key: '5-10 tỷ', value: '5-10'},
+        {key: '<0.5 tỷ', value: '<0.5'},
+        {key: '0.5-1 tỷ', value: '0.5 to 1'},
+        {key: '1-5 tỷ', value: '1 to 5'},
+        {key: '5-10 tỷ', value: '5 to 10'},
         {key: '>10 tỷ', value: '>10'}
       ]
     },
@@ -1295,11 +1297,11 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '<50k', value: '<50'},
-        {key: '50-100K', value: '50 to 100'},
-        {key: '100-500k', value: '100 to 500'},
-        {key: '500-1000k', value: '500 to 1000'},
-        {key: '>1000k', value: '>1000'}
+        {key: '<50k', value: '<50000'},
+        {key: '50-100K', value: '50000 to 100000'},
+        {key: '100-500k', value: '100000 to 500000'},
+        {key: '500-1000k', value: '500000 to 1000000'},
+        {key: '>1000k', value: '>1000000'}
       ]
     },
     {
