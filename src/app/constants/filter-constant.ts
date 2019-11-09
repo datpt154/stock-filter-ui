@@ -1254,11 +1254,11 @@ export class FilterConstant {
       isShow: true,
       ranges: [
         {key: 'any', value: ''},
-        {key: '<0.5 tỷ', value: '<0.5'},
-        {key: '0.5-1 tỷ', value: '0.5 to 1'},
-        {key: '1-5 tỷ', value: '1 to 5'},
-        {key: '5-10 tỷ', value: '5 to 10'},
-        {key: '>10 tỷ', value: '>10'}
+        {key: '<500 triệu', value: '<500'},
+        {key: '500-1000 triệu', value: '500 to 1000'},
+        {key: '1000-5000 triệu', value: '1000 to 5000'},
+        {key: '5000-10,000 triệu', value: '5000 to 10000'},
+        {key: '>10,000 triệu', value: '>10000'}
       ]
     },
     {
