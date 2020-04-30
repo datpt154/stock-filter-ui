@@ -39,7 +39,7 @@
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
     "jodit-angular": "^1.0.81",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "lodash": "^4.17.10",
     "ng2-charts": "^1.6.0",
     "ng2-nouislider": "^1.7.13",
